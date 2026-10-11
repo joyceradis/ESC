@@ -14,7 +14,7 @@ const fs = require('node:fs/promises');
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     for (const phase of ['before','after']) {
      await page.goto('http://127.0.0.1:18768/'+phase+'/laboratorio.html');
-     await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-'+phase+'.png',animations:'disabled'});
+     await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-'+phase+'.jpg',animations:'disabled',type:'jpeg',quality:70});
     }
     assert.equal(await page.locator('.lab-evidence-legend li').count(),3);
     assert.match(await page.locator('#lab-paper-title').innerText(),/O que exatamente/);
@@ -27,7 +27,7 @@ const fs = require('node:fs/promises');
     assert.equal(await page.locator('#lab-relative').isVisible(),false);
     assert.equal(await page.locator('#lab-apply-published-flow').isVisible(),false);
     assert.equal(await page.locator('.lab-paper-svg').innerHTML(),originalArt,'trocar estudo não deve encurtar filamentos');
-    await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-2020.png',animations:'disabled'});
+    await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-2020.jpg',animations:'disabled',type:'jpeg',quality:70});
     await page.selectOption('#lab-reference-source','marsh-2013');
     await page.locator('#lab-apply-published-flow').click();
     assert.match(await page.locator('#lab-tau').innerText(),/^1\s+Pa$/);
@@ -46,4 +46,7 @@ const fs = require('node:fs/promises');
  }
  await fs.writeFile('evidence/validation.json',JSON.stringify(result,null,2));
  console.log('AFM_BROWSER_PASS '+JSON.stringify(result));
+ for (const name of ['webkit-desktop-before','webkit-desktop-after','webkit-iphone-before','webkit-iphone-after']) {
+  console.log('AFM_IMAGE '+name+' '+(await fs.readFile('evidence/'+name+'.jpg')).toString('base64'));
+ }
 })().catch(e=>{console.error(e);process.exitCode=1});
