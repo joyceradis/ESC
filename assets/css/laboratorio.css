@@ -97,3 +97,20 @@
 @media(max-width:430px){.lab-live{grid-template-columns:1fr 1fr;gap:7px}.lab-live>div{padding:12px 9px}.lab-live strong{font-size:22px}.lab-picture{padding:18px}.lab-picture-label{font-size:9px}.lab-osmosis-picture{gap:5px}.lab-osm-compartment{min-width:55px}.lab-osmosis-picture>span{font-size:9px;max-width:48px}.lab-hero-links a{flex:1 1 43%;justify-content:center}.lab-hero-links a:last-child{flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){.lab-hero-glycans,.lab-stream-cells{animation:none!important}.lab-antennae,.lab-scale-picture i,.lab-gradient-bar i{transition:none!important}}
 @media print{.lab-hero{color:#481328;background:#f9e9ed}.lab-duo{break-inside:avoid}.lab-panel{box-shadow:none}.lab-controls input[type=range]{display:none}}
+
+/* Porosidade e experimento mental: complementos reversíveis ao laboratório. */
+.lab-gel-panel{margin-top:16px}
+.lab-gel-picture svg{width:100%;max-height:300px}
+.lab-gel-picture #lab-gel-mesh{transition:opacity .2s}
+.lab-gravity-timeline{margin-bottom:19px}
+.lab-stage-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:17px 0 20px}
+.lab-stage-tabs button{padding:9px 14px;font:650 12px system-ui,sans-serif;background:#fff7f8;border:1px solid #dfb4c1;border-radius:99px;color:#80334d;transition:background .18s,color .18s}
+.lab-stage-tabs button[aria-pressed=true]{background:#74233e;border-color:#74233e;color:#fff}
+.lab-stage-tabs button:focus-visible{outline:3px solid #b75070;outline-offset:2px}
+.lab-stage-content{display:grid;grid-template-columns:120px minmax(0,1fr);gap:22px;align-items:center;background:linear-gradient(105deg,#fae9ee,#fff8f8);border:1px solid #ead2da;border-radius:15px;padding:23px}
+.lab-stage-icon{display:flex;align-items:center;justify-content:center;width:110px;height:110px;flex-shrink:0;border-radius:50%;background:radial-gradient(circle at 40% 32%,#ad4c6b,#5b1a34);color:white;font:italic 40px Georgia,serif;box-shadow:0 8px 20px rgba(94,29,54,.16);border:6px solid #ecc8d4}
+.lab-stage-content h4{font:400 26px/1.2 Georgia,serif;color:#5a2439;margin:0 0 9px}
+.lab-stage-content p{font-size:13px;line-height:1.75;color:#6c4653;margin:0 0 12px}
+.lab-stage-content small{font-size:11px;color:#9a4760;line-height:1.6}
+@media(max-width:790px){.lab-gel-panel{margin-top:12px}.lab-stage-content{grid-template-columns:1fr;gap:13px;padding:17px}.lab-stage-icon{height:79px;width:79px;font-size:29px;border-width:4px}.lab-stage-content h4{font-size:23px}.lab-stage-tabs button{flex:1 1 auto}}
+@media(prefers-reduced-motion:reduce){.lab-gel-picture #lab-gel-mesh,.lab-stage-tabs button{transition:none!important}}
