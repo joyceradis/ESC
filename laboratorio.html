@@ -10,6 +10,8 @@
 <title>Laboratório interativo · ESC 2027 Atlas</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23501426'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-size='32' fill='%23f0bdc8' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<script src="assets/js/atlas-dados.js" defer></script>
+<script src="assets/js/atlas-feed.js" defer></script>
 <link rel="stylesheet" href="assets/css/laboratorio.css" />
 <script src="assets/js/lab-math.js" defer></script>
 <script src="assets/js/laboratorio.js" defer></script>
@@ -68,6 +70,51 @@
 </header>
 <p class="lab-scope"><strong>Como usar:</strong> os controles geram previsões de modelos físicos simples. Não representam dados experimentais do glicocálix, medidas clínicas ou prova de causalidade entre as hipóteses.</p>
 
+
+<section class="lab-paper-portal" id="lab-estudos" aria-labelledby="lab-paper-title">
+ <div class="lab-paper-heading">
+  <div><span class="lab-panel-label">COMECE AQUI · EXPERIMENTOS PUBLICADOS</span>
+   <h2 id="lab-paper-title">O “gel” já foi <em>medido.</em></h2>
+   <p>Sem começar pelas fórmulas. Primeiro veja o que um microscópio de força atômica (AFM) encontrou em células cultivadas em laboratório.</p></div>
+  <label for="lab-reference-source">Comparar trabalhos <select id="lab-reference-source" aria-describedby="lab-source-warning">
+    <option value="marsh-2013">Marsh & Waugh · 2013</option>
+    <option value="waugh-2020">Delgadillo, Marsh & Waugh · 2020</option>
+  </select></label>
+ </div>
+ <div class="lab-evidence-display">
+  <div class="lab-evidence-art">
+   <div class="lab-paper-figure-title">Camada acima da célula · desenho conceitual</div>
+   <svg class="lab-paper-svg" viewBox="0 0 420 280" role="img" aria-labelledby="lab-paper-svg-title">
+    <title id="lab-paper-svg-title">Modelo esquemático da camada luminal sobre o corpo celular, sem escala anatômica</title>
+    <defs><linearGradient id="paper-cell-gradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7cbd5"/><stop offset="1" stop-color="#bf7491"/></linearGradient></defs>
+    <rect x="17" y="151" width="386" height="103" rx="19" fill="url(#paper-cell-gradient)" stroke="#a74d6d" stroke-width="2"/>
+    <g id="lab-paper-gel-visual" transform="translate(0,0)" fill="none" stroke="#b75978" stroke-width="3" stroke-linecap="round">
+     <path d="M45 153q-20-34 0-73t-7-51 M80 153q20-39-3-69t17-43 M119 153q-14-32 8-68t-7-38 M157 153q20-28 0-65t8-47 M197 153q-20-42 2-75t-6-41 M237 153q18-35-1-68t18-43 M278 153q-15-28 8-69t-6-35 M321 153q12-38-7-69t10-42 M359 153q-15-30 5-69t-3-32"/>
+    </g>
+    <path d="M14 153h390" stroke="#8e3654" stroke-width="3"/>
+    <g id="lab-paper-probe" transform="translate(0 0)"><path d="M200 1V42" stroke="#683149" stroke-width="8" stroke-linecap="round"/><circle cx="200" cy="57" r="15" fill="#ead8db" stroke="#9e536e" stroke-width="3"/></g>
+    <g font-family="system-ui" font-size="12" fill="#6e3048"><text x="19" y="272">ENDOTÉLIO (CORPO CELULAR)</text><text x="24" y="17">AFM ↑ camada hidratada</text></g>
+   </svg>
+   <div class="lab-evidence-legend"><span><i class="lab-dot-gel"></i> Camada luminal</span><span><i class="lab-dot-cell"></i> Corpo celular</span></div>
+   <small>Não é fotografia nem escala molecular verdadeira. O desenho explica o método e muda conforme o estudo selecionado.</small>
+  </div>
+  <div class="lab-evidence-metrics">
+   <div class="lab-evidence-chip"><span>ALTURA APARENTE DA CAMADA</span><strong id="lab-ref-height" aria-live="polite">380 ± 50 <small>nm</small></strong><p id="lab-ref-height-desc">380 nm = 0,38 micrômetro</p></div>
+   <div class="lab-evidence-chip"><span>RESISTÊNCIA À DEFORMAÇÃO NO MODELO AFM</span><strong id="lab-ref-stiffness" aria-live="polite">0,7 ± 0,5 <small>kPa</small></strong><p>Quanto maior o módulo estimado, mais rígido é o material <em>nesse modelo</em>.</p></div>
+   <div class="lab-evidence-relative" id="lab-relative">
+    <div class="lab-evidence-bar-label">Rigidez medida no mesmo estudo</div>
+    <div class="lab-relative-line"><span>Camada</span><div><i id="lab-ref-soft-bar" style="width:4%"></i></div><b id="lab-ref-soft-number">0,7 kPa</b></div>
+    <div class="lab-relative-line"><span>Célula</span><div><i id="lab-ref-cell-bar" style="width:100%"></i></div><b id="lab-ref-cell-number">16 kPa</b></div>
+   </div>
+   <p class="lab-ref-interpretation" id="lab-ref-interpretation">O estudo estimou uma camada mais deformável que o corpo celular.</p>
+   <div class="lab-ref-actions"><a id="lab-ref-paper" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3605807/" target="_blank" rel="noopener noreferrer">Abrir artigo original ↗</a><button type="button" id="lab-apply-published-flow">Reproduzir fluxo do estudo de 2013 ↓</button></div>
+  </div>
+ </div>
+ <p class="lab-reference-caution" id="lab-source-warning"><b>Não existe um único valor “normal” de glicocálix.</b> São resultados de culturas celulares e modelos de AFM. Altura ≠ viscosidade ≠ permeabilidade hidráulica. Estudos de anos diferentes usam preparações e ajustes distintos; não comparar diretamente como se fossem progressão de doença.</p>
+ <details class="lab-understand-more"><summary>Traduzindo: o que é AFM, nm, kPa e “módulo”?</summary>
+ <div><p><b>AFM:</b> uma ponta pressiona suavemente a superfície e registra força e deformação. <b>nm:</b> nanômetro; 1.000 nm = 1 µm. <b>kPa:</b> unidade de tensão/pressão; 1 kPa = 1.000 Pa. <b>Módulo:</b> medida aproximada da resistência à deformação no modelo escolhido, e não a viscosidade de um fluido.</p><p>Para estudar permeabilidade precisaríamos de outro tipo de dado experimental. Os controles de Darcy abaixo são um exercício com valores <em>inventados para o modelo</em>, não resultados dos dois estudos acima.</p></div>
+ </details>
+</section>
 <section class="lab-chapter" id="lab-fisica" aria-labelledby="lab-fisica-title">
   <div class="lab-section-heading"><span>01 / Física do movimento</span><h2 id="lab-fisica-title">O que o sangue faz com a superfície?</h2><p>Explore força, viscosidade, geometria, gravidade e escalas. A mecânica da matriz hidratada é mais complexa do que um fluido newtoniano.</p></div>
 
@@ -190,6 +237,12 @@
   </article>
 </section>
 
+
+<section class="lab-chapter lab-notebook" id="lab-notas" aria-labelledby="lab-notas-title">
+ <div class="lab-section-heading"><span>ATLAS VIVO · REGISTROS CURADOS</span><h2 id="lab-notas-title">O que mudou no nosso raciocínio?</h2><p>Aqui entram registros breves, versionados e públicos das conexões discutidas. Ideias não viram fatos nem aprendizado assimilado só por serem registradas.</p></div>
+ <div class="atlas-notes-list" data-atlas-notes><p>As notas serão exibidas quando a compilação do atlas estiver disponível.</p></div>
+ <p class="lab-notes-source">Fonte: <a href="https://github.com/joyceradis/ESC/tree/main/atlas/notas" target="_blank" rel="noopener noreferrer">notas curadas versionadas no GitHub ↗</a>. A atualização é automática após o registro por um agente autorizado e a publicação do site, não uma leitura contínua das conversas.</p>
+</section>
 <section class="lab-chapter" id="lab-questoes" aria-labelledby="lab-questions-title">
  <div class="lab-section-heading"><span>03 / Banco de perguntas vivas</span><h2 id="lab-questions-title">Não é só uma hipótese.</h2><p>Os simuladores são ferramentas para pensar, não para decidir antecipadamente qual será a pergunta final da ESC.</p></div>
 

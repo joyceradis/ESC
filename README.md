@@ -55,6 +55,10 @@ Em `.claude/skills/`, no formato do repositório oficial de skills da Anthropic 
 - **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`; os simuladores também possuem testes em `tests/lab-math.test.mjs` executados por `node --test`.
 - **Links externos** (`.github/workflows/links-externos.yml`): toda segunda-feira testa os links de DOI, PubMed, PMC e ESC e abre uma issue se algum quebrar. Links do Drive ficam de fora porque são privados.
 
+## Atlas vivo: atualização por notas
+
+**Fonte canônica:** [`atlas/README.md`](atlas/README.md) descreve como estudos, perguntas e decisões públicas entram em `atlas/estudos-gel.json` e `atlas/notas/*.json`. O build gera `assets/js/atlas-dados.js`; a home e o laboratório exibem essas notas, sem copiar conversas. O deploy do GitHub Pages executa o gerador antes de publicar; mudanças versionadas aparecem automaticamente. O registro conversacional precisa ser feito por um agente autorizado; não existe escuta permanente de chats.
+
 ## Laboratório interativo e limites
 
 O laboratório contém modelos simplificados para **ensino e formulação de perguntas**: cisalhamento newtoniano, hidrostática, Reynolds de tubo, osmose ideal de van't Hoff, difusão de Fick e permeabilidade Darcy em meio poroso homogêneo, com exploração conceitual de filtração molecular e fases de gravidade.

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "studies": [
+    {
+      "id": "marsh-2013",
+      "author": "Marsh & Waugh",
+      "year": 2013,
+      "title": "Quantifying the Mechanical Properties of the Endothelial Glycocalyx with Atomic Force Microscopy",
+      "doi": "10.3791/50163",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3605807/",
+      "design": "AFM com esfera; HUVECs cultivadas sob fluxo, ajuste de filme macio sobre célula mais rígida",
+      "n_cells": 25,
+      "thickness_nm": 380,
+      "thickness_error_nm": 50,
+      "modulus_kpa": 0.7,
+      "modulus_error_kpa": 0.5,
+      "cell_modulus_kpa": 16,
+      "cell_modulus_error_kpa": 6,
+      "culture_shear_pa": 1,
+      "culture_medium_viscosity_mpas": 1,
+      "explanation": "A camada luminal analisada comportou-se como um filme muito mais deformável que o corpo celular neste modelo de indentação. São médias do experimento, não parâmetros universais."
+    },
+    {
+      "id": "waugh-2020",
+      "author": "Delgadillo, Marsh & Waugh",
+      "year": 2020,
+      "title": "Endothelial Glycocalyx Layer Properties and Its Ability to Limit Leukocyte Adhesion",
+      "doi": "10.1016/j.bpj.2020.02.010",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136287/",
+      "design": "AFM e ajuste de camada elástica fina sobre substrato; sistema experimental específico",
+      "thickness_nm": 110,
+      "thickness_error_nm": null,
+      "modulus_kpa": 0.025,
+      "modulus_error_kpa": null,
+      "cell_modulus_kpa": null,
+      "cell_modulus_error_kpa": null,
+      "culture_shear_pa": null,
+      "culture_medium_viscosity_mpas": null,
+      "explanation": "Outro estudo obteve valores menores com seu modelo experimental. Não são valores de referência clínica e não devem ser interpretados como piora em comparação direta a 2013."
+    }
+  ],
+  "explanatory_model": {
+    "id": "weinbaum-2003",
+    "author": "Weinbaum et al.",
+    "year": 2003,
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC164700/",
+    "doi": "10.1073/pnas.1332808100",
+    "interpretation": "Modelo teórico de fibras e acoplamento mecânico sob fluxo. Valores de geometria do modelo não são uma medição individual de espessura ou permeabilidade hidráulica do glicocálix."
+  },
+  "dictionary": {
+    "thickness": "Espessura aparente obtida por ajuste de indentação. 380 nm = 0,38 µm; não é equivalente ao PBR.",
+    "modulus": "Módulo de elasticidade estimado por AFM: quanto maior, mais resistência à deformação no modelo de indentação, não uma 'viscosidade do gel'.",
+    "shear": "Tensão tangencial aplicada pelo fluxo durante cultura celular. No experimento de 2013 foi 1 Pa = 10 dyn/cm².",
+    "permeability": "k, em m², representa facilidade de passagem no modelo de Darcy. Nenhum dos estudos acima mediu k diretamente.",
+    "no_reference": "Não existe um único valor de referência normal aplicável a todo endotélio: espécie, leito vascular, preparação e método de medida alteram o resultado."
+  }
+}

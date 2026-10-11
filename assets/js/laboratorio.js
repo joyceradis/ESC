@@ -148,6 +148,60 @@
         write('lab-stage-note', stage.note);
       });
     });
+
+    /* Fonte pública gerada a partir do registro científico versionado. */
+    const data = window.ESC_ATLAS_DATA;
+    const sourcePicker = byId('lab-reference-source');
+    if (sourcePicker && Array.isArray(data?.studies)) {
+      const papers = new Map(data.studies.map(p => [p.id, p]));
+      const refFormat = (mean, error, digits = 1) => {
+        const suffix = error == null ? '' : ' ± ' + fmt(error, digits);
+        return fmt(mean, digits) + suffix;
+      };
+      function showStudy() {
+        const study = papers.get(sourcePicker.value);
+        if (!study) return;
+        byId('lab-ref-height').innerHTML = refFormat(study.thickness_nm, study.thickness_error_nm, 0) + ' <small>nm</small>';
+        write('lab-ref-height-desc', fmt(study.thickness_nm / 1000, 3) + ' µm de altura aparente no ajuste');
+        byId('lab-ref-stiffness').innerHTML = refFormat(study.modulus_kpa, study.modulus_error_kpa, 3) + ' <small>kPa</small>';
+        write('lab-ref-interpretation', study.explanation);
+        const link = byId('lab-ref-paper');
+        link.href = study.url;
+        link.setAttribute('aria-label', 'Ler ' + study.author + ', ' + study.year + ': artigo publicado');
+        link.textContent = 'Artigo ' + study.year + ' · DOI ↗';
+        const sameStudy = study.cell_modulus_kpa != null;
+        const comparison = byId('lab-relative');
+        comparison.hidden = !sameStudy;
+        if (sameStudy) {
+          const pct = study.modulus_kpa / Math.max(study.modulus_kpa, study.cell_modulus_kpa) * 100;
+          byId('lab-ref-soft-bar').style.width = Math.max(2, pct).toFixed(2) + '%';
+          write('lab-ref-soft-number', fmt(study.modulus_kpa, 3) + ' kPa');
+          byId('lab-ref-cell-bar').style.width = '100%';
+          write('lab-ref-cell-number', fmt(study.cell_modulus_kpa, 1) + ' kPa');
+        }
+        const sourceFlow = byId('lab-apply-published-flow');
+        sourceFlow.hidden = !(study.culture_shear_pa != null && study.culture_medium_viscosity_mpas != null);
+        // Dimensão vertical esquemática NÃO proporcional em nanômetros.
+        const gelGraphic = byId('lab-paper-gel-visual');
+        if (gelGraphic) {
+          const factor = Math.max(.24, Math.min(1, study.thickness_nm / 380));
+          gelGraphic.setAttribute('transform', 'translate(0 153) scale(1 ' + factor.toFixed(3) + ') translate(0 -153)');
+        }
+      }
+      sourcePicker.addEventListener('change', showStudy);
+      byId('lab-apply-published-flow').addEventListener('click', () => {
+        const study = papers.get(sourcePicker.value);
+        if (!study || study.culture_shear_pa == null) return;
+        // Gradiente INFERIDO de tau/mu no modelo newtoniano; o paper informa tau e mu, não du/dy medido.
+        const grad = study.culture_shear_pa / (study.culture_medium_viscosity_mpas / 1000);
+        byId('lab-mu').value = String(study.culture_medium_viscosity_mpas);
+        byId('lab-gradient').value = String(Math.min(1200, Math.max(10, Math.round(grad / 10) * 10)));
+        render();
+        byId('lab-fisica').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+      });
+      showStudy();
+    }
+
     render();
     molecule();
   });

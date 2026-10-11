@@ -179,3 +179,24 @@ body:has(.home-explore) .schedule .step{background:linear-gradient(180deg,#fffdf
   .home-visual-card{break-inside:avoid}
   .home-hero-cilia,.home-hero-blood{animation:none}
 }
+
+
+/* Atlas vivo: notas de proveniência registrada, sem transcrições de conversas. */
+.atlas-notes-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.atlas-note-item{min-width:0;display:flex;flex-direction:column;gap:10px;background:linear-gradient(140deg,#fffaf9,#f8ecf0);border:1px solid #e6d0d7;border-radius:16px;padding:21px 23px;box-shadow:0 5px 24px rgba(89,23,48,.035);transition:transform .2s,border-color .2s}
+.atlas-note-item:hover{transform:translateY(-2px);border-color:#d2a0b2}
+.atlas-note-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:9px}
+.atlas-note-kind{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#a14863}
+.atlas-note-date{font-size:10px;color:#86616e}
+.atlas-note-item h3{font:400 clamp(20px,2vw,26px)/1.2 Georgia,serif;letter-spacing:-.028em;color:#51293a;margin:0}
+.atlas-note-item>p{font-size:12px;line-height:1.65;color:#775461;margin:0}
+.atlas-note-details{margin-top:auto;border-top:1px solid #e9d2da;padding-top:10px}
+.atlas-note-details summary{cursor:pointer;font-size:11px;font-weight:700;color:#8d3953}
+.atlas-note-details p{font-size:11px;line-height:1.7;color:#77505d}
+.atlas-note-source{font-style:italic;color:#97727e!important}
+.atlas-note-cta{align-self:flex-start;font-size:11px;font-weight:700;color:#963e58;padding-bottom:3px;border-bottom:1px solid #c28a9d}
+.atlas-notes-empty{color:#86606f;font-size:13px}
+.home-atlas-notes{margin-top:42px}
+.home-atlas-notes .section-desc{max-width:660px}
+@media(max-width:790px){.atlas-notes-list{grid-template-columns:1fr}.atlas-note-item{padding:18px 19px}.home-atlas-notes{margin-top:32px}}
+@media(prefers-reduced-motion:reduce){.atlas-note-item{transition:none!important}}
