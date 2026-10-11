@@ -1,0 +1,42 @@
+# Toda segunda-feira confere se os links de artigos (DOI, PubMed, PMC, ESC) continuam abrindo.
+# Links do Google Drive são ignorados: são privados e exigiriam login.
+name: Links externos
+
+on:
+  schedule:
+    - cron: "17 11 * * 1"   # segunda, 08h17 em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-concurrency 4
+            --accept 200,206,403,429
+            --exclude 'drive\.google\.com'
+            --exclude 'docs\.google\.com'
+            --exclude 'claude\.ai'
+            '*.html' 'assets/js/data.js' README.md
+          output: lychee/relatorio.md
+          fail: false
+
+      - name: Abrir issue se houver link quebrado
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Links externos quebrados no Atlas"
+          content-filepath: lychee/relatorio.md
+          labels: links

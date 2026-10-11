@@ -36,6 +36,11 @@ build.py               gera os *.html da raiz
 3. Rode `python3 build.py` para regenerar as páginas.
 4. Abra `index.html` no navegador (funciona direto do arquivo, sem servidor).
 
+## Verificações automáticas
+
+- **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`.
+- **Links externos** (`.github/workflows/links-externos.yml`): toda segunda-feira testa os links de DOI, PubMed, PMC e ESC e abre uma issue se algum quebrar. Links do Drive ficam de fora porque são privados.
+
 ## Autoria
 
 | Quem | O que fez | Quando |

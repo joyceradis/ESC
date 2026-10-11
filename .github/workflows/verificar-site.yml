@@ -1,0 +1,42 @@
+# Verifica o Atlas a cada envio: páginas geradas em dia, JS válido, links internos e dados consistentes.
+name: Verificar site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Sintaxe do JavaScript
+        run: |
+          node --check assets/js/data.js
+          node --check assets/js/app.js
+
+      - name: Páginas geradas estão atualizadas
+        run: |
+          python3 build.py
+          if ! git diff --exit-code -- '*.html'; then
+            echo "::error::As páginas da raiz não batem com src/. Rode 'python3 build.py' e faça commit do resultado."
+            exit 1
+          fi
+
+      - name: Links, âncoras e dados
+        run: python3 tools/check_site.py
