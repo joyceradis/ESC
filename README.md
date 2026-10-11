@@ -50,6 +50,12 @@ Em `.claude/skills/`, no formato do repositório oficial de skills da Anthropic 
 | `esc-revisar-abstract` | Revisar abstract, CV ou carta antes do envio (estrutura ESC, integridade, originalidade) |
 | `esc-atualizar-atlas` | Sincronizar o site com a planilha mestre e regenerar as páginas |
 
+## Revisão visual antes de entregar mudanças de interface
+
+**Ponto de entrada para qualquer executor autorizado:** [Revisão visual desktop/celular](docs/revisao-visual.md) e [workflow](.github/workflows/revisao-visual.yml). O PR de implantação é [#17](https://github.com/joyceradis/ESC/pull/17); enquanto não for integrado, esta rotina está **proposta, não obrigatória nem comprovada na main**.
+
+Para mudanças de CSS, layout, navegação, laboratório ou interações, conferir **desktop e celular** nas dez páginas; preservar a identidade editorial vinho/marfim aprovada, incluindo ilustrações científicas. Anexar capturas, resultados de testes e observações de interação ao PR. Refinamentos de sombras, profundidade e animação são propostas estéticas separadas, nunca autorização implícita para substituir a interface. Não fazer merge/deploy por conta desta instrução.
+
 ## Verificações automáticas
 
 - **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`; os simuladores também possuem testes em `tests/lab-math.test.mjs` executados por `node --test`.
