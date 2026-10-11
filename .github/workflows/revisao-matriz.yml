@@ -1,0 +1,51 @@
+name: Revisão da matriz de hipóteses
+on:
+  push:
+    branches: ['codex/matriz-auditorias-joyce']
+permissions:
+  contents: read
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 'db72fbd5fba7ae08c7451940f492c3b54fe07477'
+          path: before
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          path: after
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build e verificações
+        working-directory: after
+        run: |
+          python3 build.py
+          python3 tools/check_site.py
+          node --test tests/*.test.mjs
+          python3 -c 'import json,pathlib; [print("GENERATED_JSON="+json.dumps({"path":p,"content":pathlib.Path(p).read_text()})) for p in ["hipoteses.html","acervo.html","pergunta.html"]]'
+      - name: Navegador remoto
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 18768 --bind 127.0.0.1 > /tmp/esc-matrix-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node after/tools/check_matrix_browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matriz-revisao
+          path: |
+            evidence/
+            after/hipoteses.html
+            after/acervo.html
+            after/pergunta.html
+          retention-days: 30
