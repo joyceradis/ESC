@@ -1,0 +1,150 @@
+[
+  {
+    "engine": "chromium",
+    "device": "desktop",
+    "studyValuesPreserved": true,
+    "artUnchangedBetweenStudies": true,
+    "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
+    "measurements": [
+      {
+        "width": 320,
+        "scroll": 320,
+        "overflow": 0
+      },
+      {
+        "width": 390,
+        "scroll": 390,
+        "overflow": 0
+      },
+      {
+        "width": 768,
+        "scroll": 768,
+        "overflow": 0
+      },
+      {
+        "width": 1024,
+        "scroll": 1024,
+        "overflow": 0
+      },
+      {
+        "width": 1440,
+        "scroll": 1440,
+        "overflow": 0
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "device": "iphone",
+    "studyValuesPreserved": true,
+    "artUnchangedBetweenStudies": true,
+    "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
+    "measurements": [
+      {
+        "width": 320,
+        "scroll": 320,
+        "overflow": 0
+      },
+      {
+        "width": 390,
+        "scroll": 390,
+        "overflow": 0
+      },
+      {
+        "width": 768,
+        "scroll": 768,
+        "overflow": 0
+      },
+      {
+        "width": 1024,
+        "scroll": 1024,
+        "overflow": 0
+      },
+      {
+        "width": 1440,
+        "scroll": 1440,
+        "overflow": 0
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "device": "desktop",
+    "studyValuesPreserved": true,
+    "artUnchangedBetweenStudies": true,
+    "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
+    "measurements": [
+      {
+        "width": 320,
+        "scroll": 320,
+        "overflow": 0
+      },
+      {
+        "width": 390,
+        "scroll": 390,
+        "overflow": 0
+      },
+      {
+        "width": 768,
+        "scroll": 768,
+        "overflow": 0
+      },
+      {
+        "width": 1024,
+        "scroll": 1024,
+        "overflow": 0
+      },
+      {
+        "width": 1440,
+        "scroll": 1440,
+        "overflow": 0
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "device": "iphone",
+    "studyValuesPreserved": true,
+    "artUnchangedBetweenStudies": true,
+    "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
+    "measurements": [
+      {
+        "width": 320,
+        "scroll": 320,
+        "overflow": 0
+      },
+      {
+        "width": 390,
+        "scroll": 390,
+        "overflow": 0
+      },
+      {
+        "width": 768,
+        "scroll": 768,
+        "overflow": 0
+      },
+      {
+        "width": 1024,
+        "scroll": 1024,
+        "overflow": 0
+      },
+      {
+        "width": 1440,
+        "scroll": 1440,
+        "overflow": 0
+      }
+    ]
+  }
+]

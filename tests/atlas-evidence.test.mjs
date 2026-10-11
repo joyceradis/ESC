@@ -50,3 +50,18 @@ test('Notas geradas só incluem registros públicos e são conteúdo estruturado
   assert.ok(compiled.notes.every(n => n.link.endsWith('.html') || n.link.includes('.html#')));
   assert.equal(compiled.studies[1].doi, '10.1016/j.bpj.2020.02.010');
 });
+
+test('Ressalva histórica e contexto acompanham os dados compilados', () => {
+  assert.equal(JSON.stringify(compiled.studies), JSON.stringify(source.studies));
+  const old = compiled.studies.find(s => s.id === 'marsh-2013');
+  assert.match(old.methodological_note, /provavelmente errôneos/);
+  assert.match(old.methodological_note, /não identifica nominalmente/);
+  assert.match(old.methodological_note, /nem demonstra.*380 nm.*invalidada/);
+  assert.equal(old.methodological_source, 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7136287/');
+  assert.match(old.culture_note, /assumida/);
+  assert.match(old.culture_note, /inferido/);
+  const current = compiled.studies.find(s => s.id === 'waugh-2020');
+  assert.match(current.design, /endoteliais.*HUVECs.*HPMECs/);
+  assert.match(current.methodological_note, /350 nm/);
+  assert.match(current.methodological_note, /ausência de incerteza/);
+});

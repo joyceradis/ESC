@@ -126,15 +126,21 @@
 .lab-paper-heading>label{min-width:210px;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:#8a425c}
 .lab-paper-heading select{display:block;margin-top:9px;background:#fffdfa;color:#5d283a;border:1px solid #d8aab8;padding:11px 10px;border-radius:12px;max-width:100%;width:260px;font-size:12px;letter-spacing:0;text-transform:none;cursor:pointer}
 .lab-evidence-display{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.lab-evidence-art{background:radial-gradient(ellipse at 45% 12%,#fff6f7,transparent 55%),#f0dfe4;border:1px solid #e4c5cf;border-radius:17px;padding:22px;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.lab-evidence-art{margin:0;background:radial-gradient(ellipse at 50% 25%,#f4f9f5,transparent 65%),#fffaf7;border:1px solid #e4c5cf;border-radius:17px;padding:22px;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .lab-paper-figure-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#97526b}
-.lab-paper-svg{width:100%;height:auto;display:block;max-height:345px;margin:10px auto}
-#lab-paper-gel-visual{transition:transform .45s cubic-bezier(.2,.6,.2,1)}
-.lab-evidence-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;font-weight:600;color:#6f4753}
-.lab-evidence-legend>span{display:flex;align-items:center;gap:6px}
-.lab-evidence-legend i{display:block;width:13px;height:13px;border-radius:5px}
-.lab-dot-gel{background:#bd6685}.lab-dot-cell{background:#efbfcc}
-.lab-evidence-art>small{color:#86636a;line-height:1.5;margin-top:13px;font-size:10px}
+.lab-paper-svg{width:100%;height:auto;display:block;max-height:390px;margin:10px auto}
+
+.lab-paper-portal .lab-evidence-legend{list-style:none;display:grid;gap:12px;padding:0;margin:12px 0 0;color:#633a4b}
+.lab-paper-portal .lab-evidence-legend li{display:flex;align-items:center;gap:11px;font-size:12px;line-height:1.5}
+.lab-paper-portal .lab-evidence-legend strong{display:block;font-weight:650}
+.lab-paper-portal .lab-evidence-legend small{display:block;font-size:11px;color:#765360}
+.lab-paper-portal .lab-legend-number{display:grid;place-items:center;flex:0 0 24px;height:24px;border-radius:50%;color:#fffaf8;font-size:11px;font-weight:700}
+.lab-paper-portal .lab-legend-structure{background:#873552}
+.lab-paper-portal .lab-legend-matrix{background:#397b7a}
+.lab-paper-portal .lab-legend-cell{background:#693047}
+.lab-paper-portal .lab-measure-caption{border-top:1px solid #decbd0;padding-top:14px;margin:17px 0 0;color:#73515e;font-size:11px;line-height:1.7}
+.lab-paper-portal .lab-afm-meaning{border-left:3px solid #528d8a;background:#eef3ef;padding:15px 18px;color:#4c5552;font-size:13px;line-height:1.7;margin:20px 0 0;border-radius:0 10px 10px 0}
+.lab-paper-portal .lab-afm-meaning strong{display:block;color:#503044;margin-bottom:4px}
 .lab-evidence-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .lab-evidence-chip{background:#fffdfb;border:1px solid #e4ced4;border-radius:14px;padding:17px 15px;min-width:0}
 .lab-evidence-chip>span{display:block;min-height:28px;color:#9d5368;letter-spacing:.11em;font-size:9px;font-weight:700;line-height:1.4}
@@ -167,4 +173,12 @@
 @media(max-width:980px){.lab-evidence-display{grid-template-columns:1fr}.lab-evidence-art{min-height:320px}.lab-paper-svg{max-height:260px}}
 @media(max-width:790px){.lab-paper-portal{padding:19px 16px;margin-top:20px}.lab-paper-heading{display:block}.lab-paper-heading h2{font-size:clamp(36px,9vw,51px)}.lab-paper-heading>label{display:block;margin-top:22px}.lab-paper-heading select{width:100%;max-width:440px}.lab-evidence-chip{padding:14px 12px}.lab-evidence-chip strong{font-size:24px}.lab-evidence-chip strong small{font-size:13px}.lab-evidence-art{min-height:260px}.lab-ref-actions>a,.lab-ref-actions>button{flex:1 1 43%}}
 @media(max-width:390px){.lab-evidence-metrics{grid-template-columns:1fr}.lab-evidence-relative,.lab-evidence-metrics>.lab-ref-interpretation,.lab-ref-actions{grid-column:auto}.lab-evidence-chip>span{min-height:0}.lab-evidence-chip strong{font-size:28px}.lab-ref-actions a,.lab-ref-actions button{flex-basis:100%}}
-@media(prefers-reduced-motion:reduce){#lab-paper-gel-visual,.lab-relative-line i,.lab-ref-actions a,.lab-ref-actions button{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.lab-relative-line i,.lab-ref-actions a,.lab-ref-actions button{transition:none!important}}
+
+/* Contexto metodológico acompanha o resultado em toda a largura do painel. */
+.lab-evidence-metrics > .lab-footnote,
+.lab-evidence-metrics > .lab-reference-caution {grid-column:1/-1; margin:0; min-width:0}
+.lab-evidence-metrics > .lab-reference-caution {background:#fff8f2; border-left:3px solid #9a5267; padding:12px 15px; border-radius:4px 10px 10px 4px}
+.lab-evidence-metrics > .lab-reference-caution p {margin:6px 0}
+.lab-evidence-metrics > .lab-reference-caution a {overflow-wrap:anywhere}
+#lab-method-scope {margin-bottom:24px}
