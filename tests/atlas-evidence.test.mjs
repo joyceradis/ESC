@@ -40,7 +40,7 @@ test('Condição experimental de 2013 produz 1 Pa no modelo newtoniano', () => {
 test('Módulo de indentação não se transforma em permeabilidade de Darcy', () => {
   const s = source.studies.find(x => x.id === 'marsh-2013');
   assert.equal(s.permeability_m2, undefined);
-  assert.equal(source.dictionary.permeability.includes('não mediu k'), true);
+  assert.match(source.dictionary.permeability, /nenhum.*mediu k/i);
 });
 
 test('Notas geradas só incluem registros públicos e são conteúdo estruturado', () => {
