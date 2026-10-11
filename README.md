@@ -65,3 +65,9 @@ O conteúdo científico é da autora. Os agentes organizaram, conferiram e deram
 ## Privacidade
 
 O conteúdo é um projeto científico não publicado, e os links apontam para um acervo privado no Drive. Mantenha o repositório privado. Se usar GitHub Pages, lembre que o site publicado fica acessível a quem tiver o endereço.
+
+## Acesso por senha (barreira visual)
+
+A tela de senha é executada pelo JavaScript `assets/js/access-gate.js` em todas as páginas. O código contém somente um SHA-256 de uma senha aleatória, não a senha em texto puro. A sessão no mesmo separador de navegador permanece liberada até seu fechamento. Não há coleta nem envio de senhas.
+
+**Aviso importante:** este mecanismo reduz acesso casual pela interface, mas **não é autenticação** e **não torna arquivos do GitHub Pages privados**. HTML, JS e dados continuam recuperáveis diretamente do repositório público. O acervo original permanece no Google Drive.
