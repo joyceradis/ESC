@@ -33,6 +33,9 @@ jobs:
       - name: Gerar site e notas da fonte unica
         run: python3 build.py
 
+      - name: Integridade dos metadados do atlas
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+
       - name: Sintaxe de todos os scripts JavaScript
         run: |
           find assets/js -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
@@ -48,10 +51,11 @@ jobs:
       - name: Páginas geradas estão atualizadas
         run: |
           python3 build.py
-          if ! git diff --exit-code -- '*.html'; then
-            echo "::error::As páginas da raiz não batem com src/. Rode 'python3 build.py' e faça commit do resultado."
+          if ! git diff --exit-code -- '*.html' assets/js/atlas-dados.js; then
+            echo "::error::HTML ou dados gerados desatualizados. Rode 'python3 build.py' e faça commit do resultado."
             exit 1
           fi
 
       - name: Links, âncoras e dados
         run: python3 tools/check_site.py
+
