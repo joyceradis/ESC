@@ -19,6 +19,12 @@
 2. `src/layout.html`, `src/pages/` e `assets/css/style.css` contêm a interface; `assets/js/app.js` e `assets/js/data.js` contêm comportamento e espelho de dados. `build.py` gera os HTML da raiz.
 3. `.claude/skills/` contém as skills de fichamento, revisão da candidatura e atualização do atlas.
 
+## Descoberta de revisão visual (proposta no PR #17)
+
+- [Guia de revisão visual](docs/revisao-visual.md) → [workflow desktop/celular](.github/workflows/revisao-visual.yml) → [testes Playwright](tools/check_responsive.cjs).
+- Para alterações visuais: verificar desktop e celular, navegação, controles, overflow, screenshots e regressões; incluir evidências no PR. Preservar a identidade aprovada por Joyce e a curadoria visual do Claude.
+- **Status:** esta ligação e o workflow estão apenas na branch do PR #17; não declarar implantação na `main`, aprovação do Claude ou execução bem-sucedida sem evidências. Este texto não muda regras de executor, acesso, merge ou publicação.
+
 ## Como trabalhar
 - Simulações didáticas, componentes, testes, acessibilidade, responsividade e animações; trabalhar em branch/PR com evidências e imagens de antes/depois.
 - Preservar as entregas existentes e a experiência desktop vinho/off-white já aprovada, **sem perder** a legibilidade no iPhone.
