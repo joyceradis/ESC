@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 lychee/
 .DS_Store
+.claude/chat-exports/
