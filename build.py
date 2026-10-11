@@ -62,8 +62,8 @@ def main() -> None:
             .replace("{{nav}}", nav(slug))
             .replace("{{mobile_nav}}", mobile_nav(slug))
             .replace("{{page_assets}}", (
-                '<link rel="stylesheet" href="assets/css/laboratorio.css" />\\n'
-                '<script src="assets/js/lab-math.js" defer></script>\\n'
+                '<link rel="stylesheet" href="assets/css/laboratorio.css" />\n'
+                '<script src="assets/js/lab-math.js" defer></script>\n'
                 '<script src="assets/js/laboratorio.js" defer></script>'
             ) if slug == "laboratorio" else "")
             .replace("{{body}}", body.strip())
