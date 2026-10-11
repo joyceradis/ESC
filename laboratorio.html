@@ -74,32 +74,65 @@
 <section class="lab-paper-portal" id="lab-estudos" aria-labelledby="lab-paper-title">
  <div class="lab-paper-heading">
   <div><span class="lab-panel-label">COMECE AQUI · EXPERIMENTOS PUBLICADOS</span>
-   <h2 id="lab-paper-title">O “gel” já foi <em>medido.</em></h2>
-   <p>Sem começar pelas fórmulas. Primeiro veja o que um microscópio de força atômica (AFM) encontrou em células cultivadas em laboratório.</p></div>
+   <h2 id="lab-paper-title">O que exatamente foi <em>medido nesses estudos?</em></h2>
+   <p>Uma esfera pressiona a superfície da célula. O AFM registra força e deformação; um modelo estima a espessura e a resistência da camada superficial.</p></div>
   <label for="lab-reference-source">Comparar trabalhos <select id="lab-reference-source" aria-describedby="lab-source-warning">
     <option value="marsh-2013">Marsh & Waugh · 2013</option>
     <option value="waugh-2020">Delgadillo, Marsh & Waugh · 2020</option>
   </select></label>
  </div>
  <div class="lab-evidence-display">
-  <div class="lab-evidence-art">
-   <div class="lab-paper-figure-title">Camada acima da célula · desenho conceitual</div>
-   <svg class="lab-paper-svg" viewBox="0 0 420 280" role="img" aria-labelledby="lab-paper-svg-title">
-    <title id="lab-paper-svg-title">Modelo esquemático da camada luminal sobre o corpo celular, sem escala anatômica</title>
-    <defs><linearGradient id="paper-cell-gradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7cbd5"/><stop offset="1" stop-color="#bf7491"/></linearGradient></defs>
-    <rect x="17" y="151" width="386" height="103" rx="19" fill="url(#paper-cell-gradient)" stroke="#a74d6d" stroke-width="2"/>
-    <g id="lab-paper-gel-visual" transform="translate(0,0)" fill="none" stroke="#b75978" stroke-width="3" stroke-linecap="round">
-     <path d="M45 153q-20-34 0-73t-7-51 M80 153q20-39-3-69t17-43 M119 153q-14-32 8-68t-7-38 M157 153q20-28 0-65t8-47 M197 153q-20-42 2-75t-6-41 M237 153q18-35-1-68t18-43 M278 153q-15-28 8-69t-6-35 M321 153q12-38-7-69t10-42 M359 153q-15-30 5-69t-3-32"/>
+  <figure class="lab-evidence-art">
+   <div class="lab-paper-figure-title">Três elementos, uma resposta mecânica</div>
+   <svg class="lab-paper-svg" viewBox="0 0 520 370" role="img" aria-labelledby="lab-paper-svg-title lab-paper-svg-desc">
+    <title id="lab-paper-svg-title">Estruturas ancoradas envolvidas por matriz hidratada sobre o endotélio</title>
+    <desc id="lab-paper-svg-desc">Filamentos vinho partem da superfície celular e atravessam um halo azul-esverdeado translúcido. O corpo celular fica abaixo. Uma esfera de AFM toca a região superficial. A chave lateral indica a espessura aparente estimada pelo modelo, não uma medida isolada dos filamentos ou da matriz. Esquema sem escala e sem fronteira molecular definida.</desc>
+    <defs>
+     <linearGradient id="paper-cell-gradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#cb8b9f"/><stop offset="1" stop-color="#78344f"/></linearGradient>
+     <radialGradient id="paper-hydration"><stop stop-color="#9dcfcd" stop-opacity=".72"/><stop offset=".72" stop-color="#a9d6d3" stop-opacity=".42"/><stop offset="1" stop-color="#d0e6e0" stop-opacity="0"/></radialGradient>
+     <linearGradient id="paper-water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c4e3df" stop-opacity=".1"/><stop offset=".45" stop-color="#94c8c5" stop-opacity=".4"/><stop offset="1" stop-color="#91c3c1" stop-opacity=".18"/></linearGradient>
+     <radialGradient id="paper-probe-metal" cx=".3" cy=".25"><stop stop-color="#fffaf5"/><stop offset=".6" stop-color="#ded2d1"/><stop offset="1" stop-color="#968089"/></radialGradient>
+    </defs>
+    <g aria-hidden="true">
+     <ellipse cx="245" cy="193" rx="219" ry="124" fill="url(#paper-hydration)"/>
+     <path d="M29 260V151C33 122 56 142 81 126S127 141 153 120 197 133 220 117 261 129 286 116 327 138 351 124 400 141 442 151V260Z" fill="url(#paper-water)"/>
+     <g fill="#72aaa9" opacity=".4"><circle cx="64" cy="167" r="3"/><circle cx="109" cy="220" r="4"/><circle cx="145" cy="164" r="3"/><circle cx="194" cy="213" r="3"/><circle cx="278" cy="154" r="4"/><circle cx="312" cy="228" r="3"/><circle cx="367" cy="175" r="4"/><circle cx="407" cy="224" r="3"/></g>
+     <path d="M25 265Q80 250 126 259T226 262 332 257 446 265V320Q352 340 258 325T25 326Z" fill="url(#paper-cell-gradient)"/>
+     <ellipse cx="270" cy="305" rx="59" ry="17" fill="#b6748d" opacity=".55"/>
+     <path d="M25 265Q80 250 126 259T226 262 332 257 446 265" fill="none" stroke="#6f2d49" stroke-width="4"/>
+     <g id="lab-paper-anchored-structures" fill="none" stroke="#934261" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M67 259q-9-37 2-77t-5-29m5 29-16-13m16 13 17-18"/>
+      <path d="M123 259q14-34 4-58t5-53m-5 53-17-19m17 19 16-9"/>
+      <path d="M181 263q-10-37 1-62t-6-42m6 42-17-10m17 10 16-19"/>
+      <path d="M239 262q10-34-1-52t3-49m-3 49-17-18m17 18 17-11"/>
+      <path d="M301 259q-10-33 1-60t-2-50m2 50-18-16m18 16 16-21"/>
+      <path d="M360 258q14-30 3-55t5-49m-5 49-17-12m17 12 15-18"/>
+      <path d="M417 261q-9-27-1-49t-3-32m3 32-14-12m14 12 12-15"/>
+     </g>
+     <g fill="#6f2d49"><ellipse cx="67" cy="259" rx="6" ry="3"/><ellipse cx="123" cy="259" rx="6" ry="3"/><ellipse cx="181" cy="263" rx="6" ry="3"/><ellipse cx="239" cy="262" rx="6" ry="3"/><ellipse cx="301" cy="259" rx="6" ry="3"/><ellipse cx="360" cy="258" rx="6" ry="3"/><ellipse cx="417" cy="261" rx="6" ry="3"/></g>
+     <path d="M237 31v50" stroke="#79626e" stroke-width="9" stroke-linecap="round"/>
+     <circle cx="237" cy="105" r="27" fill="url(#paper-probe-metal)" stroke="#8d737f" stroke-width="2"/>
+     <path d="M287 58v36m-6-8 6 8 6-8" fill="none" stroke="#79435a" stroke-width="2" stroke-linecap="round"/>
+     <path d="M465 129h12v134h-12M471 129h-18M471 263h-18" fill="none" stroke="#795366" stroke-width="1.8" stroke-dasharray="4 4"/>
+     <g font-family="system-ui" font-size="13" fill="#674454"><text x="29" y="48">AFM · força e deformação</text><text x="29" y="354">Esquema conceitual · sem escala</text><text x="483" y="204" font-style="italic">t*</text></g>
+     <g font-family="system-ui" font-size="13" font-weight="700" text-anchor="middle">
+      <circle cx="159" cy="184" r="13" fill="#873552"/><text x="159" y="189" fill="#fffaf8">1</text>
+      <circle cx="383" cy="142" r="13" fill="#397b7a"/><text x="383" y="147" fill="#fffaf8">2</text>
+      <circle cx="95" cy="303" r="13" fill="#693047"/><text x="95" y="308" fill="#fffaf8">3</text>
+     </g>
     </g>
-    <path d="M14 153h390" stroke="#8e3654" stroke-width="3"/>
-    <g id="lab-paper-probe" transform="translate(0 0)"><path d="M200 1V42" stroke="#683149" stroke-width="8" stroke-linecap="round"/><circle cx="200" cy="57" r="15" fill="#ead8db" stroke="#9e536e" stroke-width="3"/></g>
-    <g font-family="system-ui" font-size="12" fill="#6e3048"><text x="19" y="272">ENDOTÉLIO (CORPO CELULAR)</text><text x="24" y="17">AFM ↑ camada hidratada</text></g>
    </svg>
-   <div class="lab-evidence-legend"><span><i class="lab-dot-gel"></i> Camada luminal</span><span><i class="lab-dot-cell"></i> Corpo celular</span></div>
-   <small>Não é fotografia nem escala molecular verdadeira. O desenho explica o método e muda conforme o estudo selecionado.</small>
-  </div>
+   <figcaption>
+    <ol class="lab-evidence-legend">
+     <li><span class="lab-legend-number lab-legend-structure">1</span><span><strong>Estruturas ancoradas</strong><small>Os “cabelos” da analogia.</small></span></li>
+     <li><span class="lab-legend-number lab-legend-matrix">2</span><span><strong>Matriz hidratada</strong><small>O “gel” ao redor e entre as estruturas.</small></span></li>
+     <li><span class="lab-legend-number lab-legend-cell">3</span><span><strong>Endotélio</strong><small>O corpo celular que serve de base.</small></span></li>
+    </ol>
+    <p class="lab-measure-caption"><b>t* · Espessura aparente:</b> estimativa do ajuste da resposta conjunta. As cores distinguem conceitos, não compartimentos medidos separadamente.</p>
+   </figcaption>
+  </figure>
   <div class="lab-evidence-metrics">
-   <div class="lab-evidence-chip"><span>ALTURA APARENTE DA CAMADA</span><strong id="lab-ref-height" aria-live="polite">380 ± 50 <small>nm</small></strong><p id="lab-ref-height-desc">380 nm = 0,38 micrômetro</p></div>
+   <div class="lab-evidence-chip"><span>ESPESSURA APARENTE NO MODELO</span><strong id="lab-ref-height" aria-live="polite">380 ± 50 <small>nm</small></strong><p id="lab-ref-height-desc">0,38 µm · estimativa do ajuste de AFM</p></div>
    <div class="lab-evidence-chip"><span>RESISTÊNCIA À DEFORMAÇÃO NO MODELO AFM</span><strong id="lab-ref-stiffness" aria-live="polite">0,7 ± 0,5 <small>kPa</small></strong><p>Quanto maior o módulo estimado, mais rígido é o material <em>nesse modelo</em>.</p></div>
    <div class="lab-evidence-relative" id="lab-relative">
     <div class="lab-evidence-bar-label">Rigidez medida no mesmo estudo</div>
@@ -110,9 +143,10 @@
    <div class="lab-ref-actions"><a id="lab-ref-paper" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3605807/" target="_blank" rel="noopener noreferrer">Abrir artigo original ↗</a><button type="button" id="lab-apply-published-flow">Reproduzir fluxo do estudo de 2013 ↓</button></div>
   </div>
  </div>
+ <p class="lab-afm-meaning"><strong>A medida pertence ao conjunto.</strong> A espessura estimada por AFM representa a camada superficial deformável captada pelo modelo experimental. Ela não separa de forma simples componentes ancorados e matriz hidratada: não é “gel puro” nem apenas a altura dos “cabelos”.</p>
  <p class="lab-reference-caution" id="lab-source-warning"><b>Não existe um único valor “normal” de glicocálix.</b> São resultados de culturas celulares e modelos de AFM. Altura ≠ viscosidade ≠ permeabilidade hidráulica. Estudos de anos diferentes usam preparações e ajustes distintos; não comparar diretamente como se fossem progressão de doença.</p>
  <details class="lab-understand-more"><summary>Traduzindo: o que é AFM, nm, kPa e “módulo”?</summary>
- <div><p><b>AFM:</b> uma ponta pressiona suavemente a superfície e registra força e deformação. <b>nm:</b> nanômetro; 1.000 nm = 1 µm. <b>kPa:</b> unidade de tensão/pressão; 1 kPa = 1.000 Pa. <b>Módulo:</b> medida aproximada da resistência à deformação no modelo escolhido, e não a viscosidade de um fluido.</p><p>Para estudar permeabilidade precisaríamos de outro tipo de dado experimental. Os controles de Darcy abaixo são um exercício com valores <em>inventados para o modelo</em>, não resultados dos dois estudos acima.</p></div>
+ <div><p><b>AFM:</b> nestes estudos, uma esfera pressiona a superfície e registra força e deformação. A espessura é estimada ao ajustar essa resposta a um modelo. <b>nm:</b> nanômetro; 1.000 nm = 1 µm. <b>kPa:</b> unidade de tensão/pressão; 1 kPa = 1.000 Pa. <b>Módulo:</b> medida aproximada da resistência à deformação no modelo escolhido, e não a viscosidade de um fluido.</p><p>Em 2020, os autores compararam um modelo de brush (estruturas tipo escova) com um modelo de camada elástica. Os números mostrados aqui são os do ajuste de camada elástica; mudar o modelo muda a estimativa. Isso não equivale a isolar “cabelos” ou “gel”.</p><p>Para estudar permeabilidade precisaríamos de outro tipo de dado experimental. Os controles de Darcy abaixo são um exercício com valores <em>inventados para o modelo</em>, não resultados dos dois estudos acima.</p></div>
  </details>
 </section>
 <section class="lab-chapter" id="lab-fisica" aria-labelledby="lab-fisica-title">
