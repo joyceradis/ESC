@@ -40,5 +40,14 @@
     const fluxUmolM2S = value(Dum2S, 'difusividade', 0) * value(deltaMmolL, 'gradiente de concentração', 0) / distance;
     return { fluxUmolM2S, fluxMolM2S: fluxUmolM2S / 1e6 };
   }
-  return Object.freeze({ G, R, shear, hydrostatic, reynolds, osmoticKpa, diffusion });
+  // Lei de Darcy: matriz porosa HOMOGÊNEA ideal. k m², Δp Pa, L µm, mu mPa.s.
+  // Sem ajuste experimental: não é uma medida de permeabilidade do eGCX in vivo.
+  function darcy(permeabilityM2, deltaPressurePa, lengthUm, muMpas) {
+    const mu = value(muMpas, 'viscosidade', 0.000001) / 1000;
+    const thicknessM = value(lengthUm, 'espessura', 0.000001) * 1e-6;
+    const umPerS = value(permeabilityM2, 'permeabilidade', 0) *
+      value(deltaPressurePa, 'diferença de pressão', 0) / (mu * thicknessM) * 1e6;
+    return { umPerS, nmPerS: umPerS * 1000 };
+  }
+  return Object.freeze({ G, R, shear, hydrostatic, reynolds, osmoticKpa, diffusion, darcy });
 });
