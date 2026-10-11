@@ -1,5 +1,7 @@
 # CLAUDE.md · Atlas ESC 2027
 
+> **Claude: regra vigente antes de qualquer tarefa.** A [política transversal JOYCE_OS](https://docs.google.com/document/d/16wZiKPW85UShS18exc7I1-1TuOZeiigcB1gcDSpCgBY/edit) exige desenvolvimento **somente remoto**. Não usar RAM/CPU/disco do Mac/iPhone, não criar pastas/clones/caches nem iniciar processos locais. Se uma operação exigir acesso local, **parar e pedir autorização expressa, específica e prévia em português simples** (o que, onde, consumo, duração e encerramento). Isso vale mesmo se não tiver acesso ao documento privado; leia também [AGENTS.md](AGENTS.md). 
+
 **Claude, este projeto preserva seu trabalho.** Você conduz a continuidade da experiência visual e pode aprimorar suas próprias skills livremente em colaboração com a equipe. 
 
 ## ATUAIS Skills do Claude
