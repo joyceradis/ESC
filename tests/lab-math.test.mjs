@@ -38,3 +38,13 @@ test('entradas inválidas não geram respostas físicas', () => {
   assert.throws(() => M.osmoticKpa(5, -300), RangeError);
   assert.throws(() => M.hydrostatic(1060, -1, 1), RangeError);
 });
+
+
+test('Darcy: permeabilidade e conversão de metros para nanômetros', () => {
+  const x = M.darcy(1e-18, 10, 5, 3.5);
+  near(x.nmPerS, 1e-18 * 10 / (.0035 * 5e-6) * 1e9, 1e-10);
+  near(x.umPerS, x.nmPerS / 1000);
+  near(M.darcy(1e-18, 0, 5, 3.5).nmPerS, 0);
+  assert.throws(() => M.darcy(1e-18, 10, 0, 3.5), RangeError);
+  assert.throws(() => M.darcy(-1, 10, 5, 3.5), RangeError);
+});
