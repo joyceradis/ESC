@@ -117,6 +117,40 @@
       <div class="lab-single"><small>Reynolds calculado</small><strong id="lab-reynolds" aria-live="polite">45,4</strong></div><p class="lab-footnote">Usa a viscosidade escolhida no simulador 01 e ρ = 1.060 kg/m³. Não aplicar automaticamente o limiar de turbulência de tubos rígidos à microcirculação.</p>
     </article>
   </div>
+
+  <article class="lab-panel lab-panel-feature lab-gel-panel" aria-labelledby="lab-gel-title">
+    <div class="lab-info">
+      <div class="lab-panel-label">Simulador 06 · matriz porosa ideal</div><h3 id="lab-gel-title">E se o “gel” for uma rede permeável?</h3>
+      <p class="lab-copy">Este experimento matemático separa <b>permeabilidade hidráulica</b>, pressão aplicada, espessura e viscosidade. É uma analogia de escoamento em meio poroso homogêneo, não a descrição literal do eGCX.</p>
+      <div class="lab-formula">v = (k / μ) × (Δp / L)</div>
+      <div class="lab-controls">
+        <label for="lab-perm">Permeabilidade hidráulica ilustrativa <output id="lab-perm-label" for="lab-perm">10⁻¹⁸ m²</output></label>
+        <input id="lab-perm" type="range" min="-21" max="-16" step="1" value="-18" />
+        <label for="lab-pressure">Diferença de pressão <output id="lab-pressure-label" for="lab-pressure">10 Pa</output></label>
+        <input id="lab-pressure" type="range" min="1" max="80" step="1" value="10" />
+        <label for="lab-length">Espessura do meio ideal <output id="lab-length-label" for="lab-length">5 µm</output></label>
+        <input id="lab-length" type="range" min="1" max="20" step="1" value="5" />
+      </div>
+      <div class="lab-single"><small>Velocidade superficial prevista por Darcy</small><strong id="lab-darcy-result" aria-live="polite">0,571 nm/s</strong></div>
+      <p class="lab-footnote">Usa a viscosidade selecionada no simulador 01. <b>Não</b> mede viscosidade intrínseca do “gel” nem movimento molecular das âncoras. Valores de k são arbitrários e exploratórios.</p>
+    </div>
+    <div class="lab-picture lab-gel-picture">
+      <div class="lab-picture-label"><span>MODELO CONCEITUAL</span><span id="lab-gel-state">Rede hidratada · permeabilidade variável</span></div>
+      <svg viewBox="0 0 430 285" role="img" aria-labelledby="lab-gel-svg-title">
+        <title id="lab-gel-svg-title">Rede molecular hidratada fictícia atravessada por fluxo, diferente de um gel homogêneo real</title>
+        <rect x="20" y="25" width="390" height="230" rx="23" fill="#fff4f5"/>
+        <g id="lab-gel-mesh" fill="none" stroke="#ae5a76" stroke-width="4" opacity=".85">
+          <path d="M48 40Q90 90 68 140T52 242M112 40Q150 90 131 146T108 243M180 40Q213 97 185 149T181 243M251 40Q221 100 262 145T248 243M329 40Q287 100 330 147T315 242M382 42Q341 100 384 152T375 238"/>
+          <path d="M44 77Q115 56 176 80T288 77T391 79M41 132Q108 157 179 133T304 130T389 132M43 194Q111 172 178 197T295 194T390 190"/>
+        </g>
+        <g id="lab-gel-droplets" fill="#2d8ca5" opacity=".88"><circle cx="94" cy="103" r="6"/><circle cx="205" cy="119" r="6"/><circle cx="286" cy="211" r="6"/><circle cx="349" cy="111" r="6"/><circle cx="230" cy="224" r="6"/></g>
+        <path d="M51 19H377m-10-8 11 8-11 8" fill="none" stroke="#842b49" stroke-width="3" stroke-linecap="round"/>
+        <text x="29" y="273" fill="#70384c" font-size="11" font-family="system-ui">Rede esquemática · sem escala molecular</text>
+      </svg>
+      <div class="lab-gradient-bar"><span>menor k</span><div><i id="lab-perm-fill"></i></div><span>maior k</span></div>
+      <p>Uma mesma altura aparente de matriz pode ocultar diferentes propriedades físicas. A resposta biológica depende também de âncoras, cargas, sensores e remodelamento.</p>
+    </div>
+  </article>
 </section>
 
 <section class="lab-chapter" id="lab-quimica" aria-labelledby="lab-quimica-title">
@@ -158,6 +192,23 @@
 
 <section class="lab-chapter" id="lab-questoes" aria-labelledby="lab-questions-title">
  <div class="lab-section-heading"><span>03 / Banco de perguntas vivas</span><h2 id="lab-questions-title">Não é só uma hipótese.</h2><p>Os simuladores são ferramentas para pensar, não para decidir antecipadamente qual será a pergunta final da ESC.</p></div>
+
+ <article class="lab-panel lab-gravity-timeline" aria-labelledby="lab-timeline-title">
+  <div class="lab-panel-label">Experimento mental · astronauta</div>
+  <h3 id="lab-timeline-title">Quatro momentos, mecanismos diferentes</h3>
+  <p class="lab-copy">Escolha uma fase. A hipótese sistêmica clássica deve ser comparada às hipóteses sobre endotélio e glicocálix, sem reduzir uma à outra.</p>
+  <div class="lab-stage-tabs" role="group" aria-label="Fases do experimento mental">
+    <button type="button" data-stage="baseline" aria-pressed="true">1g · antes</button>
+    <button type="button" data-stage="launch" aria-pressed="false">Lançamento</button>
+    <button type="button" data-stage="orbit" aria-pressed="false">Órbita</button>
+    <button type="button" data-stage="return" aria-pressed="false">Retorno</button>
+  </div>
+  <div class="lab-stage-content">
+    <div class="lab-stage-icon" id="lab-stage-art" aria-hidden="true">1g</div>
+    <div><h4 id="lab-stage-title">Referência em 1g</h4><p id="lab-stage-explanation">Estabelecer o estado basal do fluxo, do volume circulante, da resposta vascular e da matriz hidratada, distinguindo territórios vasculares.</p>
+    <small id="lab-stage-note">Não supor um único “glicocálix normal” universal.</small></div>
+  </div>
+ </article>
  <div class="lab-idea-grid">
   <a href="hipoteses.html"><small>Arquitetura</small><strong>O “gel” protege, freia ou concentra forças nas âncoras?</strong><span>Malha · porosidade · viscoelasticidade ↗</span></a>
   <a href="hipoteses.html"><small>Mecanotransdução</small><strong>Quais sensores percebem o fluxo e quem transmite o sinal?</strong><span>Glicocálix · PIEZO1 · junções ↗</span></a>
