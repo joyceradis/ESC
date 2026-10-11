@@ -5,6 +5,9 @@
     "studyValuesPreserved": true,
     "artUnchangedBetweenStudies": true,
     "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
     "measurements": [
       {
         "width": 320,
@@ -39,6 +42,9 @@
     "studyValuesPreserved": true,
     "artUnchangedBetweenStudies": true,
     "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
     "measurements": [
       {
         "width": 320,
@@ -73,6 +79,9 @@
     "studyValuesPreserved": true,
     "artUnchangedBetweenStudies": true,
     "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
     "measurements": [
       {
         "width": 320,
@@ -107,6 +116,9 @@
     "studyValuesPreserved": true,
     "artUnchangedBetweenStudies": true,
     "applyFlow": true,
+    "methodologyVisible": true,
+    "darcyIndependent": true,
+    "keyboard": true,
     "measurements": [
       {
         "width": 320,
