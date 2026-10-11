@@ -114,3 +114,57 @@
 .lab-stage-content small{font-size:11px;color:#9a4760;line-height:1.6}
 @media(max-width:790px){.lab-gel-panel{margin-top:12px}.lab-stage-content{grid-template-columns:1fr;gap:13px;padding:17px}.lab-stage-icon{height:79px;width:79px;font-size:29px;border-width:4px}.lab-stage-content h4{font-size:23px}.lab-stage-tabs button{flex:1 1 auto}}
 @media(prefers-reduced-motion:reduce){.lab-gel-picture #lab-gel-mesh,.lab-stage-tabs button{transition:none!important}}
+
+
+/* Atlas com referências publicadas · percurso para médicos, não só físicos. */
+.lab-paper-portal{margin:35px 0 0;padding:clamp(20px,3.5vw,38px);border-radius:22px;background:radial-gradient(ellipse at 78% 0,rgba(191,97,127,.16),transparent 50%),#fcf5f3;border:1px solid #dfc7ce;box-shadow:0 12px 38px rgba(80,20,38,.045);scroll-margin-top:94px}
+.lab-paper-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.lab-paper-heading>div{max-width:670px}
+.lab-paper-heading h2{font:400 clamp(37px,4vw,58px)/1 Georgia,serif;letter-spacing:-.052em;color:#4f2133;margin:12px 0}
+.lab-paper-heading h2 em{font-style:italic;color:#ab3e5c}
+.lab-paper-heading p{font-size:13px;line-height:1.65;color:#79525c;margin:0;max-width:530px}
+.lab-paper-heading>label{min-width:210px;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:#8a425c}
+.lab-paper-heading select{display:block;margin-top:9px;background:#fffdfa;color:#5d283a;border:1px solid #d8aab8;padding:11px 10px;border-radius:12px;max-width:100%;width:260px;font-size:12px;letter-spacing:0;text-transform:none;cursor:pointer}
+.lab-evidence-display{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.lab-evidence-art{background:radial-gradient(ellipse at 45% 12%,#fff6f7,transparent 55%),#f0dfe4;border:1px solid #e4c5cf;border-radius:17px;padding:22px;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.lab-paper-figure-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#97526b}
+.lab-paper-svg{width:100%;height:auto;display:block;max-height:345px;margin:10px auto}
+#lab-paper-gel-visual{transition:transform .45s cubic-bezier(.2,.6,.2,1)}
+.lab-evidence-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;font-weight:600;color:#6f4753}
+.lab-evidence-legend>span{display:flex;align-items:center;gap:6px}
+.lab-evidence-legend i{display:block;width:13px;height:13px;border-radius:5px}
+.lab-dot-gel{background:#bd6685}.lab-dot-cell{background:#efbfcc}
+.lab-evidence-art>small{color:#86636a;line-height:1.5;margin-top:13px;font-size:10px}
+.lab-evidence-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lab-evidence-chip{background:#fffdfb;border:1px solid #e4ced4;border-radius:14px;padding:17px 15px;min-width:0}
+.lab-evidence-chip>span{display:block;min-height:28px;color:#9d5368;letter-spacing:.11em;font-size:9px;font-weight:700;line-height:1.4}
+.lab-evidence-chip strong{font:400 clamp(21px,2.4vw,30px)/1.18 Georgia,serif;color:#642039;letter-spacing:-.02em;display:block;font-variant-numeric:tabular-nums;margin:13px 0 8px}
+.lab-evidence-chip strong small{font-size:15px;white-space:nowrap}
+.lab-evidence-chip p{font-size:11px;line-height:1.5;color:#885863;margin:0}
+.lab-evidence-relative{grid-column:1/-1;border:1px solid #ebd1d9;border-radius:13px;padding:14px 15px;background:#fffaf9}
+.lab-evidence-bar-label{font-size:10px;font-weight:700;color:#794055;margin-bottom:12px}
+.lab-relative-line{display:grid;grid-template-columns:60px minmax(0,1fr) 65px;gap:8px;align-items:center;font-size:10px;color:#744c59;margin:8px 0}
+.lab-relative-line div{height:10px;border-radius:99px;background:#f0d7df;overflow:hidden}
+.lab-relative-line i{display:block;height:100%;min-width:2px;border-radius:99px;background:#c16e8a;transition:width .38s}
+.lab-relative-line:nth-last-child(1) i{background:#7b2c4d}
+.lab-relative-line b{text-align:right;font-size:10px;font-weight:700;color:#6c2943;white-space:nowrap}
+.lab-evidence-metrics>.lab-ref-interpretation{grid-column:1/-1;font-size:12px;line-height:1.6;color:#754c58;background:#f4e5ea;padding:13px 15px;border-radius:10px;margin:0}
+.lab-ref-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.lab-ref-actions a,.lab-ref-actions button{font:700 11px/1.45 var(--font);padding:11px 15px;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;cursor:pointer;transition:transform .2s,background .2s}
+.lab-ref-actions a{background:#752541;color:white;border:1px solid #752541}
+.lab-ref-actions button{background:#fff6f8;color:#7b2745;border:1px solid #cf99ac}
+.lab-ref-actions button:hover,.lab-ref-actions a:hover{transform:translateY(-2px)}
+.lab-reference-caution{font-size:12px;line-height:1.65;color:#835665;margin:19px 0 15px}
+.lab-reference-caution b{color:#6b2c43}
+.lab-understand-more{border-top:1px solid #e7c7d1;padding-top:13px}
+.lab-understand-more summary{font-size:12px;color:#8c3150;cursor:pointer;font-weight:700}
+.lab-understand-more>div{max-width:850px;padding:9px 0 0;font-size:12px;line-height:1.8;color:#77505c}
+.lab-understand-more p{margin:7px 0}
+.lab-notebook{margin-bottom:32px}
+.lab-notes-source{font-size:11px;line-height:1.65;color:#845d6a}
+.lab-notes-source a{text-decoration:underline;color:#812d49;text-underline-offset:3px}
+[hidden]{display:none!important}
+@media(max-width:980px){.lab-evidence-display{grid-template-columns:1fr}.lab-evidence-art{min-height:320px}.lab-paper-svg{max-height:260px}}
+@media(max-width:790px){.lab-paper-portal{padding:19px 16px;margin-top:20px}.lab-paper-heading{display:block}.lab-paper-heading h2{font-size:clamp(36px,9vw,51px)}.lab-paper-heading>label{display:block;margin-top:22px}.lab-paper-heading select{width:100%;max-width:440px}.lab-evidence-chip{padding:14px 12px}.lab-evidence-chip strong{font-size:24px}.lab-evidence-chip strong small{font-size:13px}.lab-evidence-art{min-height:260px}.lab-ref-actions>a,.lab-ref-actions>button{flex:1 1 43%}}
+@media(max-width:390px){.lab-evidence-metrics{grid-template-columns:1fr}.lab-evidence-relative,.lab-evidence-metrics>.lab-ref-interpretation,.lab-ref-actions{grid-column:auto}.lab-evidence-chip>span{min-height:0}.lab-evidence-chip strong{font-size:28px}.lab-ref-actions a,.lab-ref-actions button{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){#lab-paper-gel-visual,.lab-relative-line i,.lab-ref-actions a,.lab-ref-actions button{transition:none!important}}
