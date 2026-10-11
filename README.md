@@ -36,6 +36,16 @@ build.py               gera os *.html da raiz
 3. Rode `python3 build.py` para regenerar as páginas.
 4. Abra `index.html` no navegador (funciona direto do arquivo, sem servidor).
 
+## Skills do projeto
+
+Em `.claude/skills/`, no formato do repositório oficial de skills da Anthropic (`anthropics/skills`, cópia em `joyceradis/demo-repository-skills-antropic`). O Claude Code as carrega ao abrir este repositório.
+
+| Skill | Quando usar |
+| --- | --- |
+| `esc-fichamento` | Fichar um artigo L-### com as 8 perguntas e propor a nota para a planilha |
+| `esc-revisar-abstract` | Revisar abstract, CV ou carta antes do envio (estrutura ESC, integridade, originalidade) |
+| `esc-atualizar-atlas` | Sincronizar o site com a planilha mestre e regenerar as páginas |
+
 ## Verificações automáticas
 
 - **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`.
