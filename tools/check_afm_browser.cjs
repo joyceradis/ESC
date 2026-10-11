@@ -44,7 +44,7 @@ const fs = require('node:fs/promises');
     await page.locator('#lab-mu').focus();
     await page.keyboard.press('ArrowRight');
     assert.equal(await page.locator('#lab-darcy-result').innerText(), beforeViscosity, 'viscosidade do fluxo não deve alterar Darcy');
-    await page.locator('#lab-darcy-mu').fill('2');
+    await page.locator('#lab-darcy-mu').evaluate(el => { el.value = '2'; });
     await page.locator('#lab-darcy-mu').dispatchEvent('input');
     assert.match(await page.locator('#lab-darcy-result').innerText(), /^1 nm/);
     assert.equal(await page.locator('.lab-antennae').getAttribute('style'), null);

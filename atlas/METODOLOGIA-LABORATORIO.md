@@ -21,7 +21,7 @@ Glicocálix é termo geral. eGCX é o glicocálix endotelial; outras células e 
 | Δp = ρ a L | Densidade constante, equilíbrio hidrostático; L na direção da aceleração; não mede compressão do eGCX. |
 | Re = ρ v D / μ | Escala de tubo e viscosidade constante; limiar de turbulência não universal para vasos. |
 | Δπ = RTΔC | Solução ideal, solutos impermeantes (σ=1); não substitui filtração endotelial/oncose. |
-| |J| = DΔC/Δx | Magnitude, meio homogêneo, unidimensional estacionário; sem convecção/adsorção. |
+| Magnitude J = DΔC/Δx | Magnitude, meio homogêneo, unidimensional estacionário; sem convecção/adsorção. |
 | v = kΔp/(μL) | Darcy, meio homogêneo; velocidade superficial, k intrínseco em m²; Lp=k/(μL) em m/(Pa·s). Parâmetros arbitrários, sem calibração do eGCX. |
 
 A viscosidade do fluido permeante de Darcy é independente do controle de cisalhamento/Reynolds. A ilustração não inclina filamentos com uma regra arbitrária em função de τ. Testes de aritmética, integridade e navegação não são validação experimental.
