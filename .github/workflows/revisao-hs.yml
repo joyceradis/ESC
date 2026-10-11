@@ -1,0 +1,38 @@
+name: Auditoria e previa HS fluxo
+on:
+  pull_request:
+    paths:
+      - 'src/pages/**'
+      - 'tools/review_hs.py'
+      - '.github/workflows/revisao-hs.yml'
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Conferir suplementos na nuvem
+        run: |
+          pip install requests pypdf
+          python3 tools/review_hs.py
+      - name: Gerar e verificar
+        run: |
+          python3 build.py
+          python3 tools/check_site.py
+          node --test tests/*.test.mjs
+          python3 -c 'import json,pathlib; print("GENERATED_PROTOCOL="+json.dumps(pathlib.Path("protocolo.html").read_text()))'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: esc-hs-previa
+          path: |
+            *.html
+            assets/
+            evidence/
