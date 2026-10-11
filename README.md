@@ -36,6 +36,17 @@ build.py               gera os *.html da raiz
 3. Rode `python3 build.py` para regenerar as páginas.
 4. Abra `index.html` no navegador (funciona direto do arquivo, sem servidor).
 
+## Autoria
+
+| Quem | O que fez | Quando |
+| --- | --- | --- |
+| **Joyce Radis** (autora) | Pergunta científica, hipóteses, analogias das “antenas” e do “gel”, rascunho RAS-001 com grifos e 13 comentários, leitura de Tomita (L-001) e decisões de escopo | desde 08/10/2026 |
+| **ChatGPT** (OpenAI) | Auditoria e reorganização do Drive, planilha mestre estruturada, mapa de hipóteses v0.2 a partir das perguntas da autora, adendo de anterioridade e atlas edição 01 (HTML único) | 09–10/10/2026 |
+| **Gemini** (Google) | Dois relatórios secundários: análise estratégica e elegibilidade | 08/10/2026 |
+| **Claude** (Anthropic) | Atlas edições 02 e 03: conferência das regras na página oficial da ESC, alertas de integridade, separação em 9 páginas, dados da planilha no site, `build.py` e planilha-resumo | 10/10/2026 |
+
+O conteúdo científico é da autora. Os agentes organizaram, conferiram e deram forma; nenhum deles produziu dados experimentais. O relatório “Estruturação de Proposta para ESC” (09/10) não tem autoria registrada.
+
 ## Privacidade
 
 O conteúdo é um projeto científico não publicado, e os links apontam para um acervo privado no Drive. Mantenha o repositório privado. Se usar GitHub Pages, lembre que o site publicado fica acessível a quem tiver o endereço.
