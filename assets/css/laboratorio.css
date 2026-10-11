@@ -174,3 +174,11 @@
 @media(max-width:790px){.lab-paper-portal{padding:19px 16px;margin-top:20px}.lab-paper-heading{display:block}.lab-paper-heading h2{font-size:clamp(36px,9vw,51px)}.lab-paper-heading>label{display:block;margin-top:22px}.lab-paper-heading select{width:100%;max-width:440px}.lab-evidence-chip{padding:14px 12px}.lab-evidence-chip strong{font-size:24px}.lab-evidence-chip strong small{font-size:13px}.lab-evidence-art{min-height:260px}.lab-ref-actions>a,.lab-ref-actions>button{flex:1 1 43%}}
 @media(max-width:390px){.lab-evidence-metrics{grid-template-columns:1fr}.lab-evidence-relative,.lab-evidence-metrics>.lab-ref-interpretation,.lab-ref-actions{grid-column:auto}.lab-evidence-chip>span{min-height:0}.lab-evidence-chip strong{font-size:28px}.lab-ref-actions a,.lab-ref-actions button{flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){.lab-relative-line i,.lab-ref-actions a,.lab-ref-actions button{transition:none!important}}
+
+/* Contexto metodológico acompanha o resultado em toda a largura do painel. */
+.lab-evidence-metrics > .lab-footnote,
+.lab-evidence-metrics > .lab-reference-caution {grid-column:1/-1; margin:0; min-width:0}
+.lab-evidence-metrics > .lab-reference-caution {background:#fff8f2; border-left:3px solid #9a5267; padding:12px 15px; border-radius:4px 10px 10px 4px}
+.lab-evidence-metrics > .lab-reference-caution p {margin:6px 0}
+.lab-evidence-metrics > .lab-reference-caution a {overflow-wrap:anywhere}
+#lab-method-scope {margin-bottom:24px}
