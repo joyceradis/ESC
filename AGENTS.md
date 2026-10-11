@@ -1,5 +1,8 @@
 # AGENTS.md · ESC 2027 Research 
 
+> **REGRA CANÔNICA JOYCE_OS · DISPOSITIVOS PESSOAIS (VIGENTE, 11/10/2026)** — [Política transversal](https://docs.google.com/document/d/16wZiKPW85UShS18exc7I1-1TuOZeiigcB1gcDSpCgBY/edit) (documento privado; **este resumo é obrigatório mesmo sem acesso ao Drive**). Mac e iPhone de Joyce **não são infraestrutura dos agentes**. Desenvolvimento apenas na nuvem/GitHub/CI. Não executar agentes, servidores, builds, testes, automações, indexadores, nem criar clones, worktrees, pastas, caches ou downloads nos aparelhos; não consumir deliberadamente RAM/CPU/disco nem acessar telas, clipboard ou arquivos locais. **Exceção só com autorização expressa, prévia e específica da Joyce**, em palavras inequívocas, depois de explicar em português simples motivo, ações, caminhos, recursos, duração e encerramento. Pedido genérico, silêncio, emoji, acesso técnico e consentimento antigo não autorizam. Sem autorização: **parar e pedir**, não usar o Mac como alternativa. Não inventariar ou apagar pastas preexistentes sem autorização separada. Esta regra prevalece sobre “preferir nuvem”; documento não encerra processos locais nem muda permissões do macOS.
+
+
 > **Autoria científica:** Joyce Radis. **Engenharia colaborativa:** Claude + Codex + ChatGPT. Este arquivo orienta o Codex e qualquer agente de desenvolvimento sem substituir as instruções individuais dos demais.
 
 ## Onde começar (leitura curta)
