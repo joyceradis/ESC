@@ -46,6 +46,16 @@
       write('lab-conc-label', fmt(number('lab-conc'), 1) + ' mmol/L');
       write('lab-thickness-label', fmt(number('lab-thickness'), 0) + ' µm');
       write('lab-fick-result', fmt(fick.fluxUmolM2S, 3) + ' µmol/(m²·s)');
+      const exponent = number('lab-perm');
+      const darcy = M.darcy(Math.pow(10, exponent), number('lab-pressure'), number('lab-length'), viscosity);
+      write('lab-perm-label', '10^' + exponent + ' m²');
+      write('lab-pressure-label', fmt(number('lab-pressure'), 0) + ' Pa');
+      write('lab-length-label', fmt(number('lab-length'), 0) + ' µm');
+      write('lab-darcy-result', fmt(darcy.nmPerS, 4) + ' nm/s');
+      byId('lab-perm-fill').style.width = (8 + (exponent + 21) / 5 * 90) + '%';
+      write('lab-gel-state', exponent <= -20 ? 'Permeabilidade ilustrativa baixa' : exponent >= -17 ? 'Permeabilidade ilustrativa alta' : 'Permeabilidade intermediária');
+      const mesh = byId('lab-gel-mesh');
+      if (mesh) mesh.setAttribute('opacity', (0.95 - (exponent + 21) / 5 * .4).toFixed(2));
       const arrow = document.querySelector('.lab-osm-arrow');
       if (arrow) { arrow.textContent = Number(byId('lab-osm').value) === 0 ? '⇄' : '→'; }
     }
@@ -104,6 +114,40 @@
       input.addEventListener('change', render);
     });
     byId('lab-molecule').addEventListener('change', molecule);
+
+    const stages = {
+      baseline: {
+        badge: '1g', title: 'Referência em 1g',
+        desc: 'Estabelecer o estado basal do fluxo, do volume circulante, da resposta vascular e da matriz hidratada, distinguindo territórios vasculares.',
+        note: 'Não supor um único “glicocálix normal” universal.'
+      },
+      launch: {
+        badge: '3g', title: 'Lançamento e hipergravidade',
+        desc: 'A orientação da aceleração e sua duração alteram gradientes hidrostáticos e cargas. Uma exposição curta não equivale a meses de remodelamento molecular.',
+        note: 'Separar aceleração direta, hemodinâmica sistêmica e tempo de exposição.'
+      },
+      orbit: {
+        badge: 'µg', title: 'Meses em microgravidade',
+        desc: 'Redistribuição de fluidos, exercício, radiação, metabolismo e inflamação podem mudar respostas endoteliais. A microgravidade não interrompe o cisalhamento gerado pelo coração.',
+        note: 'Distinguir microgravidade real/simulada e hipóteses concorrentes.'
+      },
+      return: {
+        badge: '1g', title: 'Retorno e ortostase',
+        desc: 'O retorno dos gradientes hidrostáticos demanda adaptação de barorreflexos, volume circulante e tônus vascular. Intolerância pós-voo não é automaticamente POTS.',
+        note: 'Hipótese sistêmica clássica versus possível contribuição microvascular: ambas devem ser testadas.'
+      }
+    };
+    document.querySelectorAll('[data-stage]').forEach(button => {
+      button.addEventListener('click', () => {
+        const stage = stages[button.dataset.stage];
+        if (!stage) return;
+        document.querySelectorAll('[data-stage]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+        write('lab-stage-art', stage.badge);
+        write('lab-stage-title', stage.title);
+        write('lab-stage-explanation', stage.desc);
+        write('lab-stage-note', stage.note);
+      });
+    });
     render();
     molecule();
   });
