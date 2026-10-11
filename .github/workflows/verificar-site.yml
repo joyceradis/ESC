@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Gerar site e notas da fonte unica
+        run: python3 build.py
+
       - name: Sintaxe de todos os scripts JavaScript
         run: |
           find assets/js -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
