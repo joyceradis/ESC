@@ -7,6 +7,7 @@ Não lê chats, Drive, clínica ou dados privados. Não roda IA em CI.
 """
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +16,7 @@ NOTES = ROOT / "atlas" / "notas"
 OUT = ROOT / "assets" / "js" / "atlas-dados.js"
 ID = re.compile(r"^[a-z0-9][a-z0-9-]{2,79}$")
 DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+DOI = re.compile(r"10\.\d{4,9}/[^\s]+", re.ASCII)
 
 
 def require(condition, message):
@@ -41,12 +43,18 @@ def build_data():
     studies = root.get("studies")
     require(isinstance(studies, list) and 1 <= len(studies) <= 25, "estudos inválidos")
     seen = set()
+    seen_dois = set()
     for study in studies:
         key = text_field(study, "id", 80)
         require(ID.fullmatch(key) and key not in seen, "ID de estudo duplicado/inválido")
         seen.add(key)
         for name in ("author", "title", "design", "explanation", "doi", "url", "methodological_note", "methodological_source", "methodological_source_label", "culture_note"):
             text_field(study, name, 700)
+        # Validação estrutural; não certifica existência nem leitura do artigo.
+        doi = study["doi"].strip().casefold()
+        require(DOI.fullmatch(doi), f"{key}: DOI inválido")
+        require(doi not in seen_dois, f"{key}: DOI duplicado no catálogo de estudos")
+        seen_dois.add(doi)
         require(study["url"].startswith("https://"), "URL de fonte não HTTPS")
         require(study["methodological_source"].startswith("https://"), "URL metodológica não HTTPS")
         for name in ("thickness_nm", "modulus_kpa"):
@@ -58,6 +66,7 @@ def build_data():
     require(isinstance(model, dict), "modelo ausente")
     for key in ("id", "author", "url", "doi", "interpretation"):
         text_field(model, key, 550)
+    require(DOI.fullmatch(model["doi"].strip()), "modelo: DOI inválido")
     dictionary = root.get("dictionary")
     require(isinstance(dictionary, dict), "glossário ausente")
     for key in ("thickness", "modulus", "shear", "permeability", "no_reference"):
@@ -74,6 +83,10 @@ def build_data():
         require(ID.fullmatch(nid) and nid not in known, f"{path.name}: id inválido/duplicado")
         known.add(nid)
         require(DATE.fullmatch(text_field(note, "date", 10)), f"{path.name}: data inválida")
+        try:
+            date.fromisoformat(note["date"])
+        except ValueError as exc:
+            raise ValueError(f"{path.name}: data inválida") from exc
         require(note.get("category") in ("pergunta", "metodo", "evidencia", "decisao"), f"{path.name}: tipo inválido")
         require(note.get("status") in ("publicado", "rascunho"), f"{path.name}: status inválido")
         for key in ("summary", "question", "evidence", "provenance"):
@@ -98,3 +111,4 @@ def build():
 
 if __name__ == "__main__":
     build()
+

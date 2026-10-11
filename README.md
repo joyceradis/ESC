@@ -1,3 +1,7 @@
+## Secretária de repositório (proposta)
+
+A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/workflows/issue-secretary.yml) organizam etiquetas e status sem alterar código, fazer merge ou publicar. O fluxo é **proposto nesta branch** e só passa a operar após integração na `main`. A classificação não aciona automaticamente Codex, Claude ou outros agentes.
+
 # ESC 2027 · Research Atlas
 
 Painel pessoal de retomada da pesquisa para o **ESC Fund – Basic Cardiovascular Science Course 2027**. Hipótese candidata: glicocálix endotelial → NO–cGMP–PKG → titina na ICFEp.
