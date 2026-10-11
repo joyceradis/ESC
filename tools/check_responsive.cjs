@@ -42,6 +42,32 @@ const server = http.createServer((req,res)=>{
           brokenImages:[...document.images].filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.src)
         }));
         const issues=[];
+        // Smoke tests de navegação e interação em cada viewport.
+        const navigation=page.locator(device.name==='mobile'?'.mobile-nav a':'.sidebar nav a');
+        if(await navigation.count()===0) issues.push('Navegação ausente');
+        else if(!(await navigation.first().isVisible())) issues.push('Navegação invisível');
+        const navLinks=await navigation.evaluateAll(nodes=>nodes.map(a=>a.getAttribute('href')).filter(Boolean));
+        if(navLinks.some(h=>!pages.includes(h.split('#')[0])&&!h.startsWith('#'))) issues.push('Destino de navegação inesperado');
+        if(pageName==='biblioteca.html'){
+          const search=page.locator('#search'),result=page.locator('#resultsMeta');
+          if(await search.count()&&await result.count()){
+            const before=await result.textContent();
+            await search.fill('zzzz-busca-sem-resultados-esc');
+            if(await result.textContent()===before)issues.push('Busca não atualiza resultados');
+            await search.fill('');
+          }else issues.push('Busca da biblioteca ausente');
+        }
+        if(pageName==='hipoteses.html'){
+          const summaries=page.locator('#hypotheses details summary');
+          if(await summaries.count()){
+            const first=summaries.first();
+            const wasOpen=await first.evaluate(e=>e.parentElement.open);
+            await first.click();
+            if(wasOpen===await first.evaluate(e=>e.parentElement.open))issues.push('Hipóteses não expandem/recolhem');
+          }else issues.push('Controle de hipóteses ausente');
+        }
+        if(pageName==='laboratorio.html'&&await page.locator('input,button,select').count()===0)issues.push('Laboratório sem controles');
+
         if(response.status()!==200)issues.push('HTTP '+response.status());
         if(!metrics.title.trim())issues.push('Sem título');
         if(metrics.htmlWidth>metrics.viewportWidth+2)issues.push('Rolagem horizontal: '+metrics.htmlWidth+'px / '+metrics.viewportWidth+'px');
