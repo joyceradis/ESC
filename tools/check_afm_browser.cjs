@@ -18,12 +18,18 @@ const fs = require('node:fs/promises');
     }
     assert.equal(await page.locator('.lab-evidence-legend li').count(),3);
     assert.match(await page.locator('#lab-paper-title').innerText(),/O que exatamente/);
+    assert.match(await page.locator('#lab-ref-design').innerText(), /HUVECs/);
+    assert.match(await page.locator('#lab-ref-method').innerText(), /provavelmente errôneos/);
+    assert.match(await page.locator('#lab-ref-culture').innerText(), /inferido/);
+    assert.equal(await page.locator('#lab-ref-method-source').getAttribute('href'), 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7136287/');
     const originalArt=await page.locator('.lab-paper-svg').innerHTML();
     assert.match(await page.locator('#lab-ref-height').innerText(),/380 ± 50/);
     assert.match(await page.locator('#lab-ref-stiffness').innerText(),/0,7 ± 0,5/);
     await page.selectOption('#lab-reference-source','waugh-2020');
     assert.match(await page.locator('#lab-ref-height').innerText(),/110/);
     assert.match(await page.locator('#lab-ref-stiffness').innerText(),/0,025/);
+    assert.match(await page.locator('#lab-ref-method').innerText(), /350 nm/);
+    assert.match(await page.locator('#lab-ref-design').innerText(), /HPMECs/);
     assert.equal(await page.locator('#lab-relative').isVisible(),false);
     assert.equal(await page.locator('#lab-apply-published-flow').isVisible(),false);
     assert.equal(await page.locator('.lab-paper-svg').innerHTML(),originalArt,'trocar estudo não deve encurtar filamentos');
@@ -32,14 +38,30 @@ const fs = require('node:fs/promises');
     await page.locator('#lab-apply-published-flow').click();
     assert.match(await page.locator('#lab-tau').innerText(),/^1\s+Pa$/);
     assert.equal(await page.locator('#lab-relative').isVisible(),true);
+    assert.match(await page.locator('#lab-ref-method').innerText(), /provavelmente errôneos/);
+    assert.match(await page.locator('#lab-darcy-result').innerText(), /^2 nm/);
+    const beforeViscosity = await page.locator('#lab-darcy-result').innerText();
+    await page.locator('#lab-mu').focus();
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('#lab-darcy-result').innerText(), beforeViscosity, 'viscosidade do fluxo não deve alterar Darcy');
+    await page.locator('#lab-darcy-mu').fill('2');
+    await page.locator('#lab-darcy-mu').dispatchEvent('input');
+    assert.match(await page.locator('#lab-darcy-result').innerText(), /^1 nm/);
+    assert.equal(await page.locator('.lab-antennae').getAttribute('style'), null);
+    assert.match(await page.locator('#lab-flow-speed').innerText(), /sem escala/);
+    await page.locator('#lab-method-scope summary').focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#lab-method-scope').getAttribute('open'), '');
+    await page.locator('#lab-method-scope summary').click();
+    await page.locator('#lab-fisica').screenshot({path:'evidence/'+engine+'-'+device+'-physics.jpg',animations:'disabled',type:'jpeg',quality:65,style:'.mobile-head { visibility: hidden !important; }'});
     const measurements=[];
     for(const width of [320,390,768,1024,1440]){
      await page.setViewportSize({width,height:1000});
-     const m=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,overflow:[...document.querySelectorAll('#lab-estudos *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).length}));
+     const m=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,overflow:[...document.querySelectorAll('#lab-estudos *, #lab-fisica *, #lab-quimica *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).length}));
      assert.equal(m.scroll,m.width);assert.equal(m.overflow,0);measurements.push(m);
     }
     assert.deepEqual(errors,[]);
-    result.push({engine,device,studyValuesPreserved:true,artUnchangedBetweenStudies:true,applyFlow:true,measurements});
+    result.push({engine,device,studyValuesPreserved:true,artUnchangedBetweenStudies:true,applyFlow:true,methodologyVisible:true,darcyIndependent:true,keyboard:true,measurements});
     await ctx.close();
    }
   } finally {await browser.close();}

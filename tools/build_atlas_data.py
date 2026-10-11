@@ -45,9 +45,10 @@ def build_data():
         key = text_field(study, "id", 80)
         require(ID.fullmatch(key) and key not in seen, "ID de estudo duplicado/inválido")
         seen.add(key)
-        for name in ("author", "title", "design", "explanation", "doi", "url"):
+        for name in ("author", "title", "design", "explanation", "doi", "url", "methodological_note", "methodological_source", "methodological_source_label", "culture_note"):
             text_field(study, name, 700)
         require(study["url"].startswith("https://"), "URL de fonte não HTTPS")
+        require(study["methodological_source"].startswith("https://"), "URL metodológica não HTTPS")
         for name in ("thickness_nm", "modulus_kpa"):
             number(study, name)
         for name in ("thickness_error_nm", "modulus_error_kpa", "cell_modulus_kpa", "cell_modulus_error_kpa", "culture_shear_pa", "culture_medium_viscosity_mpas"):

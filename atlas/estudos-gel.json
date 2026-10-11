@@ -18,7 +18,11 @@
       "cell_modulus_error_kpa": 6,
       "culture_shear_pa": 1,
       "culture_medium_viscosity_mpas": 1,
-      "explanation": "A camada luminal analisada comportou-se como um filme muito mais deformável que o corpo celular neste modelo de indentação. São médias do experimento, não parâmetros universais."
+      "explanation": "Resultado histórico de HUVECs (endotélio venoso umbilical humano) em cultura. Valores transcritos de 2013; não usar como calibração atual nem referência universal.",
+      "methodological_note": "Ressalva de 2020: os autores consideram provavelmente errôneos módulos maiores publicados anteriormente pelo laboratório, por falhas instrumentais depois corrigidas. Isso exige cautela com o módulo histórico de 2013; o trecho não identifica nominalmente este artigo nem demonstra que a espessura de 380 nm esteja invalidada.",
+      "methodological_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136287/",
+      "methodological_source_label": "Discussão de 2020 · EGL mechanics",
+      "culture_note": "1 Pa é a tensão de cultura informada; 1 mPa·s é a viscosidade do meio assumida no protocolo. O gradiente de 1.000 s⁻¹ é inferido por τ/μ, não medido. Aplicar esses parâmetros não reproduz o experimento."
     },
     {
       "id": "waugh-2020",
@@ -27,7 +31,7 @@
       "title": "Endothelial Glycocalyx Layer Properties and Its Ability to Limit Leukocyte Adhesion",
       "doi": "10.1016/j.bpj.2020.02.010",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136287/",
-      "design": "AFM e ajuste de camada elástica fina sobre substrato; sistema experimental específico",
+      "design": "AFM em células endoteliais humanas cultivadas; estudo com HUVECs e HPMECs. Valores-resumo do ajuste de camada elástica; não uma referência conjunta para todos os leitos.",
       "thickness_nm": 110,
       "thickness_error_nm": null,
       "modulus_kpa": 0.025,
@@ -36,7 +40,11 @@
       "cell_modulus_error_kpa": null,
       "culture_shear_pa": null,
       "culture_medium_viscosity_mpas": null,
-      "explanation": "Outro estudo obteve valores menores com seu modelo experimental. Não são valores de referência clínica e não devem ser interpretados como piora em comparação direta a 2013."
+      "explanation": "110 nm e 0,025 kPa: estimativas-resumo do modelo de camada elástica em 2020. O ajuste não isola matriz hidratada e estruturas ancoradas.",
+      "methodological_note": "No mesmo estudo, o modelo de escova estimou cerca de 350 nm, com maior incerteza. A camada elástica foi mais robusta nesses dados; isso não demonstra uma espessura anatômica universal. Ausência de ± neste resumo não significa ausência de incerteza.",
+      "methodological_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136287/",
+      "methodological_source_label": "Métodos, resultados e discussão · 2020",
+      "culture_note": "O artigo inclui condições de cultura diferentes. Este resumo não atribui uma condição única de fluxo a todos os resultados."
     }
   ],
   "explanatory_model": {
@@ -51,7 +59,7 @@
     "thickness": "Espessura aparente obtida por ajuste de indentação. 380 nm = 0,38 µm; não é equivalente ao PBR.",
     "modulus": "Módulo de elasticidade estimado por AFM: quanto maior, mais resistência à deformação no modelo de indentação, não uma 'viscosidade do gel'.",
     "shear": "Tensão tangencial aplicada pelo fluxo durante cultura celular. No experimento de 2013 foi 1 Pa = 10 dyn/cm².",
-    "permeability": "k, em m², representa facilidade de passagem no modelo de Darcy. Nenhum dos estudos acima mediu k diretamente.",
+    "permeability": "k, em m², é a permeabilidade intrínseca do meio ideal de Darcy, distinta da condutividade hidráulica Lp = k/(μL). Nenhum dos estudos acima mediu k diretamente.",
     "no_reference": "Não existe um único valor de referência normal aplicável a todo endotélio: espécie, leito vascular, preparação e método de medida alteram o resultado."
   }
 }

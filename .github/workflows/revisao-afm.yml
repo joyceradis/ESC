@@ -5,6 +5,9 @@ on:
       - 'src/pages/laboratorio.html'
       - 'assets/css/laboratorio.css'
       - 'assets/js/laboratorio.js'
+      - 'atlas/estudos-gel.json'
+      - 'tools/build_atlas_data.py'
+      - 'tests/**'
       - 'tools/check_afm_browser.cjs'
       - '.github/workflows/revisao-afm.yml'
 permissions:
@@ -40,7 +43,7 @@ jobs:
           python3 tools/check_site.py
           node --test tests/*.test.mjs
           node --check assets/js/laboratorio.js
-          python3 -c 'import json,pathlib; print("GENERATED_LAB_JSON="+json.dumps(pathlib.Path("laboratorio.html").read_text()))'
+          python3 -c 'import json,pathlib; print("GENERATED_LAB_JSON="+json.dumps(pathlib.Path("laboratorio.html").read_text())); print("GENERATED_ATLAS_JSON="+json.dumps(pathlib.Path("assets/js/atlas-dados.js").read_text()))'
       - name: Preparar navegadores somente no runner
         run: |
           npm install --no-save playwright@1.56.1
@@ -58,4 +61,5 @@ jobs:
           path: |
             evidence/
             after/laboratorio.html
+            after/assets/js/atlas-dados.js
           retention-days: 30

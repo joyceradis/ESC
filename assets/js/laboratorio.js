@@ -20,17 +20,14 @@
       const re = M.reynolds(1060, number('lab-speed'), number('lab-diameter'), viscosity);
       const osm = M.osmoticKpa(number('lab-osm'), number('lab-temp'));
       const fick = M.diffusion(number('lab-diffusivity'), number('lab-conc'), number('lab-thickness'));
-      // Os inputs definem faixas experimentais do modelo, não valores medidos in vivo.
+      // Faixas exploratórias: não são calibração experimental nem valores medidos in vivo.
       write('lab-mu-label', fmt(viscosity, 1) + ' mPa·s');
       write('lab-gradient-label', fmt(gradient, 0) + ' s⁻¹');
       byId('lab-tau').innerHTML = fmt(shear.pa, 3) + ' <span>Pa</span>';
       byId('lab-tau-dyn').innerHTML = fmt(shear.dynCm2, 2) + ' <span>dyn/cm²</span>';
-      write('lab-flow-speed', 'Cisalhamento relativo: ' + (shear.pa < .5 ? 'baixo' : shear.pa < 2 ? 'moderado' : 'elevado'));
+      write('lab-flow-speed', 'Ilustração sem escala de velocidade');
       byId('lab-gradient-fill').style.width = Math.max(3, gradient / 1200 * 100).toFixed(0) + '%';
-      const scene = document.querySelector('.lab-stream-cells');
-      if (scene) scene.style.animationDuration = (8 - gradient / 1200 * 5).toFixed(2) + 's';
-      const antennae = document.querySelector('.lab-antennae');
-      if (antennae) antennae.style.transform = 'skewX(' + Math.min(5, shear.pa * .7).toFixed(1) + 'deg)';
+      // A ilustração não infere velocidade de hemácias ou flexão molecular de tau.
       write('lab-g-label', fmt(acceleration, 1) + ' g');
       byId('lab-micro-pressure').innerHTML = fmt(micro, 4) + ' <span>Pa</span>';
       byId('lab-macro-pressure').innerHTML = fmt(macro / 1000, 2) + ' <span>kPa</span>';
@@ -47,7 +44,9 @@
       write('lab-thickness-label', fmt(number('lab-thickness'), 0) + ' µm');
       write('lab-fick-result', fmt(fick.fluxUmolM2S, 3) + ' µmol/(m²·s)');
       const exponent = number('lab-perm');
-      const darcy = M.darcy(Math.pow(10, exponent), number('lab-pressure'), number('lab-length'), viscosity);
+      const darcyViscosity = number('lab-darcy-mu');
+      const darcy = M.darcy(Math.pow(10, exponent), number('lab-pressure'), number('lab-length'), darcyViscosity);
+      write('lab-darcy-mu-label', fmt(darcyViscosity, 1) + ' mPa·s');
       write('lab-perm-label', '10^' + exponent + ' m²');
       write('lab-pressure-label', fmt(number('lab-pressure'), 0) + ' Pa');
       write('lab-length-label', fmt(number('lab-length'), 0) + ' µm');
@@ -165,6 +164,11 @@
         write('lab-ref-height-desc', fmt(study.thickness_nm / 1000, 3) + ' µm · espessura aparente no ajuste de AFM');
         byId('lab-ref-stiffness').innerHTML = refFormat(study.modulus_kpa, study.modulus_error_kpa, 3) + ' <small>kPa</small>';
         write('lab-ref-interpretation', study.explanation);
+        write('lab-ref-design', study.design);
+        write('lab-ref-method', study.methodological_note);
+        byId('lab-ref-method-source').href = study.methodological_source;
+        write('lab-ref-method-source', study.methodological_source_label + ' ↗');
+        write('lab-ref-culture', study.culture_note);
         const link = byId('lab-ref-paper');
         link.href = study.url;
         link.setAttribute('aria-label', 'Ler ' + study.author + ', ' + study.year + ': artigo publicado');
