@@ -8,6 +8,7 @@ Uso:  python3 build.py
 Saída: <slug>.html na raiz do repositório (pronto para GitHub Pages).
 """
 from pathlib import Path
+from tools.build_atlas_data import build as build_atlas_data
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
@@ -54,6 +55,7 @@ def pager(i: int) -> str:
 
 
 def main() -> None:
+    build_atlas_data()  # notas e estudos versionados -> asset derivado
     layout = (SRC / "layout.html").read_text(encoding="utf-8")
     for i, (slug, title, _l, _s) in enumerate(PAGES):
         body = (SRC / "pages" / f"{slug}.html").read_text(encoding="utf-8")
@@ -62,10 +64,15 @@ def main() -> None:
             .replace("{{nav}}", nav(slug))
             .replace("{{mobile_nav}}", mobile_nav(slug))
             .replace("{{page_assets}}", (
+                ('<script src="assets/js/atlas-dados.js" defer></script>\n'
+                 '<script src="assets/js/atlas-feed.js" defer></script>\n')
+                if slug in ("index", "laboratorio") else ""
+            ) + (
                 '<link rel="stylesheet" href="assets/css/laboratorio.css" />\n'
                 '<script src="assets/js/lab-math.js" defer></script>\n'
                 '<script src="assets/js/laboratorio.js" defer></script>'
-            ) if slug == "laboratorio" else "")
+                if slug == "laboratorio" else ""
+            ))
             .replace("{{body}}", body.strip())
             .replace("{{pager}}", pager(i))
         )
