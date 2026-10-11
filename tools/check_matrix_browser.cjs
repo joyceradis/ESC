@@ -8,7 +8,7 @@ const fs = require('fs');
    const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce'});
    await page.goto('http://127.0.0.1:18768/'+version+'/hipoteses.html');
    // The existing gate is only a visual overlay; remove it for isolated layout evidence.
-   await page.evaluate(()=>{for(const e of document.querySelectorAll('[id*="gate"],[class*="access-gate"]'))e.remove();document.body.style.overflow='auto';});
+   await page.evaluate(()=>{for(const e of document.querySelectorAll('[id*="gate"],[class*="access-gate"]'))e.remove();document.documentElement.classList.remove('esc-access-locked');document.body.style.overflow='auto';});
    await page.screenshot({path:'evidence/'+device+'-'+version+'.png',fullPage:true});
    if(version==='after'){
     const cards=page.locator('#matriz-decisao details');
