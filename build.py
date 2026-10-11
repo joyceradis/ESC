@@ -21,6 +21,7 @@ PAGES = [
     ("protocolo", "Protocolo proposto", "Protocolo proposto", "Protocolo"),
     ("biblioteca", "Biblioteca", "Biblioteca", "Leituras"),
     ("hipoteses", "Linhas de investigação", "Linhas de investigação", "Hipóteses"),
+    ("laboratorio", "Laboratório interativo", "Laboratório interativo", "Laboratório"),
     ("vocabulario", "Vocabulário", "Vocabulário", "Termos"),
     ("acervo", "Acervo e autoria", "Acervo e autoria", "Acervo"),
 ]
@@ -60,6 +61,11 @@ def main() -> None:
             layout.replace("{{title}}", title)
             .replace("{{nav}}", nav(slug))
             .replace("{{mobile_nav}}", mobile_nav(slug))
+            .replace("{{page_assets}}", (
+                '<link rel="stylesheet" href="assets/css/laboratorio.css" />\n'
+                '<script src="assets/js/lab-math.js" defer></script>\n'
+                '<script src="assets/js/laboratorio.js" defer></script>'
+            ) if slug == "laboratorio" else "")
             .replace("{{body}}", body.strip())
             .replace("{{pager}}", pager(i))
         )

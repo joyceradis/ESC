@@ -1,0 +1,125 @@
+
+<div class="topbar"><span class="version"><i class="dot"></i> ESC 2027 · exploração científica</span><a href="hipoteses.html">Rever as hipóteses →</a></div>
+<header class="lab-hero">
+  <div class="lab-hero-copy"><div class="lab-eyebrow">Laboratório interativo / Edição de estudo</div>
+    <h1>Entre no fluxo.<br><em>Faça perguntas à matéria.</em></h1>
+    <p>Uma bancada visual para explorar as ideias que surgiram no seu rascunho: a matriz hidratada, as “antenas”, a gravidade, a osmose, a passagem de moléculas e a mecânica cardiovascular. Mude um parâmetro e observe o que a <strong>equação idealizada</strong> prevê.</p>
+    <div class="lab-hero-links"><a href="#lab-fisica">Explorar física <span aria-hidden="true">↓</span></a><a href="#lab-quimica">Explorar química <span aria-hidden="true">↓</span></a><a href="#lab-questoes">Voltar às perguntas <span aria-hidden="true">↓</span></a></div>
+  </div>
+  <svg class="lab-hero-art" viewBox="0 0 420 350" role="img" aria-labelledby="lab-hero-title">
+    <title id="lab-hero-title">Ilustração conceitual da superfície endotelial com matriz hidratada, estruturas ancoradas e fluxo do sangue</title>
+    <defs><linearGradient id="lab-vessel" x1="0" x2="1"><stop stop-color="#fbdde4"/><stop offset="1" stop-color="#c98397"/></linearGradient><radialGradient id="lab-blood"><stop stop-color="#ff9bac"/><stop offset="1" stop-color="#a92e52"/></radialGradient></defs>
+    <circle cx="222" cy="175" r="145" fill="none" stroke="#d48fa5" opacity=".3"/><circle cx="222" cy="175" r="117" fill="none" stroke="#d48fa5" opacity=".23"/>
+    <rect x="26" y="92" width="368" height="179" rx="85" fill="url(#lab-vessel)" opacity=".9"/><rect x="32" y="118" width="356" height="127" rx="61" fill="#712039"/>
+    <g stroke="#f7bfc9" stroke-width="2" fill="none" opacity=".65"><path d="M64 133Q110 157 162 132T260 133T350 132"/><path d="M66 229Q130 203 193 229T346 226"/></g>
+    <g class="lab-hero-glycans" stroke="#f1afc1" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M85 123l-3 28m3-28-12 9m12-9 12 8 M125 119l-5 29m5-29-12 11m12-11 11 7 M164 121l5 26m-5-26-12 11m12-11 12 9 M204 121l-3 30m3-30-12 10m12-10 12 11 M244 121l-3 29m3-29-11 10m11-10 11 7 M284 121l-2 29m2-29-12 10m12-10 11 8 M324 121l3 25m-3-25-11 11m11-11 11 8"/>
+      <path d="M90 242l-4-27m4 27-12-13m12 13 11-10 M140 245l-2-28m2 28-11-11m11 11 13-11 M194 244l-3-29m3 29-11-11m11 11 14-11 M248 244l-2-29m2 29-10-11m10 11 12-13 M304 244l-3-29m3 29-12-10m12 10 13-12"/>
+    </g>
+    <g fill="url(#lab-blood)"><ellipse cx="121" cy="185" rx="25" ry="15" transform="rotate(-18 121 185)"/><ellipse cx="237" cy="184" rx="25" ry="15" transform="rotate(20 237 184)"/><ellipse cx="325" cy="186" rx="25" ry="15" transform="rotate(-11 325 186)"/></g>
+    <g fill="none" stroke="#ffd7df" stroke-width="2.5" stroke-linecap="round"><path d="M161 174h35m-9-8 10 8-10 8"/><path d="M277 174h19m-8-8 10 8-10 8"/></g>
+    <g font-family="system-ui" font-size="12" fill="#ffe4e9"><text x="75" y="65">fluxo sanguíneo →</text><text x="96" y="310">matriz hidratada ≠ gel homogêneo</text></g>
+  </svg>
+</header>
+<p class="lab-scope"><strong>Como usar:</strong> os controles geram previsões de modelos físicos simples. Não representam dados experimentais do glicocálix, medidas clínicas ou prova de causalidade entre as hipóteses.</p>
+
+<section class="lab-chapter" id="lab-fisica" aria-labelledby="lab-fisica-title">
+  <div class="lab-section-heading"><span>01 / Física do movimento</span><h2 id="lab-fisica-title">O que o sangue faz com a superfície?</h2><p>Explore força, viscosidade, geometria, gravidade e escalas. A mecânica da matriz hidratada é mais complexa do que um fluido newtoniano.</p></div>
+
+  <article class="lab-panel lab-panel-feature" aria-labelledby="lab-shear-title">
+    <div class="lab-info">
+      <div class="lab-panel-label">Simulador 01 · tensão de cisalhamento</div>
+      <h3 id="lab-shear-title">O fluxo exerce uma força tangencial</h3>
+      <p class="lab-copy">No modelo newtoniano, a tensão depende da viscosidade e do gradiente de velocidade. O fluxo pode ser laminar e ainda exercer cisalhamento.</p>
+      <div class="lab-formula">τ = μ × (du/dy)</div>
+      <div class="lab-controls">
+        <label for="lab-mu">Viscosidade dinâmica <output id="lab-mu-label" for="lab-mu">3,5 mPa·s</output></label>
+        <input id="lab-mu" type="range" min="0.5" max="6" step=".1" value="3.5" />
+        <label for="lab-gradient">Gradiente de velocidade <output id="lab-gradient-label" for="lab-gradient">350 s⁻¹</output></label>
+        <input id="lab-gradient" type="range" min="10" max="1200" step="10" value="350" />
+      </div>
+      <div class="lab-live" aria-live="polite"><div><small>Tensão calculada</small><strong id="lab-tau">1,225 <span>Pa</span></strong></div><div><small>Outra unidade</small><strong id="lab-tau-dyn">12,25 <span>dyn/cm²</span></strong></div></div>
+      <p class="lab-footnote">Modelo didático: viscosidade constante e gradiente local prescrito. Plasma e sangue total não são equivalentes; o sangue total pode ser não newtoniano.</p>
+    </div>
+    <div class="lab-picture lab-picture-shear">
+      <div class="lab-picture-label"><span>SEÇÃO ILUSTRATIVA</span><span id="lab-flow-speed" aria-live="off">Cisalhamento relativo: moderado</span></div>
+      <svg viewBox="0 0 460 300" class="lab-stream" role="img" aria-labelledby="stream-title">
+        <title id="stream-title">Vaso ilustrado com hemácias, fluxo horizontal e cadeias de glicocálix na parede</title>
+        <defs><clipPath id="stream-clip"><rect x="22" y="54" width="416" height="200" rx="68"/></clipPath></defs>
+        <rect x="22" y="54" width="416" height="200" rx="68" fill="#f8d7de"/><rect x="28" y="83" width="404" height="144" rx="67" fill="#fdf8f7"/>
+        <g clip-path="url(#stream-clip)" class="lab-stream-cells"><g fill="#b8425d" opacity=".88"><ellipse cx="108" cy="151" rx="28" ry="16" transform="rotate(16 108 151)"/><ellipse cx="235" cy="145" rx="28" ry="16" transform="rotate(-12 235 145)"/><ellipse cx="354" cy="167" rx="28" ry="16" transform="rotate(18 354 167)"/></g></g>
+        <g class="lab-antennae" stroke="#9f3152" stroke-width="3" fill="none" stroke-linecap="round"><path d="M68 87v25m0-25-10 10m10-10 11 8 M108 87v25m0-25-10 10m10-10 12 7 M150 86v26m0-26-10 10m10-10 11 9 M194 85v27m0-27-10 11m10-11 13 11 M237 84v26m0-26-9 12m9-12 13 10 M283 86v26m0-26-10 10m10-10 13 9 M326 85v27m0-27-11 11m11-11 12 8 M370 86v26m0-26-11 11m11-11 12 10"/></g>
+        <g fill="none" stroke="#ae526d" stroke-width="3" stroke-linecap="round"><path d="M75 204h290m-10-8 11 8-11 8"/></g>
+        <g font-family="system-ui" fill="#83314c" font-size="13"><text x="26" y="30">Fluxo idealizado →</text><text x="26" y="285">Superfície endotelial e “antenas” esquemáticas</text></g>
+      </svg>
+      <div class="lab-gradient-bar"><span>gradiente menor</span><div><i id="lab-gradient-fill"></i></div><span>maior</span></div>
+      <p>O desenho representa <em>um conceito</em>, não o deslocamento calculado de proteoglicanos individuais.</p>
+    </div>
+  </article>
+
+  <div class="lab-duo">
+    <article class="lab-panel" aria-labelledby="lab-grav-title">
+      <div class="lab-panel-label">Simulador 02 · aceleração e escala</div>
+      <h3 id="lab-grav-title">Uma diferença enorme entre 1 µm e 1 m</h3><p class="lab-copy">A aproximação hidrostática depende do comprimento, da densidade e da aceleração efetiva.</p><div class="lab-formula">Δp ≈ ρ × a × L</div>
+      <div class="lab-controls"><label for="lab-g">Aceleração <output id="lab-g-label" for="lab-g">1 g</output></label><input id="lab-g" type="range" min="0" max="4" step=".1" value="1" /></div>
+      <div class="lab-live lab-live-light" aria-live="polite"><div><small>Em 1 µm</small><strong id="lab-micro-pressure">0,0104 <span>Pa</span></strong></div><div><small>Em 1 m</small><strong id="lab-macro-pressure">10,4 <span>kPa</span></strong></div></div>
+      <div class="lab-scale-picture"><div><span>1 micrômetro</span><i id="lab-bar-micro"></i></div><div><span>1 metro</span><i id="lab-bar-macro"></i></div></div>
+      <p class="lab-footnote">ρ = 1.060 kg/m³ (exemplo). Em órbita, a microgravidade não anula o fluxo sanguíneo nem a tensão que ele produz.</p>
+    </article>
+    <article class="lab-panel" aria-labelledby="lab-re-title">
+      <div class="lab-panel-label">Simulador 03 · Reynolds idealizado</div><h3 id="lab-re-title">Geometria também importa</h3><p class="lab-copy">O número de Reynolds relaciona efeitos inerciais e viscosos no modelo simplificado de escoamento em tubo.</p><div class="lab-formula">Re = ρ × v × D / μ</div>
+      <div class="lab-controls"><label for="lab-speed">Velocidade <output id="lab-speed-label" for="lab-speed">0,15 m/s</output></label><input id="lab-speed" type="range" min=".01" max=".8" step=".01" value=".15" /><label for="lab-diameter">Diâmetro <output id="lab-diameter-label" for="lab-diameter">1 mm</output></label><input id="lab-diameter" type="range" min=".1" max="5" step=".1" value="1" /></div>
+      <div class="lab-single"><small>Reynolds calculado</small><strong id="lab-reynolds" aria-live="polite">45,4</strong></div><p class="lab-footnote">Usa a viscosidade escolhida no simulador 01 e ρ = 1.060 kg/m³. Não aplicar automaticamente o limiar de turbulência de tubos rígidos à microcirculação.</p>
+    </article>
+  </div>
+</section>
+
+<section class="lab-chapter" id="lab-quimica" aria-labelledby="lab-quimica-title">
+  <div class="lab-section-heading"><span>02 / Química e transporte</span><h2 id="lab-quimica-title">O que a matriz deixa passar?</h2><p>Água, íons, macromoléculas e hemácias não interagem da mesma maneira com a superfície vascular.</p></div>
+  <div class="lab-duo">
+    <article class="lab-panel" aria-labelledby="lab-osm-title">
+      <div class="lab-panel-label">Simulador 04 · osmose ideal</div><h3 id="lab-osm-title">Água e diferença de osmoles</h3><p class="lab-copy">Em uma membrana idealmente semipermeável, a diferença de osmolaridade pode gerar uma pressão osmótica.</p><div class="lab-formula">Δπ = R × T × ΔC<sub>osm</sub></div>
+      <div class="lab-controls"><label for="lab-osm">Diferença de osmolaridade <output id="lab-osm-label" for="lab-osm">5 mOsm/L</output></label><input id="lab-osm" type="range" min="0" max="30" step=".5" value="5" /><label for="lab-temp">Temperatura <output id="lab-temp-label" for="lab-temp">37 °C</output></label><input id="lab-temp" type="range" min="20" max="42" step="1" value="37" /></div>
+      <div class="lab-single"><small>Δ pressão osmótica idealizada</small><strong id="lab-osm-result" aria-live="polite">12,89 kPa</strong></div>
+      <div class="lab-osmosis-picture" aria-label="Esquema com membrana semipermeável e dois compartimentos"><span>menos osmoles</span><div class="lab-osm-compartment"><i>○ ○ ○</i></div><b class="lab-osm-arrow" aria-hidden="true">→</b><div class="lab-osm-compartment lab-osm-high"><i>● ● ● ●</i></div><span>mais osmoles</span></div>
+      <p class="lab-footnote">Equação de van't Hoff para solução ideal e solutos efetivamente impermeantes. Não confundir pressão osmótica total com fluxo real em endotélio ou com oncose isolada.</p>
+    </article>
+    <article class="lab-panel" aria-labelledby="lab-fick-title">
+      <div class="lab-panel-label">Simulador 05 · difusão</div><h3 id="lab-fick-title">Da maior para a menor concentração</h3><p class="lab-copy">A primeira lei de Fick prevê a magnitude do fluxo difusivo em um meio homogêneo idealizado.</p><div class="lab-formula">|J| = D × ΔC / Δx</div>
+      <div class="lab-controls"><label for="lab-diffusivity">Difusividade <output id="lab-diffusivity-label" for="lab-diffusivity">150 µm²/s</output></label><input id="lab-diffusivity" type="range" min="10" max="500" step="10" value="150"/><label for="lab-conc">Diferença de concentração <output id="lab-conc-label" for="lab-conc">2 mmol/L</output></label><input id="lab-conc" type="range" min=".1" max="10" step=".1" value="2"/><label for="lab-thickness">Distância <output id="lab-thickness-label" for="lab-thickness">20 µm</output></label><input id="lab-thickness" type="range" min="1" max="100" step="1" value="20"/></div>
+      <div class="lab-single"><small>Fluxo difusivo em magnitude</small><strong id="lab-fick-result" aria-live="polite">15 µmol/(m²·s)</strong></div>
+      <p class="lab-footnote">Modelo unidimensional estacionário. Afinidade, adsorção, convecção e heterogeneidade da malha não entram nesta conta.</p>
+    </article>
+  </div>
+
+  <article class="lab-panel lab-filter-panel" aria-labelledby="lab-filter-title">
+    <div class="lab-info"><div class="lab-panel-label">Explorador 06 · barreira glicocálix / ESL</div><h3 id="lab-filter-title">Não existe um filtro universal</h3><p class="lab-copy">Escolha uma espécie. A ilustração muda para discutir tamanho, carga, exclusão estérica, adsorção e contexto vascular.</p>
+      <label class="lab-select-label" for="lab-molecule">O que você quer examinar?</label>
+      <select id="lab-molecule"><option value="water">Água</option><option value="ion">Íon pequeno</option><option value="albumin">Albumina</option><option value="rbc">Hemácia</option><option value="drug">Molécula carregada / fármaco</option></select>
+      <div class="lab-filter-answer"><small>Interpretação contextual</small><h4 id="lab-filter-name">Água: transporte regulado</h4><p id="lab-filter-description">A água pode atravessar endotélio por rotas reguladas. Não há uma peneira rígida que explique sozinha sua passagem.</p></div>
+    </div>
+    <div class="lab-filter-visual">
+      <svg viewBox="0 0 430 280" role="img" aria-labelledby="filter-svg-title"><title id="filter-svg-title">Representação conceitual de moléculas próximas a uma matriz hidratada ancorada ao endotélio</title>
+        <defs><pattern id="grid-net" width="28" height="25" patternUnits="userSpaceOnUse"><path d="M0 0L14 12L28 0M0 25L14 12L28 25" stroke="#b5536b" stroke-width="1.6" fill="none" opacity=".58"/></pattern></defs>
+        <rect x="8" y="156" width="414" height="79" rx="13" fill="#e8a8b7"/><rect x="8" y="116" width="414" height="94" fill="url(#grid-net)" opacity=".95"/>
+        <g stroke="#9c294a" stroke-width="3" stroke-linecap="round"><path d="M50 167V118 M92 167V110 M135 167V113 M180 167V115 M224 167V110 M270 167V114 M315 167V116 M362 167V112"/></g>
+        <g fill="#fff5f7" stroke="#b13b5e" stroke-width="2.2" id="lab-filter-particles"><circle cx="83" cy="71" r="7"/><circle cx="148" cy="59" r="7"/><circle cx="217" cy="73" r="7"/><circle cx="285" cy="61" r="7"/><circle cx="346" cy="71" r="7"/></g>
+        <g font-family="system-ui" fill="#78304b" font-size="12"><text x="15" y="28">LÚMEN VASCULAR</text><text x="15" y="265">ENDOTÉLIO</text></g>
+      </svg><div class="lab-filter-tags"><span>Tamanho</span><span>Carga</span><span>Adsorção</span><span>Território vascular</span></div>
+      <p><b>Atenção:</b> “gel” é a analogia visual da autora para uma matriz molecular hidratada, não um compartimento anatômico isolado.</p>
+    </div>
+  </article>
+</section>
+
+<section class="lab-chapter" id="lab-questoes" aria-labelledby="lab-questions-title">
+ <div class="lab-section-heading"><span>03 / Banco de perguntas vivas</span><h2 id="lab-questions-title">Não é só uma hipótese.</h2><p>Os simuladores são ferramentas para pensar, não para decidir antecipadamente qual será a pergunta final da ESC.</p></div>
+ <div class="lab-idea-grid">
+  <a href="hipoteses.html"><small>Arquitetura</small><strong>O “gel” protege, freia ou concentra forças nas âncoras?</strong><span>Malha · porosidade · viscoelasticidade ↗</span></a>
+  <a href="hipoteses.html"><small>Mecanotransdução</small><strong>Quais sensores percebem o fluxo e quem transmite o sinal?</strong><span>Glicocálix · PIEZO1 · junções ↗</span></a>
+  <a href="hipoteses.html"><small>Gravidade</small><strong>O que muda no lançamento, na órbita e no retorno?</strong><span>Hemodinâmica · ortostase · controles ↗</span></a>
+  <a href="hipoteses.html"><small>Barreira</small><strong>Como tamanho, carga e transporte mudam a passagem?</strong><span>Filtração · adsorção · heterogeneidade ↗</span></a>
+  <a href="hipoteses.html"><small>Terapias</small><strong>É possível proteger ou restaurar a matriz e sua função?</strong><span>Renovação · sheddases · iSGLT2 ↗</span></a>
+  <a href="pergunta.html"><small>Hipótese candidata</small><strong>Endotélio e titina poderiam alterar a rigidez cardíaca?</strong><span>HYP-006 · ainda não aprovada ↗</span></a>
+ </div>
+ <div class="lab-last-word"><strong>O próximo passo científico não é escolher a resposta mais bonita.</strong><p>É separar a previsão calculável, a evidência existente, a hipótese concorrente e o experimento que poderia refutá-la. <a href="biblioteca.html">Voltar à biblioteca científica →</a></p></div>
+</section>
