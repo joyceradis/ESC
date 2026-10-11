@@ -25,7 +25,7 @@
     const list = $('#libraryList'); if (!list) return;
     const search = $('#search'), area = $('#category'), meta = $('#resultsMeta');
     let filter = 'all';
-    const labels = { estudado: ['Já estudado', 'done'], novo: ['Novo · 10/10', 'new'], pendente: ['Leitura pendente', ''], verificar: ['Do relatório · verificar', 'verify'] };
+    const labels = { estudado: ['Já li', 'done'], novo: ['Por ler · recente', 'new'], pendente: ['Ainda vou ler', ''], verificar: ['Conferir dados', 'verify'] };
     const counts = { all: ESC.readings.length };
     ESC.readings.forEach(r => { counts[r.status] = (counts[r.status] || 0) + 1; if (/alt[ií]ssima/i.test(r.pri)) counts.top = (counts.top || 0) + 1; });
     $$('[data-filter]').forEach(b => { const k = b.dataset.filter; if (counts[k] != null) b.textContent = b.dataset.label + ' · ' + counts[k]; });
@@ -35,7 +35,7 @@
         const okS = filter === 'all' || (filter === 'top' ? /alt[ií]ssima/i.test(r.pri) : r.status === filter);
         return okS && (c === 'all' || r.area === c) && (!q || norm([r.id, r.authors, r.year, r.title, r.eixo, r.area, r.ask, r.ref, r.doi].join(' ')).includes(q));
       });
-      meta.textContent = rows.length + ' de ' + ESC.readings.length + ' leituras · planilha mestre (L-001 a L-030) + relatório (L-031 a L-035)';
+      meta.textContent = 'Mostrando ' + rows.length + ' de ' + ESC.readings.length + ' artigos e leituras sugeridas.';
       list.replaceChildren();
       if (!rows.length) { list.append(el('div', 'empty', 'Nenhuma leitura corresponde. Limpe a busca ou os filtros.')); return; }
       for (const r of rows) {
@@ -45,12 +45,16 @@
         top.append(el('span', 'authors', r.authors + ' · ' + r.year));
         const [lab, cls] = labels[r.status] || ['', ''];
         top.append(el('span', 'pill ' + cls, lab));
-        top.append(el('span', 'pill pri', 'Prioridade ' + r.pri.toLowerCase()));
-        if (r.ref) top.append(el('span', 'pill', r.ref));
+        if (/alt[ií]ssima/i.test(r.pri)) top.append(el('span', 'pill pri', 'Ler primeiro'));
         body.append(top, el('h3', '', r.title));
-        body.append(el('div', 'metadata', [r.area, r.eixo, r.type].filter(Boolean).join(' · ') + (r.doi ? ' · DOI ' + r.doi : '')));
-        if (r.ask) body.append(el('div', 'ask', 'O que investigar: ' + r.ask));
-        if (r.note) body.append(el('div', 'note', r.note));
+        body.append(el('div', 'metadata', [r.area, r.type].filter(Boolean).join(' · ')));
+        if (r.ask) body.append(el('div', 'ask', 'O que observar: ' + r.ask));
+        const technical = el('details', 'reading-details');
+        technical.append(el('summary', '', 'Detalhes e códigos do artigo'));
+        const techText = [r.eixo ? 'Assunto específico: ' + r.eixo : '', r.ref ? 'Referência no acervo: ' + r.ref : '', r.doi ? 'DOI: ' + r.doi : ''].filter(Boolean).join(' · ');
+        if (techText) technical.append(el('div', 'metadata', techText));
+        if (r.note) technical.append(el('div', 'note', r.note));
+        body.append(technical);
         art.append(body);
         const links = el('div', 'links');
         const a = link(r.url, 'Abrir artigo ↗', 'out'); a.setAttribute('aria-label', 'Abrir ' + r.id + ': ' + r.title); links.append(a);

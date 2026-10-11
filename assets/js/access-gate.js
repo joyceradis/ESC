@@ -3,8 +3,8 @@
    Não coleta nem transmite a senha; guarda apenas a liberação temporária na sessão. */
 'use strict';
 (function () {
-  var KEY = 'esc-atlas-access-v1';
-  var EXPECTED_SHA256 = '9814d14a56595a2e2d7557d8e23cfd1a822634dd4725179d07e18ee30c6f9609';
+  var KEY = 'esc-atlas-access-v2';
+  var EXPECTED_SHA256 = 'd8c3478284cbb46033065aba10d8146851ae8cea876a4b26ecedd672bfc2d485';
   try {
     if (sessionStorage.getItem(KEY) === 'yes') return;
   } catch (_) { /* Sessão restrita pelo navegador: a tela ainda funciona. */ }
