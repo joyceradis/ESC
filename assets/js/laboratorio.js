@@ -162,7 +162,7 @@
         const study = papers.get(sourcePicker.value);
         if (!study) return;
         byId('lab-ref-height').innerHTML = refFormat(study.thickness_nm, study.thickness_error_nm, 0) + ' <small>nm</small>';
-        write('lab-ref-height-desc', fmt(study.thickness_nm / 1000, 3) + ' µm de altura aparente no ajuste');
+        write('lab-ref-height-desc', fmt(study.thickness_nm / 1000, 3) + ' µm · espessura aparente no ajuste de AFM');
         byId('lab-ref-stiffness').innerHTML = refFormat(study.modulus_kpa, study.modulus_error_kpa, 3) + ' <small>kPa</small>';
         write('lab-ref-interpretation', study.explanation);
         const link = byId('lab-ref-paper');
@@ -181,12 +181,7 @@
         }
         const sourceFlow = byId('lab-apply-published-flow');
         sourceFlow.hidden = !(study.culture_shear_pa != null && study.culture_medium_viscosity_mpas != null);
-        // Dimensão vertical esquemática NÃO proporcional em nanômetros.
-        const gelGraphic = byId('lab-paper-gel-visual');
-        if (gelGraphic) {
-          const factor = Math.max(.24, Math.min(1, study.thickness_nm / 380));
-          gelGraphic.setAttribute('transform', 'translate(0 153) scale(1 ' + factor.toFixed(3) + ') translate(0 -153)');
-        }
+        // O esquema distingue componentes; não converte a espessura ajustada em altura de filamentos.
       }
       sourcePicker.addEventListener('change', showStudy);
       byId('lab-apply-published-flow').addEventListener('click', () => {
