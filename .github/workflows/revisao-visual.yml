@@ -1,0 +1,37 @@
+name: Revisão visual — desktop e celular
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@e2f20f31b3c9f8f24322de68fab4d8f87d65a42c  # v4
+      - uses: actions/setup-python@0a5c61591373683ada539c83d08432d4141d6032  # v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@1e60f620b9541d910ab2b81f8722cb9b1b50e9e6  # v4
+        with:
+          node-version: "22"
+      - name: Gerar páginas
+        run: python3 build.py
+      - name: Instalar navegador e Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Avaliar desktop e celular
+        run: node tools/check_responsive.cjs
+      - name: Salvar capturas e relatório mesmo em falha
+        if: always()
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a  # v4
+        with:
+          name: revisao-visual-desktop-mobile
+          path: artifacts/responsive/
+          if-no-files-found: warn
+          retention-days: 14
