@@ -8,7 +8,8 @@ Uso:  python3 build.py
 Saída: <slug>.html na raiz do repositório (pronto para GitHub Pages).
 """
 from pathlib import Path
-from tools.build_atlas_data import build as build_atlas_data
+from html import escape
+from tools.build_atlas_data import build as build_atlas_data, build_data
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
@@ -54,19 +55,36 @@ def pager(i: int) -> str:
     return f'<nav class="pager" aria-label="Paginação">{"".join(parts)}</nav>'
 
 
+def home_latest_note(notes: list) -> str:
+    """Render only the latest curated note; full provenance stays in the lab."""
+    if not notes:
+        return '<p class="home-eyebrow">Atlas vivo</p><p>A próxima nota curada aparece aqui.</p>'
+    latest = max(notes, key=lambda note: (note["date"], note["id"]))
+    date = escape(latest["date"], quote=True)
+    label = escape("/".join(reversed(latest["date"].split("-"))))
+    title = escape(latest["title"])
+    return (f'<p class="home-eyebrow">Última nota curada · <time datetime="{date}">{label}</time></p>'
+            f'<p class="home-note-title">{title}</p>')
+
+
 def main() -> None:
     build_atlas_data()  # notas e estudos versionados -> asset derivado
     layout = (SRC / "layout.html").read_text(encoding="utf-8")
     for i, (slug, title, _l, _s) in enumerate(PAGES):
         body = (SRC / "pages" / f"{slug}.html").read_text(encoding="utf-8")
+        if slug == "index":
+            body = body.replace("{{home_latest_note}}", home_latest_note(build_data()["notes"]))
         html = (
             layout.replace("{{title}}", title)
             .replace("{{nav}}", nav(slug))
             .replace("{{mobile_nav}}", mobile_nav(slug))
             .replace("{{page_assets}}", (
+                '<link rel="stylesheet" href="assets/css/home.css" />\n'
+                if slug == "index" else ""
+            ) + (
                 ('<script src="assets/js/atlas-dados.js" defer></script>\n'
                  '<script src="assets/js/atlas-feed.js" defer></script>\n')
-                if slug in ("index", "laboratorio") else ""
+                if slug == "laboratorio" else ""
             ) + (
                 '<link rel="stylesheet" href="assets/css/laboratorio.css" />\n'
                 '<script src="assets/js/lab-math.js" defer></script>\n'
