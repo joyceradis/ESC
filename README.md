@@ -69,7 +69,7 @@ Os números são calculados exclusivamente no navegador. Não há envio de valor
 
 ## Autoria e colaboração
 
-**Autoria científica:** Joyce Radis. **Colaboradores no desenvolvimento do Atlas:** ChatGPT (OpenAI) e Claude (Anthropic), em etapas complementares. **Análises secundárias:** Gemini (Google). Os créditos não indicam autoria de resultados experimentais nem equivalem a permissões de acesso no GitHub.
+**Autoria científica:** Joyce Radis. **Colaboradores no desenvolvimento do Atlas:** ChatGPT (OpenAI) e Claude (Anthropic), em etapas complementares. **Análises secundárias:** Gemini (Google). Os créditos não indicam autoria de resultados experimentais nem equivalem a permissões de acesso no GitHub. **Desde 11/10/2026, por decisão da autora, só o Claude trabalha neste repositório** (regras em `AGENTS.md`); a tabela abaixo é o histórico.
 
 | Quem | O que fez | Quando |
 | --- | --- | --- |
@@ -77,6 +77,7 @@ Os números são calculados exclusivamente no navegador. Não há envio de valor
 | **ChatGPT** (OpenAI) | Auditoria e reorganização do Drive, planilha mestre estruturada, mapa de hipóteses v0.2 a partir das perguntas da autora, adendo de anterioridade e atlas edição 01 (HTML único) | 09–10/10/2026 |
 | **Claude** (Anthropic) | Atlas edições 02 e 03: conferência das regras na página oficial da ESC, alertas de integridade, separação em 9 páginas, dados da planilha no site, `build.py` e planilha-resumo | 10/10/2026 |
 | **Gemini** (Google) | Dois relatórios secundários: análise estratégica e elegibilidade | 08/10/2026 |
+| **Claude** (Anthropic) | Edição 04: regra de executor único, pergunta de partida (microgravidade → titina → ICFEp) com hipóteses concorrentes e desenho fatorial 2 × 2 | 11/10/2026 |
 
 O conteúdo científico é da autora. Os agentes organizaram, conferiram e deram forma; nenhum deles produziu dados experimentais. O relatório “Estruturação de Proposta para ESC” (09/10) não tem autoria registrada.
 

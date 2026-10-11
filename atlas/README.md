@@ -5,10 +5,10 @@ conversa ou leitura → agente autorizado seleciona um insight público → salv
 
 ## O que é automático (e o que não é)
 - **Automático:** regenerar os cartões e dados **após um commit** nas fontes. Os pipelines `.github/workflows/verificar-site.yml` e `.github/workflows/jekyll-gh-pages.yml` executam `python3 build.py`, que chama `tools/build_atlas_data.py`.
-- **Não automático:** ler esta conversa, outras conversas ou documentos privados. O ChatGPT/Claude/Codex precisa **registrar intencionalmente** a nota em GitHub após a discussão. Não há vigilância contínua nem acesso silencioso a dados sensíveis.
+- **Não automático:** ler esta conversa, outras conversas ou documentos privados. O Claude, a pedido da Joyce, precisa **registrar intencionalmente** a nota em GitHub após a discussão. Outros agentes não registram notas (regra de executor único em `AGENTS.md`). Não há vigilância contínua nem acesso silencioso a dados sensíveis.
 - A página do GitHub Pages é **pública**. A senha atual apenas dificulta acesso casual e **não** protege o conteúdo do repositório.
 
-## Para os agentes (fluxo enxuto)
+## Para o executor (fluxo enxuto)
 1. Ler `atlas/estudos-gel.json` (medidas publicadas) e `atlas/notas/` (notas já existentes); **buscar duplicatas** antes de criar arquivos.
 2. Selecionar apenas uma pergunta, evidência bibliográfica ou decisão de método que Joyce pediu para registrar. **Nunca** salvar transcrições, ideias confidenciais ainda inéditas, dados de pacientes, mensagens privadas, API keys ou trechos de documentos clínicos.
 3. Uma nota por arquivo `atlas/notas/AAAA-MM-DD-slug.json`. Usar campos: `schema_version:1`, `id`, `date`, `title`, `category` (`pergunta`, `metodo`, `evidencia`, `decisao`), `summary`, `question`, `link` relativo, `evidence`, `provenance`, `status` (`publicado` ou `rascunho`) e `privacy:"public-knowledge"`. **Mesmo rascunhos no GitHub público são visíveis no código.**
@@ -22,4 +22,4 @@ conversa ou leitura → agente autorizado seleciona um insight público → salv
 - **Delgadillo, Marsh & Waugh (2020):** outro ajuste AFM, **110 nm** e **0,025 kPa**. DOI `10.1016/j.bpj.2020.02.010`.
 - Não são valores normais populacionais, nem calibram a permeabilidade hidráulica `k` usada na analogia de Darcy. Na interface, distinguir **dado publicado**, **resultado de fórmula** e **pergunta da autora**.
 
-**Escopo e autoria:** a autoria científica permanece de Joyce. Trabalhos de Claude, Codex e ChatGPT são complementares e auditáveis. Preservar `.claude/skills/`, a planilha mestre e a pasta do Drive originais.
+**Escopo e autoria:** a autoria científica permanece de Joyce. Desde 11/10/2026 a execução técnica é só do Claude; o histórico de contribuições anteriores fica no README. Preservar `.claude/skills/`, a planilha mestre e a pasta do Drive originais.
