@@ -1,4 +1,4 @@
-# Verifica o Atlas a cada envio: páginas geradas em dia, JS válido, links internos e dados consistentes.
+# CI do Atlas: verifica todos os scripts (inclusive módulos novos), HTML gerado, links e dados. As skills do Claude permanecem independentes.
 name: Verificar site
 
 on:
@@ -9,6 +9,11 @@ on:
 
 permissions:
   contents: read
+
+# Economiza filas durante trabalhos simultâneos dos agentes. O último commit conserva a verificação.
+concurrency:
+  group: esc-verify-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verificar:
@@ -25,10 +30,17 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Sintaxe do JavaScript
+      - name: Sintaxe de todos os scripts JavaScript
         run: |
-          node --check assets/js/data.js
-          node --check assets/js/app.js
+          find assets/js -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
+
+      - name: Testes dos módulos interativos (quando adicionados)
+        run: |
+          if [ -d tests ] && find tests -name '*.test.mjs' -type f -print -quit | grep -q .; then
+            node --test tests/*.test.mjs
+          else
+            echo 'Sem testes de módulos .test.mjs ainda; Codex deve acrescentar testes junto com simuladores.'
+          fi
 
       - name: Páginas geradas estão atualizadas
         run: |
