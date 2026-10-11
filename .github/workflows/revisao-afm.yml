@@ -1,0 +1,61 @@
+name: Revisão remota do bloco AFM
+on:
+  pull_request:
+    paths:
+      - 'src/pages/laboratorio.html'
+      - 'assets/css/laboratorio.css'
+      - 'assets/js/laboratorio.js'
+      - 'tools/check_afm_browser.cjs'
+      - '.github/workflows/revisao-afm.yml'
+permissions:
+  contents: read
+concurrency:
+  group: afm-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  afm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: before
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: after
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build canônico e testes
+        working-directory: after
+        run: |
+          python3 build.py
+          python3 tools/check_site.py
+          node --test tests/*.test.mjs
+          node --check assets/js/laboratorio.js
+          python3 -c 'import json,pathlib; print("GENERATED_LAB_JSON="+json.dumps(pathlib.Path("laboratorio.html").read_text()))'
+      - name: Preparar navegadores somente no runner
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium webkit
+      - name: Conferir estudos e capturar antes/depois
+        run: |
+          python3 -m http.server 18768 --bind 127.0.0.1 > /tmp/afm-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node after/tools/check_afm_browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: afm-before-after-${{ github.event.pull_request.head.sha }}
+          path: |
+            evidence/
+            after/laboratorio.html
+          retention-days: 30
