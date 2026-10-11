@@ -11,6 +11,10 @@
 
 Se uma skill precisar mudar, proponha a mudança à Joyce e preserve o histórico.
 
+## Revisão visual remota proposta
+
+A [documentação de revisão visual](docs/revisao-visual.md) aponta para o workflow e os testes de desktop/celular em proposta no [PR #17](https://github.com/joyceradis/ESC/pull/17). Conferir resultados e capturas quando disponíveis; preservar a curadoria estética existente. O PR não concede autorização de merge, deploy, troca de executor ou alteração do design. Enquanto não integrado, a rotina não está disponível na main.
+
 ## Interface
 - Fluxo do produto em [README.md](README.md).
 - Mantenha a identidade vinho/off-white do desktop e refine também o iPhone. Desenhos e interações **didáticas e funcionais**, não controles sem efeito.
