@@ -15,6 +15,7 @@ O site é estático. Não edita o Google Drive, não salva nada e não envia dad
 | `protocolo.html` | Estratégia experimental proposta (não executada) |
 | `biblioteca.html` | 35 leituras com busca e filtros |
 | `hipoteses.html` | 10 linhas de investigação, perguntas dos comentários, física |
+| `laboratorio.html` | Bancada didática interativa: cisalhamento, hidrostática, Reynolds, osmose, difusão, Darcy, filtragem visual e gravidade |
 | `vocabulario.html` | Analogias da autora → termos controlados |
 | `acervo.html` | Documentos, pastas, autoria dos relatórios e decisões (ADR) |
 
@@ -24,6 +25,9 @@ O site é estático. Não edita o Google Drive, não salva nada e não envia dad
 assets/css/style.css   estilos compartilhados
 assets/js/data.js      dados do acervo (leituras, hipóteses, vocabulário, decisões)
 assets/js/app.js       contagem regressiva, filtros e renderização
+assets/js/lab-math.js  equações idealizadas com testes unitários
+assets/js/laboratorio.js controles dos simuladores e desenhos dinâmicos
+assets/css/laboratorio.css estilos exclusivos do laboratório
 src/layout.html        moldura comum (menu, rodapé)
 src/pages/*.html       miolo de cada página
 build.py               gera os *.html da raiz
@@ -48,8 +52,16 @@ Em `.claude/skills/`, no formato do repositório oficial de skills da Anthropic 
 
 ## Verificações automáticas
 
-- **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`.
+- **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`; os simuladores também possuem testes em `tests/lab-math.test.mjs` executados por `node --test`.
 - **Links externos** (`.github/workflows/links-externos.yml`): toda segunda-feira testa os links de DOI, PubMed, PMC e ESC e abre uma issue se algum quebrar. Links do Drive ficam de fora porque são privados.
+
+## Laboratório interativo e limites
+
+O laboratório contém modelos simplificados para **ensino e formulação de perguntas**: cisalhamento newtoniano, hidrostática, Reynolds de tubo, osmose ideal de van't Hoff, difusão de Fick e permeabilidade Darcy em meio poroso homogêneo, com exploração conceitual de filtração molecular e fases de gravidade.
+
+**Não são medidas do glicocálix, previsões clínicas nem confirmação de causalidade.** As unidades, pressupostos e limitações são mostrados na tela. Os valores de permeabilidade da analogia do “gel” são ilustrativos. Nenhuma hipótese ganha prioridade automaticamente.
+
+Os números são calculados exclusivamente no navegador. Não há envio de valores ou alterações no Drive. Cálculos têm testes de referência, unidades e entradas inválidas.
 
 ## Autoria e colaboração
 
