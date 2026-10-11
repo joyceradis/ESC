@@ -14,7 +14,7 @@ const fs = require('node:fs/promises');
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     for (const phase of ['before','after']) {
      await page.goto('http://127.0.0.1:18768/'+phase+'/laboratorio.html');
-     await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-'+phase+'.jpg',animations:'disabled',type:'jpeg',quality:70});
+     await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-'+phase+'.jpg',animations:'disabled',type:'jpeg',quality:70,style:'.mobile-head { visibility: hidden !important; }'});
     }
     assert.equal(await page.locator('.lab-evidence-legend li').count(),3);
     assert.match(await page.locator('#lab-paper-title').innerText(),/O que exatamente/);
@@ -27,7 +27,7 @@ const fs = require('node:fs/promises');
     assert.equal(await page.locator('#lab-relative').isVisible(),false);
     assert.equal(await page.locator('#lab-apply-published-flow').isVisible(),false);
     assert.equal(await page.locator('.lab-paper-svg').innerHTML(),originalArt,'trocar estudo não deve encurtar filamentos');
-    await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-2020.jpg',animations:'disabled',type:'jpeg',quality:70});
+    await page.locator('#lab-estudos').screenshot({path:'evidence/'+engine+'-'+device+'-2020.jpg',animations:'disabled',type:'jpeg',quality:70,style:'.mobile-head { visibility: hidden !important; }'});
     await page.selectOption('#lab-reference-source','marsh-2013');
     await page.locator('#lab-apply-published-flow').click();
     assert.match(await page.locator('#lab-tau').innerText(),/^1\s+Pa$/);
