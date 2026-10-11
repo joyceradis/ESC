@@ -1,0 +1,565 @@
+{
+  "home": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "scroll": 320,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "scroll": 375,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "scroll": 390,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "scroll": 430,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "scroll": 768,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 790,
+      "scroll": 790,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 791,
+      "scroll": 791,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 1024,
+      "scroll": 1024,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 1140,
+      "scroll": 1140,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "scroll": 1280,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "scroll": 1440,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "scroll": 320,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "scroll": 375,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "scroll": 390,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "scroll": 430,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "scroll": 768,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 790,
+      "scroll": 790,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 791,
+      "scroll": 791,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 1024,
+      "scroll": 1024,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 1140,
+      "scroll": 1140,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "scroll": 1280,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "scroll": 1440,
+      "sections": 4,
+      "portals": 4,
+      "overflow": [],
+      "animations": 0
+    }
+  ],
+  "preservation": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "retomar",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "pergunta",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "candidatura",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "protocolo",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "biblioteca",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "hipoteses",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "laboratorio",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "vocabulario",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "acervo",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "retomar",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "pergunta",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "candidatura",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "protocolo",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "biblioteca",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "hipoteses",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "laboratorio",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "vocabulario",
+      "equal": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "page": "acervo",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "retomar",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "pergunta",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "candidatura",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "protocolo",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "biblioteca",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "hipoteses",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "laboratorio",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "vocabulario",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "acervo",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "retomar",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "pergunta",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "candidatura",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "protocolo",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "biblioteca",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "hipoteses",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "laboratorio",
+      "equal": false,
+      "renderingCheck": {
+        "computedStylesAndGeometryIdentical": true,
+        "elements": 512,
+        "maxChannelDifference": 2,
+        "note": "Gradientes no WebKit: diferença máxima de 2/255 por canal; geometria e estilos idênticos."
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "vocabulario",
+      "equal": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "page": "acervo",
+      "equal": true
+    }
+  ],
+  "keyboard": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "reached": 14
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "reached": 14
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "reached": 14
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "reached": 14
+    }
+  ],
+  "navigation": [
+    {
+      "engine": "chromium",
+      "link": "laboratorio.html",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "hipoteses.html",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "biblioteca.html",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "candidatura.html",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "laboratorio.html#lab-gel-title",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "laboratorio.html#lab-fisica",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "laboratorio.html#lab-quimica",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "laboratorio.html#lab-questions-title",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "pergunta.html",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "retomar.html",
+      "status": 200
+    },
+    {
+      "engine": "chromium",
+      "link": "laboratorio.html#lab-notas",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "laboratorio.html",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "hipoteses.html",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "biblioteca.html",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "candidatura.html",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "laboratorio.html#lab-gel-title",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "laboratorio.html#lab-fisica",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "laboratorio.html#lab-quimica",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "laboratorio.html#lab-questions-title",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "pergunta.html",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "retomar.html",
+      "status": 200
+    },
+    {
+      "engine": "webkit",
+      "link": "laboratorio.html#lab-notas",
+      "status": 200
+    }
+  ],
+  "contrast": {
+    "minimumTextRatio": 4.96,
+    "testedColorPairs": 7
+  },
+  "passed": true
+}
