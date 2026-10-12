@@ -1,0 +1,47 @@
+name: Verificar lembrança de acesso
+on:
+  pull_request:
+    paths:
+      - 'assets/js/access-gate.js'
+      - 'tools/check_access.cjs'
+      - '.github/workflows/revisao-acesso.yml'
+permissions:
+  contents: read
+jobs:
+  acesso:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Gerar e instalar navegadores
+        run: |
+          python3 build.py
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium webkit
+      - name: Testar entrada sintética e persistência
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 18771 --bind 127.0.0.1 > /tmp/esc-access-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:18771/index.html; then break; fi
+            sleep 1
+          done
+          node tools/check_access.cjs
+      - name: Evidências sem credenciais
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: verificacao-acesso
+          path: evidence/access/
+          if-no-files-found: warn
