@@ -2,7 +2,7 @@
 Implementação: importador, catálogo público, fichas/conexões e workflow que propõe PR. Não é espelhamento integral nem revisão científica automática.
 
 ## Estado desta entrega
-O PR inicial contém somente DADOS SINTÉTICOS para testar código/interface. O catálogo real aguarda autorização específica de publicação. Diagnóstico em memória, sem exportar registros: 30 linhas de LEITURAS_SUGERIDAS + 204 de FONTES_11OUT, unificadas em 226 referências por DOI normalizado. Cinco sínteses iniciais e quatro conexões têm revisão/limites explícitos. Três sínteses são extrações preliminares da planilha, não nova leitura integral. A decisão permanece exploratória.
+Primeira leitura pelo conector autorizado: 30 linhas de LEITURAS_SUGERIDAS + 204 de FONTES_11OUT, unificadas em 226 referências por DOI normalizado. Cinco sínteses iniciais e quatro conexões têm revisão/limites explícitos. Três sínteses são extrações preliminares da planilha, não nova leitura integral. A decisão permanece exploratória.
 O conector da conversa não autoriza automaticamente GitHub Actions. Atualização recorrente só funciona após configuração própria abaixo. Nenhum agendamento está ativo; execução futura é manual em Actions após merge. Esta configuração não foi provisionada nesta entrega.
 
 ## O que sincroniza
@@ -29,3 +29,5 @@ Primeiro teste real OIDC→Sheets→PR continua pendente de configuração. Test
 ## Atualizar fichas/conexões
 Ficha: modelo, exposição, desfecho medido, achado, limite, estado de leitura, referência pública e cópia dos metadados conferidos. result kind: evidence/association/pending. Hipótese é conexão, nunca resultado do artigo. Conexão tem fontes resolvíveis, tipo e limite. Não promover fonte ou leitura da autora automaticamente.
 python3 build.py gera assets/js/evidence-data.js. Não editar derivados manualmente. CI verifica o catálogo e dados derivados. A lista anterior de leituras permanece acessível para não perder status histórico.
+
+Publicação dos 226 metadados, cinco sínteses e quatro conexões autorizada explicitamente pela Joyce nesta entrega. Conflitos entre duplicatas sinalizam revisão. Cada conexão guarda versão de todas as fontes, inclusive sem ficha.

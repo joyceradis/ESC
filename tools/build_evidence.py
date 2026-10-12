@@ -10,11 +10,11 @@ def compile_data(catalogue,curation):
  records=catalogue["records"];by_id={r["id"]:r for r in records}
  require(len(by_id)==len(records) and 0<len(records)<1000,"Catálogo duplicado/vazio")
  for r in records:
-  require(set(r)==set(CORE)|{"aliases","origin","absent"},"Campo fora do contrato público")
+  require(set(r)==set(CORE)|{"aliases","origin","absent","conflict"},"Campo fora do contrato público")
   require(re.fullmatch(r"[A-Za-z0-9-]+",r["id"]),"ID inseguro")
   require(all(isinstance(r[k],str) and len(r[k])<=1000 for k in CORE),"Metadados inválidos")
   require(not r["url"] or safe_url(r["url"])==r["url"],"URL não permitida")
-  require(isinstance(r["absent"],bool) and isinstance(r["aliases"],list),"Estado inválido")
+  require(isinstance(r["absent"],bool) and isinstance(r["conflict"],bool) and isinstance(r["aliases"],list),"Estado inválido")
  cards={}
  for card in curation["cards"]:
   require(card["id"] in by_id and card["id"] not in cards,"Ficha sem fonte ou duplicada")
@@ -24,7 +24,7 @@ def compile_data(catalogue,curation):
   require(safe_url(card["source"])==card["source"] and bool(card["source"]),"Fonte pública ausente")
   require(set(card["source_version"])==set(CORE),"Versão da fonte ausente")
   r=by_id[card["id"]]
-  stale=r["absent"] or card["source_version"]!={k:r[k] for k in CORE}
+  stale=r["absent"] or r["conflict"] or card["source_version"]!={k:r[k] for k in CORE}
   cards[card["id"]]={**card,"stale":stale}
  connections=[]
  seen=set()
@@ -33,7 +33,9 @@ def compile_data(catalogue,curation):
   require(conn["sources"] and all(s in by_id for s in conn["sources"]),"Conexão sem referências válidas")
   for key in ("title","summary","limit"):
    require(isinstance(conn[key],str) and 0<len(conn[key])<=500,"Conexão incompleta")
-  stale=any(by_id[s]["absent"] or (s in cards and cards[s]["stale"]) for s in conn["sources"])
+  require(set(conn.get("source_versions",{}))==set(conn["sources"]),"Versões das fontes da conexão ausentes")
+  require(all(set(conn["source_versions"][s])==set(CORE) for s in conn["sources"]),"Versão incompleta")
+  stale=any(by_id[s]["absent"] or by_id[s]["conflict"] or conn["source_versions"][s]!={k:by_id[s][k] for k in CORE} for s in conn["sources"])
   connections.append({**conn,"stale":stale})
  return {"imported_on":catalogue["imported_on"],"mode":catalogue["mode"],"records":records,"cards":cards,"connections":connections,"decision":"exploratory"}
 def build():

@@ -16,6 +16,16 @@ class SyncTests(unittest.TestCase):
  def test_idempotent_with_previous(self):
   first=transform(fixture());second=transform(fixture(),first)
   self.assertEqual(first['records'],second['records'])
+ def test_conflicting_duplicate(self):
+  p=fixture();p["FONTES_11OUT"][1][4]="Different title"
+  self.assertTrue(transform(p)["records"][0]["conflict"])
+ def test_connection_without_card_stales(self):
+  cat=json.loads((ROOT/"atlas/sync/catalogue.json").read_text());cur=json.loads((ROOT/"atlas/sync/curation.json").read_text())
+  first=cur["connections"][0]["sources"][0]
+  cur["cards"]=[c for c in cur["cards"] if c["id"]!=first]
+  next(r for r in cat["records"] if r["id"]==first)["title"]="Changed"
+  out=compile_data(cat,cur)
+  self.assertTrue(next(c for c in out["connections"] if first in c["sources"])["stale"])
  def test_header_change(self):
   p=fixture();p["FONTES_11OUT"][0]=["renamed"]
   with self.assertRaises(ValueError):transform(p)
@@ -31,7 +41,7 @@ class SyncTests(unittest.TestCase):
   old=transform(fixture());old["source_counts"]["FONTES_11OUT"]=10
   with self.assertRaises(ValueError):transform(fixture(),old)
  def test_missing_record_preserved(self):
-  old=transform(fixture());old["records"].append({**old["records"][0],"id":"lost","aliases":["lost"]})
+  old=transform(fixture());old["records"].append({**old["records"][0],"id":"lost","aliases":["lost"],"doi":"10.9999/missing","url":"https://doi.org/10.9999/missing"})
   out=transform(fixture(),old);self.assertTrue(out["records"][-1]["absent"])
  def test_unsafe_link_not_exported(self):
   p=fixture();p["LEITURAS_SUGERIDAS"][1][6]="";p["LEITURAS_SUGERIDAS"][1][7]="javascript:alert(1)"

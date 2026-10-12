@@ -13,20 +13,20 @@
  function source(r){return r.url?link(r.url,r.authors+' · '+r.year+' ↗'):el('p',r.authors+' · Referência a conferir');}
  function card(r){
   const c=data.cards[r.id],node=el('article',null,'ev-card');node.id='ficha-'+r.id;
-  node.append(tag(c?c.kind:'pending',!!(r.absent||(c&&c.stale))));
-  node.append(el('h3',c?c.headline:r.title));
+  node.append(tag(c?c.kind:'pending',!!(r.absent||r.conflict||(c&&c.stale))));
+  node.append(el('h3',c&&!c.stale?c.headline:r.title));
   if(c&&!c.stale){
    node.append(el('p',c.model,'ev-model'),el('p',c.finding),detail('Limite:',c.limit));
    const d=el('details');d.append(el('summary','O que foi medido e conferido?'),detail('Exposição:',c.exposure),detail('Medida:',c.measured),detail('Revisão:',c.review),detail('Conferida em:',c.reviewed_on),source(r));node.append(d);
   }else{
-   node.append(el('p',r.absent?'Não localizado na última leitura da origem. Registro preservado para revisão.':c?'Os metadados mudaram. A síntese anterior aguarda nova conferência.':'Referência importada. Modelo, resultados e limitações ainda precisam de fichamento. Não é evidência avaliada.'));
+   node.append(el('p',r.conflict?'Metadados divergentes entre registros da planilha. Conferir a referência antes de interpretar.':r.absent?'Não localizado na última leitura da origem. Registro preservado para revisão.':c?'Os metadados mudaram. A síntese anterior aguarda nova conferência.':'Referência importada. Modelo, resultados e limitações ainda precisam de fichamento. Não é evidência avaliada.'));
    node.append(source(r));
   }
   const trace=el('details',null,'ev-trace');trace.append(el('summary','Referência e rastreabilidade'),el('p',r.title),el('p','Identificadores: '+r.aliases.join(', ')),el('p','DOI: '+(r.doi||'a conferir')));if(c)trace.append(source(r));node.append(trace);
   return node;
  }
  function connection(c){
-  const node=el('article',null,'ev-card');node.append(tag(c.kind,c.stale),el('h3',c.title),el('p',c.stale?'Uma fonte mudou. Esta conexão precisa ser revista antes de reutilizar a síntese.':c.summary),detail('Limite:',c.limit));
+  const node=el('article',null,'ev-card');node.append(tag(c.kind,c.stale),el('h3',c.stale?'Conexão aguardando revisão':c.title),el('p',c.stale?'Uma fonte mudou. Esta conexão precisa ser revista antes de reutilizar a síntese.':c.summary),detail('Limite:',c.limit));
   const details=el('details');details.append(el('summary','Estudos relacionados'));
   c.sources.forEach(id=>{const r=data.records.find(x=>x.id===id);const p=el('p');p.append(source(r));details.append(p);});node.append(details);return node;
  }
@@ -34,7 +34,7 @@
   const term=normalize(q('#ev-search').value);
   let items=mode==='connections'?data.connections:data.records;
   items=items.filter(x=>{
-   const c=mode==='cards'?data.cards[x.id]:null;const kind=(x.absent||(c&&c.stale)||x.stale)?'pending':c?c.kind:mode==='connections'?x.kind:'pending';
+   const c=mode==='cards'?data.cards[x.id]:null;const kind=(x.absent||x.conflict||(c&&c.stale)||x.stale)?'pending':c?c.kind:mode==='connections'?x.kind:'pending';
    if(filter==='selected'&&mode==='cards'&&!c)return false;
    if(filter!=='all'&&filter!=='selected'&&filter!==kind)return false;
    return normalize(JSON.stringify([x.title,x.authors,c&&c.topic,c&&c.headline,x.summary])).includes(term);

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Importação seletiva. Nunca grava resposta bruta ou notas da planilha."""
-import argparse, copy, json, os, re, sys
+import argparse, copy, json, os, re, sys, unicodedata
 from datetime import datetime
 from pathlib import Path
 from urllib.request import Request, urlopen
@@ -26,6 +26,8 @@ def normalize_doi(value):
 def safe_url(value):
  value=clean(value)
  return value if re.fullmatch(r"https://(?:doi\.org|pubmed\.ncbi\.nlm\.nih\.gov|pmc\.ncbi\.nlm\.nih\.gov)/[^\s<>\"{}]+",value) else ""
+def comparable(value):
+ return re.sub(r"[^a-z0-9]","",unicodedata.normalize("NFKD",value).encode("ascii","ignore").decode().lower())
 def transform(payload, previous=None, imported_on=None):
  require(set(payload)==set(SPECS), "Abas recebidas diferem do contrato.")
  records=[]; keys={}; counts={}
@@ -47,12 +49,13 @@ def transform(payload, previous=None, imported_on=None):
    doi=normalize_doi(row[d]);url="https://doi.org/"+doi if doi else safe_url(row[u])
    key=doi or sheet+":"+ident
    if key in keys:
+    if any(comparable(keys[key][field])!=comparable(value) for field,value in (("title",title),("authors",authors),("year",year))): keys[key]["conflict"]=True
     if ident not in keys[key]["aliases"]: keys[key]["aliases"].append(ident)
     continue
    stable=previous_by_doi.get(doi,{})
    stable_id=stable.get("id",ident)
    aliases=list(dict.fromkeys([ident]+stable.get("aliases",[])))
-   record=dict(id=stable_id,title=title,authors=authors,year=year,doi=doi,url=url,aliases=aliases,origin=sheet,absent=False)
+   record=dict(id=stable_id,title=title,authors=authors,year=year,doi=doi,url=url,aliases=aliases,origin=sheet,absent=False,conflict=False)
    keys[key]=record;records.append(record)
  require(records,"Importação vazia.")
  if previous:

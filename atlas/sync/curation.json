@@ -3,156 +3,223 @@
   "decision": "exploratory",
   "cards": [
     {
-      "id": "SYN-001",
-      "topic": "Demonstração",
-      "headline": "Ficha sintética para testar a interface",
-      "model": "Modelo fictício",
-      "exposure": "Sem experimento",
-      "measured": "Nenhum desfecho real",
-      "finding": "Conteúdo de teste. Não representa evidência científica.",
-      "limit": "Não utilizar como referência.",
-      "review": "Dados sintéticos",
-      "source": "https://doi.org/10.0000/synthetic",
-      "kind": "pending",
+      "id": "L-021",
+      "topic": "Espaço e titina",
+      "headline": "O coração mudou após o voo",
+      "model": "Gerbilos · músculo cardíaco",
+      "exposure": "12 dias de voo espacial",
+      "measured": "Proporção entre formas da titina",
+      "finding": "Mudança na composição de isoformas após o voo.",
+      "limit": "Não isola microgravidade; não demonstra benefício em humanos.",
+      "review": "Resumo primário conferido",
+      "source": "https://doi.org/10.1134/S0006297911120042",
+      "kind": "evidence",
       "source_version": {
-        "id": "SYN-001",
-        "title": "Referência sintética 1 — teste técnico, não é artigo",
-        "authors": "Autor fictício",
-        "year": "2020",
-        "doi": "",
-        "url": ""
+        "id": "L-021",
+        "title": "Changes in isoform composition, structure, and functional properties of titin from Mongolian gerbil cardiac muscle after space flight",
+        "authors": "Vikhlyantsev et al. (2011)",
+        "year": "2011",
+        "doi": "10.1134/s0006297911120042",
+        "url": "https://doi.org/10.1134/s0006297911120042"
       },
       "reviewed_on": "2026-10-11"
     },
     {
-      "id": "SYN-002",
-      "topic": "Demonstração",
-      "headline": "Ficha sintética para testar a interface",
-      "model": "Modelo fictício",
-      "exposure": "Sem experimento",
-      "measured": "Nenhum desfecho real",
-      "finding": "Conteúdo de teste. Não representa evidência científica.",
-      "limit": "Não utilizar como referência.",
-      "review": "Dados sintéticos",
-      "source": "https://doi.org/10.0000/synthetic",
-      "kind": "pending",
+      "id": "L-018",
+      "topic": "Fluxo e glicocálix",
+      "headline": "A superfície celular participa da resposta ao fluxo",
+      "model": "Endotélio aórtico bovino em cultura",
+      "exposure": "Remoção de componentes do glicocálix e exposição ao fluxo",
+      "measured": "Produção de óxido nítrico",
+      "finding": "A remoção de HS, HA ou ácido siálico reduziu a resposta de NO ao fluxo.",
+      "limit": "Não mede titina, função autonômica ou resposta à microgravidade.",
+      "review": "Resumo primário conferido",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/17291452/",
+      "kind": "evidence",
       "source_version": {
-        "id": "SYN-002",
-        "title": "Referência sintética 2 — teste técnico, não é artigo",
-        "authors": "Autor fictício",
-        "year": "2020",
-        "doi": "",
-        "url": ""
+        "id": "L-018",
+        "title": "The role of endothelial glycocalyx components in mechanotransduction of fluid shear stress",
+        "authors": "Pahakis et al. (2007)",
+        "year": "2007",
+        "doi": "10.1016/j.bbrc.2007.01.137",
+        "url": "https://doi.org/10.1016/j.bbrc.2007.01.137"
       },
       "reviewed_on": "2026-10-11"
     },
     {
-      "id": "SYN-003",
-      "topic": "Demonstração",
-      "headline": "Ficha sintética para testar a interface",
-      "model": "Modelo fictício",
-      "exposure": "Sem experimento",
-      "measured": "Nenhum desfecho real",
-      "finding": "Conteúdo de teste. Não representa evidência científica.",
-      "limit": "Não utilizar como referência.",
-      "review": "Dados sintéticos",
-      "source": "https://doi.org/10.0000/synthetic",
+      "id": "F11-037",
+      "topic": "Microgravidade e humanos",
+      "headline": "Um resultado sem diferença também importa",
+      "model": "Humanos · repouso com inclinação da cabeça",
+      "exposure": "5 dias de head-down bed rest",
+      "measured": "HS e HA circulantes em subamostra",
+      "finding": "A extração da planilha registra ausência de diferença significativa nesses marcadores.",
+      "limit": "Subamostra pequena; biomarcadores não excluem alteração local. L-selectina não equivale a glicocálix endotelial.",
+      "review": "Extração preliminar da planilha; conferir original",
+      "source": "https://doi.org/10.1152/japplphysiol.00381.2013",
       "kind": "pending",
       "source_version": {
-        "id": "SYN-003",
-        "title": "Referência sintética 3 — teste técnico, não é artigo",
-        "authors": "Autor fictício",
-        "year": "2020",
-        "doi": "",
-        "url": ""
+        "id": "F11-037",
+        "title": "Five days of head-down-tilt bed rest induces noninflammatory shedding of L-selectin",
+        "authors": "Feuerecker et al.",
+        "year": "2013",
+        "doi": "10.1152/japplphysiol.00381.2013",
+        "url": "https://doi.org/10.1152/japplphysiol.00381.2013"
       },
       "reviewed_on": "2026-10-11"
     },
     {
-      "id": "SYN-004",
-      "topic": "Demonstração",
-      "headline": "Ficha sintética para testar a interface",
-      "model": "Modelo fictício",
-      "exposure": "Sem experimento",
-      "measured": "Nenhum desfecho real",
-      "finding": "Conteúdo de teste. Não representa evidência científica.",
-      "limit": "Não utilizar como referência.",
-      "review": "Dados sintéticos",
-      "source": "https://doi.org/10.0000/synthetic",
+      "id": "F11-122",
+      "topic": "Descarga e autonomia",
+      "headline": "NO e controle autonômico foram estudados juntos",
+      "model": "Ratos conscientes",
+      "exposure": "14 dias de suspensão dos membros posteriores",
+      "measured": "Respostas da pressão e frequência cardíaca a bloqueios farmacológicos",
+      "finding": "A planilha registra respostas compatíveis com alterações nas contribuições de NO e do controle autonômico.",
+      "limit": "Inferência funcional: não mede diretamente NO ou glicocálix e não testa seu resgate.",
+      "review": "Extração preliminar da planilha; conferir original",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/15761183/",
       "kind": "pending",
       "source_version": {
-        "id": "SYN-004",
-        "title": "Referência sintética 4 — teste técnico, não é artigo",
-        "authors": "Autor fictício",
-        "year": "2020",
-        "doi": "",
-        "url": ""
+        "id": "F11-122",
+        "title": "Hindlimb Unloading Alters Nitric Oxide and Autonomic Control of Resting Arterial Pressure in Conscious Rats",
+        "authors": "Mueller PJ, Foley CM, Hasser EM",
+        "year": "2005",
+        "doi": "10.1152/ajpregu.00820.2004",
+        "url": "https://doi.org/10.1152/ajpregu.00820.2004"
       },
       "reviewed_on": "2026-10-11"
     },
     {
-      "id": "SYN-005",
-      "topic": "Demonstração",
-      "headline": "Ficha sintética para testar a interface",
-      "model": "Modelo fictício",
-      "exposure": "Sem experimento",
-      "measured": "Nenhum desfecho real",
-      "finding": "Conteúdo de teste. Não representa evidência científica.",
-      "limit": "Não utilizar como referência.",
-      "review": "Dados sintéticos",
-      "source": "https://doi.org/10.0000/synthetic",
+      "id": "F11-195",
+      "topic": "Gravidade e compartimentos",
+      "headline": "Glicocálix de qual célula?",
+      "model": "Células de músculo liso vascular de rato",
+      "exposure": "Estímulo gravitacional alterado",
+      "measured": "Glicocálix e sinalização no músculo liso",
+      "finding": "Há antecedente experimental de gravidade e glicocálix nesse compartimento.",
+      "limit": "Músculo liso não é endotélio. O estudo não demonstra o mesmo mecanismo no glicocálix endotelial.",
+      "review": "Extração preliminar da planilha; conferir original",
+      "source": "https://doi.org/10.1089/ast.2012.0944",
       "kind": "pending",
       "source_version": {
-        "id": "SYN-005",
-        "title": "Referência sintética 5 — teste técnico, não é artigo",
-        "authors": "Autor fictício",
-        "year": "2020",
-        "doi": "",
-        "url": ""
+        "id": "F11-195",
+        "title": "A Potential Gravity-Sensing Role of Vascular Smooth Muscle Cell Glycocalyx in Altered Gravitational Stimulation",
+        "authors": "Kang et al.",
+        "year": "2013",
+        "doi": "10.1089/ast.2012.0944",
+        "url": "https://doi.org/10.1089/ast.2012.0944"
       },
       "reviewed_on": "2026-10-11"
     }
   ],
   "connections": [
     {
-      "id": "synthetic-0",
-      "kind": "pending",
-      "title": "Conexão sintética 1",
-      "summary": "Exemplo de interface, não é uma afirmação científica.",
-      "limit": "Somente teste técnico.",
+      "id": "flow-no",
+      "kind": "evidence",
+      "title": "Fluxo → resposta de NO",
+      "summary": "Componentes do glicocálix participaram da resposta ao fluxo no modelo bovino.",
+      "limit": "Evidência nesse modelo; não demonstra a cadeia até titina ou disautonomia.",
       "sources": [
-        "SYN-001"
-      ]
+        "L-018"
+      ],
+      "source_versions": {
+        "L-018": {
+          "id": "L-018",
+          "title": "The role of endothelial glycocalyx components in mechanotransduction of fluid shear stress",
+          "authors": "Pahakis et al. (2007)",
+          "year": "2007",
+          "doi": "10.1016/j.bbrc.2007.01.137",
+          "url": "https://doi.org/10.1016/j.bbrc.2007.01.137"
+        }
+      }
     },
     {
-      "id": "synthetic-1",
-      "kind": "pending",
-      "title": "Conexão sintética 2",
-      "summary": "Exemplo de interface, não é uma afirmação científica.",
-      "limit": "Somente teste técnico.",
+      "id": "space-titin",
+      "kind": "association",
+      "title": "Voo espacial ↔ mudança da titina",
+      "summary": "A mudança foi observada após a exposição ao voo.",
+      "limit": "Microgravidade não foi isolada dos demais fatores do voo.",
       "sources": [
-        "SYN-002"
-      ]
+        "L-021"
+      ],
+      "source_versions": {
+        "L-021": {
+          "id": "L-021",
+          "title": "Changes in isoform composition, structure, and functional properties of titin from Mongolian gerbil cardiac muscle after space flight",
+          "authors": "Vikhlyantsev et al. (2011)",
+          "year": "2011",
+          "doi": "10.1134/s0006297911120042",
+          "url": "https://doi.org/10.1134/s0006297911120042"
+        }
+      }
     },
     {
-      "id": "synthetic-2",
+      "id": "gravity-gcx",
       "kind": "hypothesis",
-      "title": "Conexão sintética 3",
-      "summary": "Exemplo de interface, não é uma afirmação científica.",
-      "limit": "Somente teste técnico.",
+      "title": "Microgravidade → glicocálix endotelial → resposta ao fluxo?",
+      "summary": "Uma conexão candidata a testar com controles específicos.",
+      "limit": "Os modelos e compartimentos disponíveis não bastam para confirmar essa sequência.",
       "sources": [
-        "SYN-003"
-      ]
+        "F11-195",
+        "L-018",
+        "F11-037"
+      ],
+      "source_versions": {
+        "F11-195": {
+          "id": "F11-195",
+          "title": "A Potential Gravity-Sensing Role of Vascular Smooth Muscle Cell Glycocalyx in Altered Gravitational Stimulation",
+          "authors": "Kang et al.",
+          "year": "2013",
+          "doi": "10.1089/ast.2012.0944",
+          "url": "https://doi.org/10.1089/ast.2012.0944"
+        },
+        "L-018": {
+          "id": "L-018",
+          "title": "The role of endothelial glycocalyx components in mechanotransduction of fluid shear stress",
+          "authors": "Pahakis et al. (2007)",
+          "year": "2007",
+          "doi": "10.1016/j.bbrc.2007.01.137",
+          "url": "https://doi.org/10.1016/j.bbrc.2007.01.137"
+        },
+        "F11-037": {
+          "id": "F11-037",
+          "title": "Five days of head-down-tilt bed rest induces noninflammatory shedding of L-selectin",
+          "authors": "Feuerecker et al.",
+          "year": "2013",
+          "doi": "10.1152/japplphysiol.00381.2013",
+          "url": "https://doi.org/10.1152/japplphysiol.00381.2013"
+        }
+      }
     },
     {
-      "id": "synthetic-3",
+      "id": "gcx-autonomy",
       "kind": "hypothesis",
-      "title": "Conexão sintética 4",
-      "summary": "Exemplo de interface, não é uma afirmação científica.",
-      "limit": "Somente teste técnico.",
+      "title": "Glicocálix endotelial e disautonomia podem se conectar?",
+      "summary": "A contribuição do glicocálix para o controle ortostático permanece uma pergunta.",
+      "limit": "Estudar NO e controle autonômico não demonstra mediação pelo glicocálix.",
       "sources": [
-        "SYN-004"
-      ]
+        "F11-122",
+        "F11-037"
+      ],
+      "source_versions": {
+        "F11-122": {
+          "id": "F11-122",
+          "title": "Hindlimb Unloading Alters Nitric Oxide and Autonomic Control of Resting Arterial Pressure in Conscious Rats",
+          "authors": "Mueller PJ, Foley CM, Hasser EM",
+          "year": "2005",
+          "doi": "10.1152/ajpregu.00820.2004",
+          "url": "https://doi.org/10.1152/ajpregu.00820.2004"
+        },
+        "F11-037": {
+          "id": "F11-037",
+          "title": "Five days of head-down-tilt bed rest induces noninflammatory shedding of L-selectin",
+          "authors": "Feuerecker et al.",
+          "year": "2013",
+          "doi": "10.1152/japplphysiol.00381.2013",
+          "url": "https://doi.org/10.1152/japplphysiol.00381.2013"
+        }
+      }
     }
   ]
 }
