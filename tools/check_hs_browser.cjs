@@ -12,8 +12,21 @@ for(const [engine,type] of [['chromium',chromium],['webkit',webkit]]){
  await page.locator('#piloto-hs').waitFor();
  for(const w of [320,390,768,1440]){await page.setViewportSize({width:w,height:1000});const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);if(overflow>2)throw Error('overflow '+engine+' '+w+' '+overflow);}
  await page.setViewportSize({width,height:1000});
- const details=page.locator('#piloto-hs details');await details.locator('summary').focus();await page.keyboard.press('Enter');if(!await details.evaluate(el=>el.open))throw Error('keyboard disclosure');
- await details.locator('summary').press('Enter');
+ // O desenho tem um expansor de leitura e outro de parâmetros; testar ambos.
+ const outer=page.locator('#piloto-hs > details');
+ const outerSummary=outer.locator(':scope > summary');
+ for(const key of ['Enter','Space']){
+  await outerSummary.focus();await outerSummary.press(key);
+  if(!await outer.evaluate(el=>el.open))throw Error('outer disclosure '+key);
+  const inner=outer.locator('details').first();
+  const innerSummary=inner.locator(':scope > summary');
+  await innerSummary.focus();await innerSummary.press(key);
+  if(!await inner.evaluate(el=>el.open))throw Error('inner disclosure '+key);
+  await innerSummary.press(key);
+  if(await inner.evaluate(el=>el.open))throw Error('inner close '+key);
+  await outerSummary.press(key);
+  if(await outer.evaluate(el=>el.open))throw Error('outer close '+key);
+ }
  await page.evaluate(()=>{document.activeElement.blur();window.scrollTo(0,0)});
  await page.screenshot({path:'evidence/'+engine+'-'+width+'.jpg',type:'jpeg',quality:75});
  await page.locator('#piloto-hs').scrollIntoViewIfNeeded();

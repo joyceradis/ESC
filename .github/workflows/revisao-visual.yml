@@ -469,6 +469,7 @@ jobs:
         shell: bash
         run: |
           if [ -f evidence/visual/report.md ]; then
+            cat evidence/visual/report.md
             cat evidence/visual/report.md >> "$GITHUB_STEP_SUMMARY"
           else
             echo "A revisão foi interrompida antes de gerar o relatório. Consulte os logs das etapas anteriores." \
