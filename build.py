@@ -79,6 +79,9 @@ def main() -> None:
             .replace("{{nav}}", nav(slug))
             .replace("{{mobile_nav}}", mobile_nav(slug))
             .replace("{{page_assets}}", (
+                '<link rel="stylesheet" href="assets/css/pergunta.css" />\n'
+                if slug == "pergunta" else ""
+            ) + (
                 '<link rel="stylesheet" href="assets/css/home.css" />\n'
                 if slug == "index" else ""
             ) + (

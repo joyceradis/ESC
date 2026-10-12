@@ -1,0 +1,48 @@
+/* Pergunta científica: leitura guiada, detalhes científicos preservados. */
+.question-atlas{--q-ink:#4e172b;--q-muted:#765c63;color:#382b30}
+.question-atlas *{box-sizing:border-box}
+.question-atlas h1,.question-atlas h2,.question-atlas h3{color:var(--q-ink)}
+.question-hero{padding:18px 0 32px;border-bottom:1px solid #dfd1d5}
+.question-eyebrow{font-size:11px!important;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:#865363;margin:0 0 12px!important}
+.question-hero h1{font-size:clamp(32px,3.8vw,54px);line-height:1.12;margin:0 0 18px;max-width:850px}
+.question-hero h1 em{color:#a13756}
+.question-hero>p:not(.question-eyebrow){max-width:650px;font-size:17px;line-height:1.65;margin:0 0 20px}
+.question-key{display:flex;gap:16px;align-items:baseline;font-size:14px;color:var(--q-muted);max-width:690px}
+.question-key strong{color:var(--q-ink)}
+.question-section{margin:32px 0}
+.question-section h2{font-size:clamp(25px,2.4vw,34px);line-height:1.2;margin:0 0 20px}
+.question-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.question-card{min-width:0;background:#fffdfb;border:1px solid #e5d8dd;border-radius:20px;padding:24px}
+.question-card svg{display:block;width:100%;height:110px;max-width:260px;margin:0 auto 18px;color:#6b2840}
+.question-tag{display:inline-block;font-size:11px;line-height:1.5;letter-spacing:.04em;font-weight:700;color:#4b6863;background:#eaf0eb;border-radius:5px;padding:5px 8px}
+.question-tag-hypothesis{background:#f3e9d9;color:#74531e}
+.question-card h3{font-size:24px;line-height:1.2;margin:15px 0 12px}
+.question-card p{font-size:15px;line-height:1.65;margin:0 0 12px}
+.question-card .question-limit{font-size:13px;color:var(--q-muted);border-left:2px solid #c8a4b0;padding-left:12px}
+.question-atlas a{color:#752a44;text-decoration:underline;text-underline-offset:4px}
+.question-card>a{font-size:13px;display:inline-block;padding:8px 0}
+.question-caption{font-size:12px;color:var(--q-muted);line-height:1.6;margin:12px 0}
+.question-open{background:#541b30;color:#fff5ef;border-radius:20px;padding:30px}
+.question-open h2{color:#fff5ef;margin:15px 0;font-size:clamp(27px,2.6vw,37px)}
+.question-open .question-tag{background:#714052;color:#fff4e4}
+.question-open p{max-width:650px;font-size:15px;line-height:1.65;margin:0;color:#f0dce1}
+.question-atlas summary{cursor:pointer;min-height:44px;padding:12px 0;font-size:14px;font-weight:600;color:var(--q-ink)}
+.question-atlas :is(a,summary):focus-visible{outline:3px solid #986324;outline-offset:4px;border-radius:3px}
+.question-card details{border-top:1px solid #e5d8dd;margin-top:16px}
+.question-card details p{font-size:14px}
+.question-alternative{margin:20px 0 0;padding:16px 20px;background:#efece5;border-radius:12px;font-size:14px;line-height:1.65}
+.question-alternative strong{color:#4e443a}
+.question-next>p{max-width:700px;font-size:16px;line-height:1.7}
+.question-links{display:flex;flex-wrap:wrap;gap:8px 24px;margin:15px 0}
+.question-links a{padding:10px 0;font-size:14px;font-weight:600}
+.question-trace{border-top:1px solid #d6c4ca;border-bottom:1px solid #d6c4ca;margin:36px 0}
+.question-trace>summary{padding:22px 8px;font-size:16px}
+.question-trace>summary span{display:block;font-weight:400;font-size:12px;color:var(--q-muted);padding:6px 0 0 20px}
+.question-trace-body{padding:8px 0 24px;font-size:14px}
+.question-trace-body .section{margin:28px 0}
+.question-trace-body h2{font-size:25px}
+.question-trace-body h3{font-size:23px!important}
+.question-trace-body .tablewrap{max-width:100%;overflow-x:auto}
+.question-trace-body p,.question-trace-body td{overflow-wrap:anywhere}
+@media(max-width:650px){.question-pair{grid-template-columns:1fr;gap:16px}.question-card{padding:20px}.question-key{display:block}.question-key strong{display:block;margin-bottom:4px}.question-hero h1 br{display:none}.question-open{padding:23px}.question-open h2 br{display:none}.question-section{margin:28px 0}.question-card svg{height:96px}.question-trace>summary span{padding-left:0}}
+@media(prefers-reduced-motion:reduce){.question-atlas *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}

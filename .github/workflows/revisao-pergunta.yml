@@ -1,0 +1,65 @@
+name: Pergunta científica — leitura e proporções
+on:
+  pull_request:
+    paths:
+      - 'src/pages/pergunta.html'
+      - 'assets/css/pergunta.css'
+      - 'build.py'
+      - 'pergunta.html'
+      - 'tools/check_question.cjs'
+      - '.github/workflows/revisao-pergunta.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pergunta-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  question:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          path: before
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Gerar página e conferir estrutura
+        run: |
+          python3 build.py
+          python3 -c 'import json,pathlib; print("GENERATED_QUESTION="+json.dumps(pathlib.Path("pergunta.html").read_text()))'
+          python3 tools/check_site.py
+          node --test tests/*.test.mjs
+      - name: Preparar navegadores na nuvem
+        run: |
+          npm install --prefix "$RUNNER_TEMP/esc-question" --no-save --no-package-lock playwright@1.56.1
+          "$RUNNER_TEMP/esc-question/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Verificar leitura desktop e celular
+        env:
+          NODE_PATH: ${{ runner.temp }}/esc-question/node_modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 18773 --bind 127.0.0.1 > /tmp/esc-question-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:18773/pergunta.html; then break; fi
+            sleep 1
+          done
+          node tools/check_question.cjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: pergunta-desktop-celular
+          path: evidence/pergunta
+          if-no-files-found: warn
