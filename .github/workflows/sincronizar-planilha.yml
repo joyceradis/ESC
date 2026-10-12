@@ -1,0 +1,28 @@
+name: Conferir sincronização pelos conectores
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Reproduzir catálogo a partir dos campos autorizados
+        run: |
+          python3 tools/sync_sheet.py --connector-input atlas/sync/connector-input.json
+          python3 build.py
+          python3 tools/check_site.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Disponibilizar derivados públicos para o conector GitHub
+        if: always()
+        run: |
+          python3 -c 'import json,pathlib; files=["atlas/sync/catalogue.json","assets/js/evidence-data.js","biblioteca.html"]; [print("CONNECTOR_OUTPUT "+p+" "+json.dumps(pathlib.Path(p).read_text())) for p in files]'
+      - name: Conferir que derivados versionados correspondem à leitura
+        run: git diff --exit-code -- atlas/sync/catalogue.json assets/js/evidence-data.js biblioteca.html
