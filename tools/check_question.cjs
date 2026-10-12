@@ -12,7 +12,7 @@ for(const [engine,type] of Object.entries({chromium,webkit})){
  assert.equal(await page.locator('h1').count(),1);
  const visible=await page.locator('.question-atlas').innerText();
  assert(!/L-\d{3}|REF-\d{3}|HYP-\d{3}/.test(visible),'Internal codes visible before expansion');
- assert(visible.includes('coração quando'), 'Heading words joined on mobile');assert(visible.includes('Esse ensaio não mede titina'));assert(visible.includes('podem coexistir'));assert(visible.includes('não isola'));
+ assert(visible.replace(/\s+/g,' ').includes('coração quando'), 'Heading words joined on mobile');assert(visible.includes('Esse ensaio não mede titina'));assert(visible.includes('podem coexistir'));assert(visible.includes('não isola'));
  assert(visible.includes('Outras explicações'));assert(visible.includes('Microgravidade, descarga mecânica e fluxo'));
  async function overflow(){assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Horizontal page overflow');}
  await overflow();
