@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@e2f20f31b3c9f8f24322de68fab4d8f87d65a42c  # v4
+      - uses: actions/setup-python@0a5c61591373683ada539c83d08432d4141d6032  # v5
         with:
           python-version: "3.12"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@1e60f620b9541d910ab2b81f8722cb9b1b50e9e6  # v4
         with:
           node-version: "22"
       - name: Gerar páginas
@@ -29,7 +29,7 @@ jobs:
         run: node tools/check_responsive.cjs
       - name: Salvar capturas e relatório mesmo em falha
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a  # v4
         with:
           name: revisao-visual-desktop-mobile
           path: artifacts/responsive/
