@@ -1,6 +1,6 @@
 ## Secretária de repositório (proposta)
 
-A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/workflows/issue-secretary.yml) organizam etiquetas e status sem alterar código, fazer merge ou publicar. O fluxo é **proposto nesta branch** e só passa a operar após integração na `main`. A classificação não aciona automaticamente Codex, Claude ou outros agentes.
+A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/workflows/issue-secretary.yml) organizam etiquetas e status sem alterar código, fazer merge ou publicar. O fluxo é **proposto, não substitui a decisão da Joyce**.
 
 # ESC 2027 · Research Atlas
 
@@ -33,8 +33,8 @@ assets/js/lab-math.js  equações idealizadas com testes unitários
 assets/js/laboratorio.js controles dos simuladores e desenhos dinâmicos
 assets/css/laboratorio.css estilos exclusivos do laboratório
 src/layout.html        moldura comum (menu, rodapé)
-src/pages/*.html       miolo de cada página
-build.py               gera os *.html da raiz
+src/pages/*.html      miolo de cada página
+build.py              gera os *.html da raiz
 ```
 
 ## Como atualizar
@@ -54,43 +54,47 @@ Em `.claude/skills/`, no formato do repositório oficial de skills da Anthropic 
 | `esc-revisar-abstract` | Revisar abstract, CV ou carta antes do envio (estrutura ESC, integridade, originalidade) |
 | `esc-atualizar-atlas` | Sincronizar o site com a planilha mestre e regenerar as páginas |
 
+## Revisão visual antes de entregar mudanças de interface
+
+**Proposta em desenvolvimento na branch/PR #17:** [Revisão visual desktop/celular](docs/revisao-visual.md) e [workflow](.github/workflows/revisao-visual.yml). Esta rotina **não substitui** a revisão humana, nem a aprovação da Joyce, nem a regra de merge na `main`.
+
+Para mudanças de CSS, layout, navegação, laboratório ou interações, conferir **desktop e celular** nas dez páginas; preservar a identidade editorial vinho/marfim aprovada, incluindo ilustrações científicas. Anexar capturas, resultados de testes e observações de interação ao PR. Refinamentos de sombras, profundidade e animação são propostas estéticas separadas e não autorizam alteração implícita da interface.
+
 ## Verificações automáticas
 
 - **Verificar site** (`.github/workflows/verificar-site.yml`): a cada envio, confere a sintaxe do JavaScript, se as páginas da raiz batem com `src/`, os links internos e a consistência de `data.js`. Rode localmente com `python3 tools/check_site.py`; os simuladores também possuem testes em `tests/lab-math.test.mjs` executados por `node --test`.
-- **Links externos** (`.github/workflows/links-externos.yml`): toda segunda-feira testa os links de DOI, PubMed, PMC e ESC e abre uma issue se algum quebrar. Links do Drive ficam de fora porque são privados.
+- **Links externos** (`.github/workflows/links-externos.yml`): toda segunda-feira testa os links de DOI, PubMed, PMC e ESC e abre uma issue se algum quebrar. Links do Drive ficam de fora porque são privados e exigiriam login.
 
 ## Atlas vivo: atualização por notas
 
-**Fonte canônica:** [`atlas/README.md`](atlas/README.md) descreve como estudos, perguntas e decisões públicas entram em `atlas/estudos-gel.json` e `atlas/notas/*.json`. O build gera `assets/js/atlas-dados.js`; a home e o laboratório exibem essas notas, sem copiar conversas. O deploy do GitHub Pages executa o gerador antes de publicar; mudanças versionadas aparecem automaticamente. O registro conversacional precisa ser feito por um agente autorizado; não existe escuta permanente de chats.
+**Fonte canônica:** [`atlas/README.md`](atlas/README.md) descreve como estudos, perguntas e decisões públicas entram em `atlas/estudos-gel.json` e `atlas/notas/*.json`. O build gera `assets/js/atlas-dados.js` por commit e por execução do workflow.
 
 ## Laboratório interativo e limites
 
-O laboratório contém modelos simplificados para **ensino e formulação de perguntas**: cisalhamento newtoniano, hidrostática, Reynolds de tubo, osmose ideal de van't Hoff, difusão de Fick e permeabilidade Darcy em meio poroso homogêneo, com exploração conceitual de filtração molecular e fases de gravidade.
+O laboratório contém modelos simplificados para **ensino e formulação de perguntas**: cisalhamento newtoniano, hidrostática, Reynolds de tubo, osmose ideal de van't Hoff, difusão de Fick e permeabilidade análoga de Darcy.
 
-**Não são medidas do glicocálix, previsões clínicas nem confirmação de causalidade.** As unidades, pressupostos e limitações são mostrados na tela. Os valores de permeabilidade da analogia do “gel” são ilustrativos. Nenhuma hipótese ganha prioridade automaticamente.
+**Não são medidas do glicocálix, previsões clínicas nem confirmação de causalidade.** As unidades, pressupostos e limitações são mostrados na tela. Os valores de permeabilidade da analogia e as variáveis do sistema são didáticos.
 
 Os números são calculados exclusivamente no navegador. Não há envio de valores ou alterações no Drive. Cálculos têm testes de referência, unidades e entradas inválidas.
 
 ## Autoria e colaboração
 
-**Autoria científica:** Joyce Radis. **Colaboradores no desenvolvimento do Atlas:** ChatGPT (OpenAI) e Claude (Anthropic), em etapas complementares. **Análises secundárias:** Gemini (Google). Os créditos não indicam autoria de resultados experimentais nem equivalem a permissões de acesso no GitHub. **Desde 11/10/2026, por decisão da autora, só o Claude trabalha neste repositório** (regras em `AGENTS.md`); a tabela abaixo é o histórico.
+**Autoria científica:** Joyce Radis. **Colaboradores no desenvolvimento do Atlas:** ChatGPT (OpenAI) e Claude (Anthropic), em etapas complementares. **Análises secundárias:** Gemini (Google). O conteúdo científico é da autora; os agentes organizaram, conferiram e deram forma; nenhum deles produziu dados experimentais.
 
 | Quem | O que fez | Quando |
 | --- | --- | --- |
-| **Joyce Radis** (autora) | Pergunta científica, hipóteses, analogias das “antenas” e do “gel”, rascunho RAS-001 com grifos e 13 comentários, leitura de Tomita (L-001) e decisões de escopo | desde 08/10/2026 |
-| **ChatGPT** (OpenAI) | Auditoria e reorganização do Drive, planilha mestre estruturada, mapa de hipóteses v0.2 a partir das perguntas da autora, adendo de anterioridade e atlas edição 01 (HTML único) | 09–10/10/2026 |
-| **Claude** (Anthropic) | Atlas edições 02 e 03: conferência das regras na página oficial da ESC, alertas de integridade, separação em 9 páginas, dados da planilha no site, `build.py` e planilha-resumo | 10/10/2026 |
+| **Joyce Radis** (autora) | Pergunta científica, hipóteses, analogias das “antenas” e do “gel”, rascunho RAS-001 com grifos e 13 comentários, leitura de Tomita (L-001) e decisões de escopo | 2026 |
+| **ChatGPT** (OpenAI) | Auditoria e reorganização do Drive, planilha mestre estruturada, mapa de hipóteses v0.2 a partir das perguntas da autora, adendo de anterioridade e atlas edição 01 | 2026 |
+| **Claude** (Anthropic) | Atlas edições 02 e 03: conferência das regras na página oficial da ESC, alertas de integridade, separação em 9 páginas, dados da planilha no site, `build.py` e pipeline de checagem | 2026 |
 | **Gemini** (Google) | Dois relatórios secundários: análise estratégica e elegibilidade | 08/10/2026 |
 | **Claude** (Anthropic) | Edição 04: regra de executor único, pergunta de partida (microgravidade → titina → ICFEp) com hipóteses concorrentes e desenho fatorial 2 × 2 | 11/10/2026 |
 
-O conteúdo científico é da autora. Os agentes organizaram, conferiram e deram forma; nenhum deles produziu dados experimentais. O relatório “Estruturação de Proposta para ESC” (09/10) não tem autoria registrada.
-
 ## Privacidade
 
-O conteúdo é um projeto científico não publicado, e os links apontam para um acervo privado no Drive. Mantenha o repositório privado. Se usar GitHub Pages, lembre que o site publicado fica acessível a quem tiver o endereço.
+O conteúdo é um projeto científico não publicado, e os links apontam para um acervo privado no Drive. Mantenha o repositório privado. Se usar GitHub Pages, lembre que o site publicado fica acessível ao público.
 
 ## Acesso por senha (barreira visual)
 
-A tela de senha é executada pelo JavaScript `assets/js/access-gate.js` em todas as páginas. O código contém somente um SHA-256 de uma senha aleatória, não a senha em texto puro. A sessão no mesmo separador de navegador permanece liberada até seu fechamento. Não há coleta nem envio de senhas.
+A tela de senha é executada pelo JavaScript `assets/js/access-gate.js` em todas as páginas. O código contém somente um SHA-256 de uma senha aleatória, não a senha em texto puro. A sessão na interface é local ao navegador.
 
-**Aviso importante:** este mecanismo reduz acesso casual pela interface, mas **não é autenticação** e **não torna arquivos do GitHub Pages privados**. HTML, JS e dados continuam recuperáveis diretamente do repositório público. O acervo original permanece no Google Drive.
+**Aviso importante:** este mecanismo reduz acesso casual pela interface, mas **não é autenticação** e **não torna arquivos do GitHub Pages privados**. HTML, JS e dados continuam recuperáveis publicamente.

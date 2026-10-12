@@ -7,31 +7,470 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: revisao-visual-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   visual:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
+
     steps:
-      - uses: actions/checkout@e2f20f31b3c9f8f24322de68fab4d8f87d65a42c  # v4
-      - uses: actions/setup-python@0a5c61591373683ada539c83d08432d4141d6032  # v5
+      - name: Obter código
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Preparar Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
-      - uses: actions/setup-node@1e60f620b9541d910ab2b81f8722cb9b1b50e9e6  # v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22"
+
+      - name: Preparar pasta de evidências
+        run: mkdir -p evidence/visual
+
       - name: Gerar páginas
         run: python3 build.py
-      - name: Instalar navegador e Playwright
+
+      - name: Instalar Playwright e navegadores
         run: |
-          npm install --no-save --no-package-lock playwright@1.56.1
-          npx playwright install --with-deps chromium
+          mkdir -p "$RUNNER_TEMP/esc-visual"
+          npm install \
+            --prefix "$RUNNER_TEMP/esc-visual" \
+            --no-save \
+            --no-package-lock \
+            playwright@1.56.1
+
+          "$RUNNER_TEMP/esc-visual/node_modules/.bin/playwright" \
+            install --with-deps chromium webkit
+
       - name: Avaliar desktop e celular
-        run: node tools/check_responsive.cjs
+        shell: bash
+        env:
+          NODE_PATH: ${{ runner.temp }}/esc-visual/node_modules
+          VISUAL_BASE_URL: http://127.0.0.1:18770
+        run: |
+          set -euo pipefail
+
+          # Este servidor existe somente no runner do GitHub.
+          python3 -m http.server 18770 --bind 127.0.0.1 \
+            > evidence/visual/server.log 2>&1 &
+          server_pid=$!
+
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=false
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null \
+              "$VISUAL_BASE_URL/index.html"; then
+              ready=true
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" != true ]; then
+            echo "::error::O servidor de teste não ficou disponível."
+            exit 1
+          fi
+
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { chromium, webkit } = require('playwright');
+
+          const output = path.resolve('evidence/visual');
+          const baseURL = process.env.VISUAL_BASE_URL;
+          const results = [];
+          const fatalErrors = [];
+
+          const pages = [
+            { name: 'inicio', path: '/index.html' },
+            { name: 'protocolo', path: '/protocolo.html' },
+          ];
+
+          const viewports = [
+            { name: 'desktop', width: 1440, height: 1000 },
+            { name: 'tablet', width: 768, height: 1024 },
+            { name: 'celular', width: 390, height: 844 },
+            { name: 'celular-estreito', width: 320, height: 844 },
+          ];
+
+          fs.mkdirSync(output, { recursive: true });
+
+          function saveReport() {
+            const report = {
+              checkedAt: new Date().toISOString(),
+              commit: process.env.GITHUB_SHA,
+              target: baseURL,
+              scope: 'Páginas geradas no runner; não é teste da produção.',
+              results,
+              fatalErrors,
+            };
+
+            fs.writeFileSync(
+              path.join(output, 'report.json'),
+              JSON.stringify(report, null, 2),
+            );
+
+            const lines = [
+              '# Revisão visual do ESC',
+              '',
+              `Commit: ${report.commit}`,
+              '',
+              report.scope,
+              '',
+              '| Navegador | Página | Tela | Resultado |',
+              '|---|---|---|---|',
+              ...results.map((r) =>
+                `| ${r.browser} | ${r.page} | ${r.width} × ${r.height} | ${
+                  r.errors.length ? 'FALHOU' : 'PASSOU'
+                } |`
+              ),
+              '',
+              '## Falhas',
+              '',
+            ];
+
+            const failures = results.filter((r) => r.errors.length);
+
+            if (!failures.length && !fatalErrors.length) {
+              lines.push('Nenhuma falha detectada pelas verificações automáticas.');
+            }
+
+            for (const result of failures) {
+              lines.push(
+                `### ${result.browser} / ${result.page} / ${result.width}px`,
+                '',
+                ...result.errors.map((error) =>
+                  `- ${error.replace(/\r?\n/g, ' ')}`
+                ),
+                '',
+              );
+            }
+
+            for (const error of fatalErrors) {
+              lines.push(`- ${error.replace(/\r?\n/g, ' ')}`);
+            }
+
+            fs.writeFileSync(
+              path.join(output, 'report.md'),
+              lines.join('\n') + '\n',
+            );
+          }
+
+          async function checkPage(browser, browserName, viewport, target) {
+            const result = {
+              browser: browserName,
+              page: target.name,
+              width: viewport.width,
+              height: viewport.height,
+              errors: [],
+              checks: {},
+              screenshots: [],
+            };
+
+            results.push(result);
+
+            let context;
+            let page;
+
+            const capture = async (suffix, fullPage = false) => {
+              const filename =
+                `${browserName}-${target.name}-${viewport.width}-${suffix}.png`;
+
+              await page.screenshot({
+                path: path.join(output, filename),
+                fullPage,
+                animations: 'disabled',
+              });
+
+              result.screenshots.push(filename);
+            };
+
+            try {
+              context = await browser.newContext({
+                viewport: {
+                  width: viewport.width,
+                  height: viewport.height,
+                },
+                reducedMotion: 'reduce',
+              });
+
+              // Estado de teste da barreira visual do ESC.
+              // Afeta somente esta sessão efêmera, sem senha ou mudança no site.
+              await context.addInitScript(() => {
+                sessionStorage.setItem('esc-atlas-access-v2', 'yes');
+              });
+
+              page = await context.newPage();
+              page.setDefaultTimeout(10000);
+
+              page.on('pageerror', (error) => {
+                result.errors.push(`JavaScript: ${error.message}`);
+              });
+
+              page.on('console', (message) => {
+                if (message.type() === 'error') {
+                  result.errors.push(`Console: ${message.text()}`);
+                }
+              });
+
+              page.on('response', (response) => {
+                if (
+                  response.url().startsWith(baseURL + '/') &&
+                  response.status() >= 400
+                ) {
+                  result.errors.push(
+                    `HTTP ${response.status()}: ${response.url()}`
+                  );
+                }
+              });
+
+              page.on('requestfailed', (request) => {
+                if (request.url().startsWith(baseURL + '/')) {
+                  result.errors.push(
+                    `Recurso não carregado: ${request.url()} — ${
+                      request.failure()?.errorText || 'erro desconhecido'
+                    }`
+                  );
+                }
+              });
+
+              const response = await page.goto(baseURL + target.path, {
+                waitUntil: 'load',
+                timeout: 30000,
+              });
+
+              if (!response || !response.ok()) {
+                throw new Error(
+                  `Página indisponível: HTTP ${response?.status() ?? 'sem resposta'}`
+                );
+              }
+
+              await page.evaluate(() => document.fonts.ready);
+
+              const gate = page.locator('#esc-access-gate');
+              if (await gate.isVisible()) {
+                throw new Error(
+                  'A barreira visual continua cobrindo o conteúdo; layout não validado.'
+                );
+              }
+
+              const content = page.locator('#conteudo');
+              await content.waitFor({ state: 'visible' });
+
+              const box = await content.boundingBox();
+              if (!box || box.width <= 0 || box.height <= 0) {
+                throw new Error('O conteúdo principal não está renderizado.');
+              }
+
+              result.checks.horizontalOverflow = await page.evaluate(() => {
+                const width = document.documentElement.clientWidth;
+                const scrollWidth = Math.max(
+                  document.documentElement.scrollWidth,
+                  document.body.scrollWidth,
+                );
+
+                return {
+                  viewport: width,
+                  content: scrollWidth,
+                  excess: scrollWidth - width,
+                };
+              });
+
+              if (result.checks.horizontalOverflow.excess > 2) {
+                result.errors.push(
+                  `Transbordamento horizontal da página: ${
+                    result.checks.horizontalOverflow.excess
+                  }px`
+                );
+              }
+
+              await capture('topo');
+              await capture('pagina-completa', true);
+
+              if (target.name === 'inicio') {
+                const link = page
+                  .locator('a[href="protocolo.html"]:visible')
+                  .first();
+
+                if (!(await link.count())) {
+                  result.errors.push(
+                    'Não foi encontrado link visível da home para o protocolo.'
+                  );
+                } else {
+                  await link.click();
+                  await page.waitForURL('**/protocolo.html');
+                  await page.locator('#piloto-curto').waitFor({
+                    state: 'visible',
+                  });
+                  result.checks.homeToProtocol = true;
+                }
+              }
+
+              if (target.name === 'protocolo') {
+                for (const section of [
+                  { selector: '#hs-percursos', name: 'comparacao' },
+                  { selector: '#piloto-curto', name: 'duas-semanas' },
+                  { selector: '#agenda-hs', name: 'doze-semanas' },
+                ]) {
+                  const element = page.locator(section.selector);
+                  await element.waitFor({ state: 'visible' });
+                  await element.scrollIntoViewIfNeeded();
+
+                  const sectionBox = await element.boundingBox();
+                  if (
+                    !sectionBox ||
+                    sectionBox.width <= 0 ||
+                    sectionBox.height <= 0
+                  ) {
+                    throw new Error(
+                      `Seção sem dimensões visíveis: ${section.selector}`
+                    );
+                  }
+
+                  result.checks[section.name] = true;
+                  await capture(section.name);
+                }
+
+                // Registra tabelas e seus contêineres de rolagem.
+                result.checks.tables = await page.locator('table').evaluateAll(
+                  (tables) => tables.map((table) => {
+                    let wrapper = table.parentElement;
+
+                    while (wrapper && wrapper !== document.body) {
+                      const overflow = getComputedStyle(wrapper).overflowX;
+                      if (overflow === 'auto' || overflow === 'scroll') break;
+                      wrapper = wrapper.parentElement;
+                    }
+
+                    return {
+                      width: Math.round(table.getBoundingClientRect().width),
+                      scrollContainer: wrapper !== document.body && wrapper
+                        ? {
+                            width: wrapper.clientWidth,
+                            scrollWidth: wrapper.scrollWidth,
+                          }
+                        : null,
+                    };
+                  })
+                );
+
+                // Verifica teclado nos controles nativos visíveis.
+                result.checks.disclosures = [];
+
+                const summaries = page.locator('details > summary');
+                for (let i = 0; i < await summaries.count(); i++) {
+                  const summary = summaries.nth(i);
+                  if (!(await summary.isVisible())) continue;
+
+                  const label = (await summary.innerText()).trim();
+
+                  for (const key of ['Space', 'Enter']) {
+                    await summary.focus();
+
+                    const before = await summary.evaluate(
+                      (el) => el.parentElement.open
+                    );
+
+                    await summary.press(key);
+
+                    const after = await summary.evaluate(
+                      (el) => el.parentElement.open
+                    );
+
+                    const passed = after !== before;
+                    result.checks.disclosures.push({ label, key, passed });
+
+                    if (!passed) {
+                      result.errors.push(
+                        `Seção expansível não respondeu a ${key}: ${label}`
+                      );
+                    } else {
+                      // Restaura o estado original usando a mesma tecla.
+                      await summary.press(key);
+                    }
+                  }
+                }
+              }
+            } catch (error) {
+              result.errors.push(error.stack || String(error));
+
+              if (page && !page.isClosed()) {
+                try {
+                  await capture('falha', true);
+                } catch (captureError) {
+                  result.errors.push(
+                    `Captura da falha: ${captureError.message}`
+                  );
+                }
+              }
+            } finally {
+              if (context) await context.close();
+              result.errors = [...new Set(result.errors)];
+              saveReport();
+            }
+          }
+
+          (async () => {
+            for (const [name, type] of [
+              ['chromium', chromium],
+              ['webkit', webkit],
+            ]) {
+              let browser;
+
+              try {
+                browser = await type.launch();
+
+                for (const viewport of viewports) {
+                  for (const target of pages) {
+                    await checkPage(browser, name, viewport, target);
+                  }
+                }
+              } catch (error) {
+                fatalErrors.push(`${name}: ${error.stack || error}`);
+              } finally {
+                if (browser) await browser.close();
+                saveReport();
+              }
+            }
+
+            if (
+              fatalErrors.length ||
+              results.some((result) => result.errors.length)
+            ) {
+              process.exitCode = 1;
+            }
+          })().catch((error) => {
+            fatalErrors.push(error.stack || String(error));
+            saveReport();
+            process.exitCode = 1;
+          });
+          NODE
+
       - name: Salvar capturas e relatório mesmo em falha
         if: always()
-        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a  # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: revisao-visual-desktop-mobile
-          path: artifacts/responsive/
+          name: revisao-visual-desktop-celular-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence/visual/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Mostrar resultado no resumo da execução
+        if: always()
+        shell: bash
+        run: |
+          if [ -f evidence/visual/report.md ]; then
+            cat evidence/visual/report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "A revisão foi interrompida antes de gerar o relatório. Consulte os logs das etapas anteriores." \
+              >> "$GITHUB_STEP_SUMMARY"
+          fi
