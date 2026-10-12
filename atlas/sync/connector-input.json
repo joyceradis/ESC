@@ -1,0 +1,1901 @@
+{
+  "schema_version": 1,
+  "sheets": {
+    "LEITURAS_SUGERIDAS": {
+      "header": [
+        "id",
+        "title",
+        "authors",
+        "year",
+        "doi",
+        "url"
+      ],
+      "rows": [
+        [
+          "L-001",
+          "Endothelial Glycocalyx, Mucin, and Glycan: A Hierarchical Synthesis From Molecular Building Blocks to Supramolecular Functional Barriers",
+          "Tomita; Suzuki; Okada (2026)",
+          "2026",
+          "10.1111/micc.70069",
+          "https://doi.org/10.1111/micc.70069"
+        ],
+        [
+          "L-002",
+          "Endothelial Glycocalyx: Permeability Barrier and Mechanosensor",
+          "Curry; Adamson (2012)",
+          "2012",
+          "10.1007/s10439-011-0429-8",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC5042904/"
+        ],
+        [
+          "L-003",
+          "Mechanotransduction and flow across the endothelial glycocalyx",
+          "Weinbaum et al. (2003)",
+          "2003",
+          "10.1073/pnas.1332808100",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC164700/"
+        ],
+        [
+          "L-004",
+          "Nanomechanics of the Endothelial Glycocalyx: From Structure to Function",
+          "Cosgun; Fels; Kusche-Vihrog (2020)",
+          "2020",
+          "10.1016/j.ajpath.2019.07.021",
+          "https://doi.org/10.1016/j.ajpath.2019.07.021"
+        ],
+        [
+          "L-005",
+          "Endothelial Glycocalyx Turnover in Vascular Health and Disease: Rethinking Endothelial Dysfunction",
+          "Gomez Toledo et al. (2025)",
+          "2025",
+          "10.1146/annurev-biochem-032620-104745",
+          "https://doi.org/10.1146/annurev-biochem-032620-104745"
+        ],
+        [
+          "L-006",
+          "The glycocalyx: a central regulator of vascular function",
+          "Moore; Murphy; George (2021)",
+          "2021",
+          "10.1152/ajpregu.00340.2020",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC8238147/"
+        ],
+        [
+          "L-007",
+          "Endothelial Glycocalyx",
+          "Foote et al. (2022)",
+          "2022",
+          "10.1002/cphy.c210029",
+          "https://pubmed.ncbi.nlm.nih.gov/35997082/"
+        ],
+        [
+          "L-008",
+          "Quantifying the Mechanical Properties of the Endothelial Glycocalyx with Atomic Force Microscopy",
+          "Marsh; Waugh (2013)",
+          "2013",
+          "10.3791/50163",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3605807/"
+        ],
+        [
+          "L-009",
+          "The glycocalyx: a novel diagnostic and therapeutic target in sepsis",
+          "Uchimido; Schmidt; Shapiro (2019)",
+          "2019",
+          "10.1186/s13054-018-2292-6",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC6337861/"
+        ],
+        [
+          "L-010",
+          "Glycocalyx in Endotoxemia and Sepsis",
+          "Goligorsky; Sun (2020)",
+          "2020",
+          "10.1016/j.ajpath.2019.06.017",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7180514/"
+        ],
+        [
+          "L-011",
+          "Vasculopathy in COVID-19",
+          "Flaumenhaft; Enjyoji; Schmaier (2022)",
+          "2022",
+          "10.1182/blood.2021012250",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC8736280/"
+        ],
+        [
+          "L-012",
+          "Endothelial cell metabolism in cardiovascular physiology and disease",
+          "Pasut et al. (2025)",
+          "2025",
+          "10.1038/s41569-025-01162-x",
+          "https://doi.org/10.1038/s41569-025-01162-x"
+        ],
+        [
+          "L-013",
+          "Empagliflozin-mediated protection of heparan sulfate-rich endothelial glycocalyx during vascular inflammation",
+          "Chorazy et al. (2026)",
+          "2026",
+          "10.1016/j.bcp.2026.117890",
+          "https://doi.org/10.1016/j.bcp.2026.117890"
+        ],
+        [
+          "L-014",
+          "Effects of GLP-1 Receptor Agonists, SGLT2 Inhibitors, and Their Combination on Endothelial Glycocalyx, Arterial Function, and Myocardial Work Index in Patients With Type 2 Diabetes Mellitus After 12-Month Treatment",
+          "Ikonomidis et al. (2020)",
+          "2020",
+          "10.1161/JAHA.119.015716",
+          "https://doi.org/10.1161/JAHA.119.015716"
+        ],
+        [
+          "L-015",
+          "Mechano-sensing and transduction by endothelial surface glycocalyx: composition, structure, and function",
+          "Revisão (2013)",
+          "2013",
+          "",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC4157334/"
+        ],
+        [
+          "L-016",
+          "A microscopic view on the renal endothelial glycocalyx",
+          "Revisão (2015)",
+          "2015",
+          "10.1152/ajprenal.00532.2014",
+          "https://doi.org/10.1152/ajprenal.00532.2014"
+        ],
+        [
+          "L-017",
+          "The endothelial glycocalyx: composition, functions, and visualization",
+          "Revisão (2007)",
+          "2007",
+          "10.1007/s00424-007-0212-8",
+          "https://doi.org/10.1007/s00424-007-0212-8"
+        ],
+        [
+          "L-018",
+          "The role of endothelial glycocalyx components in mechanotransduction of fluid shear stress",
+          "Pahakis et al. (2007)",
+          "2007",
+          "10.1016/j.bbrc.2007.01.137",
+          "https://doi.org/10.1016/j.bbrc.2007.01.137"
+        ],
+        [
+          "L-019",
+          "Low myocardial protein kinase G activity in heart failure with preserved ejection fraction",
+          "van Heerebeek et al. (2012)",
+          "2012",
+          "10.1161/CIRCULATIONAHA.111.076075",
+          "https://doi.org/10.1161/CIRCULATIONAHA.111.076075"
+        ],
+        [
+          "L-020",
+          "Hyaluronan and Syndecan-1: Linking Glycocalyx Degradation to Development and Progression of Heart Failure With Preserved Ejection Fraction",
+          "Rocha-Oliveira et al. (2026)",
+          "2026",
+          "10.1161/JAHA.125.044788",
+          "https://doi.org/10.1161/JAHA.125.044788"
+        ],
+        [
+          "L-021",
+          "Changes in isoform composition, structure, and functional properties of titin from Mongolian gerbil cardiac muscle after space flight",
+          "Vikhlyantsev et al. (2011)",
+          "2011",
+          "10.1134/S0006297911120042",
+          "https://doi.org/10.1134/S0006297911120042"
+        ],
+        [
+          "L-022",
+          "Rbm20 antisense oligonucleotides alleviate diastolic dysfunction in a mouse model of cardiometabolic heart failure (HFpEF)",
+          "Methawasin et al. (2025)",
+          "2025",
+          "10.1093/cvr/cvaf171",
+          "https://doi.org/10.1093/cvr/cvaf171"
+        ],
+        [
+          "L-023",
+          "Updates on the endothelial glycocalyx in heart failure with preserved ejection fraction",
+          "Lagrange et al. (2025)",
+          "2025",
+          "10.1152/ajpheart.00410.2025",
+          "https://pubmed.ncbi.nlm.nih.gov/41071683/"
+        ],
+        [
+          "L-024",
+          "Human heart-on-a-chip model emulates structural and functional characteristics of diastolic dysfunction and reveals a beneficial role for senolytics",
+          "Mourad et al. (2025)",
+          "2025",
+          "10.1016/j.actbio.2025.07.008",
+          "https://pubmed.ncbi.nlm.nih.gov/40618973/"
+        ],
+        [
+          "L-025",
+          "Generation and Culture of Cardiac Microtissues in a Microfluidic Chip with a Reversible Open Top Enables Electrical Pacing, Dynamic Drug Dosing and Endothelial Cell Co-Culture",
+          "Vivas et al. (2022)",
+          "2022",
+          "10.1002/admt.202101355",
+          "https://doi.org/10.1002/admt.202101355"
+        ],
+        [
+          "L-026",
+          "Heart-on-a-chip and vasculature-on-a-chip platforms as models of cardiovascular disease",
+          "Khosravi; Radisic (2026)",
+          "2026",
+          "10.1038/s41569-026-01255-1",
+          "https://www.nature.com/articles/s41569-026-01255-1"
+        ],
+        [
+          "L-027",
+          "Microfluidics in heart-on-a-chip platforms for cardiovascular drug discovery and cardiotoxicity assessment",
+          "Dikyol et al. (2026)",
+          "2026",
+          "10.1016/j.addr.2026.115972",
+          "https://pubmed.ncbi.nlm.nih.gov/42700845/"
+        ],
+        [
+          "L-028",
+          "Heart-on-a-chip systems: disease modeling and drug screening applications",
+          "Butler; Reyes (2024)",
+          "2024",
+          "10.1039/D3LC00829K",
+          "https://doi.org/10.1039/D3LC00829K"
+        ],
+        [
+          "L-029",
+          "Evolutionary History of the Comorbidity-Driven Coronary Microvascular Endothelial Inflammation Hypothesis and Its Metamorphosis to the Adipokine Hypothesis of Heart Failure With a Preserved Ejection Fraction",
+          "Packer (online 2025; volume 2026)",
+          "2025",
+          "10.1016/j.jchf.2025.102822",
+          "https://pubmed.ncbi.nlm.nih.gov/41269201/"
+        ],
+        [
+          "L-030",
+          "Optimizing the discovery and assessment of therapeutic targets in heart failure with preserved ejection fraction",
+          "Fusco-Allison et al. (2021)",
+          "2021",
+          "10.1002/ehf2.13504",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC8497375/"
+        ]
+      ]
+    },
+    "FONTES_11OUT": {
+      "header": [
+        "id",
+        "title",
+        "authors",
+        "year",
+        "doi",
+        "url"
+      ],
+      "rows": [
+        [
+          "F11-001",
+          "Vasculopathy in COVID-19",
+          "Flaumenhaft et al.",
+          "2022",
+          "10.1182/blood.2021012250",
+          "https://doi.org/10.1182/blood.2021012250"
+        ],
+        [
+          "F11-002",
+          "Understanding COVID-19-associated coagulopathy",
+          "Conway et al.",
+          "2022",
+          "10.1038/s41577-022-00762-9",
+          "https://doi.org/10.1038/s41577-022-00762-9"
+        ],
+        [
+          "F11-003",
+          "Pathogenesis of COVID-19 Described Through the Lens of an Undersulfated and Degraded Epithelial and Endothelial Glycocalyx",
+          "du Preez et al.",
+          "2022",
+          "10.1096/fj.202101100RR",
+          "https://doi.org/10.1096/fj.202101100RR"
+        ],
+        [
+          "F11-004",
+          "Endothelial Glycocalyx Injury in SARS-CoV-2 Infection: Molecular Mechanisms and Potential Targeted Therapy",
+          "Lv et al.",
+          "2023",
+          "10.1155/2023/6685251",
+          "https://doi.org/10.1155/2023/6685251"
+        ],
+        [
+          "F11-005",
+          "Extensive Blood Transcriptome Analysis Reveals Cellular Signaling Networks Activated by Circulating Glycocalyx Components Reflecting Vascular Injury in COVID-19",
+          "Borrmann et al.",
+          "2023",
+          "10.3389/fimmu.2023.1129766",
+          "https://doi.org/10.3389/fimmu.2023.1129766"
+        ],
+        [
+          "F11-006",
+          "Serum syndecan-1 is related to severity and prognosis of COVID-19 patients: a perspective cohort study",
+          "Ma et al.",
+          "2025",
+          "10.1186/s12890-025-03768-w",
+          "https://doi.org/10.1186/s12890-025-03768-w"
+        ],
+        [
+          "F11-007",
+          "Heparin Prevents in Vitro Glycocalyx Shedding Induced by Plasma From COVID-19 Patients",
+          "Potje et al.",
+          "2021",
+          "10.1016/j.lfs.2021.119376",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7997864/"
+        ],
+        [
+          "F11-008",
+          "Clinical Implications of COVID-19-Related Endothelial Dysfunction",
+          "Aljadah et al.",
+          "2024",
+          "10.1016/j.jacadv.2024.101070",
+          "https://doi.org/10.1016/j.jacadv.2024.101070"
+        ],
+        [
+          "F11-009",
+          "Exercise Intolerance and Response to Training in Patients With Postacute Sequelae of SARS-CoV2 (Long COVID): A Scientific Statement From the American Heart Association",
+          "Cornwell et al.",
+          "2025",
+          "10.1161/CIR.0000000000001348",
+          "https://doi.org/10.1161/CIR.0000000000001348"
+        ],
+        [
+          "F11-010",
+          "Association of COVID-19 With Impaired Endothelial Glycocalyx, Vascular Function And myocardial Deformation 4 Months After Infection",
+          "Lambadiari et al.",
+          "2021",
+          "10.1002/ejhf.2326",
+          "https://doi.org/10.1002/ejhf.2326"
+        ],
+        [
+          "F11-011",
+          "Severity-associated endothelial dysfunction in post-COVID-19 patients: flow-mediated dilation and vasoactive biomarkers",
+          "Palii et al.",
+          "2026",
+          "",
+          ""
+        ],
+        [
+          "F11-012",
+          "Cardiopulmonary crosstalk in Long COVID: a systematic review of emerging evidence",
+          "Arab et al.",
+          "2025",
+          "10.1186/s12872-025-05185-7",
+          "https://doi.org/10.1186/s12872-025-05185-7"
+        ],
+        [
+          "F11-013",
+          "Long COVID endotheliopathy: hypothesized mechanisms and potential therapeutic approaches",
+          "Ahamed; Laurence",
+          "2022",
+          "10.1172/JCI161167",
+          "https://doi.org/10.1172/JCI161167"
+        ],
+        [
+          "F11-014",
+          "Necroptosis and Cellular Stress Characterize Immune and Endothelial Dysfunction in Long COVID",
+          "Dias et al.",
+          "2026",
+          "10.1016/j.jaci.2026.06.026",
+          "https://doi.org/10.1016/j.jaci.2026.06.026"
+        ],
+        [
+          "F11-015",
+          "Is the Endothelium the Missing Link in the Pathophysiology and Treatment of COVID-19 Complications?",
+          "Castro et al.",
+          "2022",
+          "10.1007/s10557-021-07207-w",
+          "https://doi.org/10.1007/s10557-021-07207-w"
+        ],
+        [
+          "F11-016",
+          "Long COVID: major findings, mechanisms and recommendations",
+          "Davis et al.",
+          "2023",
+          "10.1038/s41579-022-00846-2",
+          "https://doi.org/10.1038/s41579-022-00846-2"
+        ],
+        [
+          "F11-017",
+          "Postural Orthostatic Tachycardia Syndrome as a Sequela of COVID-19",
+          "Ormiston et al.",
+          "2022",
+          "10.1016/j.hrthm.2022.07.014",
+          "https://doi.org/10.1016/j.hrthm.2022.07.014"
+        ],
+        [
+          "F11-018",
+          "The immunology of long COVID",
+          "Altmann et al.",
+          "2023",
+          "10.1038/s41577-023-00904-7",
+          "https://doi.org/10.1038/s41577-023-00904-7"
+        ],
+        [
+          "F11-019",
+          "Postural Orthostatic Tachycardia Syndrome (POTS): A Review",
+          "Chung; Raj",
+          "2026",
+          "10.1001/jama.2026.14809",
+          "https://doi.org/10.1001/jama.2026.14809"
+        ],
+        [
+          "F11-020",
+          "Cardiorespiratory dysautonomia in post-COVID-19 condition: Manifestations, mechanisms and management",
+          "Fedorowski et al.",
+          "2023",
+          "10.1111/joim.13652",
+          "https://doi.org/10.1111/joim.13652"
+        ],
+        [
+          "F11-021",
+          "Mechanisms of long COVID and the path toward therapeutics",
+          "Peluso; Deeks",
+          "2024",
+          "10.1016/j.cell.2024.07.054",
+          "https://doi.org/10.1016/j.cell.2024.07.054"
+        ],
+        [
+          "F11-022",
+          "A Post-Pandemic Enigma: The Cardiovascular Impact of Post-Acute Sequelae of SARS-CoV-2",
+          "Singh et al.",
+          "2023",
+          "10.1161/CIRCRESAHA.122.322228",
+          "https://doi.org/10.1161/CIRCRESAHA.122.322228"
+        ],
+        [
+          "F11-023",
+          "Dysregulations in hemostasis, metabolism, immune response, and angiogenesis in post-acute COVID-19 syndrome with and without postural orthostatic tachycardia syndrome: a multi-omic profiling study",
+          "Mahdi et al.",
+          "2023",
+          "10.1038/s41598-023-47539-1",
+          "https://www.nature.com/articles/s41598-023-47539-1"
+        ],
+        [
+          "F11-024",
+          "Post-Covid Postural Orthostatic Tachycardia Syndrome and Inappropriate Sinus Tachycardia: Prevalence, Overlap, and Clinical Characteristics",
+          "Juszczyk et al.",
+          "2026",
+          "10.1016/j.jacadv.2026.102702",
+          "https://doi.org/10.1016/j.jacadv.2026.102702"
+        ],
+        [
+          "F11-025",
+          "Autoantibodies in Long COVID: A Systematic Review",
+          "Wilhelm; Cadamuro; Mink",
+          "2025 online / 2026 volume",
+          "10.1016/S1473-3099(25)00411-6",
+          "https://doi.org/10.1016/S1473-3099(25)00411-6"
+        ],
+        [
+          "F11-026",
+          "Involvement of autoantibodies against G protein-coupled receptors in post-COVID condition and Chronic Fatigue Syndrome",
+          "Azcue et al.",
+          "2026",
+          "10.1038/s41598-026-49131-9",
+          "https://www.nature.com/articles/s41598-026-49131-9"
+        ],
+        [
+          "F11-027",
+          "Autoantibodies in COVID-19 and Other Viral Diseases: Molecular, Cellular, and Clinical Perspectives",
+          "Chatterjee et al.",
+          "2024",
+          "10.1002/rmv.2583",
+          "https://doi.org/10.1002/rmv.2583"
+        ],
+        [
+          "F11-028",
+          "Circulating Anti-Nuclear Autoantibodies in COVID-19 Survivors Predict Long COVID Symptoms",
+          "Son et al.",
+          "2023",
+          "10.1183/13993003.00970-2022",
+          "https://doi.org/10.1183/13993003.00970-2022"
+        ],
+        [
+          "F11-029",
+          "Persistent Capillary Rarefication in Long COVID Syndrome",
+          "Osiaevi et al.",
+          "2022 online / 2023 volume",
+          "10.1007/s10456-022-09850-9",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC9366128/"
+        ],
+        [
+          "F11-030",
+          "Effects of 4-Month Treatment With Glycocalyx Dietary Supplement on Endothelial Glycocalyx and Vascular Function After COVID-19 Infection",
+          "Pavlidis et al.",
+          "2025",
+          "10.1111/eci.70058",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC12169083/"
+        ],
+        [
+          "F11-031",
+          "Indications of Persistent Glycocalyx Damage in Convalescent COVID-19 Patients: A Prospective Multicenter Study and Hypothesis",
+          "Vollenberg et al.",
+          "2021",
+          "10.3390/v13112324",
+          "https://doi.org/10.3390/v13112324"
+        ],
+        [
+          "F11-032",
+          "Endothelial Glycocalyx Turnover in Vascular Health and Disease: Rethinking Endothelial Dysfunction",
+          "Gomez Toledo et al.",
+          "2025",
+          "10.1146/annurev-biochem-032620-104745",
+          "https://doi.org/10.1146/annurev-biochem-032620-104745"
+        ],
+        [
+          "F11-033",
+          "Endothelial Glycocalyx",
+          "Foote et al.",
+          "2022",
+          "10.1002/cphy.c210029",
+          "https://doi.org/10.1002/cphy.c210029"
+        ],
+        [
+          "F11-034",
+          "A Review on the Physiological and Pathophysiological Role of Endothelial Glycocalyx",
+          "Liu et al.",
+          "2020",
+          "10.1002/jbt.22571",
+          "https://doi.org/10.1002/jbt.22571"
+        ],
+        [
+          "F11-035",
+          "Endothelial Cell Dysfunction and Glycocalyx - A Vicious Circle",
+          "Zhang et al.",
+          "2018",
+          "10.1016/j.matbio.2018.01.026",
+          "https://doi.org/10.1016/j.matbio.2018.01.026"
+        ],
+        [
+          "F11-036",
+          "Regional specific adaptation of the endothelial glycocalyx dimension in tail-suspended rats",
+          "Kang et al.",
+          "2014 online / 2015 volume",
+          "10.1007/s00424-014-1568-1",
+          "https://pubmed.ncbi.nlm.nih.gov/24996927/"
+        ],
+        [
+          "F11-037",
+          "Five days of head-down-tilt bed rest induces noninflammatory shedding of L-selectin",
+          "Feuerecker et al.",
+          "2013",
+          "10.1152/japplphysiol.00381.2013",
+          "https://journals.physiology.org/doi/full/10.1152/japplphysiol.00381.2013"
+        ],
+        [
+          "F11-038",
+          "Human muscle sympathetic neural and haemodynamic responses to tilt following spaceflight",
+          "Levine et al.; autoria completa a conferir",
+          "2002",
+          "",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC2290017/"
+        ],
+        [
+          "F11-039",
+          "The Importance of Integrated Regulation Mechanism of Coronary Microvascular Function for Maintaining the Stability of Coronary Microcirculation: An Easily Overlooked Perspective",
+          "Zhu H, Wang H, Zhu X, et al",
+          "2023",
+          "10.1007/s12325-022-02343-7",
+          "https://doi.org/10.1007/s12325-022-02343-7"
+        ],
+        [
+          "F11-040",
+          "Vascular Endothelium: Vasoactive Mediators",
+          "Vanhoutte PM, Mombouli JV",
+          "1996",
+          "10.1016/s0033-0620(96)80003-x",
+          "https://doi.org/10.1016/s0033-0620(96)80003-x"
+        ],
+        [
+          "F11-041",
+          "Phosphodiesterase in heart and vessels: from physiology to diseases",
+          "Fu Q, Wang Y, Yan C, Xiang YK",
+          "2024",
+          "10.1152/physrev.00015.2023",
+          "https://doi.org/10.1152/physrev.00015.2023"
+        ],
+        [
+          "F11-042",
+          "An Endothelium-Derived Hyperpolarizing Factor Distinct From NO and Prostacyclin Is a Major Endothelium-Dependent Vasodilator in Resistance Vessels of Wild-Type and Endothelial NO Synthase Knockout Mice",
+          "Brandes RP, Schmitz-Winnenthal FH, Félétou M, et al",
+          "2000",
+          "10.1073/pnas.97.17.9747",
+          "https://doi.org/10.1073/pnas.97.17.9747"
+        ],
+        [
+          "F11-043",
+          "Leptin and the regulation of endothelial function in physiological and pathological conditions",
+          "Bełtowski J",
+          "2012",
+          "10.1111/j.1440-1681.2011.05623.x",
+          "https://doi.org/10.1111/j.1440-1681.2011.05623.x"
+        ],
+        [
+          "F11-044",
+          "Smooth Muscle Ion Channels and Regulation of Vascular Tone in Resistance Arteries and Arterioles",
+          "Tykocki NR, Boerman EM, Jackson WF",
+          "2017",
+          "10.1002/cphy.c160011",
+          "https://doi.org/10.1002/cphy.c160011"
+        ],
+        [
+          "F11-045",
+          "Heparan sulfate proteoglycan glypican-1 and PECAM-1 cooperate in shear-induced endothelial nitric oxide production",
+          "Bartosch AMW, Mathews R, Mahmoud MM, et al",
+          "2021",
+          "10.1038/s41598-021-90941-w",
+          "https://doi.org/10.1038/s41598-021-90941-w"
+        ],
+        [
+          "F11-046",
+          "Cyclic Nucleotide-Dependent Relaxation Pathways in Vascular Smooth Muscle",
+          "Morgado M, Cairrão E, Santos-Silva AJ, Verde I",
+          "2012",
+          "10.1007/s00018-011-0815-2",
+          "https://doi.org/10.1007/s00018-011-0815-2"
+        ],
+        [
+          "F11-047",
+          "Intracellular Mechanisms Involved in the Regulation of Vascular Smooth Muscle Tone",
+          "Walsh MP, Kargacin GJ, Kendrick-Jones J, Lincoln TM",
+          "1995",
+          "10.1139/y95-072",
+          "https://doi.org/10.1139/y95-072"
+        ],
+        [
+          "F11-048",
+          "The Role of Adenosine A2A Receptor, CYP450s, and PPARs in the Regulation of Vascular Tone",
+          "Khayat MT, Nayeem MA",
+          "2017",
+          "10.1155/2017/1720920",
+          "https://doi.org/10.1155/2017/1720920"
+        ],
+        [
+          "F11-049",
+          "Impaired Vasodilation in the Pathogenesis of Hypertension: Focus on Nitric Oxide, Endothelial‐Derived Hyperpolarizing Factors, and Prostaglandins",
+          "Giles TD, Sander GE, Nossaman BD, Kadowitz PJ",
+          "2012",
+          "10.1111/j.1751-7176.2012.00606.x",
+          "https://doi.org/10.1111/j.1751-7176.2012.00606.x"
+        ],
+        [
+          "F11-050",
+          "The glycocalyx and its significance in human medicine",
+          "Tarbell JM, Cancel LM",
+          "2016",
+          "10.1111/joim.12465",
+          "https://doi.org/10.1111/joim.12465"
+        ],
+        [
+          "F11-051",
+          "Sulodexide Recovers Endothelial Function Through Reconstructing Glycocalyx in the Balloon-Injury Rat Carotid Artery Model",
+          "Li T, Liu X, Zhao Z, Ni L, Liu C",
+          "2017",
+          "10.18632/oncotarget.20518",
+          "https://doi.org/10.18632/oncotarget.20518"
+        ],
+        [
+          "F11-052",
+          "Effect of Sulodexide on Endothelial Glycocalyx and Vascular Permeability in Patients With Type 2 Diabetes Mellitus",
+          "Broekhuizen LN, Lemkes BA, Mooij HL, et al",
+          "2010",
+          "10.1007/s00125-010-1910-x",
+          "https://doi.org/10.1007/s00125-010-1910-x"
+        ],
+        [
+          "F11-053",
+          "Sulodexide Improves Vascular Permeability via Glycocalyx Remodelling in Endothelial Cells During Sepsis",
+          "Ying J, Zhang C, Wang Y, et al",
+          "2023",
+          "10.3389/fimmu.2023.1172892",
+          "https://doi.org/10.3389/fimmu.2023.1172892"
+        ],
+        [
+          "F11-054",
+          "The glycocalyx: a novel diagnostic and therapeutic target in sepsis",
+          "Uchimido R, Schmidt EP, Shapiro NI",
+          "2019",
+          "10.1186/s13054-018-2292-6",
+          "https://doi.org/10.1186/s13054-018-2292-6"
+        ],
+        [
+          "F11-055",
+          "Targeting Endothelial Dysfunction in Acute Critical Illness to Reduce Organ Failure",
+          "Juffermans NP, van den Brom CE, Kleinveld DJB",
+          "2020",
+          "10.1213/ANE.0000000000005023",
+          "https://doi.org/10.1213/ANE.0000000000005023"
+        ],
+        [
+          "F11-056",
+          "Endothelial glycocalyx in traumatic brain injury associated coagulopathy: potential mechanisms and impact",
+          "Zou Z, Li L, Schäfer N, et al",
+          "2021",
+          "10.1186/s12974-021-02192-1",
+          "https://doi.org/10.1186/s12974-021-02192-1"
+        ],
+        [
+          "F11-057",
+          "Resuscitation Fluids as Drugs: Targeting the Endothelial Glycocalyx",
+          "Wang G, Zhang H, Liu D, Wang X",
+          "2022",
+          "10.1097/CM9.0000000000001869",
+          "https://doi.org/10.1097/CM9.0000000000001869"
+        ],
+        [
+          "F11-058",
+          "No association between intravenous fluid volume and endothelial glycocalyx shedding in patients undergoing resuscitation for sepsis in the emergency department",
+          "Macdonald S, Bosio E, Shapiro NI, et al",
+          "2022",
+          "10.1038/s41598-022-12752-x",
+          "https://doi.org/10.1038/s41598-022-12752-x"
+        ],
+        [
+          "F11-059",
+          "Recombinant thrombomodulin and recombinant antithrombin attenuate pulmonary endothelial glycocalyx degradation and neutrophil extracellular trap formation in ventilator-induced lung injury in the context of endotoxemia",
+          "Kikuchi K, Kazuma S, Yamakage M",
+          "2024",
+          "10.1186/s12931-024-02958-0",
+          "https://doi.org/10.1186/s12931-024-02958-0"
+        ],
+        [
+          "F11-060",
+          "Endothelial glycocalyx is damaged in diabetic cardiomyopathy: angiopoietin 1 restores glycocalyx and improves diastolic function in mice",
+          "Qiu Y, Buffonge S, Ramnath R, et al",
+          "2022",
+          "10.1007/s00125-022-05650-4",
+          "https://doi.org/10.1007/s00125-022-05650-4"
+        ],
+        [
+          "F11-061",
+          "Impact of Dietary Supplementation of Glycocalyx Precursors on Vascular Function in Type 2 Diabetes",
+          "Smith JA, Ramirez-Perez FI, Burr K, et al",
+          "1985",
+          "10.1152/japplphysiol.00651.2024",
+          "https://doi.org/10.1152/japplphysiol.00651.2024"
+        ],
+        [
+          "F11-062",
+          "FDA Orange Book",
+          "FDA Orange Book.",
+          "Não informado",
+          "",
+          "https://www.fda.gov/drugs/drug-approvals-and-databases/approved-drug-products-therapeutic-equivalence-evaluations-orange-book"
+        ],
+        [
+          "F11-063",
+          "Elevated endothelial dysfunction-related biomarker levels indicate the severity and predict sepsis incidence",
+          "Zhou G, Liu J, Zhang H, Wang X, Liu D",
+          "2022",
+          "10.1038/s41598-022-26623-y",
+          "https://doi.org/10.1038/s41598-022-26623-y"
+        ],
+        [
+          "F11-064",
+          "Syndecan-1 as a Biomarker of Endothelial Glycocalyx Injury in Sepsis: A Meta-Analysis of Associations With Shock, Organ Complications and Mortality",
+          "Xu D, Dong C, Zhao Z, Hou S",
+          "2026",
+          "10.1093/postmj/qgag053",
+          "https://doi.org/10.1093/postmj/qgag053"
+        ],
+        [
+          "F11-065",
+          "Endothelial Glycocalyx Impairment in Disease: Focus on Hyaluronan Shedding",
+          "Dogné S, Flamion B",
+          "2020",
+          "10.1016/j.ajpath.2019.11.016",
+          "https://doi.org/10.1016/j.ajpath.2019.11.016"
+        ],
+        [
+          "F11-066",
+          "Resuscitation Fluid Choices to Preserve the Endothelial Glycocalyx",
+          "Milford EM, Reade MC",
+          "2019",
+          "10.1186/s13054-019-2369-x",
+          "https://doi.org/10.1186/s13054-019-2369-x"
+        ],
+        [
+          "F11-067",
+          "Plasma Syndecan-1 and Heparan Sulfate Correlate With Microvascular Glycocalyx Degradation in Hemorrhaged Rats After Different Resuscitation Fluids",
+          "Torres Filho IP, Torres LN, Salgado C, Dubick MA",
+          "2016",
+          "10.1152/ajpheart.00006.2016",
+          "https://doi.org/10.1152/ajpheart.00006.2016"
+        ],
+        [
+          "F11-068",
+          "Plasma Endothelial Glycocalyx Components as a Potential Biomarker for Predicting the Development of Disseminated Intravascular Coagulation in Patients With Sepsis",
+          "Huang X, Hu H, Sun T, et al",
+          "2021",
+          "10.1177/0885066620949131",
+          "https://doi.org/10.1177/0885066620949131"
+        ],
+        [
+          "F11-069",
+          "Endothelial damage in septic shock patients as evidenced by circulating syndecan-1, sphingosine-1-phosphate and soluble VE-cadherin: a substudy of ALBIOS",
+          "Piotti A, Novelli D, Meessen JMTA, et al",
+          "2021",
+          "10.1186/s13054-021-03545-1",
+          "https://doi.org/10.1186/s13054-021-03545-1"
+        ],
+        [
+          "F11-070",
+          "Circulating glycocalyx shedding products as biomarkers for evaluating prognosis of patients with out-of-hospital cardiac arrest after return of spontaneous circulation",
+          "Li J, Qi Z, Sun C, et al",
+          "2024",
+          "10.1038/s41598-024-68738-4",
+          "https://doi.org/10.1038/s41598-024-68738-4"
+        ],
+        [
+          "F11-071",
+          "Association of sublingual microcirculation parameters and endothelial glycocalyx dimensions in resuscitated sepsis",
+          "Rovas A, Seidel LM, Vink H, et al",
+          "2019",
+          "10.1186/s13054-019-2542-2",
+          "https://doi.org/10.1186/s13054-019-2542-2"
+        ],
+        [
+          "F11-072",
+          "Effect of gestational age and postnatal age on the endothelial glycocalyx in neonates",
+          "Puchwein-Schwepcke A, Artmann S, Rajwich L, Genzel-Boroviczény O, Nussbaum C",
+          "2021",
+          "10.1038/s41598-021-81847-8",
+          "https://doi.org/10.1038/s41598-021-81847-8"
+        ],
+        [
+          "F11-073",
+          "Variability of microcirculatory measurements in healthy volunteers",
+          "Bol ME, Broddin BEK, Delhaas T, Sels JEM, van de Poll MCG",
+          "2022",
+          "10.1038/s41598-022-22947-x",
+          "https://doi.org/10.1038/s41598-022-22947-x"
+        ],
+        [
+          "F11-074",
+          "MiniMed TM 780G Hybrid Closed-Loop Systems Improves Markers of Vascular and Endothelial Function in Patients with Type 1 Diabetes: Association with Continuous Glucose Monitoring Metrics",
+          "Kountouri A, Ikonomidis I, Katogiannis K, et al",
+          "2026",
+          "10.1177/15209156261417289",
+          "https://doi.org/10.1177/15209156261417289"
+        ],
+        [
+          "F11-075",
+          "Microvascular Glycocalyx Dimension Estimated by Automated SDF Imaging is not Related to Cardiovascular Disease",
+          "Amraoui F, Olde Engberink RH, van Gorp J, et al",
+          "1994",
+          "10.1111/micc.12125",
+          "https://doi.org/10.1111/micc.12125"
+        ],
+        [
+          "F11-076",
+          "Sublingual Sidestream Dark Field (SDF) Microscopy With GlycoCheck Analysis in Individuals With and Without Cardiovascular Risk Factors and Disease",
+          "Haller MD, Xia Y, McGowan NG, et al",
+          "2026",
+          "10.1161/JAHA.125.043562",
+          "https://doi.org/10.1161/JAHA.125.043562"
+        ],
+        [
+          "F11-077",
+          "In Vivo Assessment of the Human Cerebral Microcirculation and Its Glycocalyx: A Technical Report",
+          "Haeren RHL, Rijkers K, Schijns OEMG, et al",
+          "2018",
+          "10.1016/j.jneumeth.2018.03.009",
+          "https://doi.org/10.1016/j.jneumeth.2018.03.009"
+        ],
+        [
+          "F11-078",
+          "Relationship Between Heart Rate Variability and Endothelial Function in Healthy Subjects",
+          "Pinter A, Horvath T, Sarkozi A, Kollai M",
+          "2012",
+          "10.1016/j.autneu.2012.05.005",
+          "https://doi.org/10.1016/j.autneu.2012.05.005"
+        ],
+        [
+          "F11-079",
+          "Activation of the C3a–C3aReceptor-axis is associated with endothelial dysfunction and glycocalyx damage in ST-elevation myocardial infarction",
+          "Vahldieck C, Löning S, Hamacher C, et al",
+          "2026",
+          "10.1007/s00395-026-01181-w",
+          "https://doi.org/10.1007/s00395-026-01181-w"
+        ],
+        [
+          "F11-080",
+          "Association of impaired endothelial glycocalyx with arterial stiffness, coronary microcirculatory dysfunction, and abnormal myocardial deformation in untreated hypertensives",
+          "Ikonomidis I, Voumvourakis A, Makavos G, et al",
+          "2018",
+          "10.1111/jch.13236",
+          "https://doi.org/10.1111/jch.13236"
+        ],
+        [
+          "F11-081",
+          "Increase in perfused boundary region of endothelial glycocalyx is associated with higher prevalence of ischemic heart disease and lesions of microcirculation and vascular wall",
+          "Gorshkov AY, Klimushina MV, Boytsov SA, Kots AY, Gumanova NG",
+          "1994",
+          "10.1111/micc.12454",
+          "https://doi.org/10.1111/micc.12454"
+        ],
+        [
+          "F11-082",
+          "Sublingual Endothelial Glycocalyx and Atherosclerosis",
+          "A Cross-Sectional Study",
+          "2019",
+          "10.1371/journal.pone.0213097",
+          "https://doi.org/10.1371/journal.pone.0213097"
+        ],
+        [
+          "F11-083",
+          "Endothelial Nanomechanics in the Context of Endothelial (Dys)function and Inflammation",
+          "Fels J, Kusche-Vihrog K",
+          "2019",
+          "10.1089/ars.2017.7327",
+          "https://doi.org/10.1089/ars.2017.7327"
+        ],
+        [
+          "F11-084",
+          "Modulation of Local and Systemic Heterocellular Communication by Mechanical Forces: A Role of Endothelial Nitric Oxide Synthase",
+          "Erkens R, Suvorava T, Kramer CM, et al",
+          "2017",
+          "10.1089/ars.2016.6904",
+          "https://doi.org/10.1089/ars.2016.6904"
+        ],
+        [
+          "F11-085",
+          "Endothelial Glycocalyx, Mucin, and Glycan: A Hierarchical Synthesis From Molecular Building Blocks to Supramolecular Functional Barriers",
+          "Tomita H, Suzuki A, Okada H",
+          "1994",
+          "10.1111/micc.70069",
+          "https://doi.org/10.1111/micc.70069"
+        ],
+        [
+          "F11-086",
+          "Shear-Induced Nitric Oxide Production by Endothelial Cells",
+          "Sriram K, Laughlin JG, Rangamani P, Tartakovsky DM",
+          "2016",
+          "10.1016/j.bpj.2016.05.034",
+          "https://doi.org/10.1016/j.bpj.2016.05.034"
+        ],
+        [
+          "F11-087",
+          "Blood Brothers: Hemodynamics and Cell–Matrix Interactions in Endothelial Function",
+          "Yurdagul A, Orr AW",
+          "2016",
+          "10.1089/ars.2015.6525",
+          "https://doi.org/10.1089/ars.2015.6525"
+        ],
+        [
+          "F11-088",
+          "Endothelial Surface Glycocalyx Can Regulate Flow-Induced Nitric Oxide Production in Microvessels in Vivo",
+          "Yen W, Cai B, Yang J, et al",
+          "2015",
+          "10.1371/journal.pone.0117133",
+          "https://doi.org/10.1371/journal.pone.0117133"
+        ],
+        [
+          "F11-089",
+          "Capillary rarefaction during bed rest is proportionally less than fibre atrophy and loss of oxidative capacity",
+          "Hendrickse PW, Wüst RCI, Ganse B, et al",
+          "2022",
+          "10.1002/jcsm.13072",
+          "https://doi.org/10.1002/jcsm.13072"
+        ],
+        [
+          "F11-090",
+          "Impacts of Physical Inactivity Models on Endothelial Function: A Systematic Review",
+          "Harden JE, David Branch J, Reynolds LJ",
+          "2025",
+          "10.1007/s40279-025-02238-x",
+          "https://doi.org/10.1007/s40279-025-02238-x"
+        ],
+        [
+          "F11-091",
+          "Myovascular Niche: The Role of Endothelial Cells in Skeletal Muscle Health and Disease",
+          "Kashaniasl Z, Molaei DD, Liu M, et al",
+          "2026",
+          "10.1161/CIRCRESAHA.126.328678",
+          "https://doi.org/10.1161/CIRCRESAHA.126.328678"
+        ],
+        [
+          "F11-092",
+          "Sedentary behaviour and physical activity are associated with biomarkers of endothelial dysfunction and low-grade inflammation—relevance for (pre)diabetes: The Maastricht Study",
+          "Vandercappellen EJ, Koster A, Savelberg HHCM, et al",
+          "2022",
+          "10.1007/s00125-022-05651-3",
+          "https://doi.org/10.1007/s00125-022-05651-3"
+        ],
+        [
+          "F11-093",
+          "Endothelial-derived cardiovascular disease-related microRNAs elevated with prolonged sitting pattern among postmenopausal women",
+          "Chang YJ, Tuz-Zahra F, Godbole S, et al",
+          "2021",
+          "10.1038/s41598-021-90154-1",
+          "https://doi.org/10.1038/s41598-021-90154-1"
+        ],
+        [
+          "F11-094",
+          "Physiology of Sedentary Behavior",
+          "Pinto AJ, Bergouignan A, Dempsey PC, et al",
+          "2023",
+          "10.1152/physrev.00022.2022",
+          "https://doi.org/10.1152/physrev.00022.2022"
+        ],
+        [
+          "F11-095",
+          "The Challenging Environment on Board the International Space Station Affects Endothelial Cell Function by Triggering Oxidative Stress Through Thioredoxin Interacting Protein Overexpression: The ESA-SPHINX Experiment",
+          "Versari S, Longinotti G, Barenghi L, Maier JA, Bradamante S",
+          "2013",
+          "10.1096/fj.13-229195",
+          "https://doi.org/10.1096/fj.13-229195"
+        ],
+        [
+          "F11-096",
+          "Leveraging Spaceflight to Advance Cardiovascular Research on Earth",
+          "Scott JM, Stoudemire J, Dolan L, Downs M",
+          "2022",
+          "10.1161/CIRCRESAHA.121.319843",
+          "https://doi.org/10.1161/CIRCRESAHA.121.319843"
+        ],
+        [
+          "F11-097",
+          "Simulated microgravity induces a NOX-sensitive oxidative response that is attenuated by resveratrol in human endothelial cells",
+          "Giordo R, Sanna C, Camboni S, et al",
+          "2026",
+          "10.1038/s41598-026-54184-x",
+          "https://doi.org/10.1038/s41598-026-54184-x"
+        ],
+        [
+          "F11-098",
+          "Cardiovascular adaptation to simulated microgravity and countermeasure efficacy assessed by ballistocardiography and seismocardiography",
+          "Rabineau J, Hossein A, Landreani F, et al",
+          "2020",
+          "10.1038/s41598-020-74150-5",
+          "https://doi.org/10.1038/s41598-020-74150-5"
+        ],
+        [
+          "F11-099",
+          "How Spaceflight Challenges Human Cardiovascular Health",
+          "Jirak P, Mirna M, Rezar R, et al",
+          "2022",
+          "10.1093/eurjpc/zwac029",
+          "https://doi.org/10.1093/eurjpc/zwac029"
+        ],
+        [
+          "F11-100",
+          "Gravity, Microgravity, and Artificial Gravity: Physiological Effects, Implementation, and Applications",
+          "Goswami N, Blaber AP, Valenti G, et al",
+          "2026",
+          "10.1152/physrev.00055.2024",
+          "https://doi.org/10.1152/physrev.00055.2024"
+        ],
+        [
+          "F11-101",
+          "Comprehensive assessment of physiological responses in women during the ESA dry immersion VIVALDI microgravity simulation",
+          "Robin A, Van Ombergen A, Laurens C, et al",
+          "2023",
+          "10.1038/s41467-023-41990-4",
+          "https://doi.org/10.1038/s41467-023-41990-4"
+        ],
+        [
+          "F11-102",
+          "Long-Term Cardiovascular Risk in Astronauts: Comparing NASA Mission Astronauts With a Healthy Cohort From the Cooper Center Longitudinal Study",
+          "Charvat JM, Leonard D, Barlow CE, et al",
+          "2022",
+          "10.1016/j.mayocp.2022.04.003",
+          "https://doi.org/10.1016/j.mayocp.2022.04.003"
+        ],
+        [
+          "F11-103",
+          "Radiation Exposure and Mortality from Cardiovascular Disease and Cancer in Early NASA Astronauts",
+          "Elgart SR, Little MP, Chappell LJ, et al",
+          "2018",
+          "10.1038/s41598-018-25467-9",
+          "https://doi.org/10.1038/s41598-018-25467-9"
+        ],
+        [
+          "F11-104",
+          "Cardiovascular Disease in Space: A Systematic Review",
+          "Krittanawong C, Isath A, Kaplin S, et al",
+          "2023",
+          "10.1016/j.pcad.2023.07.009",
+          "https://doi.org/10.1016/j.pcad.2023.07.009"
+        ],
+        [
+          "F11-105",
+          "Apollo Lunar Astronauts Show Higher Cardiovascular Disease Mortality: Possible Deep Space Radiation Effects on the Vascular Endothelium",
+          "Delp MD, Charvat JM, Limoli CL, Globus RK, Ghosh P",
+          "2016",
+          "10.1038/srep29901",
+          "https://doi.org/10.1038/srep29901"
+        ],
+        [
+          "F11-106",
+          "Arterial Structure and Function in the Years After Long-Duration Spaceflight",
+          "Lee SMC, Ribeiro LC, Martin DS, et al",
+          "1985",
+          "10.1152/japplphysiol.00264.2024",
+          "https://doi.org/10.1152/japplphysiol.00264.2024"
+        ],
+        [
+          "F11-107",
+          "Arterial Structure and Function During and After Long-Duration Spaceflight",
+          "Lee SMC, Ribeiro LC, Martin DS, et al",
+          "1985",
+          "10.1152/japplphysiol.00550.2019",
+          "https://doi.org/10.1152/japplphysiol.00550.2019"
+        ],
+        [
+          "F11-108",
+          "The case for space as a model of accelerated aging",
+          "Manwaring-Mueller M, Du H, Valentino TR, et al",
+          "2026",
+          "10.1038/s43587-026-01105-2",
+          "https://doi.org/10.1038/s43587-026-01105-2"
+        ],
+        [
+          "F11-109",
+          "Aging in Orbit: The Twelve Hallmarks as a Bidirectional Bridge Between Spaceflight-Induced Senescence and Terrestrial Geroscience",
+          "Minoretti P, Lista S, López-Ortiz S, et al",
+          "2026",
+          "10.1016/j.arr.2026.103191",
+          "https://doi.org/10.1016/j.arr.2026.103191"
+        ],
+        [
+          "F11-110",
+          "Heart in space: effect of the extraterrestrial environment on the cardiovascular system",
+          "Hughson RL, Helm A, Durante M",
+          "2018",
+          "10.1038/nrcardio.2017.157",
+          "https://doi.org/10.1038/nrcardio.2017.157"
+        ],
+        [
+          "F11-111",
+          "Hindlimb Unloading: Rodent Analog for Microgravity",
+          "Globus RK, Morey-Holton E",
+          "1985",
+          "10.1152/japplphysiol.00997.2015",
+          "https://doi.org/10.1152/japplphysiol.00997.2015"
+        ],
+        [
+          "F11-112",
+          "Long-Duration Bed Rest as an Analog to Microgravity",
+          "Hargens AR, Vico L",
+          "1985",
+          "10.1152/japplphysiol.00935.2015",
+          "https://doi.org/10.1152/japplphysiol.00935.2015"
+        ],
+        [
+          "F11-113",
+          "Effects of Skeletal Unloading on the Vasomotor Properties of the Rat Femur Principal Nutrient Artery",
+          "Prisby RD, Behnke BJ, Allen MR, Delp MD",
+          "1985",
+          "10.1152/japplphysiol.00576.2014",
+          "https://doi.org/10.1152/japplphysiol.00576.2014"
+        ],
+        [
+          "F11-114",
+          "Simulated microgravity promotes monocyte adhesion to rat aortic endothelium via nuclear factor‐κB activation",
+          "Liu H, Wang ZC, Bai YG, et al",
+          "2015",
+          "10.1111/1440-1681.12381",
+          "https://doi.org/10.1111/1440-1681.12381"
+        ],
+        [
+          "F11-115",
+          "SREBP1-mediated lipogenesis promotes dedifferentiation and senescence of vascular smooth muscle cells through epigenetic remodeling",
+          "Li B, Zhou K, Yin A, et al",
+          "2025",
+          "10.1038/s41467-025-67534-6",
+          "https://doi.org/10.1038/s41467-025-67534-6"
+        ],
+        [
+          "F11-116",
+          "Time course of capillary regression and an expression balance between vascular endothelial growth factor‐A and thrombospondin‐1 in the soleus muscle of hindlimb unloaded rats",
+          "Tanaka M, Kanazashi M, Kondo H, Fujino H",
+          "2022",
+          "10.1002/mus.27478",
+          "https://doi.org/10.1002/mus.27478"
+        ],
+        [
+          "F11-117",
+          "Contribution of Social Isolation, Restraint, and Hindlimb Unloading to Changes in Hemodynamic Parameters and Motion Activity in Rats",
+          "Tsvirkun D, Bourreau J, Mieuset A, et al",
+          "2012",
+          "10.1371/journal.pone.0039923",
+          "https://doi.org/10.1371/journal.pone.0039923"
+        ],
+        [
+          "F11-118",
+          "WISE-2005: Tibial and Gastrocnemius Vein and Calf Tissue Response to LBNP After a 60-Day Bed Rest With and Without Countermeasures",
+          "Arbeille P, Kerbeci P, Mattar L, Shoemaker JK, Hughson RL",
+          "2008",
+          "10.1152/japplphysiol.01021.2007",
+          "https://doi.org/10.1152/japplphysiol.01021.2007"
+        ],
+        [
+          "F11-119",
+          "Impact of Lifestyles (Diet and Exercise) on Vascular Health: Oxidative Stress and Endothelial Function",
+          "Man AWC, Li H, Xia N",
+          "2020",
+          "10.1155/2020/1496462",
+          "https://doi.org/10.1155/2020/1496462"
+        ],
+        [
+          "F11-120",
+          "Exercise and Endothelial Function: Insights from a Redox Perspective",
+          "Chen B, Liu X, Sun R, et al",
+          "2026",
+          "10.1007/s11883-026-01458-4",
+          "https://doi.org/10.1007/s11883-026-01458-4"
+        ],
+        [
+          "F11-121",
+          "Plantar mechanical stimulation attenuates protein synthesis decline in disused skeletal muscle via modulation of nitric oxide level",
+          "Tyganov SA, Mochalova E, Belova S, et al",
+          "2021",
+          "10.1038/s41598-021-89362-6",
+          "https://doi.org/10.1038/s41598-021-89362-6"
+        ],
+        [
+          "F11-122",
+          "Hindlimb Unloading Alters Nitric Oxide and Autonomic Control of Resting Arterial Pressure in Conscious Rats",
+          "Mueller PJ, Foley CM, Hasser EM",
+          "2005",
+          "10.1152/ajpregu.00820.2004",
+          "https://doi.org/10.1152/ajpregu.00820.2004"
+        ],
+        [
+          "F11-123",
+          "Post COVID-19 condition — orientações de reabilitação",
+          "OMS",
+          "Versão da página consultada em 2026",
+          "",
+          "https://www.who.int/teams/health-care-readiness/post-COVID-19-condition"
+        ],
+        [
+          "F11-124",
+          "Statins as Regulators of Redox State in the Vascular Endothelium: Beyond Lipid Lowering",
+          "Margaritis M, Channon KM, Antoniades C",
+          "2014",
+          "10.1089/ars.2013.5430",
+          "https://doi.org/10.1089/ars.2013.5430"
+        ],
+        [
+          "F11-125",
+          "Innate and Adaptive Inflammation as a Therapeutic Target in Vascular Disease: The Emerging Role of Statins",
+          "Tousoulis D, Psarros C, Demosthenous M, et al",
+          "2014",
+          "10.1016/j.jacc.2014.01.054",
+          "https://doi.org/10.1016/j.jacc.2014.01.054"
+        ],
+        [
+          "F11-126",
+          "Pleiotropic Effects of Statins: Focus on Endothelial Function, Plaque Stability and Thrombosis (Part II)",
+          "Mahmoudi A, Katsiki N, Vrablik M, Sahebkar A",
+          "2026",
+          "10.1007/s11883-025-01385-w",
+          "https://doi.org/10.1007/s11883-025-01385-w"
+        ],
+        [
+          "F11-127",
+          "The Impact of Microgravity and Hypergravity on Endothelial Cells",
+          "Maier JA, Cialdai F, Monici M, Morbidelli L",
+          "2015",
+          "10.1155/2015/434803",
+          "https://doi.org/10.1155/2015/434803"
+        ],
+        [
+          "F11-128",
+          "Postocclusive Muscle Reoxygenation Kinetics and Nitric Oxide Bioavailability Following 10-Day Bed Rest",
+          "Manferdelli G, Rasica L, Pilotto AM, et al",
+          "2026",
+          "10.1152/ajpregu.00093.2025",
+          "https://doi.org/10.1152/ajpregu.00093.2025"
+        ],
+        [
+          "F11-129",
+          "Endoplasmic Reticulum Stress-Dependent Activation of iNOS/NO-NF-κB Signaling and NLRP3 Inflammasome Contributes to Endothelial Inflammation and Apoptosis Associated With Microgravity",
+          "Jiang M, Wang H, Liu Z, et al",
+          "2020",
+          "10.1096/fj.202000734R",
+          "https://doi.org/10.1096/fj.202000734R"
+        ],
+        [
+          "F11-130",
+          "Vascular and Microvascular Dysfunction Induced by Microgravity and Its Analogs in Humans: Mechanisms and Countermeasures",
+          "Navasiolava N, Yuan M, Murphy R, et al",
+          "2020",
+          "10.3389/fphys.2020.00952",
+          "https://doi.org/10.3389/fphys.2020.00952"
+        ],
+        [
+          "F11-131",
+          "Resveratrol Prevents the Wasting Disorders of Mechanical Unloading by Acting as a Physical Exercise Mimetic in the Rat",
+          "Momken I, Stevens L, Bergouignan A, et al",
+          "2011",
+          "10.1096/fj.10-177295",
+          "https://doi.org/10.1096/fj.10-177295"
+        ],
+        [
+          "F11-132",
+          "Impact of diet on human nutrition, immune response, gut microbiome, and cognition in an isolated and confined mission environment",
+          "Douglas GL, DeKerlegand D, Dlouhy H, et al",
+          "2022",
+          "10.1038/s41598-022-21927-5",
+          "https://doi.org/10.1038/s41598-022-21927-5"
+        ],
+        [
+          "F11-133",
+          "Effectiveness of Nutritional Countermeasures in Microgravity and Its Ground-Based Analogues to Ameliorate Musculoskeletal and Cardiopulmonary Deconditioning-a Systematic Review",
+          "Sandal PH, Kim D, Fiebig L, et al",
+          "2020",
+          "10.1371/journal.pone.0234412",
+          "https://doi.org/10.1371/journal.pone.0234412"
+        ],
+        [
+          "F11-134",
+          "Mitochondrial Metabolic Reprogramming Induced by Calorie Restriction",
+          "Martin-Montalvo A, de Cabo R",
+          "2013",
+          "10.1089/ars.2012.4866",
+          "https://doi.org/10.1089/ars.2012.4866"
+        ],
+        [
+          "F11-135",
+          "SIRT1 and SIRT6 Signaling Pathways in Cardiovascular Disease Protection",
+          "D'Onofrio N, Servillo L, Balestrieri ML",
+          "2018",
+          "10.1089/ars.2017.7178",
+          "https://doi.org/10.1089/ars.2017.7178"
+        ],
+        [
+          "F11-136",
+          "Regulation of SIRT1 by Oxidative Stress-Responsive miRNAs and a Systematic Approach to Identify Its Role in the Endothelium",
+          "Chen Z, Shentu TP, Wen L, Johnson DA, Shyy JY",
+          "2013",
+          "10.1089/ars.2012.4803",
+          "https://doi.org/10.1089/ars.2012.4803"
+        ],
+        [
+          "F11-137",
+          "Molecular mechanisms of dietary restriction promoting health and longevity",
+          "Green CL, Lamming DW, Fontana L",
+          "2022",
+          "10.1038/s41580-021-00411-4",
+          "https://doi.org/10.1038/s41580-021-00411-4"
+        ],
+        [
+          "F11-138",
+          "Redox-Regulating Sirtuins in Aging, Caloric Restriction, and Exercise",
+          "Radak Z, Koltai E, Taylor AW, et al",
+          "2013",
+          "10.1016/j.freeradbiomed.2013.01.004",
+          "https://doi.org/10.1016/j.freeradbiomed.2013.01.004"
+        ],
+        [
+          "F11-139",
+          "Time-Restricted Feeding Alleviates Cardiac Dysfunction Induced by Simulated Microgravity via Restoring Cardiac FGF21 Signaling",
+          "Wang XP, Xing CY, Zhang JX, et al",
+          "2020",
+          "10.1096/fj.202001246RR",
+          "https://doi.org/10.1096/fj.202001246RR"
+        ],
+        [
+          "F11-140",
+          "Emerging roles of SIRT1 activator, SRT2104, in disease treatment",
+          "Chang N, Li J, Lin S, et al",
+          "2024",
+          "10.1038/s41598-024-55923-8",
+          "https://doi.org/10.1038/s41598-024-55923-8"
+        ],
+        [
+          "F11-141",
+          "The Role of Sirtuin1 in Regulating Endothelial Function, Arterial Remodeling and Vascular Aging",
+          "Man AWC, Li H, Xia N",
+          "2019",
+          "10.3389/fphys.2019.01173",
+          "https://doi.org/10.3389/fphys.2019.01173"
+        ],
+        [
+          "F11-142",
+          "Sirtuin1 protects endothelial Caveolin-1 expression and preserves endothelial function via suppressing miR-204 and endoplasmic reticulum stress",
+          "Kassan M, Vikram A, Kim YR, et al",
+          "2017",
+          "10.1038/srep42265",
+          "https://doi.org/10.1038/srep42265"
+        ],
+        [
+          "F11-143",
+          "A Pilot Randomized, Placebo Controlled, Double Blind Phase I Trial of the Novel SIRT1 Activator SRT2104 in Elderly Volunteers",
+          "Libri V, Brown AP, Gambarota G, et al",
+          "2012",
+          "10.1371/journal.pone.0051395",
+          "https://doi.org/10.1371/journal.pone.0051395"
+        ],
+        [
+          "F11-144",
+          "A Phase II, Randomized, Placebo-Controlled, Double-Blind, Multi-Dose Study of SRT2104, a SIRT1 Activator, in Subjects With Type 2 Diabetes",
+          "Baksi A, Kraydashenko O, Zalevkaya A, et al",
+          "2014",
+          "10.1111/bcp.12327",
+          "https://doi.org/10.1111/bcp.12327"
+        ],
+        [
+          "F11-145",
+          "Sirtuins in atherosclerosis: guardians of healthspan and therapeutic targets",
+          "Grootaert MOJ, Bennett MR",
+          "2022",
+          "10.1038/s41569-022-00685-x",
+          "https://doi.org/10.1038/s41569-022-00685-x"
+        ],
+        [
+          "F11-146",
+          "The Selective Sirtuin 1 Activator SRT2104 Reduces Endotoxin-Induced Cytokine Release and Coagulation Activation in Humans",
+          "van der Meer AJ, Scicluna BP, Moerland PD, et al",
+          "2015",
+          "10.1097/CCM.0000000000000949",
+          "https://doi.org/10.1097/CCM.0000000000000949"
+        ],
+        [
+          "F11-147",
+          "A Randomized, Placebo-Controlled Study of SRT2104, a SIRT1 Activator, in Patients With Moderate to Severe Psoriasis",
+          "Krueger JG, Suárez-Fariñas M, Cueto I, et al",
+          "2015",
+          "10.1371/journal.pone.0142081",
+          "https://doi.org/10.1371/journal.pone.0142081"
+        ],
+        [
+          "F11-148",
+          "Mechanisms and consequences of endothelial cell senescence",
+          "Bloom SI, Islam MT, Lesniewski LA, Donato AJ",
+          "2023",
+          "10.1038/s41569-022-00739-0",
+          "https://doi.org/10.1038/s41569-022-00739-0"
+        ],
+        [
+          "F11-149",
+          "The Protective Role of Sirt1 in Vascular Tissue: Its Relationship to Vascular Aging and Atherosclerosis",
+          "Kitada M, Ogura Y, Koya D",
+          "2016",
+          "10.18632/aging.101068",
+          "https://doi.org/10.18632/aging.101068"
+        ],
+        [
+          "F11-150",
+          "Pharmacologic Management of Heart Failure with Preserved Ejection Fraction (HFpEF) in Older Adults",
+          "Hashemi A, Kwak MJ, Goyal P",
+          "2025",
+          "10.1007/s40266-024-01165-2",
+          "https://doi.org/10.1007/s40266-024-01165-2"
+        ],
+        [
+          "F11-151",
+          "Chapter 2: Clinical and Mechanistic Potential of Sodium-Glucose Co-Transporter 2 (SGLT2) Inhibitors in Heart Failure With Preserved Ejection Fraction",
+          "Ostrominski JW, Vaduganathan M",
+          "2024",
+          "10.1016/j.amjmed.2023.04.035",
+          "https://doi.org/10.1016/j.amjmed.2023.04.035"
+        ],
+        [
+          "F11-152",
+          "Mechanisms of Benefits of Sodium-Glucose Cotransporter 2 Inhibitors in Heart Failure With Preserved Ejection Fraction",
+          "Pandey AK, Bhatt DL, Pandey A, et al",
+          "2023",
+          "10.1093/eurheartj/ehad389",
+          "https://doi.org/10.1093/eurheartj/ehad389"
+        ],
+        [
+          "F11-153",
+          "The role of SGLT 2 inhibitors in heart failure with preserved ejection fraction (HFpEF): a systematic review and meta-analysis of randomized controlled trials",
+          "Minisy MM, Abdelaziz A",
+          "2025",
+          "10.1186/s12872-025-05127-3",
+          "https://doi.org/10.1186/s12872-025-05127-3"
+        ],
+        [
+          "F11-154",
+          "Left ventricular remodeling response to SGLT2 inhibitors in heart failure: an updated meta-analysis of randomized controlled studies",
+          "Carluccio E, Biagioli P, Reboldi G, et al",
+          "2023",
+          "10.1186/s12933-023-01970-w",
+          "https://doi.org/10.1186/s12933-023-01970-w"
+        ],
+        [
+          "F11-155",
+          "Amelioration of Endothelial Dysfunction by Sodium Glucose Co-Transporter 2 Inhibitors: Pieces of the Puzzle Explaining Their Cardiovascular Protection",
+          "Li X, Preckel B, Hermanides J, et al",
+          "2022",
+          "10.1111/bph.15850",
+          "https://doi.org/10.1111/bph.15850"
+        ],
+        [
+          "F11-156",
+          "Vascular Effects of SGLT2 Inhibitors: Evidence and Mechanisms",
+          "Góes-Santos BR, Castro PC, Girardi ACC, Antunes-Correa LM, Davel AP",
+          "2025",
+          "10.1152/ajpcell.00569.2025",
+          "https://doi.org/10.1152/ajpcell.00569.2025"
+        ],
+        [
+          "F11-157",
+          "Endothelial Dysfunction and Therapeutic Advances in Chronic Kidney Disease",
+          "Liang F, Li G, Chen K, et al",
+          "2025",
+          "10.1002/dmrr.70086",
+          "https://doi.org/10.1002/dmrr.70086"
+        ],
+        [
+          "F11-158",
+          "SGLT2 inhibition ameliorates nano plastics-induced premature endothelial senescence and dysfunction",
+          "Dhakal B, Shiwakoti S, Park EY, et al",
+          "2023",
+          "10.1038/s41598-023-33086-2",
+          "https://doi.org/10.1038/s41598-023-33086-2"
+        ],
+        [
+          "F11-159",
+          "Synergistic SGLT2 and GLP-1R targeting alleviates systemic inflammation-induced and M1 monocyte-driven endothelial dysfunction in coronary artery disease",
+          "Mroueh A, Fakih W, Kerth S, et al",
+          "2026",
+          "10.1186/s12933-026-03267-0",
+          "https://doi.org/10.1186/s12933-026-03267-0"
+        ],
+        [
+          "F11-160",
+          "Empagliflozin Restores the Integrity of the Endothelial Glycocalyx in Vitro",
+          "Cooper S, Teoh H, Campeau MA, Verma S, Leask RL",
+          "2019",
+          "10.1007/s11010-019-03555-2",
+          "https://doi.org/10.1007/s11010-019-03555-2"
+        ],
+        [
+          "F11-161",
+          "Empagliflozin mitigates endothelial inflammation and attenuates endoplasmic reticulum stress signaling caused by sustained glycocalyx disruption",
+          "Campeau MA, Leask RL",
+          "2022",
+          "10.1038/s41598-022-16763-6",
+          "https://doi.org/10.1038/s41598-022-16763-6"
+        ],
+        [
+          "F11-162",
+          "The SGLT2 inhibitor dapagliflozin in heart failure with preserved ejection fraction: a multicenter randomized trial",
+          "Nassif ME, Windsor SL, Borlaug BA, et al",
+          "2021",
+          "10.1038/s41591-021-01536-x",
+          "https://doi.org/10.1038/s41591-021-01536-x"
+        ],
+        [
+          "F11-163",
+          "New antidiabetic therapy and HFpEF: light at the end of tunnel?",
+          "Tadic M, Sala C, Saeed S, et al",
+          "2022",
+          "10.1007/s10741-021-10106-9",
+          "https://doi.org/10.1007/s10741-021-10106-9"
+        ],
+        [
+          "F11-164",
+          "Vascular and metabolic effects of SGLT2i and GLP-1 in heart failure patients",
+          "Correale M, Lamacchia O, Ciccarelli M, et al",
+          "2023",
+          "10.1007/s10741-021-10157-y",
+          "https://doi.org/10.1007/s10741-021-10157-y"
+        ],
+        [
+          "F11-165",
+          "Inflammatory Markers and Risk of Heart Failure With Reduced to Preserved Ejection Fraction",
+          "Albar Z, Albakri M, Hajjari J, et al",
+          "2022",
+          "10.1016/j.amjcard.2021.11.045",
+          "https://doi.org/10.1016/j.amjcard.2021.11.045"
+        ],
+        [
+          "F11-166",
+          "Inflammation in Heart Failure: JACC State-of-the-Art Review",
+          "Murphy SP, Kakkar R, McCarthy CP, Januzzi JL",
+          "2020",
+          "10.1016/j.jacc.2020.01.014",
+          "https://doi.org/10.1016/j.jacc.2020.01.014"
+        ],
+        [
+          "F11-167",
+          "Genetically Proxied Interleukin-6 Signaling Inhibition and Heart Failure Risk",
+          "Zangas P, Schuermans A, Georgakis MK",
+          "2026",
+          "10.1016/j.jchf.2026.103057",
+          "https://doi.org/10.1016/j.jchf.2026.103057"
+        ],
+        [
+          "F11-168",
+          "The Comorbidity-Driven Interleukin-6-Mediated Systemic Inflammation Hypothesis of Heart Failure With Preserved Ejection Fraction: A Decade of Testing Ends in Disappointment",
+          "Packer M, Butler J, Zannad F, Vaduganathan M, Borlaug BA",
+          "2026",
+          "10.1016/j.cardfail.2026.09.029",
+          "https://doi.org/10.1016/j.cardfail.2026.09.029"
+        ],
+        [
+          "F11-169",
+          "Targeting inflammation in heart failure: evolving insights and future directions from randomized clinical trials",
+          "Nagasaka R, Kim E, Ambrosy AP, Feinstein MJ",
+          "2025",
+          "10.1007/s10741-025-10538-7",
+          "https://doi.org/10.1007/s10741-025-10538-7"
+        ],
+        [
+          "F11-170",
+          "Metabolic Stress and Immune Activation in Heart Failure With a Preserved Ejection Fraction",
+          "Pereira A, Alvarez-Argote S, Meite I, et al",
+          "2026",
+          "10.1111/imr.70103",
+          "https://doi.org/10.1111/imr.70103"
+        ],
+        [
+          "F11-171",
+          "Protein biomarkers of cardiac remodeling and inflammation associated with HFpEF and incident events",
+          "Regan JA, Truby LK, Tahir UA, et al",
+          "2022",
+          "10.1038/s41598-022-24226-1",
+          "https://doi.org/10.1038/s41598-022-24226-1"
+        ],
+        [
+          "F11-172",
+          "Role of Biomarkers for the Prevention, Assessment, and Management of Heart Failure: A Scientific Statement From the American Heart Association",
+          "Chow SL, Maisel AS, Anand I, et al",
+          "2017",
+          "10.1161/CIR.0000000000000490",
+          "https://doi.org/10.1161/CIR.0000000000000490"
+        ],
+        [
+          "F11-173",
+          "Multiple Plasma Biomarkers for Risk Stratification in Patients With Heart Failure and Preserved Ejection Fraction",
+          "Chirinos JA, Orlenko A, Zhao L, et al",
+          "2020",
+          "10.1016/j.jacc.2019.12.069",
+          "https://doi.org/10.1016/j.jacc.2019.12.069"
+        ],
+        [
+          "F11-174",
+          "Diagnostic and prognostic value of serum C-reactive protein in heart failure with preserved ejection fraction: a systematic review and meta-analysis",
+          "Lakhani I, Wong MV, Hung JKF, et al",
+          "2021",
+          "10.1007/s10741-020-09927-x",
+          "https://doi.org/10.1007/s10741-020-09927-x"
+        ],
+        [
+          "F11-175",
+          "Heart Failure With Preserved Ejection Fraction: JACC Scientific Statement",
+          "Borlaug BA, Sharma K, Shah SJ, Ho JE",
+          "2023",
+          "10.1016/j.jacc.2023.01.049",
+          "https://doi.org/10.1016/j.jacc.2023.01.049"
+        ],
+        [
+          "F11-176",
+          "Prevalence and Correlates of Coronary Microvascular Dysfunction in Heart Failure With Preserved Ejection Fraction: PROMIS-HFpEF",
+          "Shah SJ, Lam CSP, Svedlund S, et al",
+          "2018",
+          "10.1093/eurheartj/ehy531",
+          "https://doi.org/10.1093/eurheartj/ehy531"
+        ],
+        [
+          "F11-177",
+          "Targeting the vasculature in cardiometabolic disease",
+          "Boutagy NE, Singh AK, Sessa WC",
+          "2022",
+          "10.1172/JCI148556",
+          "https://doi.org/10.1172/JCI148556"
+        ],
+        [
+          "F11-178",
+          "Coronary Microvascular Dysfunction Across the Spectrum of Cardiovascular Diseases: JACC State-of-the-Art Review",
+          "Del Buono MG, Montone RA, Camilli M, et al",
+          "2021",
+          "10.1016/j.jacc.2021.07.042",
+          "https://doi.org/10.1016/j.jacc.2021.07.042"
+        ],
+        [
+          "F11-179",
+          "Early pathological changes of coronary microvasculation in heart failure with preserved ejection fraction",
+          "Guo Z, Xu Y, Xu J, et al",
+          "2025",
+          "10.1186/s12872-025-05354-8",
+          "https://doi.org/10.1186/s12872-025-05354-8"
+        ],
+        [
+          "F11-180",
+          "A Novel Paradigm for Heart Failure With Preserved Ejection Fraction: Comorbidities Drive Myocardial Dysfunction and Remodeling Through Coronary Microvascular Endothelial Inflammation",
+          "Paulus WJ, Tschöpe C",
+          "2013",
+          "10.1016/j.jacc.2013.02.092",
+          "https://doi.org/10.1016/j.jacc.2013.02.092"
+        ],
+        [
+          "F11-181",
+          "Evolutionary History of the Comorbidity-Driven Coronary Microvascular Endothelial Inflammation Hypothesis and Its Metamorphosis to the Adipokine Hypothesis of Heart Failure With a Preserved Ejection Fraction",
+          "Packer M",
+          "2026",
+          "10.1016/j.jchf.2025.102822",
+          "https://doi.org/10.1016/j.jchf.2025.102822"
+        ],
+        [
+          "F11-182",
+          "Does Characterization of Phenotypic Heterogeneity Provide Mechanistic Insights or Influence the Response to Treatment? Experience in Positive and Neutral Trials in Patients With Heart Failure and a Preserved Ejection Fraction",
+          "Packer M, Schiattarella GG, Petrie MC, et al",
+          "2026",
+          "10.1161/CIRCULATIONAHA.126.079235",
+          "https://doi.org/10.1161/CIRCULATIONAHA.126.079235"
+        ],
+        [
+          "F11-183",
+          "Heart Failure With Preserved Ejection Fraction: Time for a Reset",
+          "Clark KAA, Velazquez EJ",
+          "2020",
+          "10.1001/jama.2020.15566",
+          "https://doi.org/10.1001/jama.2020.15566"
+        ],
+        [
+          "F11-184",
+          "Effect of pharmacological treatment on outcomes of heart failure with preserved ejection fraction: an updated systematic review and network meta-analysis of randomized controlled trials",
+          "Lin Y, Cai Z, Yuan J, et al",
+          "2022",
+          "10.1186/s12933-022-01679-2",
+          "https://doi.org/10.1186/s12933-022-01679-2"
+        ],
+        [
+          "F11-185",
+          "Heart Failure with Preserved Ejection Fraction",
+          "",
+          "",
+          "10.1056/NEJMcp2305181",
+          "https://doi.org/10.1056/NEJMcp2305181"
+        ],
+        [
+          "F11-186",
+          "SGLT2 Inhibition in Heart Failure with a Preserved Ejection Fraction — A Win against a Formidable Foe",
+          "",
+          "",
+          "10.1056/NEJMe2113008",
+          "https://doi.org/10.1056/NEJMe2113008"
+        ],
+        [
+          "F11-187",
+          "Dapagliflozin in Heart Failure with Mildly Reduced or Preserved Ejection Fraction",
+          "",
+          "",
+          "10.1056/NEJMoa2206286",
+          "https://doi.org/10.1056/NEJMoa2206286"
+        ],
+        [
+          "F11-188",
+          "SGLT-2 Inhibitors in Patients With Heart Failure: A Comprehensive Meta-Analysis of Five Randomised Controlled Trials",
+          "",
+          "",
+          "10.1016/S0140-6736(22)01429-5",
+          "https://doi.org/10.1016/S0140-6736(22)01429-5"
+        ],
+        [
+          "F11-189",
+          "Heart Failure With Preserved Ejection Fraction: Everything the Clinician Needs to Know",
+          "",
+          "",
+          "10.1016/S0140-6736(23)02756-3",
+          "https://doi.org/10.1016/S0140-6736(23)02756-3"
+        ],
+        [
+          "F11-190",
+          "Contemporary pharmacological treatment and management of heart failure",
+          "",
+          "",
+          "10.1038/s41569-024-00997-0",
+          "https://doi.org/10.1038/s41569-024-00997-0"
+        ],
+        [
+          "F11-191",
+          "Cost-effectiveness of Empagliflozin in Patients With Heart Failure With Preserved Ejection Fraction",
+          "",
+          "",
+          "10.1001/jamainternmed.2022.5010",
+          "https://doi.org/10.1001/jamainternmed.2022.5010"
+        ],
+        [
+          "F11-192",
+          "Sodium-glucose co-transporter 2 inhibitors in heart failure with mildly reduced or preserved ejection fraction: an updated systematic review and meta-analysis",
+          "",
+          "",
+          "10.1186/s40001-022-00945-z",
+          "https://doi.org/10.1186/s40001-022-00945-z"
+        ],
+        [
+          "F11-193",
+          "Cardiometabolic and renal benefits of sodium–glucose cotransporter 2 inhibitors",
+          "",
+          "",
+          "10.1038/s41574-025-01170-4",
+          "https://doi.org/10.1038/s41574-025-01170-4"
+        ],
+        [
+          "F11-194",
+          "Efficacy and safety of sodium-glucose cotransporter-2 inhibitors in heart failure with mildly reduced or preserved ejection fraction: an overview of 36 systematic reviews",
+          "",
+          "",
+          "10.1007/s10741-023-10324-3",
+          "https://doi.org/10.1007/s10741-023-10324-3"
+        ],
+        [
+          "F11-195",
+          "A Potential Gravity-Sensing Role of Vascular Smooth Muscle Cell Glycocalyx in Altered Gravitational Stimulation",
+          "Kang et al.",
+          "2013",
+          "10.1089/ast.2012.0944",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3713443/"
+        ],
+        [
+          "F11-196",
+          "Regional specific modulation of the glycocalyx and smooth muscle cell contractile apparatus in conduit arteries of tail-suspended rats",
+          "Kang et al.",
+          "2016",
+          "10.1152/japplphysiol.00245.2015",
+          "https://journals.physiology.org/doi/abs/10.1152/japplphysiol.00245.2015"
+        ],
+        [
+          "F11-197",
+          "Adaptation of glycocalyx, nitric oxide synthase expression and vascular cell apoptosis in conduit arteries of tail-suspended rats",
+          "Kang et al.",
+          "2019",
+          "10.1111/1440-1681.13121",
+          "https://pubmed.ncbi.nlm.nih.gov/31175664/"
+        ],
+        [
+          "F11-198",
+          "Empagliflozin in Heart Failure with a Preserved Ejection Fraction",
+          "Anker et al.",
+          "2021",
+          "10.1056/NEJMoa2107038",
+          "https://pubmed.ncbi.nlm.nih.gov/34449189/"
+        ],
+        [
+          "F11-199",
+          "Finerenone in Heart Failure with Mildly Reduced or Preserved Ejection Fraction",
+          "Solomon et al.",
+          "2024",
+          "10.1056/NEJMoa2407107",
+          "https://www.nejm.org/doi/full/10.1056/NEJMoa2407107"
+        ],
+        [
+          "F11-200",
+          "Tirzepatide for Heart Failure with Preserved Ejection Fraction and Obesity",
+          "Packer et al.",
+          "2024/2025",
+          "10.1056/NEJMoa2410027",
+          "https://pubmed.ncbi.nlm.nih.gov/39555826/"
+        ],
+        [
+          "F11-201",
+          "Hyaluronan and Syndecan-1: Linking Glycocalyx Degradation to Development and Progression of Heart Failure With Preserved Ejection Fraction",
+          "Rocha Oliveira et al.",
+          "2026",
+          "10.1161/JAHA.125.044788",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC13055783/"
+        ],
+        [
+          "F11-202",
+          "Empagliflozin-mediated protection of heparan sulfate-rich endothelial glycocalyx during vascular inflammation",
+          "Autores a normalizar",
+          "2026",
+          "10.1016/j.bcp.2026.117890",
+          "https://www.sciencedirect.com/science/article/pii/S0006295226002236"
+        ],
+        [
+          "F11-203",
+          "Inorganic Nitrite to Amplify the Benefits and Tolerability of Exercise Training in HFpEF: The INABLE-Training Trial",
+          "Borlaug et al.",
+          "2024",
+          "10.1016/j.mayocp.2023.08.031",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC10872737/"
+        ],
+        [
+          "F11-204",
+          "Tadalafil for Treatment of Combined Postcapillary and Precapillary Pulmonary Hypertension in Patients With HFpEF",
+          "Hoeper et al.",
+          "2024",
+          "10.1161/CIRCULATIONAHA.124.069340",
+          "https://www.ahajournals.org/doi/pdf/10.1161/CIRCULATIONAHA.124.069340"
+        ]
+      ]
+    }
+  }
+}

@@ -1,33 +1,35 @@
-# Sincronização seletiva da planilha com o Atlas
-Implementação: importador, catálogo público, fichas/conexões e workflow que propõe PR. Não é espelhamento integral nem revisão científica automática.
+# Sincronização usando somente os conectores autorizados
 
-## Estado desta entrega
-Primeira leitura pelo conector autorizado: 30 linhas de LEITURAS_SUGERIDAS + 204 de FONTES_11OUT, unificadas em 226 referências por DOI normalizado. Cinco sínteses iniciais e quatro conexões têm revisão/limites explícitos. Três sínteses são extrações preliminares da planilha, não nova leitura integral. A decisão permanece exploratória.
-O conector da conversa não autoriza automaticamente GitHub Actions. Atualização recorrente só funciona após configuração própria abaixo. Nenhum agendamento está ativo; execução futura é manual em Actions após merge. Esta configuração não foi provisionada nesta entrega.
+## Operação efetiva
+O conector Google Drive lê as duas abas selecionadas. O agente retém somente ID, título, autores, ano, DOI e URL pública, gravando essa projeção em atlas/sync/connector-input.json via conector GitHub, numa branch de PR. As colunas de prioridade, eixo, origem privada e anotações não são exportadas.
 
-## O que sincroniza
-tools/sync_sheet.py lê somente LEITURAS_SUGERIDAS!A1:H150 e FONTES_11OUT!A1:G300, com validação dos cabeçalhos. Exporta ID, título, autores, ano, DOI e URL pública permitida. Prioridade/origem privada são descartadas. Não lê RASCUNHO, notas de leitura, comentários, figuras ou hipóteses pessoais.
-Curadoria fica em atlas/sync/curation.json, separada do catálogo. Importação não inventa modelo, achado, causalidade nem “lido pela Joyce”. A ficha sem curadoria é pendente. Mudança nos metadados invalida a síntese e as conexões dependentes até nova revisão. Alterações de interpretação nas colunas não importadas exigem revisão editorial própria; não são detectadas por este sync.
-Remoções preservam o registro com aviso; queda acima de 20%, aba vazia, cabeçalho alterado ou teto de linhas bloqueiam a atualização. IDs/aliases históricos são preservados quando o DOI permanece. URLs privadas, javascript/data e links fora de DOI/PubMed/PMC não entram. Campos são renderizados como texto.
+GitHub Actions não recebe autorização Google. Ele apenas reproduz a transformação dos campos públicos já autorizados, gera catálogo/site, verifica os derivados e executa testes. O conector GitHub pode recuperar os derivados públicos no log da execução e gravá-los na mesma branch usando expected_sha. Se a branch mudar, reler antes de escrever. Nunca atualizar main ou fazer merge.
 
-## Configuração necessária, sem senha/chave no repositório
-Responsável com acesso ao Google Cloud configura Workload Identity Federation para uma conta de serviço exclusiva. A conta recebe somente visualização da planilha selecionada, sem acesso à pasta ou ao RASCUNHO. Não criar chave JSON.
-A confiança OIDC deve restringir repository_id/owner_id aos IDs numéricos do repo/conta, ref main e job_workflow_ref ao arquivo .github/workflows/sincronizar-planilha.yml na main. Não usar condição apenas por nome de organização. Requer Google Sheets API e IAM Credentials API no projeto autorizado; não criar projeto, faturamento ou permissões sem decisão da Joyce.
-Variáveis do repo: ESC_GOOGLE_WIF_PROVIDER, ESC_GOOGLE_SERVICE_ACCOUNT e ESC_SHEET_ID. São identificadores de configuração, nunca tokens. O workflow solicita credencial temporária com escopo spreadsheets.readonly, não cria arquivo de credencial e não exibe respostas brutas.
-GitHub precisa permitir criação de PR pelo GITHUB_TOKEN. Permissões de escrita ficam apenas no job manual de sincronização, que só roda na main. CI de PR tem contents:read e não recebe identidade Google.
-Fontes oficiais: https://github.com/google-github-actions/auth e https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow
+Essa rota funciona durante uma tarefa com os conectores disponíveis. NÃO existe agendamento autônomo configurado nem atualização em tempo real. Uma nova execução é iniciada por pedido da Joyce; não requer senha, token, navegador, Google Cloud ou acesso ao Mac. A publicação no site continua dependendo de merge pela Joyce.
 
-## Operação na nuvem
-1. Joyce revisa e faz merge desta implementação.
-2. Após identidade configurada, Actions → Sincronizar planilha — propor PR → Run workflow na main.
-3. Importador lê só as colunas permitidas, atualiza catálogo e build.py regenera Biblioteca/dados. Sem mudanças não abre PR.
-4. Testes passam antes de propor atualização. Script publica somente três caminhos permitidos em branch nova e abre PR rascunho. Main nunca é alterada pelo script.
-5. Como eventos gerados por GITHUB_TOKEN não disparam normalmente outros workflows, o script despacha explicitamente revisao-sync.yml na branch criada. Ela valida dados, site e navegadores. A configuração precisa estar na main para workflow_dispatch.
-6. Joyce revisa os diffs e decide merge/publicação. Falha de identidade preserva o snapshot anterior e falha a execução: nunca apresenta “sincronizado” sem leitura.
-Primeiro teste real OIDC→Sheets→PR continua pendente de configuração. Testes sintéticos não substituem esse teste.
+## Escopo
+Planilha selecionada: 1fksFh1OfIFxe6R7A6eebzSoTgnMHBAbgOfUJHjVvEr8.
+Leitura: LEITURAS_SUGERIDAS!A1:H150 e FONTES_11OUT!A1:G300. Validar cabeçalhos completos antes de projetar os seis campos permitidos. Não ler outras abas, documentos, comentários ou o RASCUNHO.
+Título e autoria são copiados, sem tradução ou invenção. Autoria/ano vazios permanecem vazios e a referência aguarda curadoria. Não promover leitura da Joyce.
+Somente campos já autorizados podem ser enviados ao repositório público. Novas notas e interpretações privadas ficam fora; uma atualização do catálogo não autoriza publicar conteúdo científico inédito.
 
-## Atualizar fichas/conexões
-Ficha: modelo, exposição, desfecho medido, achado, limite, estado de leitura, referência pública e cópia dos metadados conferidos. result kind: evidence/association/pending. Hipótese é conexão, nunca resultado do artigo. Conexão tem fontes resolvíveis, tipo e limite. Não promover fonte ou leitura da autora automaticamente.
-python3 build.py gera assets/js/evidence-data.js. Não editar derivados manualmente. CI verifica o catálogo e dados derivados. A lista anterior de leituras permanece acessível para não perder status histórico.
+## Passos reproduzíveis pelo agente
+1. Ler head do PR e regras atuais; usar somente Google Drive e GitHub.
+2. Ler as duas faixas pelos conectores; validar nomes/cabeçalhos/contagens e não imprimir respostas brutas.
+3. Projetar cada linha para [id,title,authors,year,doi,url]. Na primeira aba, extrair o primeiro ano de quatro dígitos da autoria. Remover todas as outras colunas. Manter limites e estrutura do arquivo de entrada público.
+4. Comparar com entrada vigente. Sem diferença não gerar commit de dados nem atualizar artificialmente a data de importação.
+5. Se houver diferença permitida, gravar a entrada na branch pelo conector. CI gera derivados e os disponibiliza com prefixo CONNECTOR_OUTPUT; não interpretar falha por derivados desatualizados como sucesso.
+6. Recuperar somente esses três derivados permitidos e gravar por commit com expected_sha. Não copiar logs integrais. Esperar todos os checks do novo head.
+7. Entregar PR e resultados. Não fazer merge ou publicar.
 
-Publicação dos 226 metadados, cinco sínteses e quatro conexões autorizada explicitamente pela Joyce nesta entrega. Conflitos entre duplicatas sinalizam revisão. Cada conexão guarda versão de todas as fontes, inclusive sem ficha.
+## Contrato e proteções
+tools/sync_sheet.py --connector-input atlas/sync/connector-input.json
+python3 build.py
+
+A entrada rejeita colunas/abas extras e linhas fora do esquema. O transformador preserva IDs, retém referências removidas com aviso e bloqueia quedas acima de 20%, duplicação de IDs ou limites excedidos. DOI normalizado deduplica registros; divergências ficam explícitas. Links derivados ficam restritos a DOI/PubMed/PMC.
+
+Curadoria permanece separada em atlas/sync/curation.json. Alteração dos campos de uma fonte invalida suas fichas/conexões. Mudança de interpretação em colunas não lidas exige revisão editorial própria: esse mecanismo não a detecta.
+
+## Verificação da transição
+Nova leitura pelo conector em 11/10/2026 (America/Sao_Paulo): 30 + 204 linhas de origem. O teste de reprodução confere linha a linha o catálogo de 226 referências, sem alterar a planilha.
+O caminho Google Cloud/OIDC foi removido desta proposta. Não há credencial ou processo de autenticação a configurar.

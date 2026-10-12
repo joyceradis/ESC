@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Importação seletiva. Nunca grava resposta bruta ou notas da planilha."""
-import argparse, copy, json, os, re, sys, unicodedata
+import argparse, copy, json, re, sys, unicodedata
 from datetime import datetime
 from pathlib import Path
-from urllib.request import Request, urlopen
-from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,7 +42,7 @@ def transform(payload, previous=None, imported_on=None):
    require(re.fullmatch(r"[A-Za-z0-9-]+",ident) and ident not in seen,"ID duplicado/inválido na origem.")
    seen.add(ident);counts[sheet]+=1
    _,t,a,y,d,u=spec["cols"]
-   title=clean(row[t]);authors=clean(row[a]);require(title and authors,"Referência sem título/autoria.")
+   title=clean(row[t]);authors=clean(row[a]);require(title,"Referência sem título.")
    year=clean(row[y],60) if y is not None else ((re.search(r"\b(?:19|20)\d{2}\b",authors) or [""])[0])
    doi=normalize_doi(row[d]);url="https://doi.org/"+doi if doi else safe_url(row[u])
    key=doi or sheet+":"+ident
@@ -65,19 +63,26 @@ def transform(payload, previous=None, imported_on=None):
   for old in previous["records"]:
    if not any(a in active_aliases for a in old["aliases"]):
     kept=copy.deepcopy(old);kept["absent"]=True;records.append(kept)
- return dict(schema_version=1,imported_on=imported_on or datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat(),mode="google-readonly",source_counts=counts,records=records)
-def fetch_sheets():
- sheet_id=os.environ.get("ESC_SHEET_ID","");token=os.environ.get("GOOGLE_ACCESS_TOKEN","")
- require(re.fullmatch(r"[A-Za-z0-9_-]{20,100}",sheet_id) and token,"Identidade Google ou planilha não configurada.")
- result={}
+ return dict(schema_version=1,imported_on=imported_on or datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat(),mode="connector",source_counts=counts,records=records)
+def connector_payload(value):
+ require(isinstance(value,dict) and set(value)=={"schema_version","sheets"} and value["schema_version"]==1,"Envelope inválido.")
+ require(set(value["sheets"])==set(SPECS),"Abas fora do contrato.")
+ payload={}
  for sheet,spec in SPECS.items():
-  endpoint="https://sheets.googleapis.com/v4/spreadsheets/"+sheet_id+"/values/"+quote(sheet+"!"+spec["range"],safe="")+"?valueRenderOption=FORMATTED_VALUE"
-  try:
-   with urlopen(Request(endpoint,headers={"Authorization":"Bearer "+token}),timeout=40) as response:
-    result[sheet]=json.load(response).get("values",[])
-  except Exception:
-   raise ValueError("Leitura Google falhou; snapshot anterior preservado.") from None
- return result
+  block=value["sheets"][sheet]
+  require(set(block)=={"header","rows"} and block["header"]==["id","title","authors","year","doi","url"],"Campos não autorizados.")
+  require(isinstance(block["rows"],list) and 0<len(block["rows"])<spec["bound"]-1,"Contagem inválida.")
+  rows=[spec["header"]]
+  for row in block["rows"]:
+   require(isinstance(row,list) and len(row)==6,"Linha inválida.")
+   ident,title,authors,year,doi,url=[clean(v) for v in row]
+   if sheet=="LEITURAS_SUGERIDAS":
+    expected=(re.search(r"\b(?:19|20)\d{2}\b",authors) or [""])[0]
+    require(year==expected,"Ano da autoria diverge.")
+    rows.append([ident,"","",title,authors,"",doi,url])
+   else: rows.append([ident,"",authors,year,title,doi,url])
+  payload[sheet]=rows
+ return payload
 def save(payload, previous=None):
  result=transform(payload,previous)
  # Sem alteração não muda data nem cria commit vazio.
@@ -88,10 +93,10 @@ def save(payload, previous=None):
  temp.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8");temp.replace(OUT)
  print("Catálogo público atualizado:",len(result["records"]),"registros; conteúdo bruto não gravado.")
 def main():
- parser=argparse.ArgumentParser();parser.add_argument("--input",type=Path,help="Exportação autorizada em runner privado; nunca versionar entrada bruta.")
+ parser=argparse.ArgumentParser();parser.add_argument("--connector-input",type=Path,required=True,help="Somente os seis campos públicos autorizados por linha; sem resposta bruta.")
  args=parser.parse_args()
  try:
-  payload=json.loads(args.input.read_text()) if args.input else fetch_sheets()
+  payload=connector_payload(json.loads(args.connector_input.read_text()))
   previous=json.loads(OUT.read_text()) if OUT.exists() else None
   if previous and previous.get("mode")=="synthetic": previous=None
   save(payload,previous)

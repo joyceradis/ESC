@@ -1,7 +1,7 @@
 import copy,json,unittest
 from pathlib import Path
 from unittest.mock import patch
-from tools.sync_sheet import transform,SPECS,fetch_sheets
+from tools.sync_sheet import transform,SPECS,connector_payload
 from tools.build_evidence import compile_data
 ROOT=Path(__file__).resolve().parents[1]
 def fixture():
@@ -46,8 +46,6 @@ class SyncTests(unittest.TestCase):
  def test_unsafe_link_not_exported(self):
   p=fixture();p["LEITURAS_SUGERIDAS"][1][6]="";p["LEITURAS_SUGERIDAS"][1][7]="javascript:alert(1)"
   out=transform(p);self.assertEqual(out["records"][0]["url"],"")
- def test_no_access_preserves_file(self):
-  with patch.dict("os.environ",{},clear=True),self.assertRaises(ValueError):fetch_sheets()
  def test_source_change_invalidates_connection(self):
   cat=json.loads((ROOT/"atlas/sync/catalogue.json").read_text());cur=json.loads((ROOT/"atlas/sync/curation.json").read_text())
   first=cur["cards"][0]["id"]
@@ -62,4 +60,23 @@ class SyncTests(unittest.TestCase):
   cat=json.loads((ROOT/"atlas/sync/catalogue.json").read_text());cur=json.loads((ROOT/"atlas/sync/curation.json").read_text())
   cur["cards"][0]["kind"]="hypothesis"
   with self.assertRaises(ValueError):compile_data(cat,cur)
+ def test_connector_replay_matches_catalogue(self):
+  saved=json.loads((ROOT/"atlas/sync/catalogue.json").read_text())
+  exported=json.loads((ROOT/"atlas/sync/connector-input.json").read_text())
+  replay=transform(connector_payload(exported),saved,imported_on=saved["imported_on"])
+  self.assertEqual(replay["records"],saved["records"])
+  self.assertEqual(replay["source_counts"],saved["source_counts"])
+ def test_connector_rejects_private_column(self):
+  exported=json.loads((ROOT/"atlas/sync/connector-input.json").read_text())
+  exported["sheets"]["FONTES_11OUT"]["header"].append("notes")
+  with self.assertRaises(ValueError):connector_payload(exported)
+ def test_connector_rejects_extra_sheet(self):
+  exported=json.loads((ROOT/"atlas/sync/connector-input.json").read_text())
+  exported["sheets"]["PRIVATE"]={"header":[],"rows":[]}
+  with self.assertRaises(ValueError):connector_payload(exported)
+ def test_missing_authorship_preserved_without_invention(self):
+  p=fixture();p["LEITURAS_SUGERIDAS"][1][4]=""
+  result=transform(p)
+  self.assertEqual(result["records"][0]["authors"],"")
+  self.assertEqual(result["records"][0]["year"],"")
 if __name__=="__main__":unittest.main()
