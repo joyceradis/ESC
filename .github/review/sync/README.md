@@ -26,6 +26,6 @@ Antes: main `f60cfcf65e4d65cff561f94a90259ad79e54fa5e`.
 - Catálogo: 226 referências; cinco fichas iniciais e quatro conexões. O restante fica pendente de curadoria.
 - Revisão por pares identificou dependências de conexões e conflitos de metadados; corrigidos e cobertos por testes.
 - Os testes não substituem nova leitura integral dos artigos nem validam as hipóteses científicas.
-- A identidade Google para GitHub Actions ainda precisa ser configurada; o teste real OIDC → Sheets → PR está pendente. A primeira importação usou o conector autorizado. Não há sincronização recorrente ativa.
+- Atualização posterior: o caminho Google Cloud/OIDC foi removido. A sincronização assistida pelos conectores foi reproduzida e verificada na nuvem: [relatório](../../../docs/verificacao-conectores.md). Não há execução recorrente autônoma.
 
 Sem alteração no RASCUNHO e sem merge/publicação. As imagens registram a versão executada acima; este diretório apenas acrescenta evidência ao PR.
