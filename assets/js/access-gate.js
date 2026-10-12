@@ -1,13 +1,90 @@
 /* ESC 2027 · Barreira visual de acesso no navegador.
    NÃO é autenticação: arquivos HTML/JS continuam públicos no GitHub Pages.
-   Não coleta nem transmite a senha; guarda apenas a liberação temporária na sessão. */
+   Não coleta nem transmite a senha; guarda apenas uma preferência de entrada com prazo, nunca a senha. */
 'use strict';
 (function () {
   var KEY = 'esc-atlas-access-v2';
   var EXPECTED_SHA256 = 'd8c3478284cbb46033065aba10d8146851ae8cea876a4b26ecedd672bfc2d485';
-  try {
-    if (sessionStorage.getItem(KEY) === 'yes') return;
-  } catch (_) { /* Sessão restrita pelo navegador: a tela ainda funciona. */ }
+  var REMEMBER_KEY = 'esc-atlas-remember-v1';
+  var FORGET_KEY = 'esc-atlas-forget-v1';
+  // Incrementar ao alterar a senha para invalidar lembranças anteriores.
+  var REVISION = 'access-2026-10-v1';
+  var DURATION = 30 * 24 * 60 * 60 * 1000;
+
+  function sessionAllowed() {
+    try { return sessionStorage.getItem(KEY) === 'yes'; } catch (_) { return false; }
+  }
+  function clearSession() {
+    try { sessionStorage.removeItem(KEY); } catch (_) {}
+  }
+  function remembered() {
+    var raw;
+    try { raw = localStorage.getItem(REMEMBER_KEY); } catch (_) { return false; }
+    if (raw === null) return false;
+    try {
+      var saved = JSON.parse(raw);
+      if (saved && saved.revision === REVISION &&
+          Number.isFinite(saved.expiresAt) &&
+          saved.expiresAt > Date.now() &&
+          saved.expiresAt <= Date.now() + DURATION) return true;
+    } catch (_) {}
+    // Um registro inválido não pode ser contornado por uma sessão antiga.
+    clearSession();
+    try { localStorage.removeItem(REMEMBER_KEY); } catch (_) {}
+    return false;
+  }
+  function rememberEntry(enabled) {
+    clearSession();
+    if (enabled) {
+      try {
+        localStorage.setItem(REMEMBER_KEY, JSON.stringify({
+          revision: REVISION, expiresAt: Date.now() + DURATION
+        }));
+        return;
+      } catch (_) { /* Sem persistência, continuar somente nesta sessão. */ }
+    } else {
+      try { localStorage.removeItem(REMEMBER_KEY); } catch (_) {}
+    }
+    try { sessionStorage.setItem(KEY, 'yes'); } catch (_) {}
+  }
+  function forget() {
+    clearSession();
+    try {
+      localStorage.removeItem(REMEMBER_KEY);
+      localStorage.setItem(FORGET_KEY, String(Date.now()) + '-' + Math.random());
+    } catch (_) {}
+    window.location.reload();
+  }
+  function ready(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn, { once: true });
+    } else { fn(); }
+  }
+  function addForgetControl() {
+    var footer = document.querySelector('.footer');
+    if (!footer || document.getElementById('esc-access-forget')) return;
+    var control = document.createElement('button');
+    control.id = 'esc-access-forget';
+    control.type = 'button';
+    control.textContent = 'Esquecer este navegador';
+    control.style.cssText = 'font:inherit;color:inherit;background:transparent;border:1px solid currentColor;border-radius:8px;padding:10px 12px;cursor:pointer;min-height:44px';
+    control.addEventListener('click', forget);
+    footer.appendChild(control);
+  }
+  window.addEventListener('storage', function (event) {
+    if (event.key === FORGET_KEY ||
+        event.key === null ||
+        (event.key === REMEMBER_KEY && event.newValue === null)) {
+      clearSession();
+      window.location.reload();
+    }
+  });
+
+  // Persistência verificada ao abrir/recarregar; visitas não renovam o prazo.
+  if (remembered() || sessionAllowed()) {
+    ready(addForgetControl);
+    return;
+  }
   document.documentElement.classList.add('esc-access-locked');
   var style = document.createElement('style');
   style.textContent = [
@@ -26,6 +103,8 @@
     '#esc-access-gate .esc-inputline{display:flex;align-items:center;gap:4px;border:1px solid #dba9b7;border-radius:13px;background:#fff9f9;overflow:hidden}',
     '#esc-access-gate .esc-inputline:focus-within{outline:2px solid #ffd3dd;outline-offset:2px}',
     '#esc-access-gate input{min-width:0;flex:1;border:0;outline:0;padding:15px 14px;color:#302328;font-size:15px;background:transparent}',
+    '#esc-access-gate .esc-remember{display:flex;align-items:center;gap:10px;margin:15px 0 0;font-size:12px;line-height:1.5;min-height:44px;cursor:pointer}',
+    '#esc-access-gate .esc-remember input{flex:none;width:18px;height:18px;padding:0;accent-color:#b93555}',
     '#esc-access-gate .esc-toggle{border:0;background:transparent;padding:13px;color:#7d203d;font-size:12px;font-weight:650;cursor:pointer}',
     '#esc-access-gate .esc-enter{width:100%;margin-top:15px;border:0;border-radius:99px;background:#b93555;color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer;padding:15px 18px;transition:background .15s}',
     '#esc-access-gate .esc-enter:hover{background:#cd4767}',
@@ -50,6 +129,7 @@
       '<label for="esc-access-password">Senha de acesso</label>',
       '<div class="esc-inputline"><input id="esc-access-password" type="password" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" required placeholder="Sua senha">',
       '<button class="esc-toggle" id="esc-access-toggle" type="button" aria-label="Mostrar senha">Mostrar</button></div>',
+      '<label class="esc-remember"><input id="esc-access-remember" type="checkbox" checked> Lembrar neste navegador por 30 dias</label>',
       '<button class="esc-enter" id="esc-access-enter" type="submit">Entrar no atlas &rarr;</button>',
       '<p class="esc-error" id="esc-access-error" role="status" aria-live="polite"></p>',
       '</form>',
@@ -84,9 +164,11 @@
           input.select();
           return;
         }
-        try { sessionStorage.setItem(KEY, 'yes'); } catch (_) {}
+        rememberEntry(document.getElementById('esc-access-remember').checked);
+        input.value = '';
         document.documentElement.classList.remove('esc-access-locked');
         gate.remove();
+        addForgetControl();
       } catch (e) {
         error.textContent = e.message || 'Não foi possível validar a senha.';
       } finally {
