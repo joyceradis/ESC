@@ -51,7 +51,7 @@ jobs:
       - name: Páginas geradas estão atualizadas
         run: |
           python3 build.py
-          if ! git diff --exit-code -- '*.html' assets/js/atlas-dados.js; then
+          if ! git diff --exit-code -- '*.html' assets/js/atlas-dados.js assets/js/evidence-data.js; then
             echo "::error::HTML ou dados gerados desatualizados. Rode 'python3 build.py' e faça commit do resultado."
             exit 1
           fi

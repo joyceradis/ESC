@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "decision": "exploratory",
+  "cards": [
+    {
+      "id": "SYN-001",
+      "topic": "Demonstração",
+      "headline": "Ficha sintética para testar a interface",
+      "model": "Modelo fictício",
+      "exposure": "Sem experimento",
+      "measured": "Nenhum desfecho real",
+      "finding": "Conteúdo de teste. Não representa evidência científica.",
+      "limit": "Não utilizar como referência.",
+      "review": "Dados sintéticos",
+      "source": "https://doi.org/10.0000/synthetic",
+      "kind": "pending",
+      "source_version": {
+        "id": "SYN-001",
+        "title": "Referência sintética 1 — teste técnico, não é artigo",
+        "authors": "Autor fictício",
+        "year": "2020",
+        "doi": "",
+        "url": ""
+      },
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "SYN-002",
+      "topic": "Demonstração",
+      "headline": "Ficha sintética para testar a interface",
+      "model": "Modelo fictício",
+      "exposure": "Sem experimento",
+      "measured": "Nenhum desfecho real",
+      "finding": "Conteúdo de teste. Não representa evidência científica.",
+      "limit": "Não utilizar como referência.",
+      "review": "Dados sintéticos",
+      "source": "https://doi.org/10.0000/synthetic",
+      "kind": "pending",
+      "source_version": {
+        "id": "SYN-002",
+        "title": "Referência sintética 2 — teste técnico, não é artigo",
+        "authors": "Autor fictício",
+        "year": "2020",
+        "doi": "",
+        "url": ""
+      },
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "SYN-003",
+      "topic": "Demonstração",
+      "headline": "Ficha sintética para testar a interface",
+      "model": "Modelo fictício",
+      "exposure": "Sem experimento",
+      "measured": "Nenhum desfecho real",
+      "finding": "Conteúdo de teste. Não representa evidência científica.",
+      "limit": "Não utilizar como referência.",
+      "review": "Dados sintéticos",
+      "source": "https://doi.org/10.0000/synthetic",
+      "kind": "pending",
+      "source_version": {
+        "id": "SYN-003",
+        "title": "Referência sintética 3 — teste técnico, não é artigo",
+        "authors": "Autor fictício",
+        "year": "2020",
+        "doi": "",
+        "url": ""
+      },
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "SYN-004",
+      "topic": "Demonstração",
+      "headline": "Ficha sintética para testar a interface",
+      "model": "Modelo fictício",
+      "exposure": "Sem experimento",
+      "measured": "Nenhum desfecho real",
+      "finding": "Conteúdo de teste. Não representa evidência científica.",
+      "limit": "Não utilizar como referência.",
+      "review": "Dados sintéticos",
+      "source": "https://doi.org/10.0000/synthetic",
+      "kind": "pending",
+      "source_version": {
+        "id": "SYN-004",
+        "title": "Referência sintética 4 — teste técnico, não é artigo",
+        "authors": "Autor fictício",
+        "year": "2020",
+        "doi": "",
+        "url": ""
+      },
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "SYN-005",
+      "topic": "Demonstração",
+      "headline": "Ficha sintética para testar a interface",
+      "model": "Modelo fictício",
+      "exposure": "Sem experimento",
+      "measured": "Nenhum desfecho real",
+      "finding": "Conteúdo de teste. Não representa evidência científica.",
+      "limit": "Não utilizar como referência.",
+      "review": "Dados sintéticos",
+      "source": "https://doi.org/10.0000/synthetic",
+      "kind": "pending",
+      "source_version": {
+        "id": "SYN-005",
+        "title": "Referência sintética 5 — teste técnico, não é artigo",
+        "authors": "Autor fictício",
+        "year": "2020",
+        "doi": "",
+        "url": ""
+      },
+      "reviewed_on": "2026-10-11"
+    }
+  ],
+  "connections": [
+    {
+      "id": "synthetic-0",
+      "kind": "pending",
+      "title": "Conexão sintética 1",
+      "summary": "Exemplo de interface, não é uma afirmação científica.",
+      "limit": "Somente teste técnico.",
+      "sources": [
+        "SYN-001"
+      ]
+    },
+    {
+      "id": "synthetic-1",
+      "kind": "pending",
+      "title": "Conexão sintética 2",
+      "summary": "Exemplo de interface, não é uma afirmação científica.",
+      "limit": "Somente teste técnico.",
+      "sources": [
+        "SYN-002"
+      ]
+    },
+    {
+      "id": "synthetic-2",
+      "kind": "hypothesis",
+      "title": "Conexão sintética 3",
+      "summary": "Exemplo de interface, não é uma afirmação científica.",
+      "limit": "Somente teste técnico.",
+      "sources": [
+        "SYN-003"
+      ]
+    },
+    {
+      "id": "synthetic-3",
+      "kind": "hypothesis",
+      "title": "Conexão sintética 4",
+      "summary": "Exemplo de interface, não é uma afirmação científica.",
+      "limit": "Somente teste técnico.",
+      "sources": [
+        "SYN-004"
+      ]
+    }
+  ]
+}

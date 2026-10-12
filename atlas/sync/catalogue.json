@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "imported_on": "2026-10-11",
+  "mode": "synthetic",
+  "source_counts": {
+    "TEST": 12
+  },
+  "records": [
+    {
+      "id": "SYN-001",
+      "title": "Referência sintética 1 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-001"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-002",
+      "title": "Referência sintética 2 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-002"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-003",
+      "title": "Referência sintética 3 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-003"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-004",
+      "title": "Referência sintética 4 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-004"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-005",
+      "title": "Referência sintética 5 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-005"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-006",
+      "title": "Referência sintética 6 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-006"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-007",
+      "title": "Referência sintética 7 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-007"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-008",
+      "title": "Referência sintética 8 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-008"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-009",
+      "title": "Referência sintética 9 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-009"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-010",
+      "title": "Referência sintética 10 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-010"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-011",
+      "title": "Referência sintética 11 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-011"
+      ],
+      "origin": "TEST",
+      "absent": false
+    },
+    {
+      "id": "SYN-012",
+      "title": "Referência sintética 12 — teste técnico, não é artigo",
+      "authors": "Autor fictício",
+      "year": "2020",
+      "doi": "",
+      "url": "",
+      "aliases": [
+        "SYN-012"
+      ],
+      "origin": "TEST",
+      "absent": false
+    }
+  ]
+}
