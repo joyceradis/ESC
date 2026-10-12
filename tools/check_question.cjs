@@ -35,7 +35,7 @@ for(const [engine,type] of Object.entries({chromium,webkit})){
   const shot=await page.screenshot({path:out+'/'+before+'.jpg',fullPage:true,type:'jpeg',quality:65});
   console.log('QUESTION_IMAGE '+before+' '+shot.toString('base64'));
  }
- results.push({engine,width,status:'PASS',checks:['closed disclosures','keyboard','overflow expanded and collapsed','scientific limits','links','page errors']});await context.close();
+ results.push({engine,width,status:'PASS',checks:['closed disclosures','keyboard','overflow expanded and collapsed','scientific limits','links','page errors']});fs.writeFileSync(out+'/report.json',JSON.stringify(results,null,2));await context.close();
  }}finally{await browser.close();}
 }
 fs.writeFileSync(out+'/report.json',JSON.stringify(results,null,2));console.log('QUESTION_REPORT '+JSON.stringify(results));
