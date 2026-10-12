@@ -96,3 +96,12 @@
   .esc-home .home-cover, .esc-home .home-portal, .esc-home .home-question-map, .esc-home .home-resume { break-inside: avoid; }
   .esc-home .home-specimen, .esc-home .home-question-map { print-color-adjust: exact; }
 }
+
+/* Leitura progressiva: trilhas acessíveis sem ocupar toda a primeira leitura. */
+.esc-home .home-map-disclosure{border:1px solid var(--home-line);border-radius:14px;background:#fffaf8}
+.esc-home .home-map-disclosure>summary{display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;padding:20px 24px;min-height:56px;color:var(--home-wine);font-size:14px;font-weight:650;cursor:pointer}
+.esc-home .home-map-disclosure>summary::-webkit-details-marker{display:none}
+.esc-home .home-map-disclosure>summary span{font-size:24px;font-weight:400}
+.esc-home .home-map-disclosure[open]>summary span{transform:rotate(45deg)}
+.esc-home .home-map-disclosure>summary:focus-visible{outline:3px solid #993c57;outline-offset:4px}
+.esc-home .home-map-disclosure .home-question-map{border:0;border-top:1px solid var(--home-line);border-radius:0 0 14px 14px}

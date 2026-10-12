@@ -7,6 +7,7 @@ navegação móvel, rodapé e paginação) está em src/layout.html.
 Uso:  python3 build.py
 Saída: <slug>.html na raiz do repositório (pronto para GitHub Pages).
 """
+from tools.build_evidence import build as build_evidence
 from pathlib import Path
 from html import escape
 from tools.build_atlas_data import build as build_atlas_data, build_data
@@ -68,6 +69,7 @@ def home_latest_note(notes: list) -> str:
 
 
 def main() -> None:
+    build_evidence()
     build_atlas_data()  # notas e estudos versionados -> asset derivado
     layout = (SRC / "layout.html").read_text(encoding="utf-8")
     for i, (slug, title, _l, _s) in enumerate(PAGES):
@@ -85,6 +87,9 @@ def main() -> None:
                 '<link rel="stylesheet" href="assets/css/home.css" />\n'
                 if slug == "index" else ""
             ) + (
+                '<link rel="stylesheet" href="assets/css/protocolo.css" />\n'
+                if slug == "protocolo" else ""
+            ) + (
                 ('<script src="assets/js/atlas-dados.js" defer></script>\n'
                  '<script src="assets/js/atlas-feed.js" defer></script>\n')
                 if slug == "laboratorio" else ""
@@ -97,6 +102,8 @@ def main() -> None:
             .replace("{{body}}", body.strip())
             .replace("{{pager}}", pager(i))
         )
+        if slug == "biblioteca":
+            html = html.replace("</head>", '<link rel="stylesheet" href="assets/css/evidence.css" />\n<script src="assets/js/evidence-data.js" defer></script>\n<script src="assets/js/evidence.js" defer></script>\n</head>')
         (ROOT / f"{slug}.html").write_text(html, encoding="utf-8")
         print(f"ok  {slug}.html")
 
