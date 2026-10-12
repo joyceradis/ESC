@@ -1,7 +1,7 @@
 /* Pergunta científica: leitura guiada, detalhes científicos preservados. */
 .question-atlas{--q-ink:#4e172b;--q-muted:#765c63;color:#382b30}
 .question-atlas *{box-sizing:border-box}
-.question-atlas h1,.question-atlas h2,.question-atlas h3{color:var(--q-ink)}
+.question-atlas h1,.question-atlas h2,.question-atlas h3{color:var(--q-ink);font-family:var(--serif);font-weight:400}
 .question-hero{padding:18px 0 32px;border-bottom:1px solid #dfd1d5}
 .question-eyebrow{font-size:11px!important;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:#865363;margin:0 0 12px!important}
 .question-hero h1{font-size:clamp(32px,3.8vw,54px);line-height:1.12;margin:0 0 18px;max-width:850px}

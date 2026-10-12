@@ -12,7 +12,7 @@ for(const [engine,type] of Object.entries({chromium,webkit})){
  assert.equal(await page.locator('h1').count(),1);
  const visible=await page.locator('.question-atlas').innerText();
  assert(!/L-\d{3}|REF-\d{3}|HYP-\d{3}/.test(visible),'Internal codes visible before expansion');
- assert(visible.includes('podem coexistir'));assert(visible.includes('não isola'));
+ assert(visible.includes('coração quando'), 'Heading words joined on mobile');assert(visible.includes('Esse ensaio não mede titina'));assert(visible.includes('podem coexistir'));assert(visible.includes('não isola'));
  assert(visible.includes('Outras explicações'));assert(visible.includes('Microgravidade, descarga mecânica e fluxo'));
  async function overflow(){assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Horizontal page overflow');}
  await overflow();
@@ -26,7 +26,7 @@ for(const [engine,type] of Object.entries({chromium,webkit})){
  for(const a of await page.locator('.question-links a').all()){const href=await a.getAttribute('href');const response=await page.request.get('http://127.0.0.1:18773/'+href);assert(response.ok(),'Broken navigation '+href);}
  assert.deepEqual(errors,[]);
  if(width===390||width===1440){
-  await page.evaluate(()=>scrollTo(0,0));
+  await page.locator('h1').click();await page.evaluate(()=>scrollTo(0,0));
   const name=engine+'-'+width+'-depois';
   const screenshot=await page.screenshot({path:out+'/'+name+'.jpg',fullPage:true,type:'jpeg',quality:70});
   console.log('QUESTION_IMAGE '+name+' '+screenshot.toString('base64'));
