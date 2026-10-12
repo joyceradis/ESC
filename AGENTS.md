@@ -23,8 +23,12 @@ A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/work
 2. `src/layout.html`, `src/pages/` e `assets/css/style.css` contêm a interface; `assets/js/app.js` e `assets/js/data.js` contêm comportamento e espelho de dados. `build.py` gera os HTML da raiz.
 3. `.claude/skills/` contém as skills de fichamento, revisão da candidatura e atualização do atlas.
 
-## Revisão visual (proposta no PR #17)
-
+## Descoberta de revisão visual (proposta no PR #17)
+- tools/check_responsive.cjs
+  const results=[]; let failures=0;
+  try{
+    for(const device of devices){
+      const context=await browser.newContext({viewport:device.viewport,isMobile:device.isMobile,hasTouch:device.hasTouch,deviceScaleFactor:1});
 - [Guia de revisão visual](docs/revisao-visual.md) → [workflow desktop/celular](.github/workflows/revisao-visual.yml) → [testes Playwright](tools/check_responsive.cjs).
 - Para alterações visuais: verificar desktop e celular, navegação, controles, overflow, screenshots e regressões; incluir evidências no PR. Preservar a identidade aprovada por Joyce e a curadoria visual do Claude.
 - **Status:** esta rotina está apenas na branch do PR #17; não declarar implantação na `main`, aprovação do Claude ou execução bem-sucedida sem evidências. Este texto não altera regras de executor, acesso, merge ou publicação.
