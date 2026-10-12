@@ -14,6 +14,9 @@
 <script src="assets/js/access-gate.js"></script>
 <script src="assets/js/data.js" defer></script>
 <script src="assets/js/app.js" defer></script>
+<link rel="stylesheet" href="assets/css/evidence.css" />
+<script src="assets/js/evidence-data.js" defer></script>
+<script src="assets/js/evidence.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -42,7 +45,17 @@
  <header class="mobile-head"><a href="index.html"><strong>ESC <i>2027</i></strong></a><span><b data-countdown>23.10</b></span></header>
  <nav class="mobile-nav" aria-label="Navegação no celular"><a href="index.html">Início</a><a href="retomar.html">Retomar</a><a href="pergunta.html">Pergunta</a><a href="candidatura.html">ESC</a><a href="protocolo.html">Protocolo</a><a href="biblioteca.html" aria-current=page>Leituras</a><a href="hipoteses.html">Hipóteses</a><a href="laboratorio.html">Laboratório</a><a href="vocabulario.html">Termos</a><a href="acervo.html">Acervo</a></nav>
  <main class="shell" id="conteudo">
-<header class="page-head"><div class="kicker">06 · Biblioteca científica</div><h1>Uma biblioteca <em>que faz sentido</em></h1><p>Aqui estão 30 sugestões de leitura da sua planilha e outras cinco referências que ainda precisam ser conferidas. <strong>Não significa que você já leu esses artigos.</strong> Comece pelo assunto ou use os filtros abaixo.</p></header>
+<div id="evidence-library">
+<header class="ev-intro"><p class="kicker">Biblioteca · para conectar ideias</p><h1>O que cada estudo<br> ajuda a entender</h1><p>Comece pelas fichas curtas. Abra os métodos quando precisar e compare as conexões sem escolher uma hipótese antes da hora.</p><p id="ev-date" class="ev-date"></p></header>
+<p class="ev-open"><strong>Pesquisa em construção.</strong> Você está estudando a ideia. Importar uma referência não confirma seus resultados nem significa que você já a leu.</p>
+<div class="ev-modes" aria-label="Modo de leitura"><button type="button" data-ev-mode="cards" aria-pressed="true">Fichas dos estudos</button><button type="button" data-ev-mode="connections" aria-pressed="false">Conectar as ideias</button></div>
+<div class="ev-controls"><label>Buscar por assunto, autor ou artigo<input id="ev-search" type="search" autocomplete="off" placeholder="Ex.: microgravidade, fluxo, titina…"></label><label>O que você quer ver?<select id="ev-filter"><option value="selected">Começar por aqui</option><option value="all">Todo o catálogo</option><option value="evidence">Evidência no modelo</option><option value="association">Associação</option><option value="hypothesis">Hipótese em aberto</option><option value="pending">Conferência pendente</option></select></label></div>
+<p id="ev-scope"></p><p id="ev-count" role="status" aria-live="polite" tabindex="-1"></p><div id="ev-results" class="ev-grid"></div>
+<div class="ev-pagination"><button id="ev-prev" type="button">← Anterior</button><button id="ev-next" type="button">Próxima →</button></div>
+<noscript><p>Ative JavaScript para filtrar fichas e conexões. As referências originais permanecem na seção abaixo e na planilha mestre.</p></noscript>
+</div>
+<details class="ev-legacy"><summary>Catálogo anterior e meus registros de leitura</summary>
+ <header class="page-head"><div class="kicker">06 · Biblioteca científica</div><h2>Uma biblioteca <em>que faz sentido</em></h2><p>Aqui estão 30 sugestões de leitura da sua planilha e outras cinco referências que ainda precisam ser conferidas. <strong>Não significa que você já leu esses artigos.</strong> Comece pelo assunto ou use os filtros abaixo.</p></header>
 
  <section class="section">
   <div class="reading-guide" aria-label="Como entender as etiquetas"><span><b>Já li</b> · você estudou</span><span><b>Ainda vou ler</b> · está na sua lista</span><span><b>Conferir</b> · faltam dados bibliográficos</span></div>
@@ -53,6 +66,8 @@
   <div class="micro"><span aria-hidden="true" style="font-size:22px">ⓘ</span><div><strong>O que já foi estudado?</strong> Tomita (L-001) é o único registrado como lido e discutido. Os outros não viraram conhecimento assimilado apenas por estarem aqui. <details class="reading-codes"><summary>O que significam L-001, REF-001 e FIG-001?</summary><p><b>L</b> = leitura sugerida; <b>REF</b> = documento científico identificado; <b>FIG</b> = figura. São códigos de organização, não notas de qualidade.</p></details></div></div>
   <div class="split" style="margin-top:16px"><a class="quick" href="https://docs.google.com/spreadsheets/d/1fksFh1OfIFxe6R7A6eebzSoTgnMHBAbgOfUJHjVvEr8/edit#gid=1325506008" target="_blank" rel="noopener noreferrer"><span class="qicon">L</span><span><strong>Minha planilha de leituras</strong><small>Registros e status originais</small></span><span class="arrow">↗</span></a><a class="quick" href="https://docs.google.com/spreadsheets/d/1fksFh1OfIFxe6R7A6eebzSoTgnMHBAbgOfUJHjVvEr8/edit#gid=107261923" target="_blank" rel="noopener noreferrer"><span class="qicon">R</span><span><strong>Artigos que já estão no Drive</strong><small>Referências e arquivos PDF</small></span><span class="arrow">↗</span></a></div>
  </section>
+
+</details>
 <nav class="pager" aria-label="Paginação"><a class="prev" href="protocolo.html"><small>← Anterior</small><strong>Protocolo proposto</strong></a><a class="next" href="hipoteses.html"><small>Próxima →</small><strong>Linhas de investigação</strong></a></nav>
  <footer class="footer"><span><strong>ESC 2027 · Research Atlas</strong><br>Pesquisa e autoria científica: Joyce Radis. <a href="acervo.html" style="text-decoration:underline;text-underline-offset:3px">Créditos completos ↗</a></span><span>Execução técnica: <strong>Claude · Anthropic</strong>, por instrução da autora.<br>Edição 04 · somente leitura · documentos originais no Drive.</span></footer>
  </main>
