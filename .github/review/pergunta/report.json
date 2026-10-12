@@ -1,0 +1,106 @@
+[
+  {
+    "engine": "chromium",
+    "width": 320,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "chromium",
+    "width": 768,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 768,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 1440,
+    "status": "PASS",
+    "checks": [
+      "closed disclosures",
+      "keyboard",
+      "overflow expanded and collapsed",
+      "scientific limits",
+      "links",
+      "page errors"
+    ]
+  }
+]
