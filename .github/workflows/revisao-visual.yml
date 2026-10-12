@@ -369,9 +369,34 @@ jobs:
                 const summaries = page.locator('details > summary');
                 for (let i = 0; i < await summaries.count(); i++) {
                   const summary = summaries.nth(i);
-                  if (!(await summary.isVisible())) continue;
 
+                  // Testar também os controles dentro de seções recolhidas.
+                  // WebKit pode reportar summary como visível sob details fechado.
+                  // Abrir os ancestrais pela interface, sem alterar o estado pelo DOM.
+                  const ancestorIndexes = await summary.evaluate((el) => {
+                    const all = [...document.querySelectorAll('details')];
+                    const indexes = [];
+                    let ancestor = el.parentElement.parentElement?.closest('details');
+                    while (ancestor) {
+                      indexes.unshift(all.indexOf(ancestor));
+                      ancestor = ancestor.parentElement?.closest('details');
+                    }
+                    return indexes;
+                  });
+                  const openedAncestors = [];
+                  for (const index of ancestorIndexes) {
+                    const ancestor = page.locator('details').nth(index);
+                    if (!(await ancestor.evaluate((el) => el.open))) {
+                      await ancestor.locator(':scope > summary').press('Enter');
+                      if (!(await ancestor.evaluate((el) => el.open))) {
+                        throw new Error('Não foi possível abrir ancestral do expansor ' + i);
+                      }
+                      openedAncestors.push(index);
+                    }
+                  }
+                  await summary.scrollIntoViewIfNeeded();
                   const label = (await summary.innerText()).trim();
+                  if (!label) throw new Error('Expansor sem rótulo visível: ' + i);
 
                   for (const key of ['Space', 'Enter']) {
                     await summary.focus();
@@ -396,6 +421,13 @@ jobs:
                     } else {
                       // Restaura o estado original usando a mesma tecla.
                       await summary.press(key);
+                    }
+                  }
+                  for (const index of openedAncestors.reverse()) {
+                    const ancestor = page.locator('details').nth(index);
+                    await ancestor.locator(':scope > summary').press('Enter');
+                    if (await ancestor.evaluate((el) => el.open)) {
+                      throw new Error('Não foi possível recolher ancestral do expansor ' + i);
                     }
                   }
                 }
