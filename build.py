@@ -82,6 +82,9 @@ def main() -> None:
                 '<link rel="stylesheet" href="assets/css/home.css" />\n'
                 if slug == "index" else ""
             ) + (
+                '<link rel="stylesheet" href="assets/css/protocolo.css" />\n'
+                if slug == "protocolo" else ""
+            ) + (
                 ('<script src="assets/js/atlas-dados.js" defer></script>\n'
                  '<script src="assets/js/atlas-feed.js" defer></script>\n')
                 if slug == "laboratorio" else ""
