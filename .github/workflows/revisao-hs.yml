@@ -30,6 +30,7 @@ jobs:
           python3 tools/check_site.py
           node --test tests/*.test.mjs
           python3 -c 'import json,pathlib; print("GENERATED_PROTOCOL="+json.dumps(pathlib.Path("protocolo.html").read_text()))'
+          python3 -c 'import json,pathlib; print("GENERATED_HOME="+json.dumps(pathlib.Path("index.html").read_text()))'
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: ${{ github.event.pull_request.base.sha }}
@@ -43,6 +44,7 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           node tools/check_hs_browser.cjs
+          node tools/review_layout.cjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: esc-hs-previa
