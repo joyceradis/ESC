@@ -1,0 +1,34 @@
+name: Governança — triagem segura de alterações
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: esc-governanca-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  triagem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Classificar risco e gerar relatório
+        env:
+          ESC_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.repository.default_branch }}
+        run: |
+          git cat-file -e "$ESC_BASE_SHA^{commit}"
+          python3 tools/esc_review_gate.py
+      - name: Anexar relatório
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: esc-governanca-triagem
+          path: |
+            esc-review.json
+            esc-review.md
+          if-no-files-found: warn
