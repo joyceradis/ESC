@@ -109,7 +109,7 @@
         });
         card.append(row);
         const note = el('textarea'); note.rows = 2; note.value = m.note || ''; note.placeholder = 'Sua nota (opcional)'; note.setAttribute('aria-label', 'Nota sobre ' + h.title);
-        note.addEventListener('change', function () { marks[h.id] = { state: (marks[h.id] || {}).state || '', note: note.value }; persist(); });
+        note.addEventListener('input', function () { marks[h.id] = { state: (marks[h.id] || {}).state || '', note: note.value }; persist(); });
         card.append(note);
         const on = compare.indexOf(h.id) !== -1;
         const c = el('button', 'mesa-btn mesa-cmp', on ? 'Tirar da comparação' : 'Comparar'); c.type = 'button'; c.dataset.k = 'cmp:' + h.id; c.setAttribute('aria-pressed', String(on));
