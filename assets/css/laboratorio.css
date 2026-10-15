@@ -182,3 +182,12 @@
 .lab-evidence-metrics > .lab-reference-caution p {margin:6px 0}
 .lab-evidence-metrics > .lab-reference-caution a {overflow-wrap:anywhere}
 #lab-method-scope {margin-bottom:24px}
+/* Bancada da pergunta */
+.bancada-out{display:grid;gap:12px;margin:14px 0}
+.bancada-meter{display:grid;gap:6px}.bancada-meter-top{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.bancada-meter-top b{font-weight:650}.bancada-meter-top b.is-ok{color:#1d6a64}.bancada-meter-top b.is-blocked{color:#a23560}
+.bancada-bar{height:12px;border-radius:99px;background:#eddde1;overflow:hidden}.bancada-bar i{display:block;height:100%;transition:width .25s}
+.bancada-bar i.is-ok{background:#2b8a82}.bancada-bar i.is-blocked{background:#a23560}
+.bancada-small{color:#73666a;font-size:12px}.bancada-sub{margin:14px 0 6px;font:400 18px Georgia,serif}
+.bancada-not{margin:0;padding-left:18px;display:grid;gap:6px;font-size:13.5px}
+@media (prefers-reduced-motion:reduce){.bancada-bar i{transition:none}}
