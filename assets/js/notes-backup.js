@@ -25,6 +25,19 @@
       });
       return records;
     }
+    /* Confere o formato de cada seção antes de gravar: as páginas esperam textos e marcações, não números ou listas. */
+    function isMap(v, test) { return validRecord(v) && Object.keys(v).every(function (k) { return test(v[k]); }); }
+    const isStr = function (v) { return typeof v === 'string'; };
+    const SHAPES = {
+      'esc-mesa-v1': function (r) { return isMap(r, function (m) { return validRecord(m) && (m.state === undefined || isStr(m.state)) && (m.note === undefined || isStr(m.note)); }); },
+      'esc-plano-v1': function (r) {
+        return (r.plano === undefined || isMap(r.plano, function (v) { return typeof v === 'boolean'; })) && (r.esq === undefined || isMap(r.esq, isStr));
+      },
+      'esc-decisao-v1': function (r) {
+        return (r.escopo === undefined || isStr(r.escopo)) && (r.pergunta === undefined || isStr(r.pergunta)) &&
+          ['lanes', 'estr', 'abertas'].every(function (k) { return r[k] === undefined || isMap(r[k], isStr); });
+      }
+    };
     function validate(doc) {
       if (!doc || doc.format !== FORMAT || doc.version !== VERSION || !validRecord(doc.records)) {
         throw new Error('Arquivo incompatível com esta versão do Atlas.');
@@ -32,6 +45,9 @@
       const names = Object.keys(doc.records);
       if (!names.length || names.some(function (name) { return !KEYS.includes(name) || !validRecord(doc.records[name]); })) {
         throw new Error('A cópia não contém registros válidos do Atlas.');
+      }
+      if (names.some(function (name) { return !SHAPES[name](doc.records[name]); })) {
+        throw new Error('A cópia tem campos em formato inesperado e não foi restaurada.');
       }
       return doc.records;
     }
