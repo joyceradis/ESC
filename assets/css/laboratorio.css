@@ -192,5 +192,5 @@
 .bancada-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .bancada-seg span{padding:9px 10px;border:1px solid #e5d8dd;border-radius:9px;background:#fffdfb;color:#73666a;font-size:13px;text-align:center}
 .bancada-seg span.is-on{font-weight:650;color:#fff}
-.bancada-seg span.is-preservado{background:#2b8a82;border-color:#2b8a82}
+.bancada-seg span.is-preservado{background:#1d6a64;border-color:#1d6a64}
 .bancada-seg span.is-bloqueado{background:#a23560;border-color:#a23560}
