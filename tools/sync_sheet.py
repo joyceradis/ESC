@@ -55,7 +55,10 @@ def transform(payload, previous=None, imported_on=None):
    if key in keys:
     if "axis" in spec:
      # Autoria do corpus tem outro formato; compara só título e ano, e só quando ambos existem.
-     diverge=any(keys[key][f] and v and comparable(keys[key][f])!=comparable(v) for f,v in (("title",title),("year",year)))
+     # Título completo vs abreviado (ex.: com a espécie entre parênteses) não é divergência: as palavras do menor estão no maior.
+     words=lambda t: set(re.findall(r"[a-z0-9]+",unicodedata.normalize("NFKD",t).encode("ascii","ignore").decode().lower()))
+     same=lambda a,b: not a or not b or words(a)<=words(b) or words(b)<=words(a)
+     diverge=not (same(keys[key]["title"],title) and same(keys[key]["year"],year))
     else: diverge=any(comparable(keys[key][f])!=comparable(v) for f,v in (("title",title),("authors",authors),("year",year)))
     if diverge: keys[key]["conflict"]=True
     if "axis" in spec and axis and not keys[key].get("axis"): keys[key]["axis"]=axis

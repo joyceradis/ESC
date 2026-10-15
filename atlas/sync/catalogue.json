@@ -346,7 +346,7 @@
       ],
       "origin": "LEITURAS_SUGERIDAS",
       "absent": false,
-      "conflict": true,
+      "conflict": false,
       "axis": "02 Gravidade / descarga / adaptação"
     },
     {

@@ -31,6 +31,11 @@ class SyncTests(unittest.TestCase):
  def test_corpus_authorship_format_is_not_a_conflict(self):
   p=fixture();p["FONTES_11OUT"][1][2]="Author (2020)"
   self.assertFalse(transform(p)["records"][0]["conflict"])
+ def test_corpus_longer_title_is_not_a_conflict(self):
+  p=fixture();p["FONTES_11OUT"][1][2]="Author (2020)";p["MATRIZ_CORPUS"][1][4]="Title (Species name) extra"
+  self.assertFalse(transform(p)["records"][0]["conflict"])
+  p["MATRIZ_CORPUS"][1][4]="Completely different"
+  self.assertTrue(transform(p)["records"][0]["conflict"])
  def test_axis_format_enforced(self):
   p=fixture();p["MATRIZ_CORPUS"][1][1]="<script>"
   with self.assertRaises(ValueError):transform(p)
