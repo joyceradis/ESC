@@ -14,3 +14,11 @@ test('sem escolha, o resumo diz isso e conta trilhas sem destino', () => {
   assert.equal(m.pending({}), m.LANES.length);
   assert.equal(m.pending({ lanes: { elo: 'entra' } }), m.LANES.length - 1);
 });
+test('pendências: começam todas em aberto e o resumo as lista', () => {
+  assert.equal(m.open({}), m.OPEN.length);
+  assert.equal(m.open({ abertas: { pergunta: 'decidida' } }), m.OPEN.length - 1);
+  const s = m.summary({ estr: { e1: 'paralelo' }, abertas: { textos: 'decidida' } });
+  assert.match(s, /Estratégias:\n- Estrutura: âncoras ou matriz\?: Fica em paralelo/);
+  assert.match(s, /Fechar abstract, CV e carta Decidi/);
+  assert.match(s, /Qual é a pergunta que carrega a candidatura\? Em aberto/);
+});
