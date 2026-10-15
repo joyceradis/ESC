@@ -1,39 +1,32 @@
-/* Mesa de decisão — mantém a identidade vinho/off-white; sem animações. */
-#mesa-root{display:grid;gap:14px}
-.mesa-intro{margin:0;color:var(--muted);font-size:14px}
-.mesa-bar{display:grid;gap:10px}
-.mesa-bar input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink)}
-.mesa-chips,.mesa-states{display:flex;flex-wrap:wrap;gap:8px}
-.mesa-chip,.mesa-btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:9px 14px;min-height:44px;font-size:13px}
-.mesa-chip[aria-pressed="true"],.mesa-btn[aria-pressed="true"]{background:var(--escDeep);border-color:var(--escDeep);color:#fff3f5}
+/* Mesa de decisão, plano, esqueleto e projeto — mesma linguagem das páginas do site:
+   cartões brancos arredondados, pílulas vinho, título em serifa, caixa bege com filete. */
+.mesa-grid,.proj-list,.plano-days,.plano-form{display:grid;gap:14px}
+.mesa-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.plano-days{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.plano-form{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+#mesa-root,#plano-root,#decisao-root{display:grid;gap:14px}
+.mesa-intro,.mesa-empty{margin:0;padding:14px 18px;border-left:3px solid #ad8053;background:#f3eddf;font-size:14px;color:#3a2e32}
+.mesa-empty{background:transparent;border:0;padding:0;color:var(--muted);font-size:13px}
 .mesa-status{margin:0;min-height:1.4em;font-size:12px;color:var(--muted)}
-.mesa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
-.mesa-card{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:20px;display:grid;gap:10px;min-width:0;align-content:start}
-.mesa-card.is-explorar{border-color:var(--esc);background:#f8eaec}
-.mesa-card.is-duvida{border-color:#c99a6a}
-.mesa-card.is-depois{opacity:.78}
-.mesa-card h3{margin:0;font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.25}
-.mesa-kind{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
-.mesa-q{margin:0;font-size:14px}
-.mesa-card details{font-size:13px;color:#5d4247}
-.mesa-card summary{cursor:pointer;min-height:32px}
-.mesa-card textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--ink);resize:vertical}
-.mesa-sub{margin:10px 0 0;font-family:var(--serif);font-weight:400}
+.mesa-sub{margin:10px 0 0;font:400 clamp(22px,5vw,28px)/1.2 var(--serif);letter-spacing:-.02em;color:#541b30}
+.mesa-bar input,.plano-field textarea,.mesa-card textarea,.decisao-note{display:block;width:100%;padding:12px;border:1px solid #ccb6bf;border-radius:9px;background:#fffdfb;color:#382b30;font:inherit;font-size:15px;min-width:0;resize:vertical}
+.mesa-bar{display:grid;gap:10px}
+.mesa-chips,.mesa-states{display:flex;flex-wrap:wrap;gap:8px}
+.mesa-chip,.mesa-btn{padding:12px 20px;min-height:44px;border:1px solid #d9c1ca;border-radius:24px;background:#fffdfb;color:#541b30;font:inherit;font-size:14px;cursor:pointer}
+.mesa-chip[aria-pressed="true"],.mesa-btn[aria-pressed="true"]{background:#541b30;border-color:#541b30;color:#fff}
+.mesa-card,.plano-day,.decisao-lane,.mesa-col{min-width:0;padding:22px;border:1px solid #e5d8dd;background:#fffdfb;border-radius:18px;display:grid;gap:10px;align-content:start;overflow-wrap:anywhere}
+.mesa-card.is-explorar{border-color:#84223c;background:#fbf1f3}.mesa-card.is-duvida{border-color:#ad8053}.mesa-card.is-depois{opacity:.78}
+.mesa-card h3,.plano-day h3,.mesa-col h3{margin:0;font:400 22px/1.25 var(--serif);letter-spacing:-.015em;color:#541b30}
+.mesa-kind{display:inline-block;justify-self:start;font-size:11px;padding:5px 8px;border-radius:5px;background:#ede9e5;color:#63564c}
+.mesa-q{margin:0;font-size:14px;line-height:1.65}
+.mesa-card details{border-top:1px solid #eadde1;font-size:13px;color:#5d4247}.mesa-card summary{cursor:pointer;min-height:44px;padding:12px 0;font-weight:600}
 .mesa-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
-.mesa-col{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:18px;min-width:0}
-.mesa-col h3{margin:0 0 8px;font-family:var(--serif);font-weight:400;font-size:18px}
-.mesa-row{display:grid;gap:2px;margin-top:10px;font-size:13px;line-height:1.5}
-.mesa-row b{color:#3a2327}
-.mesa-empty{margin:0;color:var(--muted);font-size:13px}
-.mesa-text{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:14px;font:13px/1.6 var(--font);margin:10px 0 0}
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
-/* Plano e esqueleto (página De onde parei) */
-#plano-root{display:grid;gap:14px}
-.plano-bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.plano-bar i{display:block;height:100%;width:0;background:var(--esc)}
-.plano-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
-.plano-day{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:18px;display:grid;gap:8px;align-content:start;min-width:0}
-.plano-day h3{margin:0;font-family:var(--serif);font-weight:400;font-size:18px}
-.plano-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;min-height:32px}.plano-row input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--esc)}
-.plano-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.mesa-row{display:grid;gap:2px;margin-top:8px;font-size:13.5px;line-height:1.55}.mesa-row b{color:#3a2327}
+.mesa-text{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #e5d8dd;background:#fffdfb;border-radius:12px;padding:14px;font:13px/1.6 var(--font);margin:6px 0 0}
+.plano-bar{height:10px;border-radius:99px;background:#eadde1;overflow:hidden}.plano-bar i{display:block;height:100%;width:0;background:#84223c}
+.plano-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;min-height:32px}.plano-row input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:#84223c}
 .plano-field{display:grid;gap:4px;font-weight:600;font-size:14px}.plano-field small{font-weight:400;color:var(--muted)}
-.plano-field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--ink);font:inherit;resize:vertical}
+.decisao-scope{display:grid;gap:4px;text-align:left;border-radius:18px;padding:16px 18px}.decisao-scope strong{font:400 20px var(--serif);letter-spacing:-.01em}.decisao-scope small{font-size:13px;opacity:.85}
+.decisao-lanes{display:grid;gap:12px}.decisao-lane b{font:400 19px var(--serif);color:#541b30}
+.proj-list{margin-top:4px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
