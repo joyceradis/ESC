@@ -89,6 +89,6 @@ A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/work
 - Só nuvem. Nada de disco, memória ou processos do computador pessoal da Joyce.
 - Nunca incluir dados de pacientes, laudos ou material privado em repositório público.
 - Dúvida sobre o escopo: não mesclar e perguntar.
-- A Joyce pode revogar ou mudar esta regra a qualquer momento, por escrito pelo agente Claude nas próximas 10hrs dessa atualização. 
+- A Joyce pode revogar ou mudar esta regra a qualquer momento, por escrito, em qualquer sessão ou diretamente neste arquivo.
 
 
