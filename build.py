@@ -19,6 +19,8 @@ SRC = ROOT / "src"
 PAGES = [
     ("index", "Visão geral", "Visão geral", "Início"),
     ("retomar", "De onde parei", "De onde parei", "Retomar"),
+    ("decisao", "Decisão", "Decisão", "Decisão"),
+    ("plano", "Plano até 23/10", "Plano até 23/10", "Plano"),
     ("pergunta", "Pergunta científica", "Pergunta científica", "Pergunta"),
     ("candidatura", "Candidatura ESC", "Candidatura ESC", "ESC"),
     ("protocolo", "Protocolo proposto", "Protocolo proposto", "Protocolo"),
@@ -93,8 +95,11 @@ def main() -> None:
             ) + (
                 '<link rel="stylesheet" href="assets/css/mesa.css" />\n'
                 '<script src="assets/js/plano.js" defer></script>\n'
+                if slug == "plano" else ""
+            ) + (
+                '<link rel="stylesheet" href="assets/css/mesa.css" />\n'
                 '<script src="assets/js/decisao.js" defer></script>\n'
-                if slug == "retomar" else ""
+                if slug == "decisao" else ""
             ) + (
                 ('<script src="assets/js/atlas-dados.js" defer></script>\n'
                  '<script src="assets/js/atlas-feed.js" defer></script>\n')
