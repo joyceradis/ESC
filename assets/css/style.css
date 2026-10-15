@@ -99,7 +99,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
  .mobile-nav a{min-height:40px;display:inline-flex;align-items:center;padding:0 14px;font-size:12px;scroll-snap-align:start;background:#fffdfb;transition:background .2s,color .2s}
  .mobile-nav a[aria-current="page"]{background:var(--escDeep);border-color:var(--escDeep);color:#fff}
  .mobile-nav a:focus-visible{outline-offset:-2px}
- .section{scroll-margin-top:118px}
+ .section,#conteudo{scroll-margin-top:118px}
  .shell{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
  .card p,.resource p,.step p,.fact-box span,.provenance p,.hyp p{font-size:13px}
  .reading .authors,.reading .metadata,.results-meta{font-size:12px}
