@@ -67,3 +67,42 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
 
 /* Rodapé: a linha de execução técnica não compete com o título do atlas. */
 .footer span+span strong{font-family:inherit;font-size:12px;font-weight:600;color:#704e54}
+
+/* ---------- Polimento de interface (15/10/2026) ----------
+   Só refinamento: mesma identidade vinho/off-white, sem mudar conteúdo. */
+
+/* Contraste: rótulos e textos miúdos passam a ter leitura confortável (≥ 4,5:1). */
+:root{--kick:#8c4a58;--soft:#7a5159}
+.kicker,.section-kicker,.mini-kicker,.pager small,.tbl th,.vcard .meta,.hyp .grid2 b,.hyp summary .left b,.provenance .author,.tagp,.folder code{color:var(--kick)}
+.card p,.resource p,.step p,.fact-box span,.status-note,.results-meta,.reading .authors,.reading .metadata,.ab small,.provenance p,.hyp p{color:var(--soft)}
+.footer,.topbar{color:#7d5961}
+
+/* Barra lateral: os dez itens e o rodapé cabem em telas baixas sem rolagem. */
+.sidebar{padding:clamp(20px,3.4vh,33px) 24px}
+.navlabel{margin:clamp(16px,3vh,41px) 0 10px}.side-count{margin-top:16px;padding:12px 14px}.brandmark{margin-bottom:clamp(12px,2vh,20px)}
+.nav{gap:2px}
+.nav a{padding:clamp(5px,.85vh,11px) 12px;line-height:1.3}
+.nav a:focus-visible{outline-color:#f0bdc8;outline-offset:2px}
+.sidefoot{padding-top:16px;line-height:1.7}
+
+/* Leitura: tamanho mínimo de 12px em textos de apoio e foco consistente em cartões clicáveis. */
+.card p,.resource p,.step p,.fact-box span,.provenance p,.hyp p{font-size:12.5px}
+.quick:focus-visible,.resource:focus-visible,.pager a:focus-visible{outline:3px solid #c03b5d;outline-offset:3px}
+.page-head p{color:#6f4a52}
+
+/* Mobile: barra única fixa (marca, prazo e abas), com alvos de toque de 40px e dica de rolagem. */
+.mobile-bar{display:none}
+@media(max-width:790px){
+ .mobile-bar{display:block;position:sticky;top:0;z-index:20;background:rgba(249,245,243,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #e9dcde;padding-top:env(safe-area-inset-top)}
+ .mobile-bar .mobile-head{position:static;border-bottom:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:10px 18px 4px}
+ .mobile-bar .mobile-nav{padding:4px 18px 10px;gap:6px;scroll-snap-type:x proximity;scroll-padding:0 18px;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent);background:none}
+ .mobile-nav a{min-height:40px;display:inline-flex;align-items:center;padding:0 14px;font-size:12px;scroll-snap-align:start;background:#fffdfb;transition:background .2s,color .2s}
+ .mobile-nav a[aria-current="page"]{background:var(--escDeep);border-color:var(--escDeep);color:#fff}
+ .mobile-nav a:focus-visible{outline-offset:-2px}
+ .section,#conteudo{scroll-margin-top:118px}
+ .shell{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
+ .card p,.resource p,.step p,.fact-box span,.provenance p,.hyp p{font-size:13px}
+ .reading .authors,.reading .metadata,.results-meta{font-size:12px}
+ .filter-panel input,.filter-panel select{font-size:16px} /* evita o zoom automático do iPhone ao focar */
+}
+@media print{.mobile-bar{display:none!important}}

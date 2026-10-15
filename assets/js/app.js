@@ -105,6 +105,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     try { countdown(); } catch (e) {}
+    try { const cur = document.querySelector('.mobile-nav [aria-current]'); if (cur) cur.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (e) {}
     library(); hypotheses(); vocab(); decisions();
   });
 })();
