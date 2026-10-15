@@ -71,8 +71,7 @@
   function hypotheses() {
     const box = $('#hypotheses'); if (!box) return;
     for (const h of ESC.hypotheses) {
-      const d = el('details', 'hyp' + (h.id === 'HYP-006' ? ' central' : ''));
-      if (h.id === 'HYP-006') d.open = true;
+      const d = el('details', 'hyp');
       const s = el('summary'), left = el('span', 'left');
       left.append(el('b', '', h.id + ' · ' + h.kind), el('strong', '', h.title));
       s.append(left, el('span', 'more', '+'));
