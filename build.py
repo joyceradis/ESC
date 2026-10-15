@@ -114,7 +114,7 @@ def main() -> None:
                 if slug == "laboratorio" else ""
             ))
             .replace("{{body}}", body.strip())
-            .replace("{{pager}}", pager(i))
+            .replace("{{pager}}", "" if slug == "index" else pager(i))
         )
         if slug == "biblioteca":
             html = html.replace("</head>", '<link rel="stylesheet" href="assets/css/evidence.css" />\n<script src="assets/js/evidence-data.js" defer></script>\n<script src="assets/js/evidence.js" defer></script>\n</head>')

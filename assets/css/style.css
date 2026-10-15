@@ -64,3 +64,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
 
 @media(max-width:790px){.atlas-notes-list{grid-template-columns:1fr}.atlas-note-item{padding:18px 19px}}
 @media(prefers-reduced-motion:reduce){.atlas-note-item{transition:none!important}}
+
+/* Rodapé: a linha de execução técnica não compete com o título do atlas. */
+.footer span+span strong{font-family:inherit;font-size:12px;font-weight:600;color:#704e54}
