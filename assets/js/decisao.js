@@ -4,7 +4,7 @@
 (function () {
   const KEY = 'esc-decisao-v1';
   const SCOPES = [
-    ['A', 'Piloto endotelial', 'Perturbar o glicocálix de endotélio microvascular cardíaco sob fluxo controlado e medir a resposta de NO.'],
+    ['A', 'Piloto endotelial', 'Perturbar o eGCX de endotélio microvascular cardíaco sob fluxo controlado e medir a resposta de NO.'],
     ['B', 'Ponte completa', 'Do endotélio ao cardiomiócito: NO–cGMP–PKG, fosforilação da titina e tensão passiva.'],
     ['C', 'Descarga mecânica → titina', 'A pergunta de partida: o cardiomiócito descarregado muda a titina, sem mediação endotelial.'],
     ['X', 'Outro recorte', 'Escreva abaixo.']
@@ -15,7 +15,7 @@
     ['matriz', 'A matriz como amortecedor ou transmissor'],
     ['micro', 'Microgravidade e descarga'],
     ['orto', 'Ortostase e pós-voo'],
-    ['farmaco', 'Fármacos e glicocálix'],
+    ['farmaco', 'Fármacos e eGCX'],
     ['congestao', 'Congestão, barreira e rim']
   ];
   const DEST = [['entra', 'Entra na candidatura'], ['paralelo', 'Fica em paralelo'], ['depois', 'Deixo de lado por ora']];
