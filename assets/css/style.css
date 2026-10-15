@@ -112,5 +112,5 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
  .reading-details summary,.reading-codes summary,.atlas-note-details summary,.lab-understand-more summary{display:list-item;min-height:44px;padding:12px 0;box-sizing:border-box}
  .qitem>summary{display:list-item;min-height:44px;padding:12px 0;box-sizing:border-box}
  .atlas-note-cta,a.inline{display:inline-flex;align-items:center;min-height:44px}
- .sidefoot a,.footer a{display:inline-block;padding:8px 0}
+ .sidefoot a,.footer a{display:inline-flex;align-items:center;min-height:44px}
 }
