@@ -93,6 +93,7 @@ def main() -> None:
             ) + (
                 '<link rel="stylesheet" href="assets/css/mesa.css" />\n'
                 '<script src="assets/js/plano.js" defer></script>\n'
+                '<script src="assets/js/decisao.js" defer></script>\n'
                 if slug == "retomar" else ""
             ) + (
                 ('<script src="assets/js/atlas-dados.js" defer></script>\n'
