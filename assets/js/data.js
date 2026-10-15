@@ -19,7 +19,7 @@ ESC.meta = {
   esc365: 'https://esc365.escardio.org/event/2824'
 };
 
-/* LEITURAS_SUGERIDAS (L-001 a L-049) + 5 fontes citadas no relatório de 09/10 (R-01 a R-05, fora da planilha).
+/* LEITURAS_SUGERIDAS (L-001 a L-049) + 5 fontes citadas no relatório de 09/10 (R-01 a R-05, fora da planilha) + McDonald 2016 (R-06, fora da planilha).
    status: estudado | novo | pendente | verificar */
 ESC.readings = [
   {id:'L-001',pri:'Alta',area:'Fundamentos',eixo:'Nomenclatura',title:'Endothelial Glycocalyx, Mucin, and Glycan: A Hierarchical Synthesis From Molecular Building Blocks to Supramolecular Functional Barriers',authors:'Tomita, Suzuki & Okada',year:'2026',type:'Revisão',doi:'10.1111/micc.70069',url:'https://doi.org/10.1111/micc.70069',status:'estudado',ref:'REF-007',pdf:'https://drive.google.com/file/d/1JVHrYmD17LcewaRJNROgCeIYLrwWwiCV/view',ask:'Relação entre âncoras, GAGs e ESL; distinguir mucina e eGCX.',note:'Lido e discutido em 09/10; integrado à seção 5.1 do RAS-001. Fichamento formal a consolidar, sem exigir releitura.'},
@@ -75,7 +75,8 @@ ESC.readings = [
   {id:'R-02',pri:'Alta',area:'Mecanobiologia',eixo:'Fluxo e NO',title:'Endothelial Surface Glycocalyx Can Regulate Flow-Induced Nitric Oxide Production',authors:'Autores a conferir',year:'2015',type:'A conferir',doi:'10.1371/journal.pone.0117133',url:'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117133',status:'verificar',ask:'Citado no relatório de 09/10.'},
   {id:'R-03',pri:'Média',area:'Mecanobiologia',eixo:'Shear stress',title:"Basal endothelial glycocalyx's response to shear stress",authors:'Autores a conferir',year:'2024',type:'A conferir',doi:'10.3389/fcell.2024.1371769',url:'https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2024.1371769/full',status:'verificar',ask:'Citado no relatório de 09/10.'},
   {id:'R-04',pri:'Alta',area:'ICFEp',eixo:'Fosforilação da titina',title:'Differential changes in titin domain phosphorylation increase myofilament stiffness in failing human hearts',authors:'Autores a conferir',year:'2013',type:'A conferir',doi:'',url:'https://academic.oup.com/cardiovascres/article/99/4/648/263916',status:'verificar',ask:'Citado no relatório de 09/10. Base para sítios N2-Bus e PEVK.'},
-  {id:'R-05',pri:'Alta',area:'Fundamentos',eixo:'Titina',title:'Titin-based tension in the cardiac sarcomere: molecular origin and physiological adaptations',authors:'Autores a conferir',year:'—',type:'A conferir',doi:'',url:'https://pmc.ncbi.nlm.nih.gov/articles/PMC3484226/',status:'verificar',ask:'Citado no relatório de 09/10.'}
+  {id:'R-05',pri:'Alta',area:'Fundamentos',eixo:'Titina',title:'Titin-based tension in the cardiac sarcomere: molecular origin and physiological adaptations',authors:'Autores a conferir',year:'—',type:'A conferir',doi:'',url:'https://pmc.ncbi.nlm.nih.gov/articles/PMC3484226/',status:'verificar',ask:'Citado no relatório de 09/10.'},
+  {id:'R-06',pri:'Alta',area:'Mecanobiologia',eixo:'Glicocálix, fluxo e inflamação',title:'Glycocalyx Degradation Induces a Proinflammatory Phenotype and Increased Leukocyte Adhesion in Cultured Endothelial Cells under Flow',authors:'McDonald et al.',year:'2016',type:'Experimento endotelial in vitro',doi:'10.1371/journal.pone.0167576',url:'https://doi.org/10.1371/journal.pone.0167576',status:'pendente',ask:'Fonte dos números de ICAM-1, eNOS, NF-κB e adesão citados em Pergunta e Hipóteses. Conferir sempre o comparador de cada medida.'}
 ];
 
 /* HIPOTESES (aba da planilha) */
