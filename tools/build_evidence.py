@@ -10,7 +10,8 @@ def compile_data(catalogue,curation):
  records=catalogue["records"];by_id={r["id"]:r for r in records}
  require(len(by_id)==len(records) and 0<len(records)<1000,"Catálogo duplicado/vazio")
  for r in records:
-  require(set(r)==set(CORE)|{"aliases","origin","absent","conflict"},"Campo fora do contrato público")
+  require(set(r)-{"axis"}==set(CORE)|{"aliases","origin","absent","conflict"},"Campo fora do contrato público")
+  require(isinstance(r.get("axis",""),str) and len(r.get("axis",""))<=80,"Eixo inválido")
   require(re.fullmatch(r"[A-Za-z0-9-]+",r["id"]),"ID inseguro")
   require(all(isinstance(r[k],str) and len(r[k])<=1000 for k in CORE),"Metadados inválidos")
   require(not r["url"] or safe_url(r["url"])==r["url"],"URL não permitida")
