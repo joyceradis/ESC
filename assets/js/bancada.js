@@ -27,10 +27,12 @@
     let cur = 'ctrl';
     const tabs = el('div', 'lab-stage-tabs'); tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', 'Componente do eGCX depletado');
     const out = el('div', 'bancada-out'); out.setAttribute('aria-live', 'polite');
+    /* Indicador categórico: sem largura proporcional, para não sugerir uma magnitude que o resumo não informa. */
     function meter(name, state) {
-      const w = el('div', 'bancada-meter'); const top = el('div', 'bancada-meter-top'); top.append(el('span', '', name), el('b', state === 'bloqueado' ? 'is-blocked' : 'is-ok', state));
-      const bar = el('div', 'bancada-bar'); const i = el('i'); i.style.width = state === 'bloqueado' ? '6%' : '100%'; i.className = state === 'bloqueado' ? 'is-blocked' : 'is-ok'; bar.append(i);
-      w.append(top, bar); return w;
+      const w = el('div', 'bancada-meter'); w.append(el('span', 'bancada-name', name));
+      const seg = el('div', 'bancada-seg'); seg.setAttribute('role', 'img'); seg.setAttribute('aria-label', name + ': ' + state);
+      ['preservado', 'bloqueado'].forEach(function (k) { seg.append(el('span', state === k ? 'is-on is-' + k : '', k)); });
+      w.append(seg); return w;
     }
     /* Os botões são criados uma vez; só o estado muda, para o foco do teclado não se perder. */
     const buttons = CONDITIONS.map(function (x) {
@@ -42,7 +44,7 @@
       const c = outcome(cur);
       buttons.forEach(function (b, i) { b.setAttribute('aria-pressed', String(CONDITIONS[i].id === cur)); });
       out.replaceChildren(meter('NO induzido por cisalhamento', c.no), meter('PGI₂ induzida por cisalhamento', c.pgi2), el('p', 'lab-copy', c.note),
-        el('small', 'bancada-small', 'Barras qualitativas: o resumo não traz valores numéricos.'));
+        el('small', 'bancada-small', 'Indicador categórico: o resumo não traz valores numéricos, então não há tamanho de efeito.'));
     }
     const nope = el('ul', 'bancada-not'); NOT_SAID.forEach(function (t) { nope.append(el('li', '', t)); });
     root.replaceChildren(tabs, out, el('h4', 'bancada-sub', 'O que este estudo não permite dizer'), nope);
