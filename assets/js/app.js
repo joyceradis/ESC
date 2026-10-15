@@ -51,7 +51,7 @@
         if (r.ask) body.append(el('div', 'ask', 'O que observar: ' + r.ask));
         const technical = el('details', 'reading-details');
         technical.append(el('summary', '', 'Detalhes e códigos do artigo'));
-        const techText = [r.eixo ? 'Assunto específico: ' + r.eixo : '', r.ref ? 'Referência no acervo: ' + r.ref : '', r.doi ? 'DOI: ' + r.doi : ''].filter(Boolean).join(' · ');
+        const techText = [r.eixo ? 'Assunto específico: ' + r.eixo : '', r.doi ? 'DOI: ' + r.doi : ''].filter(Boolean).join(' · ');
         if (techText) technical.append(el('div', 'metadata', techText));
         if (r.note) technical.append(el('div', 'note', r.note));
         body.append(technical);
@@ -73,7 +73,7 @@
     for (const h of ESC.hypotheses) {
       const d = el('details', 'hyp');
       const s = el('summary'), left = el('span', 'left');
-      left.append(el('b', '', h.id + ' · ' + h.kind), el('strong', '', h.title));
+      left.append(el('b', '', h.kind), el('strong', '', h.title));
       s.append(left, el('span', 'more', '+'));
       d.append(s, el('p', '', h.q));
       const g = el('div', 'grid2');

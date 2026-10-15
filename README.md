@@ -17,7 +17,7 @@ O site é estático. Não edita o Google Drive, não salva nada e não envia dad
 | `pergunta.html` | HYP-006, estado de cada elo, anterioridade e lacuna candidata |
 | `candidatura.html` | Regras oficiais, três peças, estrutura do abstract, programa, alertas |
 | `protocolo.html` | Estratégia experimental proposta (não executada) |
-| `biblioteca.html` | 35 leituras com busca e filtros |
+| `biblioteca.html` | 55 leituras com busca e filtros |
 | `hipoteses.html` | 10 linhas de investigação, perguntas dos comentários, física |
 | `laboratorio.html` | Bancada didática interativa: cisalhamento, hidrostática, Reynolds, osmose, difusão, Darcy, filtragem visual e gravidade |
 | `vocabulario.html` | Analogias da autora → termos controlados |
