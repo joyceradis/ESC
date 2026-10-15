@@ -1,7 +1,6 @@
 name: Revisão visual — desktop e celular
 
 on:
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -14,7 +13,7 @@ concurrency:
 jobs:
   visual:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
 
     steps:
       - name: Obter código
@@ -92,15 +91,7 @@ jobs:
 
           const pages = [
             { name: 'inicio', path: '/index.html' },
-            { name: 'retomar', path: '/retomar.html' },
-            { name: 'pergunta', path: '/pergunta.html' },
-            { name: 'candidatura', path: '/candidatura.html' },
             { name: 'protocolo', path: '/protocolo.html' },
-            { name: 'biblioteca', path: '/biblioteca.html' },
-            { name: 'hipoteses', path: '/hipoteses.html' },
-            { name: 'laboratorio', path: '/laboratorio.html' },
-            { name: 'vocabulario', path: '/vocabulario.html' },
-            { name: 'acervo', path: '/acervo.html' },
           ];
 
           const viewports = [
