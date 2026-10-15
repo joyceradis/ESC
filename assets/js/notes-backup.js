@@ -29,13 +29,16 @@
     function isMap(v, test) { return validRecord(v) && Object.keys(v).every(function (k) { return test(v[k]); }); }
     const isStr = function (v) { return typeof v === 'string'; };
     const SHAPES = {
-      'esc-mesa-v1': function (r) { return isMap(r, function (m) { return validRecord(m) && (m.state === undefined || isStr(m.state)) && (m.note === undefined || isStr(m.note)); }); },
+      'esc-mesa-v1': function (r) { return isMap(r, function (m) { return validRecord(m) && (m.state === undefined || ['', 'explorar', 'duvida', 'depois'].includes(m.state)) && (m.note === undefined || isStr(m.note)); }); },
       'esc-plano-v1': function (r) {
         return (r.plano === undefined || isMap(r.plano, function (v) { return typeof v === 'boolean'; })) && (r.esq === undefined || isMap(r.esq, isStr));
       },
       'esc-decisao-v1': function (r) {
-        return (r.escopo === undefined || isStr(r.escopo)) && (r.pergunta === undefined || isStr(r.pergunta)) &&
-          ['lanes', 'estr', 'abertas'].every(function (k) { return r[k] === undefined || isMap(r[k], isStr); });
+        const dest = ['', 'entra', 'paralelo', 'depois'], abre = ['', 'aberta', 'ler', 'decidida'];
+        const oneOf = function (list) { return function (v) { return list.includes(v); }; };
+        return (r.escopo === undefined || ['', 'A', 'B', 'C', 'X'].includes(r.escopo)) && (r.pergunta === undefined || isStr(r.pergunta)) &&
+          (r.lanes === undefined || isMap(r.lanes, oneOf(dest))) && (r.estr === undefined || isMap(r.estr, oneOf(dest))) &&
+          (r.abertas === undefined || isMap(r.abertas, oneOf(abre)));
       }
     };
     function validate(doc) {

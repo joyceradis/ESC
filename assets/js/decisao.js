@@ -71,7 +71,7 @@
       out.push('', 'Estratégias:');
       st.forEach(function (x) { const d = DEST.filter(function (y) { return y[0] === S.estr[x[0]]; })[0]; out.push('- ' + x[1] + ': ' + (d ? d[1] : '')); });
     }
-    const op = OPEN.map(function (x) { const d = OPEN_STATE.filter(function (y) { return y[0] === ((S.abertas || {})[x[0]] || 'aberta'); })[0]; return '- ' + x[1] + ' ' + d[1]; });
+    const op = OPEN.map(function (x) { const d = OPEN_STATE.filter(function (y) { return y[0] === ((S.abertas || {})[x[0]] || 'aberta'); })[0]; return '- ' + x[1] + ' ' + (d ? d[1] : OPEN_STATE[0][1]); });
     out.push('', 'Pendências:', op.join('\n'));
     return out.join('\n');
   }
