@@ -54,8 +54,8 @@
     const compare = [];
     let filter = 'all', query = '';
 
-    /* Redesenhos recriam os botões: guardar o foco pela chave e devolvê-lo depois. */
-    function keep(fn) { const a = document.activeElement, k = a && a.dataset && a.dataset.k; fn(); if (k) { const n = root.querySelector('[data-k="' + k + '"]'); if (n) n.focus(); } }
+    /* Redesenhos recriam os botões: guardar o foco pela chave e devolvê-lo depois; se o cartão saiu do filtro, o foco vai para o filtro ativo. */
+    function keep(fn) { const a = document.activeElement, k = a && a.dataset && a.dataset.k; fn(); if (k) { const n = root.querySelector('[data-k="' + k + '"]') || root.querySelector('[data-k="chip:' + filter + '"]'); if (n) n.focus(); } }
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const bar = el('div', 'mesa-bar');
     const search = el('input'); search.type = 'search'; search.placeholder = 'Buscar por tema ou palavra…'; search.setAttribute('aria-label', 'Buscar linhas');
