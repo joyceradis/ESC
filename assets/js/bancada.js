@@ -4,16 +4,16 @@
 'use strict';
 (function () {
   const CONDITIONS = [
-    { id: 'ctrl', label: 'Glicocálix intacto', no: 'preservado', pgi2: 'preservado', note: 'Referência: o cisalhamento induz NO e PGI₂.' },
-    { id: 'hs', label: 'Sem heparan sulfato', no: 'bloqueado', pgi2: 'preservado', note: 'A remoção de HS bloqueou o NO induzido por cisalhamento.' },
-    { id: 'ha', label: 'Sem hialuronano', no: 'bloqueado', pgi2: 'preservado', note: 'A remoção de HA bloqueou o NO induzido por cisalhamento.' },
-    { id: 'sa', label: 'Sem ácido siálico', no: 'bloqueado', pgi2: 'preservado', note: 'A remoção de ácido siálico bloqueou o NO induzido por cisalhamento.' },
-    { id: 'cs', label: 'Sem condroitina sulfato', no: 'preservado', pgi2: 'preservado', note: 'A remoção de CS não bloqueou o NO.' }
+    { id: 'ctrl', label: 'eGCX intacto', no: 'preservado', pgi2: 'preservado', note: 'Referência: o cisalhamento induz NO e PGI₂.' },
+    { id: 'hs', label: 'Sem heparan sulfato', no: 'bloqueado', pgi2: 'preservado', note: 'Heparan sulfato é cadeia de GAG de proteoglicanos ancorados. A remoção bloqueou o NO induzido por cisalhamento.' },
+    { id: 'ha', label: 'Sem hialuronano', no: 'bloqueado', pgi2: 'preservado', note: 'Hialuronano é polímero associado à superfície, não cadeia de proteoglicano. A remoção bloqueou o NO induzido por cisalhamento.' },
+    { id: 'sa', label: 'Sem ácido siálico', no: 'bloqueado', pgi2: 'preservado', note: 'Ácido siálico é terminal de glicoproteínas, não de GAG. A remoção bloqueou o NO induzido por cisalhamento.' },
+    { id: 'cs', label: 'Sem condroitina sulfato', no: 'preservado', pgi2: 'preservado', note: 'Condroitina sulfato é cadeia de GAG. A remoção não bloqueou o NO.' }
   ];
   const NOT_SAID = [
     'Que o mesmo valha em endotélio microvascular cardíaco humano: o estudo usou células aórticas bovinas.',
     'Que o NO reduzido chegue ao cardiomiócito ou mude a titina: o estudo não mediu cardiomiócitos.',
-    'Que o mecanismo seja “glipicana–cavéolas–eNOS”: é a interpretação dos autores, não uma prova.'
+    'Que o mecanismo seja “glipicana–cavéolas–eNOS”: é a interpretação dos autores, não uma prova. Os autores usam o termo “glicocálix” de forma geral; pela hierarquia de Tomita (2026), o que se estuda aqui é o eGCX.'
   ];
   function outcome(id) { return CONDITIONS.filter(function (c) { return c.id === id; })[0] || CONDITIONS[0]; }
   function blocked(c) { return c.no === 'bloqueado'; }
@@ -25,7 +25,7 @@
   function start() {
     const root = document.getElementById('bancada-root'); if (!root) return;
     let cur = 'ctrl';
-    const tabs = el('div', 'lab-stage-tabs'); tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', 'Componente do glicocálix removido');
+    const tabs = el('div', 'lab-stage-tabs'); tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', 'Componente do eGCX removido');
     const out = el('div', 'bancada-out'); out.setAttribute('aria-live', 'polite');
     function meter(name, state) {
       const w = el('div', 'bancada-meter'); const top = el('div', 'bancada-meter-top'); top.append(el('span', '', name), el('b', state === 'bloqueado' ? 'is-blocked' : 'is-ok', state));
