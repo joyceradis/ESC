@@ -44,7 +44,9 @@
     const S = load(); S.plano = S.plano || {}; S.esq = S.esq || {};
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const pct = el('p', 'mesa-sub'); const bar = el('div', 'plano-bar'); const fill = el('i'); bar.append(fill);
-    const persist = function () { status.textContent = save(S) ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; };
+    /* Salva em silêncio ao digitar; só anuncia depois de uma pausa, para o leitor de tela não repetir a mensagem a cada tecla. */
+    let anuncio; let salvou = true;
+    const persist = function () { salvou = save(S); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; }, 1200); };
     const upd = function () { const p = progress(S.plano); pct.textContent = 'Plano: ' + p + '% · faltam ' + Math.max(0, Math.ceil((new Date('2026-10-23T23:59:00-03:00') - new Date()) / 86400000)) + ' dias'; fill.style.width = p + '%'; };
 
     const days = el('div', 'plano-days');

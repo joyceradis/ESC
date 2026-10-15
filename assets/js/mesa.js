@@ -54,6 +54,8 @@
     const compare = [];
     let filter = 'all', query = '';
 
+    /* Redesenhos recriam os botões: guardar o foco pela chave e devolvê-lo depois; se o cartão saiu do filtro, o foco vai para o filtro ativo. */
+    function keep(fn) { const a = document.activeElement, k = a && a.dataset && a.dataset.k; fn(); if (k) { const n = root.querySelector('[data-k="' + k + '"]') || root.querySelector('[data-k="chip:' + filter + '"]'); if (n) n.focus(); } }
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const bar = el('div', 'mesa-bar');
     const search = el('input'); search.type = 'search'; search.placeholder = 'Buscar por tema ou palavra…'; search.setAttribute('aria-label', 'Buscar linhas');
@@ -64,15 +66,15 @@
     const copy = el('button', 'mesa-btn', 'Copiar minhas escolhas'); copy.type = 'button';
     const result = el('pre', 'mesa-text'); result.hidden = true;
 
-    function persist() {
-      status.textContent = save(marks) ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador; suas marcações valem só nesta visita.';
-    }
+    let anuncio, salvou = true;
+    /* Salva em silêncio ao digitar; só anuncia depois de uma pausa (leitor de tela). */
+    function persist() { salvou = save(marks); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador; suas marcações valem só nesta visita.'; }, 1200); }
 
     function drawChips() {
       chips.replaceChildren();
       [['all', 'Todas']].concat(STATES, [['none', 'Sem decisão']]).forEach(function (s) {
-        const b = el('button', 'mesa-chip', s[1]); b.type = 'button'; b.setAttribute('aria-pressed', String(filter === s[0]));
-        b.addEventListener('click', function () { filter = s[0]; drawChips(); drawGrid(); });
+        const b = el('button', 'mesa-chip', s[1]); b.type = 'button'; b.dataset.k = 'chip:' + s[0]; b.setAttribute('aria-pressed', String(filter === s[0]));
+        b.addEventListener('click', function () { keep(function () { filter = s[0]; drawChips(); drawGrid(); }); });
         chips.append(b);
       });
     }
@@ -97,11 +99,11 @@
         card.append(det);
         const row = el('div', 'mesa-states'); row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'Sua marcação: ' + h.title);
         STATES.forEach(function (s) {
-          const b = el('button', 'mesa-btn', s[1]); b.type = 'button'; b.setAttribute('aria-pressed', String(m.state === s[0]));
+          const b = el('button', 'mesa-btn', s[1]); b.type = 'button'; b.dataset.k = 'st:' + h.id + ':' + s[0]; b.setAttribute('aria-pressed', String(m.state === s[0]));
           b.addEventListener('click', function () {
             const cur = marks[h.id] || {};
             marks[h.id] = { state: cur.state === s[0] ? '' : s[0], note: cur.note || '' };
-            persist(); drawGrid();
+            persist(); keep(drawGrid);
           });
           row.append(b);
         });
@@ -110,13 +112,13 @@
         note.addEventListener('change', function () { marks[h.id] = { state: (marks[h.id] || {}).state || '', note: note.value }; persist(); });
         card.append(note);
         const on = compare.indexOf(h.id) !== -1;
-        const c = el('button', 'mesa-btn mesa-cmp', on ? 'Tirar da comparação' : 'Comparar'); c.type = 'button'; c.setAttribute('aria-pressed', String(on));
+        const c = el('button', 'mesa-btn mesa-cmp', on ? 'Tirar da comparação' : 'Comparar'); c.type = 'button'; c.dataset.k = 'cmp:' + h.id; c.setAttribute('aria-pressed', String(on));
         c.addEventListener('click', function () {
           const i = compare.indexOf(h.id);
           if (i !== -1) compare.splice(i, 1);
           else if (compare.length < MAX_COMPARE) compare.push(h.id);
           else status.textContent = 'Compare até ' + MAX_COMPARE + ' linhas por vez.';
-          drawGrid(); drawCompare();
+          keep(function () { drawGrid(); drawCompare(); });
         });
         card.append(c);
         grid.append(card);
