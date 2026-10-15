@@ -56,7 +56,7 @@ Em `.claude/skills/`, no formato do repositório oficial de skills da Anthropic 
 
 ## Revisão visual antes de entregar mudanças de interface
 
-[Revisão automatizada](docs/revisao-visual.md) roda em PRs e manualmente para as dez páginas, em Chromium e WebKit. Ela gera evidências, mas **não substitui** a revisão humana, nem a aprovação da Joyce, nem a regra de merge na `main`.
+**Proposta em desenvolvimento na branch/PR #17:** [Revisão visual desktop/celular](docs/revisao-visual.md) e [workflow](.github/workflows/revisao-visual.yml). Esta rotina **não substitui** a revisão humana, nem a aprovação da Joyce, nem a regra de merge na `main`.
 
 Para mudanças de CSS, layout, navegação, laboratório ou interações, conferir **desktop e celular** nas dez páginas; preservar a identidade editorial vinho/marfim aprovada, incluindo ilustrações científicas. Anexar capturas, resultados de testes e observações de interação ao PR. Refinamentos de sombras, profundidade e animação são propostas estéticas separadas e não autorizam alteração implícita da interface.
 
