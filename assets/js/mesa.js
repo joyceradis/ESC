@@ -66,9 +66,9 @@
     const copy = el('button', 'mesa-btn', 'Copiar minhas escolhas'); copy.type = 'button';
     const result = el('pre', 'mesa-text'); result.hidden = true;
 
-    function persist() {
-      status.textContent = save(marks) ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador; suas marcações valem só nesta visita.';
-    }
+    let anuncio, salvou = true;
+    /* Salva em silêncio ao digitar; só anuncia depois de uma pausa (leitor de tela). */
+    function persist() { salvou = save(marks); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador; suas marcações valem só nesta visita.'; }, 1200); }
 
     function drawChips() {
       chips.replaceChildren();

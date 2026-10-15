@@ -43,7 +43,9 @@
     const root = document.getElementById('decisao-root'); if (!root) return;
     const S = load(); S.lanes = S.lanes || {};
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-    const persist = function () { status.textContent = save(S) ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; };
+    /* Salva em silêncio ao digitar; só anuncia depois de uma pausa, para o leitor de tela não repetir a mensagem a cada tecla. */
+    let anuncio; let salvou = true;
+    const persist = function () { salvou = save(S); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; }, 1200); };
 
     /* Botões criados uma vez; só o estado muda, para o foco do teclado não se perder. */
     const scopes = el('div', 'mesa-grid');
