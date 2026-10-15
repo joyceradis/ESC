@@ -194,3 +194,8 @@
 .bancada-seg span.is-on{font-weight:650;color:#fff}
 .bancada-seg span.is-preservado{background:#1d6a64;border-color:#1d6a64}
 .bancada-seg span.is-bloqueado{background:#a23560;border-color:#a23560}
+.cadeia-list{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
+.cadeia-list button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:11px 14px;border:1px solid #e5d8dd;border-radius:12px;background:#fffdfb;color:#2b1d21;font:inherit;font-size:14px;cursor:pointer}
+.cadeia-list button small{font-size:12px;color:#73666a}
+.cadeia-list button.cadeia-celula{border-left:4px solid #1d6a64}.cadeia-list button.cadeia-tecido{border-left:4px solid #a23560}.cadeia-list button.cadeia-nada{border-left:4px dashed #ad8053}
+.cadeia-list button[aria-pressed=true]{background:#541b30;border-color:#541b30;color:#fff}.cadeia-list button[aria-pressed=true] small{color:#f0d5dd}
