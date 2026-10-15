@@ -9,7 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "atlas/sync/catalogue.json"
 SPECS = {
  "LEITURAS_SUGERIDAS": {"header": ["ID","PRIORIDADE","EIXO","TÍTULO OFICIAL (SEM TRADUÇÃO)","AUTORIA / ANO","TIPO DE FONTE","DOI","LINK PARA LEITURA"], "range": "A1:H150", "bound":150, "cols": (0,3,4,None,6,7)},
- "FONTES_11OUT": {"header": ["ID LOCAL","ORIGEM NO MATERIAL","AUTORES","ANO","TÍTULO","DOI","URL"], "range":"A1:G300", "bound":300, "cols":(0,4,2,3,5,6)}
+ "FONTES_11OUT": {"header": ["ID LOCAL","ORIGEM NO MATERIAL","AUTORES","ANO","TÍTULO","DOI","URL"], "range":"A1:G300", "bound":300, "cols":(0,4,2,3,5,6)},
+ "MATRIZ_CORPUS": {"header": ["ID LOCAL","EIXO SUGERIDO (VALIDAR)","AUTORES","ANO","TÍTULO","DOI","URL"], "range":"A1:G300", "bound":300, "cols":(0,4,2,3,5,6), "axis":1}
 }
 CORE = ("id","title","authors","year","doi","url")
 def require(ok, message):
@@ -24,6 +25,10 @@ def normalize_doi(value):
 def safe_url(value):
  value=clean(value)
  return value if re.fullmatch(r"https://(?:doi\.org|pubmed\.ncbi\.nlm\.nih\.gov|pmc\.ncbi\.nlm\.nih\.gov)/[^\s<>\"{}]+",value) else ""
+def clean_axis(value):
+ value=clean(value,80)
+ require(not value or re.fullmatch(r"\d{2} [^|<>\"]{1,70}",value),"Eixo fora do formato.")
+ return value
 def comparable(value):
  return re.sub(r"[^a-z0-9]","",unicodedata.normalize("NFKD",value).encode("ascii","ignore").decode().lower())
 def transform(payload, previous=None, imported_on=None):
@@ -43,17 +48,27 @@ def transform(payload, previous=None, imported_on=None):
    seen.add(ident);counts[sheet]+=1
    _,t,a,y,d,u=spec["cols"]
    title=clean(row[t]);authors=clean(row[a]);require(title,"Referência sem título.")
+   axis=clean_axis(row[spec["axis"]]) if "axis" in spec else ""
    year=clean(row[y],60) if y is not None else ((re.search(r"\b(?:19|20)\d{2}\b",authors) or [""])[0])
    doi=normalize_doi(row[d]);url="https://doi.org/"+doi if doi else safe_url(row[u])
    key=doi or sheet+":"+ident
    if key in keys:
-    if any(comparable(keys[key][field])!=comparable(value) for field,value in (("title",title),("authors",authors),("year",year))): keys[key]["conflict"]=True
+    if "axis" in spec:
+     # Autoria do corpus tem outro formato; compara só título e ano, e só quando ambos existem.
+     # Título completo vs abreviado (ex.: com a espécie entre parênteses) não é divergência: as palavras do menor estão no maior.
+     words=lambda t: set(re.findall(r"[a-z0-9]+",unicodedata.normalize("NFKD",t).encode("ascii","ignore").decode().lower()))
+     same=lambda a,b: not a or not b or words(a)<=words(b) or words(b)<=words(a)
+     diverge=not (same(keys[key]["title"],title) and same(keys[key]["year"],year))
+    else: diverge=any(comparable(keys[key][f])!=comparable(v) for f,v in (("title",title),("authors",authors),("year",year)))
+    if diverge: keys[key]["conflict"]=True
+    if "axis" in spec and axis and not keys[key].get("axis"): keys[key]["axis"]=axis
     if ident not in keys[key]["aliases"]: keys[key]["aliases"].append(ident)
     continue
    stable=previous_by_doi.get(doi,{})
    stable_id=stable.get("id",ident)
    aliases=list(dict.fromkeys([ident]+stable.get("aliases",[])))
    record=dict(id=stable_id,title=title,authors=authors,year=year,doi=doi,url=url,aliases=aliases,origin=sheet,absent=False,conflict=False)
+   if axis: record["axis"]=axis
    keys[key]=record;records.append(record)
  require(records,"Importação vazia.")
  if previous:
@@ -70,16 +85,18 @@ def connector_payload(value):
  payload={}
  for sheet,spec in SPECS.items():
   block=value["sheets"][sheet]
-  require(set(block)=={"header","rows"} and block["header"]==["id","title","authors","year","doi","url"],"Campos não autorizados.")
+  fields=["id","title","authors","year","doi","url"]+(["axis"] if "axis" in spec else [])
+  require(set(block)=={"header","rows"} and block["header"]==fields,"Campos não autorizados.")
   require(isinstance(block["rows"],list) and 0<len(block["rows"])<spec["bound"]-1,"Contagem inválida.")
   rows=[spec["header"]]
   for row in block["rows"]:
-   require(isinstance(row,list) and len(row)==6,"Linha inválida.")
-   ident,title,authors,year,doi,url=[clean(v) for v in row]
+   require(isinstance(row,list) and len(row)==len(fields),"Linha inválida.")
+   ident,title,authors,year,doi,url=[clean(v) for v in row[:6]]
    if sheet=="LEITURAS_SUGERIDAS":
     expected=(re.search(r"\b(?:19|20)\d{2}\b",authors) or [""])[0]
     require(year==expected,"Ano da autoria diverge.")
     rows.append([ident,"","",title,authors,"",doi,url])
+   elif "axis" in spec: rows.append([ident,clean_axis(row[6]),authors,year,title,doi,url])
    else: rows.append([ident,"",authors,year,title,doi,url])
   payload[sheet]=rows
  return payload

@@ -4,7 +4,7 @@
  const root=document.querySelector('#evidence-library');if(!root)return;
  const data=window.ESC_EVIDENCE;if(!data)return;
  const q=s=>root.querySelector(s), labels={evidence:'Evidência no modelo',association:'Associação observada',hypothesis:'Hipótese em aberto',pending:'Conferência pendente'};
- let mode='cards', filter='selected', page=0;const size=6;
+ let mode='cards', filter='selected', axis='', page=0;const size=6;
  const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
  function el(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;}
  function link(url,text){const a=el('a',text);a.href=url;a.rel='noopener noreferrer';return a;}
@@ -22,7 +22,7 @@
    node.append(el('p',r.conflict?'Metadados divergentes entre registros da planilha. Conferir a referência antes de interpretar.':r.absent?'Não localizado na última leitura da origem. Registro preservado para revisão.':c?'Os metadados mudaram. A síntese anterior aguarda nova conferência.':'Referência importada. Modelo, resultados e limitações ainda precisam de fichamento. Não é evidência avaliada.'));
    node.append(source(r));
   }
-  const trace=el('details',null,'ev-trace');trace.append(el('summary','Referência e rastreabilidade'),el('p',r.title),el('p','Identificadores: '+r.aliases.join(', ')),el('p','DOI: '+(r.doi||'a conferir')));if(c)trace.append(source(r));node.append(trace);
+  const trace=el('details',null,'ev-trace');trace.append(el('summary','Referência e rastreabilidade'),el('p',r.title),el('p','Identificadores: '+r.aliases.join(', ')),el('p','DOI: '+(r.doi||'a conferir')));if(r.axis)trace.append(el('p','Eixo sugerido (a validar): '+r.axis));if(c)trace.append(source(r));node.append(trace);
   return node;
  }
  function connection(c){
@@ -36,8 +36,9 @@
   items=items.filter(x=>{
    const c=mode==='cards'?data.cards[x.id]:null;const kind=(x.absent||x.conflict||(c&&c.stale)||x.stale)?'pending':c?c.kind:mode==='connections'?x.kind:'pending';
    if(filter==='selected'&&mode==='cards'&&!c)return false;
+   if(axis&&mode==='cards'&&x.axis!==axis)return false;
    if(filter!=='all'&&filter!=='selected'&&filter!==kind)return false;
-   return normalize(JSON.stringify([x.title,x.authors,c&&c.topic,c&&c.headline,x.summary])).includes(term);
+   return normalize(JSON.stringify([x.title,x.authors,x.axis,c&&c.topic,c&&c.headline,x.summary])).includes(term);
   });
   const pages=Math.max(1,Math.ceil(items.length/size));page=Math.min(page,pages-1);
   q('#ev-results').replaceChildren(...items.slice(page*size,(page+1)*size).map(x=>mode==='cards'?card(x):connection(x)));
@@ -48,6 +49,8 @@
  }
  q('#ev-date').textContent=(data.mode==='synthetic'?'DEMONSTRAÇÃO · dados sintéticos, sem importação publicada. ':'')+'Referências importadas em '+data.imported_on.split('-').reverse().join('/')+' · '+data.records.length+' registros únicos';
  root.querySelectorAll('[data-ev-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.evMode;page=0;filter='selected';q('#ev-filter').value=filter;root.querySelectorAll('[data-ev-mode]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();}));
+ const axes=[...new Set(data.records.map(r=>r.axis).filter(Boolean))].sort();
+ if(axes.length){const label=el('label','Eixo sugerido (a validar)'),sel=el('select');sel.id='ev-axis';sel.append(el('option','Todos os eixos'));sel.firstChild.value='';axes.forEach(a=>{const o=el('option',a);o.value=a;sel.append(o);});sel.addEventListener('change',e=>{axis=e.target.value;page=0;if(axis&&filter==='selected'){filter='all';q('#ev-filter').value=filter;}render();});label.append(sel);q('.ev-controls').append(label);}
  q('#ev-search').addEventListener('input',()=>{page=0;render();});
  q('#ev-filter').addEventListener('change',e=>{filter=e.target.value;page=0;render();});
  for(const [id,delta] of [['#ev-prev',-1],['#ev-next',1]])q(id).addEventListener('click',()=>{page+=delta;render();q('#ev-count').focus();});

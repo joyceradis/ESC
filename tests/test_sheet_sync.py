@@ -7,11 +7,13 @@ ROOT=Path(__file__).resolve().parents[1]
 def fixture():
  return {
  "LEITURAS_SUGERIDAS":[SPECS["LEITURAS_SUGERIDAS"]["header"],["L-1","ALTA","Fluxo","Title","Author (2020)","Review","10.1234/demo","https://doi.org/10.1234/demo","PRIVATE NOTES"]],
- "FONTES_11OUT":[SPECS["FONTES_11OUT"]["header"],["F-1","PRIVATE ORIGIN","Author","2020","Title","10.1234/demo","https://doi.org/10.1234/demo"]]}
+ "FONTES_11OUT":[SPECS["FONTES_11OUT"]["header"],["F-1","PRIVATE ORIGIN","Author","2020","Title","10.1234/demo","https://doi.org/10.1234/demo"]],
+ "MATRIZ_CORPUS":[SPECS["MATRIZ_CORPUS"]["header"],["C-1","01 eGCX / glicanos / métodos","A Author, et al","2020","Title","10.1234/demo","https://doi.org/10.1234/demo"]]}
 class SyncTests(unittest.TestCase):
  def test_dedup_privacy(self):
   out=transform(fixture());self.assertEqual(len(out["records"]),1)
-  self.assertEqual(out["records"][0]["aliases"],["L-1","F-1"])
+  self.assertEqual(out["records"][0]["aliases"],["L-1","F-1","C-1"])
+  self.assertEqual(out["records"][0]["axis"],"01 eGCX / glicanos / métodos")
   self.assertNotIn("PRIVATE",json.dumps(out));self.assertNotIn("estudado",json.dumps(out))
  def test_idempotent_with_previous(self):
   first=transform(fixture());second=transform(fixture(),first)
@@ -26,6 +28,17 @@ class SyncTests(unittest.TestCase):
   next(r for r in cat["records"] if r["id"]==first)["title"]="Changed"
   out=compile_data(cat,cur)
   self.assertTrue(next(c for c in out["connections"] if first in c["sources"])["stale"])
+ def test_corpus_authorship_format_is_not_a_conflict(self):
+  p=fixture();p["FONTES_11OUT"][1][2]="Author (2020)"
+  self.assertFalse(transform(p)["records"][0]["conflict"])
+ def test_corpus_longer_title_is_not_a_conflict(self):
+  p=fixture();p["FONTES_11OUT"][1][2]="Author (2020)";p["MATRIZ_CORPUS"][1][4]="Title (Species name) extra"
+  self.assertFalse(transform(p)["records"][0]["conflict"])
+  p["MATRIZ_CORPUS"][1][4]="Completely different"
+  self.assertTrue(transform(p)["records"][0]["conflict"])
+ def test_axis_format_enforced(self):
+  p=fixture();p["MATRIZ_CORPUS"][1][1]="<script>"
+  with self.assertRaises(ValueError):transform(p)
  def test_header_change(self):
   p=fixture();p["FONTES_11OUT"][0]=["renamed"]
   with self.assertRaises(ValueError):transform(p)
