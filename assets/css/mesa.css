@@ -27,3 +27,13 @@
 .mesa-empty{margin:0;color:var(--muted);font-size:13px}
 .mesa-text{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:14px;font:13px/1.6 var(--font);margin:10px 0 0}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+/* Plano e esqueleto (página De onde parei) */
+#plano-root{display:grid;gap:14px}
+.plano-bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.plano-bar i{display:block;height:100%;width:0;background:var(--esc)}
+.plano-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.plano-day{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:18px;display:grid;gap:8px;align-content:start;min-width:0}
+.plano-day h3{margin:0;font-family:var(--serif);font-weight:400;font-size:18px}
+.plano-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;min-height:32px}.plano-row input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--esc)}
+.plano-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.plano-field{display:grid;gap:4px;font-weight:600;font-size:14px}.plano-field small{font-weight:400;color:var(--muted)}
+.plano-field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--ink);font:inherit;resize:vertical}
