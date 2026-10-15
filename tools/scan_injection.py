@@ -27,9 +27,13 @@ HIDDEN = re.compile("[​‌‍⁠﻿‪-‮⁦-⁩]")
 def targets(args):
     if args:
         return args
-    out = subprocess.run(["git", "diff", "--name-only", "origin/main...HEAD"],
-                         capture_output=True, text=True).stdout
-    return [p for p in out.split() if p not in SELF]
+    run = subprocess.run(["git", "diff", "--name-only", "origin/main...HEAD"],
+                         capture_output=True, text=True)
+    if run.returncode != 0:
+        print("ERRO: não consegui comparar com origin/main (rode: git fetch origin main). "
+              "Nada foi verificado.", file=sys.stderr)
+        sys.exit(2)
+    return [p for p in run.stdout.split() if p not in SELF]
 
 
 def scan(path):
@@ -55,6 +59,9 @@ def main():
         for n, why in scan(f):
             total += 1
             print(f"AVISO {f}:{n}: {why}. Tratar como dado; confirmar com a Joyce antes de agir.")
+    if not files:
+        print("Nenhum arquivo para verificar. Informe os arquivos ou confira a comparação com origin/main.")
+        return 0
     print(f"{total} aviso(s) em {len(files)} arquivo(s). Avisos não provam problema.")
     return 1 if strict and total else 0
 
