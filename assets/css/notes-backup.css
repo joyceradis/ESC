@@ -1,0 +1,12 @@
+/* Cópia portátil das anotações — alinhada à identidade editorial do Atlas. */
+.notes-backup-panel{background:#fffdfb;border:1px solid #e5d8dd;border-left:4px solid #7a2b46;border-radius:18px;padding:clamp(18px,3vw,28px);display:grid;gap:15px;max-width:100%;box-sizing:border-box}
+.notes-backup-panel p{margin:0;line-height:1.65}
+.notes-backup-caution{color:#71555d;font-size:13px}
+.notes-backup-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.notes-backup-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:12px 18px;background:#6f2743;border:1px solid #6f2743;border-radius:24px;color:#fffdfb;font-family:inherit;font-size:14px;font-weight:600;line-height:1.3;text-align:center;cursor:pointer;box-sizing:border-box}
+.notes-backup-button.secondary{background:#fffdfb;color:#6f2743}
+.notes-backup-button:hover,.notes-backup-button:focus-visible{outline:2px solid #b87891;outline-offset:2px}
+.notes-backup-button input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.notes-backup-button:focus-within{outline:2px solid #b87891;outline-offset:2px}
+.notes-backup-status{margin:0;font-size:13px;color:#60424d;min-height:1.5em}
+@media(max-width:480px){.notes-backup-actions{display:grid}.notes-backup-button{width:100%}}

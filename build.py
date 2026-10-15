@@ -89,6 +89,10 @@ def main() -> None:
                 '<link rel="stylesheet" href="assets/css/protocolo.css" />\n'
                 if slug == "protocolo" else ""
             ) + (
+                '<link rel="stylesheet" href="assets/css/notes-backup.css" />\n'
+                '<script src="assets/js/notes-backup.js" defer></script>\n'
+                if slug == "retomar" else ""
+            ) + (
                 '<link rel="stylesheet" href="assets/css/mesa.css" />\n'
                 '<script src="assets/js/mesa.js" defer></script>\n'
                 if slug == "hipoteses" else ""
