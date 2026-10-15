@@ -101,7 +101,8 @@ def main() -> None:
             ) + (
                 '<link rel="stylesheet" href="assets/css/laboratorio.css" />\n'
                 '<script src="assets/js/lab-math.js" defer></script>\n'
-                '<script src="assets/js/laboratorio.js" defer></script>'
+                '<script src="assets/js/laboratorio.js" defer></script>\n'
+                '<script src="assets/js/bancada.js" defer></script>'
                 if slug == "laboratorio" else ""
             ))
             .replace("{{body}}", body.strip())
