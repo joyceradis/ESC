@@ -45,16 +45,15 @@
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const persist = function () { status.textContent = save(S) ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; };
 
+    /* Botões criados uma vez; só o estado muda, para o foco do teclado não se perder. */
     const scopes = el('div', 'mesa-grid');
-    function drawScopes() {
-      scopes.replaceChildren();
-      SCOPES.forEach(function (s) {
-        const b = el('button', 'mesa-btn decisao-scope'); b.type = 'button'; b.setAttribute('aria-pressed', String(S.escopo === s[0]));
-        b.append(el('strong', '', s[0] + ' · ' + s[1]), el('small', '', s[2]));
-        b.addEventListener('click', function () { S.escopo = S.escopo === s[0] ? '' : s[0]; persist(); drawScopes(); });
-        scopes.append(b);
-      });
-    }
+    const scopeBtns = SCOPES.map(function (s) {
+      const b = el('button', 'mesa-btn decisao-scope'); b.type = 'button';
+      b.append(el('strong', '', s[0] + ' · ' + s[1]), el('small', '', s[2]));
+      b.addEventListener('click', function () { S.escopo = S.escopo === s[0] ? '' : s[0]; persist(); drawScopes(); });
+      scopes.append(b); return b;
+    });
+    function drawScopes() { scopeBtns.forEach(function (b, i) { b.setAttribute('aria-pressed', String(S.escopo === SCOPES[i][0])); }); }
     const q = el('label', 'plano-field'); q.append(el('span', '', 'A pergunta da candidatura, em uma frase'), el('small', '', 'Sem ligar dois fenômenos com “e”.'));
     const qt = el('textarea'); qt.rows = 3; qt.value = S.pergunta || ''; qt.addEventListener('input', function () { S.pergunta = qt.value; persist(); }); q.append(qt);
 
