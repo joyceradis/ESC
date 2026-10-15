@@ -1,6 +1,5 @@
 name: Sincronização — fichas e conexões
 on:
-  pull_request:
   workflow_dispatch:
 permissions:
   contents: read

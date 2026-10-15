@@ -2,7 +2,10 @@ name: Auditoria e previa HS fluxo
 on:
   pull_request:
     paths:
-      - 'src/pages/**'
+      - 'src/pages/protocolo.html'
+      - 'assets/css/protocolo.css'
+      - 'tools/check_hs_browser.cjs'
+      - 'tools/review_layout.cjs'
       - 'tools/review_hs.py'
       - '.github/workflows/revisao-hs.yml'
 permissions:
