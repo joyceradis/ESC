@@ -54,8 +54,8 @@
     if (!root || !window.ESC || !ESC.hypotheses || !ESC.readings) return;
     const all = rows(ESC.hypotheses, ESC.readings);
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-    const lab = el('label', 'mesa-chip'); const cb = el('input'); cb.type = 'checkbox';
-    lab.appendChild(cb); lab.appendChild(document.createTextNode(' Mostrar só onde há lacuna declarada ou leituras ainda não estudadas'));
+    const lab = el('label', 'mesa-chip lac-filter'); const cb = el('input'); cb.type = 'checkbox';
+    lab.appendChild(cb); lab.appendChild(el('span', null, 'Mostrar só onde há lacuna declarada ou leituras ainda não estudadas'));
     const list = el('div', 'lac-list');
 
     function draw() {
