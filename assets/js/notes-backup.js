@@ -2,7 +2,7 @@
    Nenhum dado é enviado ao GitHub, Drive ou servidor. */
 'use strict';
 (function () {
-  const KEYS = ['esc-mesa-v1', 'esc-plano-v1', 'esc-decisao-v1'];
+  const KEYS = ['esc-mesa-v1', 'esc-plano-v1', 'esc-decisao-v1', 'esc-comparador-v1', 'esc-rota-v1'];
   const FORMAT = 'esc-atlas-anotacoes';
   const VERSION = 1;
   function validRecord(v) { return !!v && typeof v === 'object' && !Array.isArray(v); }
@@ -21,6 +21,16 @@
         (r.lanes === undefined || isMap(r.lanes, oneOf(dest))) && (r.estr === undefined || isMap(r.estr, oneOf(dest))) &&
         (r.abertas === undefined || isMap(r.abertas, oneOf(abre)));
     }
+  };
+  SHAPES['esc-rota-v1'] = function (r) { return isMap(r, function (v) { return typeof v === 'boolean'; }); };
+  SHAPES['esc-comparador-v1'] = function (r) {
+    const isNum = function (v) { return typeof v === 'number' && isFinite(v); };
+    const strList = function (v) { return Array.isArray(v) && v.every(isStr); };
+    return (r.weights === undefined || isMap(r.weights, isNum)) &&
+      (r.ratings === undefined || isMap(r.ratings, function (m) { return isMap(m, function (v) { return v === null || isNum(v); }); })) &&
+      (r.chosen === undefined || strList(r.chosen)) && (r.removed === undefined || strList(r.removed)) &&
+      (r.custom === undefined || (Array.isArray(r.custom) && r.custom.every(function (c) { return validRecord(c) && isStr(c.id) && isStr(c.label); }))) &&
+      (r.renamed === undefined || isMap(r.renamed, isStr)) && (r.notes === undefined || isMap(r.notes, isStr));
   };
   function validate(doc) {
     if (!doc || doc.format !== FORMAT || doc.version !== VERSION || !validRecord(doc.records)) {
