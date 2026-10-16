@@ -52,3 +52,28 @@ test('resumo avisa que é leitura, não decisão', () => {
   assert.match(t, /Recorte A: 100 pontos/);
   assert.match(t, /não uma decisão/);
 });
+
+test('buildCriteria: sem edição devolve os critérios padrão', () => {
+  assert.deepEqual(c.buildCriteria().map(function (x) { return x[0]; }), ids);
+});
+test('buildCriteria: renomeia, remove e acrescenta critérios próprios', () => {
+  const r = c.buildCriteria([{ id: 'c1', label: 'Risco ético' }], { clinica: '  Impacto clínico ' }, ['viavel']);
+  assert.equal(r.find(function (x) { return x[0] === 'clinica'; })[1], 'Impacto clínico');
+  assert.ok(!r.some(function (x) { return x[0] === 'viavel'; }));
+  assert.deepEqual(r[r.length - 1].slice(0, 2), ['c1', 'Risco ético']);
+});
+test('buildCriteria: limita a 4 próprios e descarta rótulo vazio', () => {
+  const many = ['a', 'b', 'c', 'd', 'e'].map(function (k) { return { id: k, label: 'x' + k }; });
+  assert.equal(c.buildCriteria(many).length, ids.length + c.MAX_CUSTOM);
+  assert.equal(c.buildCriteria([{ id: 'z', label: '   ' }]).length, ids.length);
+});
+test('critério removido não pesa no cálculo; o próprio entra', () => {
+  const crit = c.buildCriteria([{ id: 'c1', label: 'Risco' }], {}, ['clinica']);
+  assert.equal(c.score({ clinica: 5, c1: 3 }, { clinica: 1, c1: 5 }, crit), 100);
+  assert.ok(Math.abs(c.coverage({ c1: 3, viavel: 3 }, { c1: 5 }, crit) - 0.5) < 1e-9);
+});
+test('resumo inclui “o que me faria mudar de ideia” quando há nota', () => {
+  const t = c.summary({ A: 'A' }, ['A'], W(3), { A: all(4) }, undefined, { A: 'Se o dado X falhar' });
+  assert.match(t, /O que me faria mudar de ideia: Se o dado X falhar/);
+  assert.doesNotMatch(c.summary({ A: 'A' }, ['A'], W(3), { A: all(4) }, undefined, {}), /mudar de ideia/);
+});
