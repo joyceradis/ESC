@@ -31,3 +31,18 @@ test('Título de nota é texto escapado, nunca HTML executável', () => {
   assert.match(html, /&amp;/);
   assert.match(html, /&quot;teste&quot;/);
 });
+
+test('Home construída carrega o painel Seu estado e seus scripts', () => {
+  const html = execFileSync('python3', ['-c', 'import pathlib;print(pathlib.Path("index.html").read_text())'], { cwd: new URL('..', import.meta.url), encoding: 'utf8' });
+  assert.match(html, /id="home-estado"/);
+  assert.match(html, /assets\/js\/rota\.js/);
+  assert.match(html, /assets\/js\/home-estado\.js/);
+});
+
+test('CTA da pergunta na home aponta para o campo real em Decisão', async () => {
+  const { readFileSync } = await import('node:fs');
+  const home = readFileSync(new URL('../assets/js/home-estado.js', import.meta.url), 'utf8');
+  const dec = readFileSync(new URL('../assets/js/decisao.js', import.meta.url), 'utf8');
+  assert.match(home, /decisao\.html#pergunta-campo/);
+  assert.match(dec, /q\.id = 'pergunta-campo'/);
+});

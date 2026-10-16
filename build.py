@@ -84,6 +84,8 @@ def main() -> None:
             .replace("{{mobile_nav}}", mobile_nav(slug))
             .replace("{{page_assets}}", (
                 '<link rel="stylesheet" href="assets/css/home.css" />\n'
+                '<script src="assets/js/rota.js" defer></script>\n'
+                '<script src="assets/js/home-estado.js" defer></script>\n'
                 if slug == "index" else ""
             ) + (
                 '<link rel="stylesheet" href="assets/css/protocolo.css" />\n'

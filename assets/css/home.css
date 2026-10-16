@@ -105,3 +105,49 @@
 .esc-home .home-map-disclosure[open]>summary span{transform:rotate(45deg)}
 .esc-home .home-map-disclosure>summary:focus-visible{outline:3px solid #993c57;outline-offset:4px}
 .esc-home .home-map-disclosure .home-question-map{border:0;border-top:1px solid var(--home-line);border-radius:0 0 14px 14px}
+
+/* Painel "Seu estado": reflete só o que foi marcado neste navegador. */
+.esc-home .home-estado[hidden]{display:none}
+.esc-home .home-estado{margin:0 0 22px;padding:20px 22px;border:1px solid var(--home-line);border-radius:14px;background:linear-gradient(180deg,#fffaf8,#f7ecee)}
+.esc-home .he-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.esc-home .he-head h2{margin:2px 0 0;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;color:var(--home-wine)}
+.esc-home .he-bar{height:8px;margin:14px 0 16px;border-radius:99px;background:#ead7db;overflow:hidden}
+.esc-home .he-bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#a35c73,var(--home-wine));transform-origin:left;animation:he-grow .9s .25s cubic-bezier(.2,.7,.2,1) both}
+.esc-home .he-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}
+.esc-home .he-card{min-width:0;padding:14px 16px;border:1px solid var(--home-line);border-radius:10px;background:#fffdfc;font-size:14px;line-height:1.5}
+.esc-home .he-card.he-next{border-color:#a35c73;background:#fff}
+.esc-home .he-k{display:block;margin-bottom:4px;color:var(--home-muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.esc-home .he-card p{margin:0 0 8px}
+.esc-home .he-card a:not(.mesa-btn){color:var(--home-wine);text-decoration:underline;text-underline-offset:3px}
+
+/* Entrada em camadas e vida discreta no vaso. */
+.esc-home .home-rv{animation:he-rise .7s cubic-bezier(.2,.7,.2,1) both}
+.esc-home .home-cover.home-rv{animation-delay:.05s}
+.esc-home .home-explore.home-rv{animation-delay:.15s}
+.esc-home .home-map.home-rv{animation-delay:.22s}
+.esc-home .home-resume.home-rv{animation-delay:.3s}
+.esc-home .home-portal{animation:he-rise .6s cubic-bezier(.2,.7,.2,1) both}
+.esc-home .home-portal:nth-child(2){animation-delay:.1s}
+.esc-home .home-portal:nth-child(3){animation-delay:.18s}
+.esc-home .home-portal:nth-child(4){animation-delay:.26s}
+.esc-home .home-portal:hover{box-shadow:0 10px 24px -14px rgba(112,34,61,.55)}
+.esc-home .home-blood{animation:he-flow 7s ease-in-out infinite alternate}
+.esc-home .home-glycans{animation:he-sway 5s ease-in-out infinite alternate}
+@keyframes he-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes he-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes he-flow{from{transform:translateX(-6px)}to{transform:translateX(10px)}}
+@keyframes he-sway{from{opacity:.82}to{opacity:1}}
+@media (max-width:790px){
+  .esc-home .he-grid{grid-template-columns:1fr}
+  .esc-home .home-estado{padding:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .esc-home .home-rv,.esc-home .home-portal,.esc-home .home-blood,.esc-home .home-glycans,.esc-home .he-bar>i{animation:none !important}
+}
+
+/* Seu estado: CTA em pílula vinho e nota com respiro */
+.esc-home .he-next .mesa-btn{display:inline-block;margin-top:.6rem;padding:.5rem 1rem;border-radius:999px;background:var(--home-wine);color:#fff;text-decoration:none;font-weight:600;transition:transform .2s,box-shadow .2s}
+.esc-home .he-next .mesa-btn:hover,.esc-home .he-next .mesa-btn:focus-visible{transform:translateY(-1px);box-shadow:0 6px 16px rgba(112,34,61,.28)}
+.esc-home .home-estado .cmp-note{margin:1rem 0 0;color:var(--home-muted);font-size:.9rem}
+.esc-home .home-estado .cmp-note a{color:var(--home-wine);text-decoration:underline;text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){.esc-home .he-next .mesa-btn{transition:none}}

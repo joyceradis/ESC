@@ -58,6 +58,7 @@
 
   const api = { STEPS: STEPS, today: today, daysLeft: daysLeft, plan: plan, evaluate: evaluate, next: next, late: late };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
+  window.ESCRota = api;
 
   function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function read(k) { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { return {}; } }
