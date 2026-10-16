@@ -53,6 +53,13 @@ test('resumo avisa que é leitura, não decisão', () => {
   assert.match(t, /não uma decisão/);
 });
 
+test('nextCustomId nunca reaproveita id de critério removido', () => {
+  assert.equal(c.nextCustomId([], {}, {}), 'c1');
+  assert.equal(c.nextCustomId([{ id: 'c1' }], {}, {}), 'c2');
+  assert.equal(c.nextCustomId([], { c1: 3 }, {}), 'c2');
+  assert.equal(c.nextCustomId([], {}, { A: { c1: 4 } }), 'c2');
+  assert.equal(c.nextCustomId([{ id: 'c2' }], { c1: 3 }, { A: { c3: 1 } }), 'c4');
+});
 test('buildCriteria: sem edição devolve os critérios padrão', () => {
   assert.deepEqual(c.buildCriteria().map(function (x) { return x[0]; }), ids);
 });

@@ -15,10 +15,15 @@
     ['enviar', 'Enviar a candidatura', 0, 'plano.html', 'Abrir o plano', false]
   ];
 
+  /* O prazo é horário de Brasília; "hoje" também, para a contagem não depender do fuso do navegador. */
+  const TZ = 'America/Sao_Paulo';
+  function today(now) {
+    const iso = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(now || new Date());
+    return dateOf(iso);
+  }
   function dateOf(iso) { const p = String(iso).slice(0, 10).split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
   function daysLeft(deadlineISO, now) {
-    const d = dateOf(deadlineISO); const n = now || new Date();
-    return Math.round((d - new Date(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
+    return Math.round((dateOf(deadlineISO) - today(now)) / 864e5);
   }
   function plan(deadlineISO) {
     const d = dateOf(deadlineISO);
@@ -27,7 +32,8 @@
       return { id: s[0], label: s[1], offset: s[2], date: when, href: s[3], cta: s[4], auto: s[5] };
     });
   }
-  function has(o) { return o && typeof o === 'object' && Object.keys(o).length > 0; }
+  /* "Sem nota" fica gravado como null: só conta quem tem ao menos uma nota de verdade. */
+  function has(o) { return !!o && typeof o === 'object' && Object.keys(o).some(function (k) { return o[k] != null; }); }
   /* Estado de cada passo a partir do que está salvo. Passos manuais só contam se a autora marcou. */
   function evaluate(steps, dec, cmp, manual) {
     dec = dec || {}; cmp = cmp || {}; manual = manual || {};
@@ -47,11 +53,10 @@
   }
   function next(list) { return list.filter(function (s) { return !s.done; }); }
   function late(step, now) {
-    const n = now || new Date();
-    return step.date < new Date(n.getFullYear(), n.getMonth(), n.getDate());
+    return step.date < today(now);
   }
 
-  const api = { STEPS: STEPS, daysLeft: daysLeft, plan: plan, evaluate: evaluate, next: next, late: late };
+  const api = { STEPS: STEPS, today: today, daysLeft: daysLeft, plan: plan, evaluate: evaluate, next: next, late: late };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
 
   function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }

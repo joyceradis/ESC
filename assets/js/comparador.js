@@ -83,6 +83,16 @@
     return base.concat(mine);
   }
 
+  /* Id novo que nunca reaproveita um critério removido: pesos e notas antigos ficam guardados e não podem ser herdados. */
+  function nextCustomId(custom, weights, ratingsBy) {
+    const used = {};
+    (custom || []).forEach(function (c) { if (c && c.id) used[c.id] = true; });
+    Object.keys(weights || {}).forEach(function (k) { used[k] = true; });
+    Object.keys(ratingsBy || {}).forEach(function (p) { Object.keys(ratingsBy[p] || {}).forEach(function (k) { used[k] = true; }); });
+    let n = 1; while (used['c' + n]) n++;
+    return 'c' + n;
+  }
+
   function summary(names, ids, weights, ratingsBy, criteria, notes) {
     const crit = criteria || CRITERIA;
     const lines = ['Pesos: ' + crit.map(function (c) { return c[1] + ' ' + (weights[c[0]] == null ? 0 : weights[c[0]]); }).join('; ')];
@@ -98,7 +108,7 @@
     return lines.join('\n');
   }
 
-  const api = { CRITERIA: CRITERIA, MAX_PATHS: MAX_PATHS, score: score, coverage: coverage, leader: leader, sensitivity: sensitivity, margin: margin, summary: summary, buildCriteria: buildCriteria, cleanText: cleanText, MAX_CUSTOM: MAX_CUSTOM, MAX_LABEL: MAX_LABEL, MAX_NOTE: MAX_NOTE };
+  const api = { CRITERIA: CRITERIA, MAX_PATHS: MAX_PATHS, score: score, coverage: coverage, leader: leader, sensitivity: sensitivity, margin: margin, summary: summary, buildCriteria: buildCriteria, nextCustomId: nextCustomId, cleanText: cleanText, MAX_CUSTOM: MAX_CUSTOM, MAX_LABEL: MAX_LABEL, MAX_NOTE: MAX_NOTE };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
   window.ESCComparador = api;
 
@@ -203,9 +213,13 @@
         const del = el('button', 'cmp-ed-del', 'Remover'); del.type = 'button'; del.setAttribute('aria-label', 'Remover o critério ' + c[1]);
         del.addEventListener('click', function () {
           if (criteria.length <= 1) { edStatus.textContent = 'Mantenha ao menos um critério.'; return; }
+          const at = criteria.indexOf(c);
           if (state.custom.some(function (x) { return x.id === c[0]; })) state.custom = state.custom.filter(function (x) { return x.id !== c[0]; });
           else state.removed = state.removed.concat([c[0]]);
           edStatus.textContent = 'Critério "' + c[1] + '" removido. Suas notas ficam guardadas.'; refreshAll();
+          /* a lista é redesenhada: devolver o foco ao vizinho para o teclado não voltar ao topo da página */
+          const dels = edList.querySelectorAll('.cmp-ed-del');
+          (dels.length ? dels[Math.min(at, dels.length - 1)] : addIn).focus();
         });
         row.appendChild(inp); row.appendChild(del); edList.appendChild(row);
       });
@@ -222,8 +236,7 @@
       const v = cleanText(addIn.value, MAX_LABEL);
       if (!v) { edStatus.textContent = 'Escreva o nome do critério.'; return; }
       if (state.custom.length >= MAX_CUSTOM) { edStatus.textContent = 'No máximo ' + MAX_CUSTOM + ' critérios seus.'; return; }
-      let n = 1; while (state.custom.some(function (x) { return x.id === 'c' + n; })) n++;
-      state.custom.push({ id: 'c' + n, label: v }); addIn.value = '';
+      state.custom.push({ id: nextCustomId(state.custom, state.weights, state.ratings), label: v }); addIn.value = '';
       edStatus.textContent = 'Critério "' + v + '" adicionado com peso 3. Dê notas na seção abaixo.'; refreshAll();
     });
 

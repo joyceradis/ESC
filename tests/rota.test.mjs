@@ -5,10 +5,14 @@ const rota = createRequire(import.meta.url)('../assets/js/rota.js');
 const DL = '2026-10-23T23:59:00-03:00';
 const ev = (dec, cmp, man) => Object.fromEntries(rota.evaluate(rota.plan(DL), dec, cmp, man).map(s => [s.id, s.done]));
 
-test('daysLeft conta dias de calendário local', () => {
-  assert.equal(rota.daysLeft(DL, new Date(2026, 9, 16, 22, 0)), 7);
-  assert.equal(rota.daysLeft(DL, new Date(2026, 9, 23, 1, 0)), 0);
-  assert.equal(rota.daysLeft(DL, new Date(2026, 9, 24, 9, 0)), -1);
+test('daysLeft conta dias de calendário de Brasília, em qualquer fuso do navegador', () => {
+  assert.equal(rota.daysLeft(DL, new Date('2026-10-16T22:00:00-03:00')), 7);
+  assert.equal(rota.daysLeft(DL, new Date('2026-10-23T01:00:00-03:00')), 0);
+  assert.equal(rota.daysLeft(DL, new Date('2026-10-24T09:00:00-03:00')), -1);
+  /* 01:00Z de 23/10 ainda é 22:00 de 22/10 em Brasília */
+  assert.equal(rota.daysLeft(DL, new Date('2026-10-23T01:00:00Z')), 1);
+  assert.equal(rota.daysLeft(DL, new Date('2026-10-23T12:00:00Z')), 0);
+  assert.equal(rota.daysLeft(DL, new Date('2026-10-24T05:00:00Z')), -1);
 });
 test('plan distribui sugestões de data antes do prazo', () => {
   const p = rota.plan(DL);
@@ -24,6 +28,9 @@ test('comparar exige notas em pelo menos dois caminhos escolhidos', () => {
   assert.equal(ev({}, { chosen: ['A', 'B'], ratings: { A: { x: 3 }, B: {} } }).comp, false);
   assert.equal(ev({}, { chosen: ['A', 'B'], ratings: { A: { x: 3 }, B: { x: 1 } } }).comp, true);
   assert.equal(ev({}, { chosen: ['A'], ratings: { A: { x: 3 } } }).comp, false);
+  /* "sem nota" é gravado como null e não conta como avaliação */
+  assert.equal(ev({}, { chosen: ['A', 'B'], ratings: { A: { x: null }, B: { x: null } } }).comp, false);
+  assert.equal(ev({}, { chosen: ['A', 'B'], ratings: { A: { x: null, y: 3 }, B: { x: 1 } } }).comp, true);
 });
 test('mudar de ideia exige nota não vazia em todo caminho escolhido', () => {
   const base = { chosen: ['A', 'B'], notes: { A: 'se X', B: '   ' } };
@@ -46,6 +53,6 @@ test('passos manuais só contam se marcados', () => {
 test('next lista os pendentes e late compara com hoje', () => {
   const list = rota.evaluate(rota.plan(DL), {}, {}, { texto: true });
   assert.equal(rota.next(list).length, 6);
-  assert.equal(rota.late(list[0], new Date(2026, 9, 18)), true);
-  assert.equal(rota.late(list[0], new Date(2026, 9, 17)), false);
+  assert.equal(rota.late(list[0], new Date('2026-10-18T15:00:00Z')), true);
+  assert.equal(rota.late(list[0], new Date('2026-10-17T15:00:00Z')), false);
 });
