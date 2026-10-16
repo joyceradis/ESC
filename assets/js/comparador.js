@@ -215,5 +215,6 @@
     drawGrid(); drawOut();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  /* Scripts com defer rodam antes de DOMContentLoaded; aguardar garante que data.js já carregou (mesmo padrão do mesa.js). */
+  if (document.readyState === 'complete') start(); else document.addEventListener('DOMContentLoaded', start);
 })();
