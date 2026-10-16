@@ -4,15 +4,16 @@ A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/work
 
 # ESC 2027 · Research Atlas
 
-Painel pessoal de retomada da pesquisa para o **ESC Fund – Basic Cardiovascular Science Course 2027**. Hipótese candidata: glicocálix endotelial → NO–cGMP–PKG → titina na ICFEp.
+Painel pessoal para apoiar a candidatura ao **ESC Fund – Basic Cardiovascular Science Course 2027**. O objetivo prioritário é conquistar a vaga. A cadeia glicocálix endotelial → NO–cGMP–PKG → titina na ICFEp é uma hipótese candidata, sem recorte aprovado.
 
-O site é estático. Não edita o Google Drive, não salva nada e não envia dados. O raciocínio continua no Drive; o atlas é só uma porta de entrada.
+A página **Decisão** é o lugar de comparar evidências, avaliar recomendações e registrar as escolhas da Joyce. O site é estático e não edita o Google Drive. Marcações são salvas localmente no navegador; não há sincronização automática entre aparelhos ou com o Drive. Os documentos originais e o controle mestre continuam sendo as fontes dos dados.
 
 ## Páginas
 
 | Página | Conteúdo |
 | --- | --- |
 | `index.html` | Visão geral, contagem regressiva, próximo movimento, cronograma |
+| `decisao.html` | Comparação e apoio à escolha; recomendação do agente separada da decisão da autora |
 | `retomar.html` | Onde a escrita parou, ordem de leitura, fichamento, pontos a revisar |
 | `pergunta.html` | HYP-006, estado de cada elo, anterioridade e lacuna candidata |
 | `candidatura.html` | Regras oficiais, três peças, estrutura do abstract, programa, alertas |
