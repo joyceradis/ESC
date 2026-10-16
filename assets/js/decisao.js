@@ -46,7 +46,7 @@
   const STRATS = [
     ['e1', 'Estrutura: âncoras ou matriz?',
       'Remover separadamente hialuronano, heparan sulfato e ácido siálico sob fluxo e medir espessura, rigidez e NO.',
-      'Ponto fraco: parte do efeito da heparinase sob fluxo já foi descrita (McDonald 2016); a novidade seria separar os componentes. Pede AFM e um chip.'],
+      'Ponto fraco: separar os componentes não é novidade. Pahakis 2007 já depletou heparan sulfato, hialuronano, ácido siálico e condroitina sulfato em células aórticas bovinas: HS, HA e ácido siálico bloquearam o NO induzido por fluxo, a condroitina não. McDonald 2016 já mostrou a resposta inflamatória após degradar heparan sulfato sob fluxo. Falta definir o diferencial. Candidatos a discutir: endotélio microvascular cardíaco humano em vez de aorta bovina; um desfecho no cardiomiócito (titina, tensão passiva), que esses estudos não medem; propriedades físicas medidas, como rigidez e hidratação.'],
     ['e2', 'Tempo: fosforilação aguda ou splicing crônico?',
       'Comparar a fosforilação da titina nas primeiras horas com a troca de isoformas (RBM20) após 7 a 14 dias.',
       'Ponto fraco: exige cardiomiócitos maduros e cultura longa; é a mais cara em tempo.'],
@@ -71,7 +71,7 @@
       out.push('', 'Estratégias:');
       st.forEach(function (x) { const d = DEST.filter(function (y) { return y[0] === S.estr[x[0]]; })[0]; out.push('- ' + x[1] + ': ' + (d ? d[1] : '')); });
     }
-    const op = OPEN.map(function (x) { const d = OPEN_STATE.filter(function (y) { return y[0] === ((S.abertas || {})[x[0]] || 'aberta'); })[0]; return '- ' + x[1] + ' ' + d[1]; });
+    const op = OPEN.map(function (x) { const d = OPEN_STATE.filter(function (y) { return y[0] === ((S.abertas || {})[x[0]] || 'aberta'); })[0]; return '- ' + x[1] + ' ' + (d ? d[1] : OPEN_STATE[0][1]); });
     out.push('', 'Pendências:', op.join('\n'));
     return out.join('\n');
   }
