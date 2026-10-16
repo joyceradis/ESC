@@ -187,7 +187,12 @@
     if (pendRoot) { pendRoot.replaceChildren(resumo, openList); root.replaceChildren(h0, scopes, q, h2, strats, h3, meter, lanes, copy, out, status); }
     else root.replaceChildren(hp, resumo, openList, h0, scopes, q, h2, strats, h3, meter, lanes, copy, out, status);
     drawScopes(); upd();
-    if (location.hash === '#pergunta-campo') [700, 1800].forEach(function (ms, n) { setTimeout(function () { const f = document.getElementById('pergunta-campo'); if (!f) return; f.scrollIntoView({ behavior: 'instant', block: 'start' }); const t = f.querySelector('textarea'); if (t && n === 0) t.focus({ preventScroll: true }); }, ms); });
+    if (location.hash === '#pergunta-campo') {
+      let tocou = false; const timers = [];
+      const parar = function () { tocou = true; timers.forEach(clearTimeout); };
+      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { window.addEventListener(ev, parar, { once: true, passive: true }); });
+      [700, 1800].forEach(function (ms, n) { timers.push(setTimeout(function () { if (tocou) return; const f = document.getElementById('pergunta-campo'); if (!f) return; f.scrollIntoView({ behavior: 'instant', block: 'start' }); const t = f.querySelector('textarea'); if (t && n === 0) t.focus({ preventScroll: true }); }, ms)); });
+    }
   }
   if (document.readyState === 'complete') start(); else document.addEventListener('DOMContentLoaded', start);
 })();
