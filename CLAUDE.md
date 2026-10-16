@@ -18,7 +18,10 @@ A [documentação de revisão visual](docs/revisao-visual.md) aponta para o work
 ## Interface
 - Fluxo do produto em [README.md](README.md).
 - Mantenha a identidade vinho/off-white do desktop e refine também o iPhone. Desenhos e interações **didáticas e funcionais**, não controles sem efeito.
-- O mapa científico de Joyce tem **muitas questões exploratórias**. A pergunta de partida é o coração em descarga mecânica (microgravidade) → titina → ICFEp; HYP-006 (glicocálix → NO–cGMP–PKG) permanece hipótese e não fato.
+- **Objetivo prioritário: conquistar a vaga no ESC Fund 2027.** O mapa científico contém várias perguntas exploratórias; nenhum recorte está aprovado. HYP-006 permanece hipótese. A sequência microgravidade → titina → ICFEp não pode ser apresentada automaticamente como origem autoral.
+- **Joyce quer decidir na página existente `Decisão`.** Quando solicitado apoio à escolha, prepare ali uma comparação sustentada pelas fontes e uma recomendação justificada, com alternativas, limites e consequência para a candidatura. Não espere a escolha para entregar a análise. Aprovação é da Joyce; recomendação do agente não muda o status para decidido.
+- Antes de pedir dados, procure nos documentos existentes do Drive, inclusive CV e carta. Não pedir novamente ORCID/Lattes já registrados. Não publicar conteúdo privado desses documentos no repositório público.
+- Não criar outra planilha, relatório ou arquitetura para substituir essa experiência. Preserve o visual aprovado e concilie branches/PRs existentes antes de alterar a interface.
 - Os documentos originais no Drive são a fonte de verdade; o site não os modifica. O repositório e o GitHub Pages **são públicos**, e a tela de senha é só barreira visual, não controle real.
 - Gere HTML da raiz por `python3 build.py`; valide com `python3 tools/check_site.py` e `node --test tests/*.test.mjs`.
 - Trabalhe em branch e PR; o merge na `main` é da Joyce.
