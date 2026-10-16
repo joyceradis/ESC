@@ -106,6 +106,7 @@ def main() -> None:
                 '<script src="assets/js/comparador.js" defer></script>\n'
                 '<script src="assets/js/lacunas.js" defer></script>\n'
                 '<script src="assets/js/rota.js" defer></script>\n'
+                '<script src="assets/js/secnav.js" defer></script>\n'
                 if slug == "decisao" else ""
             ) + (
                 ('<script src="assets/js/atlas-dados.js" defer></script>\n'
