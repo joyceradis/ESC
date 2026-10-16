@@ -23,6 +23,7 @@
     ['recursos', 'Recursos realistas', 'O que já existe ou estará disponível no curso.']
   ];
 
+  function day(t) { return Date.parse(new Date(t).toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' }) + 'T00:00:00Z'); }
   function progress(plano) {
     const ids = PLANO.flatMap(function (d) { return d[1].map(function (i) { return i[0]; }); });
     return Math.round(100 * ids.filter(function (id) { return plano[id]; }).length / ids.length);
@@ -47,7 +48,7 @@
     /* Salva em silêncio ao digitar; só anuncia depois de uma pausa, para o leitor de tela não repetir a mensagem a cada tecla. */
     let anuncio; let salvou = true;
     const persist = function () { salvou = save(S); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; }, 1200); };
-    const upd = function () { const p = progress(S.plano); pct.textContent = 'Plano: ' + p + '% · faltam ' + Math.max(0, Math.ceil((new Date('2026-10-23T23:59:00-03:00') - new Date()) / 86400000)) + ' dias'; fill.style.width = p + '%'; };
+    const upd = function () { const p = progress(S.plano); pct.textContent = 'Plano: ' + p + '% · faltam ' + Math.max(0, Math.round((day('2026-10-23T12:00:00-03:00') - day(new Date())) / 864e5)) + ' dias'; fill.style.width = p + '%'; };
 
     const days = el('div', 'plano-days');
     PLANO.forEach(function (d) {
