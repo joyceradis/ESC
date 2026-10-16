@@ -15,7 +15,7 @@
 - PRs e branches abertos por outros agentes antes de 11/10/2026 não são retomados nem mesclados sem pedido explícito da Joyce.
 
 ## Onde começar (leitura curta)
-1. `README.md` explica o produto e as fontes. **Objetivo prioritário confirmado pela Joyce: conquistar a vaga no ESC Fund 2027.** As perguntas científicas são candidatas a servir essa candidatura; nenhum recorte está aprovado. Não atribuir a sequência microgravidade → titina → ICFEp como origem autoral sem conferir o relato da autora.
+1. `README.md` explica o produto e as fontes. **Objetivo prioritário confirmado pela Joyce: conquistar a vaga no ESC Fund 2027.** As perguntas científicas são candidatas a servir essa candidatura; o recorte foi decidido pela Joyce em 16/10/2026 (ver `ESC.project`). Não atribuir a sequência microgravidade → titina → ICFEp como origem autoral sem conferir o relato da autora.
    - **Lugar de decidir: a página existente `Decisão`.** Ao receber pedido de apoio à escolha, reunir ali comparação, evidências, limitações e recomendação fundamentada, distinguindo recomendação do agente de decisão da Joyce. Não exigir escolha prévia para produzir essa análise, nem substituir a página por relatórios no chat ou novas planilhas.
    - Consultar o estado vigente e os arquivos existentes antes de pedir informações. CV, carta e identificadores já disponíveis devem ser recuperados; perguntar apenas sobre ausência ou conflito real. Relatórios e hipóteses históricos não são aprovação nem instrução atual.
 2. `src/layout.html`, `src/pages/` e `assets/css/style.css` contêm a interface; `assets/js/app.js` e `assets/js/data.js` contêm comportamento e espelho de dados. `build.py` gera os HTML da raiz.

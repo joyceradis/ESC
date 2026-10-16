@@ -4,7 +4,7 @@ A [secretária de issues](docs/issue-secretary.md) e seu [workflow](.github/work
 
 # ESC 2027 · Research Atlas
 
-Painel pessoal para apoiar a candidatura ao **ESC Fund – Basic Cardiovascular Science Course 2027**. O objetivo prioritário é conquistar a vaga. A cadeia glicocálix endotelial → NO–cGMP–PKG → titina na ICFEp é uma hipótese candidata, sem recorte aprovado.
+Painel pessoal para apoiar a candidatura ao **ESC Fund – Basic Cardiovascular Science Course 2027**. O objetivo prioritário é conquistar a vaga. A cadeia glicocálix endotelial → NO–cGMP–PKG → titina na ICFEp é uma hipótese candidata. O **recorte da candidatura foi decidido pela Joyce em 16/10/2026** (título e link do abstract em `ESC.project`); HYP-006 segue como hipótese.
 
 A página **Decisão** é o lugar de comparar evidências, avaliar recomendações e registrar as escolhas da Joyce. O site é estático e não edita o Google Drive. Marcações são salvas localmente no navegador; não há sincronização automática entre aparelhos ou com o Drive. Os documentos originais e o controle mestre continuam sendo as fontes dos dados.
 
@@ -99,3 +99,17 @@ O conteúdo é um projeto científico não publicado, e os links apontam para um
 A tela de senha é executada pelo JavaScript `assets/js/access-gate.js` em todas as páginas. O código contém somente um SHA-256 de uma senha aleatória, não a senha em texto puro. A sessão na interface é local ao navegador.
 
 **Aviso importante:** este mecanismo reduz acesso casual pela interface, mas **não é autenticação** e **não torna arquivos do GitHub Pages privados**. HTML, JS e dados continuam recuperáveis publicamente.
+
+
+## Como replicar para outra pesquisa
+
+O site é configurável: o conteúdo específico do projeto fica concentrado em poucos pontos. Faça numa branch nova e rode `python3 build.py && python3 tools/check_site.py && node --test tests/*.test.mjs`.
+
+1. **`ESC.project`** em `assets/js/data.js`: nome, prazo (`deadlineShort`/`deadlineLong`) e `decision` (`status`, `by`, `date`, `title`, `doc`, `note`). Com `status:'decidido'` o site mostra o recorte decidido e dispensa a pergunta de partida; sem ele, mantém o fluxo de escolha. **Só metadados públicos**: o repositório e o Pages são públicos.
+2. **Registros** em `assets/js/data.js` (`ESC.meta`, biblioteca, hipóteses): troque pelos da nova pesquisa, a partir da planilha mestre do Drive (a fonte de verdade).
+3. **Decisão** em `assets/js/decisao.js`: `OPEN` (pendências), `SCOPES`, `LANES` e `STRATS`.
+4. **Rota até o prazo** em `assets/js/rota.js`: `STEPS` e rótulos.
+5. **Navegação** em `build.py` (lista de páginas) e **textos** em `src/pages/*.html` e `src/layout.html`.
+6. Chaves de `localStorage` (`esc-*-v1`) são por navegador; troque o sufixo para não misturar anotações de projetos.
+
+Nunca edite os HTML da raiz à mão: eles são gerados por `build.py`.

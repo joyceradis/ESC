@@ -35,7 +35,10 @@
   /* "Sem nota" fica gravado como null: só conta quem tem ao menos uma nota de verdade. */
   function has(o) { return !!o && typeof o === 'object' && Object.keys(o).some(function (k) { return o[k] != null; }); }
   /* Estado de cada passo a partir do que está salvo. Passos manuais só contam se a autora marcou. */
+  /* Recorte decidido pela autora (ESC.project.decision, em data.js). Sem ESC (testes em node) segue em aberto. */
+  function decided() { const d = typeof ESC !== 'undefined' && ESC.project && ESC.project.decision; return !!d && d.status === 'decidido'; }
   function evaluate(steps, dec, cmp, manual) {
+    const ok = decided();
     dec = dec || {}; cmp = cmp || {}; manual = manual || {};
     const chosen = Array.isArray(cmp.chosen) ? cmp.chosen : [];
     const rated = chosen.filter(function (id) { return cmp.ratings && has(cmp.ratings[id]); });
@@ -44,12 +47,17 @@
     const done = {
       comp: rated.length >= 2,
       mudar: chosen.length >= 2 && chosen.every(function (id) { return String(notes[id] || '').trim().length > 0; }),
-      escopo: !!dec.escopo,
+      escopo: ok || !!dec.escopo,
       trilhas: Object.keys(lanes).filter(function (k) { return lanes[k]; }).length >= 7,
-      pend: ['pergunta', 'estrategias', 'paralelas', 'textos', 'leituras'].every(function (k) { return ab[k] === 'decidida'; }),
+      pend: ['pergunta', 'estrategias', 'paralelas', 'textos', 'leituras'].filter(function (k) { return !(ok && k === 'pergunta'); }).every(function (k) { return ab[k] === 'decidida'; }),
       texto: !!manual.texto, enviar: !!manual.enviar
     };
-    return steps.map(function (s) { return Object.assign({}, s, { done: !!done[s.id] }); });
+    return steps.map(function (s) {
+      const o = { done: !!done[s.id] };
+      if (ok && s.id === 'escopo') { o.label = 'Recorte decidido por Joyce'; o.cta = 'Ver o recorte'; }
+      if (ok && s.id === 'pend') o.label = 'Fechar as quatro pendências';
+      return Object.assign({}, s, o);
+    });
   }
   function next(list) { return list.filter(function (s) { return !s.done; }); }
   function late(step, now) {
@@ -104,10 +112,11 @@
       return evaluate(steps, read('esc-decisao-v1'), read('esc-comparador-v1'), manual);
     }
     function draw() {
+      const prazoCurto = (ESC.project && ESC.project.deadlineShort) || '23/10';
       const all = items(); const now = new Date(); const dl = daysLeft(ESC.meta.deadline, now);
       const todo = next(all); const nDone = all.length - todo.length;
       num.textContent = dl > 0 ? String(dl) : (dl === 0 ? 'Hoje' : '—');
-      lab.textContent = dl > 1 ? 'dias até 23/10' : (dl === 1 ? 'dia até 23/10' : (dl === 0 ? 'é o último dia' : 'prazo passou'));
+      lab.textContent = dl > 1 ? 'dias até ' + prazoCurto : (dl === 1 ? 'dia até ' + prazoCurto : (dl === 0 ? 'é o último dia' : 'prazo passou'));
       where.textContent = 'Onde estamos: ' + nDone + ' de ' + all.length + ' passos feitos.';
       going.textContent = todo.length ? 'Para onde vamos: ' + todo.slice(0, 2).map(function (s) { return s.label.charAt(0).toLowerCase() + s.label.slice(1); }).join(', depois ') + '.' : 'Para onde vamos: tudo marcado. Confira o edital oficial antes de enviar.';
       fill.style.width = Math.round(100 * nDone / all.length) + '%';

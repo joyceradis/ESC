@@ -10,7 +10,7 @@ Fonte primária: https://www.escardio.org/about-us/our-partnerships/philanthropi
 
 ## Direção da tarefa
 
-O objetivo prioritário é conquistar a vaga no ESC Fund 2027. Nenhum recorte está aprovado. Em pedidos de apoio à escolha, entregar comparação e recomendação fundamentada na página existente **Decisão**, preservando o visual; a Joyce decide depois de avaliar. Não exigir que escolha primeiro nem tratar uma linha como vencedora por padrão. Em pedidos apenas de revisão textual, respeitar o escopo solicitado.
+O objetivo prioritário é conquistar a vaga no ESC Fund 2027. O recorte foi decidido pela Joyce (16/10/2026); não reabrir sem ela. Em pedidos de apoio à escolha, entregar comparação e recomendação fundamentada na página existente **Decisão**, preservando o visual; a Joyce decide depois de avaliar. Não exigir que escolha primeiro nem tratar uma linha como vencedora por padrão. Em pedidos apenas de revisão textual, respeitar o escopo solicitado.
 
 Consultar ESTADO_ATUAL, painel, protocolo e originais antes de pedir dados. Distinguir instrução atual da autora, relato autoral, rascunho de agente, evidência publicada e hipótese. Não atribuir uma origem intelectual por inferência. Não reproduzir material privado no site público.
 

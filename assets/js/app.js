@@ -12,11 +12,12 @@
     /* Diferença em dias do calendário (fuso de Brasília), não em blocos de 24 h: ao meio-dia de 23/10 ainda é “hoje”. */
     const day = function (t) { return Date.parse(new Date(t).toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' }) + 'T00:00:00Z'); };
     const d = Math.round((day(ESC.meta.deadline) - day(new Date())) / 864e5);
+    const P = ESC.project || { deadlineLong: 'sex 23/10/2026' };
     let n, l;
-    if (d > 1) { n = d + ' dias'; l = 'até o prazo · sex 23/10/2026'; }
-    else if (d === 1) { n = 'Amanhã'; l = 'prazo · sex 23/10/2026'; }
+    if (d > 1) { n = d + ' dias'; l = 'até o prazo · ' + P.deadlineLong; }
+    else if (d === 1) { n = 'Amanhã'; l = 'prazo · ' + P.deadlineLong; }
     else if (d === 0) { n = 'Hoje'; l = 'último dia da candidatura'; }
-    else { n = 'Encerrado'; l = 'prazo era 23/10/2026'; }
+    else { n = 'Encerrado'; l = 'prazo era ' + P.deadlineLong.replace(/^\S+ /, ''); }
     $$('[data-countdown]').forEach(e => e.textContent = n);
     $$('[data-countdown-label]').forEach(e => e.textContent = l);
   }
