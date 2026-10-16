@@ -84,3 +84,31 @@ test('resumo inclui “o que me faria mudar de ideia” quando há nota', () => 
   assert.match(t, /O que me faria mudar de ideia: Se o dado X falhar/);
   assert.doesNotMatch(c.summary({ A: 'A' }, ['A'], W(3), { A: all(4) }, undefined, {}), /mudar de ideia/);
 });
+
+test('reading: linhas, líder, margem e instabilidade num só retorno', () => {
+  const names = { A: 'Recorte A · x', B: 'Recorte B · y' };
+  const w = { clinica: 5, viavel: 1 };
+  const rb = { A: { clinica: 5, viavel: 1 }, B: { clinica: 1, viavel: 5 } };
+  const r = c.reading(names, ['A', 'B'], w, rb);
+  assert.equal(r.lead, 'A');
+  assert.equal(r.rows.length, 2);
+  assert.equal(r.rows[0].name, 'Recorte A · x');
+  assert.ok(r.margin > 0);
+  assert.match(r.message, /Recorte A/);
+  assert.equal(typeof r.stable, 'boolean');
+});
+
+test('reading: critério sem nota não vira zero, e não recomenda sem líder', () => {
+  const names = { A: 'A', B: 'B' };
+  const r = c.reading(names, ['A', 'B'], { clinica: 3 }, { A: {}, B: {} });
+  assert.equal(r.lead, null);
+  assert.equal(r.rows[0].score, null);
+  assert.equal(r.stable, false);
+  assert.match(r.message, /Sem líder claro/);
+});
+
+test('reading: com menos de dois caminhos pede mais um', () => {
+  const r = c.reading({ A: 'A' }, ['A'], { clinica: 3 }, { A: { clinica: 5 } });
+  assert.match(r.message, /ao menos dois/);
+  assert.deepEqual(r.unstable, []);
+});
