@@ -148,3 +148,4 @@ a.mesa-btn{display:inline-flex;align-items:center;text-decoration:none}
 .save-pill a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @keyframes save-pill-in{from{opacity:.3;transform:translateY(-3px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.save-pill[data-state="ok"]{animation:none}}
+#pergunta-campo{scroll-margin-top:110px}@media (max-width:790px){#pergunta-campo{scroll-margin-top:180px}}

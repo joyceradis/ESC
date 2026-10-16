@@ -110,7 +110,7 @@
       scopes.append(b); return b;
     });
     function drawScopes() { scopeBtns.forEach(function (b, i) { b.setAttribute('aria-pressed', String(S.escopo === SCOPES[i][0])); }); }
-    const q = el('label', 'plano-field'); q.append(el('span', '', 'A pergunta da candidatura, em uma frase'), el('small', '', 'Sem ligar dois fenômenos com “e”.'));
+    const q = el('label', 'plano-field'); q.id = 'pergunta-campo'; q.append(el('span', '', 'A pergunta da candidatura, em uma frase'), el('small', '', 'Sem ligar dois fenômenos com “e”.'));
     const qt = el('textarea'); qt.rows = 3; qt.value = S.pergunta || ''; qt.addEventListener('input', function () { S.pergunta = qt.value; persist(); }); q.append(qt, pill);
 
     const lanes = el('div', 'decisao-lanes'); const meter = el('p', 'mesa-status');
@@ -187,6 +187,7 @@
     if (pendRoot) { pendRoot.replaceChildren(resumo, openList); root.replaceChildren(h0, scopes, q, h2, strats, h3, meter, lanes, copy, out, status); }
     else root.replaceChildren(hp, resumo, openList, h0, scopes, q, h2, strats, h3, meter, lanes, copy, out, status);
     drawScopes(); upd();
+    if (location.hash === '#pergunta-campo') [700, 1800].forEach(function (ms, n) { setTimeout(function () { const f = document.getElementById('pergunta-campo'); if (!f) return; f.scrollIntoView({ behavior: 'instant', block: 'start' }); const t = f.querySelector('textarea'); if (t && n === 0) t.focus({ preventScroll: true }); }, ms); });
   }
   if (document.readyState === 'complete') start(); else document.addEventListener('DOMContentLoaded', start);
 })();

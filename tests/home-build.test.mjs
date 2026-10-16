@@ -38,3 +38,11 @@ test('Home construída carrega o painel Seu estado e seus scripts', () => {
   assert.match(html, /assets\/js\/rota\.js/);
   assert.match(html, /assets\/js\/home-estado\.js/);
 });
+
+test('CTA da pergunta na home aponta para o campo real em Decisão', async () => {
+  const { readFileSync } = await import('node:fs');
+  const home = readFileSync(new URL('../assets/js/home-estado.js', import.meta.url), 'utf8');
+  const dec = readFileSync(new URL('../assets/js/decisao.js', import.meta.url), 'utf8');
+  assert.match(home, /decisao\.html#pergunta-campo/);
+  assert.match(dec, /q\.id = 'pergunta-campo'/);
+});

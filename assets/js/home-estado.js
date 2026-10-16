@@ -55,7 +55,7 @@
 
     const q = el('div', 'he-card');
     q.append(el('span', 'he-k', 'Pergunta de partida'), el('p', null, s.pergunta ? 'Você já escreveu uma versão.' : 'Ainda não escrita.'));
-    const a2 = el('a', 'inline', s.pergunta ? 'Reler ou ajustar →' : 'Escrever em Decisão →'); a2.href = 'decisao.html#pendencias'; q.append(a2);
+    const a2 = el('a', 'inline', s.pergunta ? 'Reler ou ajustar →' : 'Escrever em Decisão →'); a2.href = 'decisao.html#pergunta-campo'; q.append(a2);
 
     const p = el('div', 'he-card');
     p.append(el('span', 'he-k', 'Pendências'), el('p', null, s.open === 0 ? 'As cinco estão decididas.' : s.open + ' de ' + s.pendTotal + ' em aberto.'));
@@ -65,9 +65,12 @@
     const note = el('p', 'cmp-note');
     note.append('Reflete só o que você marcou neste navegador; não escolhe pergunta nem caminho. ');
     const l = el('a', 'inline', 'Cópia de segurança →'); l.href = 'retomar.html#minhas-anotacoes'; note.append(l);
-    root.append(head, bar, grid, note);
+    root.replaceChildren(head, bar, grid, note);
     root.hidden = false;
   }
 
+  window.addEventListener('pageshow', function (e) { if (e.persisted) start(); });
+  window.addEventListener('storage', start);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) start(); });
   if (document.readyState === 'complete') start(); else document.addEventListener('DOMContentLoaded', start);
 })();
