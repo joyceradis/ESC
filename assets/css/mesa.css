@@ -55,7 +55,7 @@
 .cmp-bar-name{font-weight:600;color:#3a2327}.cmp-bar-val{font-size:13px;color:#5d4247}
 .cmp-track{height:14px;border-radius:8px;background:#efe2e5;overflow:hidden}.cmp-fill{height:100%;background:#541b30}
 .cmp-lead{margin:4px 0 0;font-weight:600;color:#541b30}
-@media (max-width:520px){.cmp-weight{grid-template-columns:minmax(0,1fr) 2ch}.cmp-weight input[type=range]{grid-column:1/2;grid-row:2}.cmp-weight .cmp-val{grid-row:2;grid-column:2}}
+@media (max-width:520px){.cmp-weights{gap:10px}.cmp-weight{grid-template-columns:minmax(0,1fr) 2ch;gap:0 10px}.cmp-weight .cmp-note{font-size:13px;line-height:1.5}.cmp-weight input[type=range]{grid-column:1/2;grid-row:2}.cmp-weight .cmp-val{grid-row:2;grid-column:2}}
 .cmp-note{margin:0;font-size:13.5px;line-height:1.6;color:#5d4247}.cmp-weight .cmp-note{grid-column:1/-1}
 
 /* Mapa de lacunas */
