@@ -19,3 +19,11 @@ test('estado desconhecido é recusado antes de gravar e o resumo seguiria funcio
   assert.throws(() => validate(doc({ 'esc-plano-v1': { esq: { p: 123 } } })), /formato inesperado/);
   assert.doesNotThrow(() => dec.summary({ abertas: { pergunta: 'invalido' } }));
 });
+
+test('cópia inclui comparador e rota, com formato conferido', () => {
+  assert.ok(validate(doc({ 'esc-comparador-v1': { weights: { a: 3 }, ratings: { p1: { a: 4, b: null } }, chosen: ['p1'], custom: [{ id: 'c1', label: 'x' }], renamed: { a: 'y' }, removed: [], notes: { p1: 'z' } } })));
+  assert.ok(validate(doc({ 'esc-rota-v1': { texto: true } })));
+  assert.throws(() => validate(doc({ 'esc-comparador-v1': { weights: { a: 'alto' } } })), /formato inesperado/);
+  assert.throws(() => validate(doc({ 'esc-comparador-v1': { chosen: 'p1' } })), /formato inesperado/);
+  assert.throws(() => validate(doc({ 'esc-rota-v1': { texto: 'sim' } })), /formato inesperado/);
+});

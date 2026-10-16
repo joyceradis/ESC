@@ -91,7 +91,15 @@
     const status = el('p', 'mesa-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     /* Salva em silêncio ao digitar; só anuncia depois de uma pausa, para o leitor de tela não repetir a mensagem a cada tecla. */
     let anuncio; let salvou = true;
-    const persist = function () { salvou = save(S); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; }, 1200); };
+    const pill = el('p', 'save-pill'); pill.setAttribute('role', 'status'); pill.setAttribute('aria-live', 'off');
+    const pillLink = el('a', '', 'Fazer cópia de segurança'); pillLink.href = 'retomar.html#minhas-anotacoes';
+    function paintPill(ok) {
+      const d = new Date(); const hh = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+      pill.dataset.state = ok ? 'ok' : 'erro';
+      pill.textContent = ok ? '✓ Salvo neste navegador · ' + hh + ' · ' : 'Não foi possível salvar aqui · ';
+      pill.append(pillLink);
+    }
+    const persist = function () { salvou = save(S); paintPill(salvou); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; }, 1200); };
 
     /* Botões criados uma vez; só o estado muda, para o foco do teclado não se perder. */
     const scopes = el('div', 'mesa-grid');
@@ -103,7 +111,7 @@
     });
     function drawScopes() { scopeBtns.forEach(function (b, i) { b.setAttribute('aria-pressed', String(S.escopo === SCOPES[i][0])); }); }
     const q = el('label', 'plano-field'); q.append(el('span', '', 'A pergunta da candidatura, em uma frase'), el('small', '', 'Sem ligar dois fenômenos com “e”.'));
-    const qt = el('textarea'); qt.rows = 3; qt.value = S.pergunta || ''; qt.addEventListener('input', function () { S.pergunta = qt.value; persist(); }); q.append(qt);
+    const qt = el('textarea'); qt.rows = 3; qt.value = S.pergunta || ''; qt.addEventListener('input', function () { S.pergunta = qt.value; persist(); }); q.append(qt, pill);
 
     const lanes = el('div', 'decisao-lanes'); const meter = el('p', 'mesa-status');
     const upd = function () { meter.textContent = pending(S) ? 'Faltam ' + pending(S) + ' trilhas sem destino.' : 'Todas as trilhas têm destino.'; };
