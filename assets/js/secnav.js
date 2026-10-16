@@ -18,6 +18,22 @@
   const secs = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
   let last = null, ticking = false;
 
+  /* Mede as duas barras: inclui área segura, zoom e mudança de orientação. */
+  const mobileBar = document.querySelector('.mobile-bar');
+  function measureStack() {
+    const mobileHeight = mobileBar ? mobileBar.getBoundingClientRect().height : 0;
+    document.documentElement.style.setProperty('--cmp-live-top', Math.ceil(mobileHeight + 8) + 'px');
+    const top = parseFloat(getComputedStyle(nav).top) || 0;
+    document.documentElement.style.setProperty('--dec-anchor-offset', Math.ceil(top + nav.getBoundingClientRect().height + 16) + 'px');
+  }
+  measureStack();
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(measureStack);
+    observer.observe(nav);
+    if (mobileBar) observer.observe(mobileBar);
+  }
+  window.addEventListener('resize', measureStack);
+
   function update() {
     ticking = false;
     const line = nav.getBoundingClientRect().bottom + 24;
