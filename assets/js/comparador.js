@@ -71,6 +71,22 @@
     return s.length > 1 ? s[0] - s[1] : null;
   }
 
+  /* Tudo que a leitura mostra, num só lugar (usado pelo painel fixo e pelo bloco "Leitura"). Não recomenda: só descreve pesos e notas. */
+  function reading(names, ids, weights, ratingsBy, criteria) {
+    const rows = ids.map(function (id) {
+      const s = score(weights, ratingsBy[id], criteria);
+      return { id: id, name: names[id] || id, score: s, coverage: coverage(weights, ratingsBy[id], criteria) };
+    });
+    const lead = leader(ids, weights, ratingsBy, criteria), m = margin(ids, weights, ratingsBy, criteria);
+    const unstable = ids.length > 1 && lead
+      ? Array.from(new Set(sensitivity(ids, weights, ratingsBy, criteria).map(function (x) { return x.label; }))) : [];
+    let message;
+    if (ids.length < 2) message = 'Marque ao menos dois caminhos para comparar.';
+    else if (!lead) message = 'Sem líder claro com estes pesos e notas (empate ou notas faltando).';
+    else message = 'Com os seus pesos, "' + (names[lead] || lead) + '" pontua mais' + (m != null && m < 5 ? ', mas por pouco (' + m.toFixed(1).replace('.', ',') + ' pontos).' : '.');
+    return { rows: rows, lead: lead, margin: m, tight: m != null && m < 5, unstable: unstable, stable: ids.length > 1 && !!lead && !unstable.length, message: message };
+  }
+
   /* Critérios em uso: os 6 padrão (com os nomes que você trocou, sem os que você tirou) + os que você criou. */
   const MAX_CUSTOM = 4, MAX_LABEL = 60, MAX_NOTE = 400;
   function cleanText(v, max) { return String(v == null ? '' : v).replace(/\s+/g, ' ').trim().slice(0, max); }
@@ -108,10 +124,12 @@
     return lines.join('\n');
   }
 
-  const api = { CRITERIA: CRITERIA, MAX_PATHS: MAX_PATHS, score: score, coverage: coverage, leader: leader, sensitivity: sensitivity, margin: margin, summary: summary, buildCriteria: buildCriteria, nextCustomId: nextCustomId, cleanText: cleanText, MAX_CUSTOM: MAX_CUSTOM, MAX_LABEL: MAX_LABEL, MAX_NOTE: MAX_NOTE };
+  const api = { CRITERIA: CRITERIA, MAX_PATHS: MAX_PATHS, score: score, coverage: coverage, leader: leader, sensitivity: sensitivity, margin: margin, reading: reading, summary: summary, buildCriteria: buildCriteria, nextCustomId: nextCustomId, cleanText: cleanText, MAX_CUSTOM: MAX_CUSTOM, MAX_LABEL: MAX_LABEL, MAX_NOTE: MAX_NOTE };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
   window.ESCComparador = api;
 
+  /* Nome curto para o painel fixo: "Recorte A" ou o título da linha. */
+  function shortName(n) { const p = String(n).split(' · '); return p[0] === 'Linha' ? p.slice(1).join(' · ') : p[0]; }
   function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
   function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* sem armazenamento: segue só na tela */ } }
@@ -151,6 +169,7 @@
     const weightsBox = el('div', 'cmp-weights');
     const grid = el('div', 'cmp-grid');
     const out = el('div', 'cmp-out');
+    const live = el('div', 'cmp-live'); live.setAttribute('role', 'group'); live.setAttribute('aria-label', 'Leitura ao vivo dos seus pesos e notas'); live.hidden = true;
     const copy = el('button', 'mesa-btn', 'Copiar leitura'); copy.type = 'button';
     const text = el('pre', 'mesa-text'); text.hidden = true;
 
@@ -287,7 +306,7 @@
     function drawOut() {
       out.textContent = '';
       const ids = state.chosen;
-      if (!ids.length) return;
+      if (!ids.length) { drawLive(); return; }
       ids.forEach(function (pid) {
         const s = score(state.weights, state.ratings[pid], criteria);
         const cov = Math.round(coverage(state.weights, state.ratings[pid], criteria) * 100);
@@ -300,20 +319,35 @@
         row.appendChild(el('span', 'cmp-bar-val', s == null ? 'sem notas' : Math.round(s) + ' pts · ' + cov + '% dos pesos com nota'));
         out.appendChild(row);
       });
-      const lead = leader(ids, state.weights, state.ratings, criteria), m = margin(ids, state.weights, state.ratings, criteria);
-      const sens = sensitivity(ids, state.weights, state.ratings, criteria);
-      let msg;
-      if (ids.length < 2) msg = 'Marque ao menos dois caminhos para comparar.';
-      else if (!lead) msg = 'Sem líder claro com estes pesos e notas (empate ou notas faltando).';
-      else msg = 'Com os seus pesos, "' + names[lead] + '" pontua mais' + (m != null && m < 5 ? ', mas por pouco (' + m.toFixed(1).replace('.', ',') + ' pontos).' : '.');
-      out.appendChild(el('p', 'cmp-lead', msg));
-      if (ids.length > 1 && lead) {
-        const labels = Array.from(new Set(sens.map(function (x) { return x.label; })));
-        out.appendChild(el('p', 'cmp-note', labels.length
-          ? 'Atenção: a leitura troca se você mexer um ponto no peso de: ' + labels.join('; ') + '. Vale decidir esses pesos com cuidado.'
+      const r = reading(names, ids, state.weights, state.ratings, criteria);
+      out.appendChild(el('p', 'cmp-lead', r.message));
+      if (ids.length > 1 && r.lead) {
+        out.appendChild(el('p', 'cmp-note', r.unstable.length
+          ? 'Atenção: a leitura troca se você mexer um ponto no peso de: ' + r.unstable.join('; ') + '. Vale decidir esses pesos com cuidado.'
           : 'A leitura não muda com ±1 em nenhum peso.'));
       }
       out.appendChild(el('p', 'cmp-note', 'É uma leitura dos seus critérios, não uma recomendação nem um dado científico. Notas são suas, de 1 (pouco) a 5 (muito); você escolhe a pergunta.'));
+      drawLive();
+    }
+
+
+    /* Painel fixo: mostra o efeito de cada peso ou nota sem precisar rolar até a "Leitura". */
+    function drawLive() {
+      live.textContent = '';
+      const ids = state.chosen;
+      if (!ids.length) { live.hidden = true; return; }
+      live.hidden = false;
+      const r = reading(names, ids, state.weights, state.ratings, criteria);
+      live.appendChild(el('span', 'cmp-live-k', 'Leitura ao vivo'));
+      const list = el('div', 'cmp-live-rows');
+      r.rows.forEach(function (x) {
+        const it = el('span', 'cmp-live-item' + (x.id === r.lead ? ' is-lead' : ''));
+        it.appendChild(el('span', 'cmp-live-name', shortName(x.name)));
+        it.appendChild(el('strong', 'cmp-live-val', x.score == null ? 'sem notas' : Math.round(x.score) + ' pts'));
+        list.appendChild(it);
+      });
+      live.appendChild(list);
+      live.appendChild(el('span', 'cmp-live-msg', r.stable ? 'Estável com ±1 nos pesos.' : r.unstable.length ? 'Troca se mexer em: ' + r.unstable.join('; ') + '.' : r.message));
     }
 
     copy.addEventListener('click', function () {
@@ -321,7 +355,7 @@
       try { navigator.clipboard.writeText(text.textContent).then(function () { status.textContent = 'Leitura copiada.'; }, function () { status.textContent = 'Copie o texto abaixo.'; }); } catch (e) { status.textContent = 'Copie o texto abaixo.'; }
     });
 
-    root.appendChild(pick); root.appendChild(el('h3', 'cmp-h', 'Quanto pesa cada critério para você')); root.appendChild(weightsBox); root.appendChild(editor);
+    root.appendChild(pick); root.appendChild(live); root.appendChild(el('h3', 'cmp-h', 'Quanto pesa cada critério para você')); root.appendChild(weightsBox); root.appendChild(editor);
     root.appendChild(el('h3', 'cmp-h', 'Notas por caminho')); root.appendChild(grid);
     root.appendChild(el('h3', 'cmp-h', 'O que me faria mudar de ideia')); root.appendChild(changeBox);
     root.appendChild(el('h3', 'cmp-h', 'Leitura')); root.appendChild(out);
