@@ -31,3 +31,10 @@ test('Título de nota é texto escapado, nunca HTML executável', () => {
   assert.match(html, /&amp;/);
   assert.match(html, /&quot;teste&quot;/);
 });
+
+test('Home construída carrega o painel Seu estado e seus scripts', () => {
+  const html = execFileSync('python3', ['-c', 'import pathlib;print(pathlib.Path("index.html").read_text())'], { cwd: new URL('..', import.meta.url), encoding: 'utf8' });
+  assert.match(html, /id="home-estado"/);
+  assert.match(html, /assets\/js\/rota\.js/);
+  assert.match(html, /assets\/js\/home-estado\.js/);
+});
