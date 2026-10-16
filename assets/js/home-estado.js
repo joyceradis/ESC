@@ -5,6 +5,12 @@
 (function () {
   const PEND = ['pergunta', 'estrategias', 'paralelas', 'textos', 'leituras'];
 
+  /* Recorte decidido pela autora, lido de ESC.project (data.js). Sem ESC (testes em node) segue como não decidido. */
+  function decided() {
+    const P = (typeof ESC !== 'undefined' && ESC.project) || null;
+    return P && P.decision && P.decision.status === 'decidido' ? P.decision : null;
+  }
+
   function pageHref(h) { return String(h || '').charAt(0) === '#' ? 'decisao.html' + h : String(h || 'decisao.html'); }
 
   /* Resumo puro: Rota é injetada para o teste rodar fora do navegador. */
@@ -14,13 +20,16 @@
     const all = Rota.evaluate(steps, dec, cmp || {}, manual || {});
     const todo = Rota.next(all);
     const ab = dec.abertas || {};
-    const open = PEND.filter(function (k) { return ab[k] !== 'decidida'; }).length;
+    const D = decided();
+    const keys = D ? PEND.filter(function (k) { return k !== 'pergunta'; }) : PEND;
+    const open = keys.filter(function (k) { return ab[k] !== 'decidida'; }).length;
     const first = todo[0] || null;
     return {
       done: all.length - todo.length, total: all.length,
       next: first ? { label: first.label, href: pageHref(first.href), cta: first.cta, late: Rota.late(first, now) } : null,
       pergunta: String(dec.pergunta || '').trim().length > 0,
-      open: open, pendTotal: PEND.length,
+      decidido: D ? { by: D.by, date: D.date } : null,
+      open: open, pendTotal: keys.length,
       daysLeft: Rota.daysLeft(deadline, now)
     };
   }
@@ -54,11 +63,16 @@
     } else next.append(el('p', null, 'Todos os passos estão marcados.'));
 
     const q = el('div', 'he-card');
-    q.append(el('span', 'he-k', 'Pergunta de partida'), el('p', null, s.pergunta ? 'Você já escreveu uma versão.' : 'Ainda não escrita.'));
-    const a2 = el('a', 'inline', s.pergunta ? 'Reler ou ajustar →' : 'Escrever em Decisão →'); a2.href = 'decisao.html#pergunta-campo'; q.append(a2);
+    if (s.decidido) {
+      q.append(el('span', 'he-k', 'Recorte'), el('p', null, 'Decidido por ' + s.decidido.by + ' em ' + s.decidido.date + '.'));
+      const a2 = el('a', 'inline', 'Ver o recorte →'); a2.href = 'decisao.html#recorte'; q.append(a2);
+    } else {
+      q.append(el('span', 'he-k', 'Pergunta de partida'), el('p', null, s.pergunta ? 'Você já escreveu uma versão.' : 'Ainda não escrita.'));
+      const a2 = el('a', 'inline', s.pergunta ? 'Reler ou ajustar →' : 'Escrever em Decisão →'); a2.href = 'decisao.html#pergunta-campo'; q.append(a2);
+    }
 
     const p = el('div', 'he-card');
-    p.append(el('span', 'he-k', 'Pendências'), el('p', null, s.open === 0 ? 'As cinco estão decididas.' : s.open + ' de ' + s.pendTotal + ' em aberto.'));
+    p.append(el('span', 'he-k', 'Pendências'), el('p', null, s.open === 0 ? (s.pendTotal === 5 ? 'As cinco estão decididas.' : 'As ' + s.pendTotal + ' restantes estão decididas.') : s.open + ' de ' + s.pendTotal + ' em aberto.'));
     const a3 = el('a', 'inline', 'Ver pendências →'); a3.href = 'decisao.html#pendencias'; p.append(a3);
 
     grid.append(next, q, p);

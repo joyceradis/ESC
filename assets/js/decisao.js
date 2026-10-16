@@ -58,10 +58,17 @@
       'Ponto fraco: precisa de coorte caracterizada, amostras e aprovação ética; é o horizonte, não o primeiro passo.']
   ];
 
+  /* Configuração do projeto (ESC.project, em data.js). Nos testes de node não há ESC: tudo cai no modo "em aberto". */
+  function proj() { return (typeof ESC !== 'undefined' && ESC.project) || {}; }
+  function dec() { const d = proj().decision; return d && d.status === 'decidido' ? d : null; }
+  function items() { return dec() ? OPEN.filter(function (x) { return x[0] !== 'pergunta'; }) : OPEN; }
+  function prazo() { return proj().deadlineShort || '23/10'; }
+
   function summary(S) {
     const sc = SCOPES.filter(function (s) { return s[0] === S.escopo; })[0];
-    const out = ['Recorte: ' + (sc ? sc[0] + ' · ' + sc[1] : 'não escolhido')];
-    out.push('Pergunta: ' + ((S.pergunta || '').trim() || '(em branco)'));
+    const d0 = dec();
+    const out = [d0 ? 'Recorte: decidido por ' + d0.by + ' em ' + d0.date + ' — ' + d0.title : 'Recorte: ' + (sc ? sc[0] + ' · ' + sc[1] : 'não escolhido')];
+    if (!d0) out.push('Pergunta: ' + ((S.pergunta || '').trim() || '(em branco)'));
     DEST.forEach(function (d) {
       const rows = LANES.filter(function (l) { return (S.lanes || {})[l[0]] === d[0]; });
       if (rows.length) out.push('', d[1] + ':', rows.map(function (l) { return '- ' + l[1]; }).join('\n'));
@@ -71,11 +78,11 @@
       out.push('', 'Estratégias:');
       st.forEach(function (x) { const d = DEST.filter(function (y) { return y[0] === S.estr[x[0]]; })[0]; out.push('- ' + x[1] + ': ' + (d ? d[1] : '')); });
     }
-    const op = OPEN.map(function (x) { const d = OPEN_STATE.filter(function (y) { return y[0] === ((S.abertas || {})[x[0]] || 'aberta'); })[0]; return '- ' + x[1] + ' ' + (d ? d[1] : OPEN_STATE[0][1]); });
+    const op = items().map(function (x) { const d = OPEN_STATE.filter(function (y) { return y[0] === ((S.abertas || {})[x[0]] || 'aberta'); })[0]; return '- ' + x[1] + ' ' + (d ? d[1] : OPEN_STATE[0][1]); });
     out.push('', 'Pendências:', op.join('\n'));
     return out.join('\n');
   }
-  function open(S) { return OPEN.filter(function (x) { return ((S.abertas || {})[x[0]] || 'aberta') !== 'decidida'; }).length; }
+  function open(S) { return items().filter(function (x) { return ((S.abertas || {})[x[0]] || 'aberta') !== 'decidida'; }).length; }
   function pending(S) { return LANES.filter(function (l) { return !(S.lanes || {})[l[0]]; }).length; }
 
   const api = { summary: summary, pending: pending, open: open, SCOPES: SCOPES, LANES: LANES, OPEN: OPEN, STRATS: STRATS };
@@ -102,6 +109,7 @@
     const persist = function () { salvou = save(S); paintPill(salvou); clearTimeout(anuncio); anuncio = setTimeout(function () { status.textContent = salvou ? 'Salvo só neste navegador. Nada é enviado.' : 'Não foi possível salvar neste navegador.'; }, 1200); };
 
     /* Botões criados uma vez; só o estado muda, para o foco do teclado não se perder. */
+    const D = dec();
     const scopes = el('div', 'mesa-grid');
     const scopeBtns = SCOPES.map(function (s) {
       const b = el('button', 'mesa-btn decisao-scope'); b.type = 'button';
@@ -132,9 +140,10 @@
 
     /* Pendências: o que falta decidir, na ordem em que destrava o resto. */
     const resumo = el('p', 'dec-resumo'); resumo.setAttribute('role', 'status');
-    const updOpen = function () { const n = open(S); resumo.textContent = n ? 'Faltam ' + n + ' de ' + OPEN.length + ' decisões. Prazo: 23/10.' : 'As ' + OPEN.length + ' decisões estão marcadas como decididas.'; };
+    const lista = items();
+    const updOpen = function () { const n = open(S); resumo.textContent = n ? 'Faltam ' + n + ' de ' + lista.length + ' decisões. Prazo: ' + prazo() + '.' : 'As ' + lista.length + ' decisões estão marcadas como decididas.'; };
     const openList = el('div', 'dec-list');
-    OPEN.forEach(function (x, i) {
+    lista.forEach(function (x, i) {
       const card = el('article', 'mesa-card dec-card');
       const num = el('span', 'dec-num', String(i + 1)); num.setAttribute('aria-hidden', 'true');
       const h = el('h3', '', x[1]);
@@ -179,19 +188,28 @@
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { status.textContent = 'Copiado.'; }, function () { status.textContent = 'Selecione o texto abaixo e copie.'; });
       else status.textContent = 'Selecione o texto abaixo e copie.';
     });
-    const h2 = el('h3', 'mesa-sub', '2. Que destino tem cada estratégia?'); h2.id = 'estrategias';
-    const h3 = el('h3', 'mesa-sub', '3. Que destino tem cada trilha?'); h3.id = 'trilhas';
-    const h0 = el('h3', 'mesa-sub', '1. Qual é o recorte?'); h0.id = 'recorte';
+    const n0 = D ? 0 : 1;
+    const h2 = el('h3', 'mesa-sub', (n0 + 1) + '. Que destino tem cada estratégia?'); h2.id = 'estrategias';
+    const h3 = el('h3', 'mesa-sub', (n0 + 2) + '. Que destino tem cada trilha?'); h3.id = 'trilhas';
+    const h0 = el('h3', 'mesa-sub', D ? 'Recorte decidido por ' + D.by : '1. Qual é o recorte?'); h0.id = 'recorte';
+    /* Decidido: o título e o link do Drive no lugar dos botões de recorte e do campo da pergunta. */
+    const banner = el('div', 'dec-decidido');
+    if (D) {
+      banner.append(el('p', 'dec-decidido-k', 'Decidido por ' + D.by + ' · ' + D.date), el('p', 'dec-decidido-t', D.title));
+      if (D.note) banner.append(el('p', 'mesa-q', D.note));
+      if (D.doc) { const a = el('a', 'inline', 'Abrir o abstract no Drive →'); a.href = D.doc; a.target = '_blank'; a.rel = 'noopener'; banner.append(a); }
+    }
+    const recorte = D ? [h0, banner] : [h0, scopes, q];
     const hp = el('h3', 'mesa-sub', 'O que falta decidir');
     const pendRoot = document.getElementById('decisao-pend');
-    if (pendRoot) { pendRoot.replaceChildren(resumo, openList); root.replaceChildren(h0, scopes, q, h2, strats, h3, meter, lanes, copy, out, status); }
-    else root.replaceChildren(hp, resumo, openList, h0, scopes, q, h2, strats, h3, meter, lanes, copy, out, status);
+    if (pendRoot) { pendRoot.replaceChildren(resumo, openList); root.replaceChildren.apply(root, recorte.concat([h2, strats, h3, meter, lanes, copy, out, status])); }
+    else root.replaceChildren.apply(root, [hp, resumo, openList].concat(recorte, [h2, strats, h3, meter, lanes, copy, out, status]));
     drawScopes(); upd();
     if (location.hash === '#pergunta-campo') {
       let tocou = false; const timers = [];
       const parar = function () { tocou = true; timers.forEach(clearTimeout); };
       ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { window.addEventListener(ev, parar, { once: true, passive: true }); });
-      [700, 1800].forEach(function (ms, n) { timers.push(setTimeout(function () { if (tocou) return; const f = document.getElementById('pergunta-campo'); if (!f) return; f.scrollIntoView({ behavior: 'instant', block: 'start' }); const t = f.querySelector('textarea'); if (t && n === 0) t.focus({ preventScroll: true }); }, ms)); });
+      [700, 1800].forEach(function (ms, n) { timers.push(setTimeout(function () { if (tocou) return; const f = document.getElementById('pergunta-campo') || document.getElementById('recorte'); if (!f) return; f.scrollIntoView({ behavior: 'instant', block: 'start' }); const t = f.querySelector('textarea'); if (t && n === 0) t.focus({ preventScroll: true }); }, ms)); });
     }
   }
   if (document.readyState === 'complete') start(); else document.addEventListener('DOMContentLoaded', start);

@@ -19,6 +19,22 @@ ESC.meta = {
   esc365: 'https://esc365.escardio.org/event/2824'
 };
 
+/* Configuração do projeto — única parte a trocar para replicar o atlas em outra pesquisa (ver README, "Como replicar").
+   Só metadados públicos: o texto do abstract, métodos e hipótese ficam no Drive. */
+ESC.project = {
+  name: 'ESC Fund 2027',
+  deadlineShort: '23/10',
+  deadlineLong: 'sex 23/10/2026',
+  decision: {
+    status: 'decidido',
+    by: 'Joyce',
+    date: '16/10/2026',
+    title: 'Endothelial Glycocalyx and Coronary Microvascular Inflammatory Sensitisation: A Pilot Study',
+    doc: 'https://docs.google.com/document/d/1eFIp7nYFoGgmFv7zV3sCyuLI5VQqu4MO2HD-xMiXnoE/edit',
+    note: 'Escolha da autora. HYP-006 segue como hipótese; a cadeia microgravidade → titina → ICFEp não é, por si só, a origem autoral.'
+  }
+};
+
 /* LEITURAS_SUGERIDAS (L-001 a L-049) + 5 fontes citadas no relatório de 09/10 (R-01 a R-05, fora da planilha) + McDonald 2016 (R-06, fora da planilha).
    status: estudado | novo | pendente | verificar */
 ESC.readings = [
