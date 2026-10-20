@@ -11,9 +11,9 @@
 
 Se uma skill precisar mudar, proponha a mudança à Joyce e preserve o histórico.
 
-## Revisão visual remota proposta
+## Revisão visual remota
 
-A [documentação de revisão visual](docs/revisao-visual.md) aponta para o workflow e os testes de desktop/celular em proposta na branch/PR #17. Conferir resultados e capturas quando disponíveis; preservar a curadoria estética existente. O PR não concede autorização de merge, deploy, troca de executor ou alteração do design. Enquanto não integrado, a rotina não está disponível na `main`.
+A [documentação de revisão visual](docs/revisao-visual.md) aponta para workflow e testes integrados pelo [PR #17](https://github.com/joyceradis/ESC/pull/17) em 12/10/2026. A rotina está na `main` e sua execução é manual (`workflow_dispatch`). Conferir resultados e capturas do SHA aplicável; presença do workflow não comprova execução nem concede autorização de merge, deploy, troca de executor ou alteração do design.
 
 ## Interface
 - Fluxo do produto em [README.md](README.md).
@@ -24,5 +24,5 @@ A [documentação de revisão visual](docs/revisao-visual.md) aponta para o work
 - Não criar outra planilha, relatório ou arquitetura para substituir essa experiência. Preserve o visual aprovado e concilie branches/PRs existentes antes de alterar a interface.
 - Os documentos originais no Drive são a fonte de verdade; o site não os modifica. O repositório e o GitHub Pages **são públicos**, e a tela de senha é só barreira visual, não controle real.
 - Gere HTML da raiz por `python3 build.py`; valide com `python3 tools/check_site.py` e `node --test tests/*.test.mjs`.
-- Trabalhe em branch e PR; o merge na `main` é da Joyce, **exceto** nos PRs do próprio agente com `verificar` e `triagem` verdes e sem thread bloqueante, que a Joyce autorizou no chat ("CONFIRMO").
+- Trabalhe em branch e PR; siga a [exceção de interface de 15/10 em AGENTS.md](AGENTS.md#autonomia-do-executor-e-segurança-vigente-desde-15102026-decisão-da-joyce). Ela não autoriza merge genérico por dois checks verdes: respeite os checks exigidos, o relatório da triagem, threads bloqueantes, arquivos científicos/críticos e restrições posteriores de Joyce.
 - **Replicar para outra pesquisa:** siga "Como replicar" no [README.md](README.md); o conteúdo específico do projeto fica em `ESC.project` e nos registros de `assets/js/data.js`.
