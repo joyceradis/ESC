@@ -20,7 +20,7 @@ PAGES = [
     ("index", "Visão geral", "Visão geral", "Início"),
     ("retomar", "De onde parei", "De onde parei", "Retomar"),
     ("decisao", "Decisão", "Decisão", "Decisão"),
-    ("plano", "Plano até 23/10", "Plano até 23/10", "Plano"),
+    ("plano", "Acompanhamento", "Acompanhamento", "Plano"),
     ("pergunta", "Pergunta científica", "Pergunta científica", "Pergunta"),
     ("candidatura", "Candidatura ESC", "Candidatura ESC", "ESC"),
     ("protocolo", "Protocolo proposto", "Protocolo proposto", "Protocolo"),
