@@ -220,3 +220,35 @@ input,textarea,select{font-family:inherit}
   .sidebar:before,.page-head:after{display:none}
   .page-head{box-shadow:none}
 }
+
+
+/* Edição 06 · refinamento da identidade do ATLAS (não representa o selo oficial ESC).
+   Vermelho ESC de referência #AE1022; monograma próprio e tipografia editorial mantidos. */
+:root{
+  --esc:#AE1022;
+  --escDeep:#332027;
+  --escNight:#251d22;
+  --wine-50:#fcf5f5;
+  --wine-100:#f7e9ea;
+  --wine-200:#ebcbd0;
+  --ring:0 0 0 3px rgba(174,16,34,.20);
+}
+.sidebar{background:linear-gradient(168deg,#36212b 0%,#251d22 100%);border-right-color:#281c22}
+.brandmark{
+  display:grid;
+  place-items:center;
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  padding:0 0 2px;
+  line-height:1;
+  font-size:26px;
+  letter-spacing:-.025em;
+  border:1px solid rgba(255,255,255,.75);
+  color:#fff;
+  background:rgba(174,16,34,.3);
+}
+.brandmark:hover{background:var(--esc);color:#fff}
+.side-count b{font:650 22px/1.2 var(--font);letter-spacing:-.01em}
+.nav a[aria-current="page"]::before{background:#e86572}
+.page-head h1 em,.esc-home em{color:var(--esc)}

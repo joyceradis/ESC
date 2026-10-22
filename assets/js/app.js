@@ -10,10 +10,9 @@
   /* Contagem regressiva até o prazo da ESC */
   function countdown() {
     if (ESC.project && ESC.project.application && ESC.project.application.status === 'submitted') {
-      $('[data-countdown]').forEach(e => e.textContent = 'Enviada');
-      $('[data-countdown-label]').forEach(e => e.textContent = 'Resultado previsto · dez/2026');
-      $('.nav a, .mobile-nav a').forEach(e => { if (e.textContent.includes('Plano até 23/10')) e.innerHTML = e.innerHTML.replace('Plano até 23/10','Acompanhamento'); });
-      const sf = $('.sidefoot'); if (sf && sf.firstChild && sf.firstChild.nodeType === 3) sf.firstChild.textContent = 'Candidatura conferida em 22/10/2026.';
+      // A navegação e os textos vêm dos templates; não reescrever HTML via JavaScript.
+      $('[data-countdown]').forEach(e => { e.textContent = 'Enviada'; });
+      $('[data-countdown-label]').forEach(e => { e.textContent = 'Resultado previsto · dez/2026'; });
       return;
     }
     /* Diferença em dias do calendário (fuso de Brasília), não em blocos de 24 h: ao meio-dia de 23/10 ainda é “hoje”. */
