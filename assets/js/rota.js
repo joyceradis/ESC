@@ -74,6 +74,13 @@
 
   function start() {
     const root = document.getElementById('rota-root'); if (!root || typeof ESC === 'undefined') return;
+    if (ESC.project && ESC.project.application && ESC.project.application.status === 'submitted') {
+      root.replaceChildren(); const card=document.createElement('div');card.className='card accent';
+      const title=document.createElement('h3');title.textContent='Candidatura 10123 · em avaliação';
+      const note=document.createElement('p');note.textContent='Envio de 16/10 confirmado pela ESC em 19/10. O antigo roteiro de preparação não representa pendências atuais.';
+      const link=document.createElement('a');link.href='candidatura.html';link.className='inline';link.textContent='Ver situação →';
+      card.append(title,note,link);root.append(card);return;
+    }
     root.textContent = '';
     const manual = read(KEY);
     let filter = 'todos'; let day = null;

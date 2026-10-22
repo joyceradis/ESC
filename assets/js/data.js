@@ -7,8 +7,8 @@ window.ESC = window.ESC || {};
 
 ESC.meta = {
   edition: 'Edição 03',
-  snapshot: '15/10/2026',
-  deadline: '2026-10-23T23:59:00-03:00',
+  snapshot: '22/10/2026',
+  deadline: '2026-10-28T00:00:00-03:00',
   sheet: 'https://docs.google.com/spreadsheets/d/1fksFh1OfIFxe6R7A6eebzSoTgnMHBAbgOfUJHjVvEr8/edit',
   sheetTab: function (gid) { return this.sheet + '#gid=' + gid; },
   folder: 'https://drive.google.com/drive/folders/1ZuV7jDVAQW3SE9dbwjHyUOUTcWlPEbNR',
@@ -23,8 +23,8 @@ ESC.meta = {
    Só metadados públicos: o texto do abstract, métodos e hipótese ficam no Drive. */
 ESC.project = {
   name: 'ESC Fund 2027',
-  deadlineShort: '23/10',
-  deadlineLong: 'sex 23/10/2026',
+  deadlineShort: '28/10',
+  deadlineLong: 'qua 28/10/2026',
   decision: {
     status: 'decidido',
     by: 'Joyce',
@@ -32,7 +32,8 @@ ESC.project = {
     title: 'Endothelial Glycocalyx and Coronary Microvascular Inflammatory Sensitisation: A Pilot Study',
     doc: 'https://docs.google.com/document/d/1eFIp7nYFoGgmFv7zV3sCyuLI5VQqu4MO2HD-xMiXnoE/edit',
     note: 'Escolha da autora. HYP-006 segue como hipótese; a cadeia microgravidade → titina → ICFEp não é, por si só, a origem autoral.'
-  }
+  },
+  application: { status: 'submitted', submittedDate: '16/10/2026', validReference: '10123', withdrawnReference: '10122', confirmedDate: '19/10/2026', results: 'dezembro de 2026' }
 };
 
 /* LEITURAS_SUGERIDAS (L-001 a L-049) + 5 fontes citadas no relatório de 09/10 (R-01 a R-05, fora da planilha) + McDonald 2016 (R-06, fora da planilha).
