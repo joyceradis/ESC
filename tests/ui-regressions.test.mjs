@@ -39,3 +39,12 @@ test('marca do atlas é centralizada e mantém identidade própria', () => {
  assert.doesNotMatch(css, /--esc:#AE1022/);
  assert.match(css, /\.brandmark\s*\{\s*display:grid;\s*place-items:center/);
 });
+
+test('barra lateral mantém vinho-rubi saturado, não castanho e usa cache bust no HTML', () => {
+ const css=file('assets/css/refino.css');
+ assert.match(css, /linear-gradient\(165deg,#821d40 0%,#6c1636 56%,#501026 100%\)/);
+ assert.doesNotMatch(css, /linear-gradient\(180deg,var\(--escDeep\) 0%,var\(--escNight\) 100%\)/);
+ for (const page of ['index.html', 'laboratorio.html', 'candidatura.html', 'src/layout.html']) {
+   assert.match(file(page), /assets\/css\/refino\.css\?v=20261022-vinho-rubi/);
+ }
+});

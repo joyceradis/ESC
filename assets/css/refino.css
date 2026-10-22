@@ -37,12 +37,12 @@ html{scrollbar-color:var(--line-strong) transparent}
 
 /* ---------- barra lateral: o gesto forte ---------- */
 .sidebar{
+  /* Comparação visual das fotos antes/depois: recuperar vinho-rubi, sem fundo castanho-acinzentado. */
   background:
-    radial-gradient(140% 55% at -10% -5%,rgba(160,50,85,.42) 0,transparent 60%),
-    radial-gradient(90% 40% at 120% 105%,rgba(214,120,150,.16) 0,transparent 65%),
-    linear-gradient(180deg,var(--escDeep) 0%,var(--escNight) 100%);
-  border-right:1px solid #2a0913;
-  scrollbar-width:thin;scrollbar-color:#6f2a3f transparent;
+    radial-gradient(135% 60% at -10% -5%,rgba(194,46,102,.24) 0,transparent 65%),
+    linear-gradient(165deg,#821d40 0%,#6c1636 56%,#501026 100%);
+  border-right:1px solid #58152e;
+  scrollbar-width:thin;scrollbar-color:#a65372 transparent;
 }
 .sidebar:before{
   /* capilares: duas linhas finas em onda, só decoração de fundo */
