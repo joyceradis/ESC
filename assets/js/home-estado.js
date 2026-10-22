@@ -45,13 +45,29 @@
     const root = document.getElementById('home-estado');
     if (!root || !window.ESC || !window.ESCRota) return;
     if (ESC.project && ESC.project.application && ESC.project.application.status === 'submitted') {
-      const h = el('div','he-head'); h.append(el('div','section-kicker','Status confirmado · 19/10/2026'),el('h2',null,'Submissão validada pela ESC'));
-      const g = el('div','he-grid');
-      const a=el('div','he-card'); a.append(el('span','he-k','Inscrição 10123'),el('p',null,'Candidatura corrigida submetida em 16/10.'));
-      const b=el('div','he-card'); b.append(el('span','he-k','Retirada 10122'),el('p',null,'Duplicidade solucionada por resposta da ESC em 19/10.'));
-      const c=el('div','he-card'); c.append(el('span','he-k','Próximo marco'),el('p',null,'Resultados previstos para dezembro de 2026.'));
-      const link=el('a','inline','Ver acompanhamento →'); link.href='candidatura.html'; c.append(link);
-      g.append(a,b,c); root.replaceChildren(h,g);root.hidden=false;return;
+      // Os marcos medem a etapa administrativa, não a chance de seleção.
+      const heading = el('div', 'he-head');
+      const headingCopy = el('div');
+      headingCopy.append(el('div','section-kicker','Candidatura ESC Fund 2027'),el('h2',null,'Em avaliação pela ESC'));
+      const link = el('a','inline','Ver confirmação e documentos →');
+      link.href = 'candidatura.html#submissao-confirmada';
+      heading.append(headingCopy,link);
+
+      const bar = el('div','he-bar');
+      bar.setAttribute('role','progressbar');
+      bar.setAttribute('aria-label','Marcos administrativos concluídos: envio e confirmação; resultado pendente');
+      bar.setAttribute('aria-valuemin','0');bar.setAttribute('aria-valuemax','3');bar.setAttribute('aria-valuenow','2');
+      const fill = el('i'); fill.style.width = '66.6667%'; bar.append(fill);
+
+      const stages = el('ol','he-stages');
+      [['16 out','Enviada','done'],['19 out','Recebimento confirmado','done'],['Dez 2026','Resultado previsto','pending']].forEach(function (m) {
+        const item = el('li','he-stage ' + m[2]);
+        item.append(el('span','he-stage-date',m[0]),el('strong',null,m[1]));
+        stages.append(item);
+      });
+      root.replaceChildren(heading,bar,stages);
+      root.hidden=false;
+      return;
     }
     let s;
     try { s = summarize(window.ESCRota, read('esc-decisao-v1'), read('esc-comparador-v1'), read('esc-rota-v1'), new Date(), ESC.meta.deadline); } catch (e) { return; }
