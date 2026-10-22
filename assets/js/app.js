@@ -114,6 +114,12 @@
   document.addEventListener('DOMContentLoaded', () => {
     try { countdown(); } catch (e) {}
     try { const cur = document.querySelector('.mobile-nav [aria-current]'); if (cur) cur.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (e) {}
+    // O foco de teclado revela o rótulo completo, inclusive nas últimas abas.
+    const mobileNav = document.querySelector('.mobile-nav');
+    if (mobileNav) mobileNav.addEventListener('focusin', event => {
+      const target = event.target.closest('a');
+      if (target) target.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'auto' });
+    });
     library(); hypotheses(); vocab(); decisions();
   });
 })();
