@@ -154,18 +154,18 @@
 
 
 /* Edição 06 · home: progresso recuperado, navegação científica primeiro. */
-.esc-home{--home-wine:var(--esc);--home-muted:#65585c;--home-line:#e5d8db}
+/* Paleta original da home herdada de .esc-home, sem sobrescrever tokens. */
 .esc-home .home-estado{background:#fffdfb;border-color:var(--home-line);padding:20px 24px;margin-bottom:16px}
 .esc-home .he-head{align-items:center}
 .esc-home .he-head h2{font-size:clamp(22px,2.4vw,29px);line-height:1.18;color:var(--ink)}
-.esc-home .he-head .inline{font-size:12px;color:var(--esc);font-weight:650;text-decoration:underline;text-underline-offset:3px}
+.esc-home .he-head .inline{font-size:12px;color:var(--home-wine);font-weight:650;text-decoration:underline;text-underline-offset:3px}
 .esc-home .he-bar{height:7px;margin:14px 0 12px;background:#eee3e5}
-.esc-home .he-bar>i{background:var(--esc)}
+/* Barra herda o degradê vinho/rosado original. */
 .esc-home .he-stages{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;padding:0}
 .esc-home .he-stage{min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 7px;font-size:12px;line-height:1.4;color:#6b5d61}
 .esc-home .he-stage strong{font:600 12px/1.4 var(--font);color:#383036}
 .esc-home .he-stage.pending strong{color:#70656a;font-weight:500}
-.esc-home .he-stage-date{color:var(--esc);font-size:11px;font-variant-numeric:tabular-nums}
+.esc-home .he-stage-date{color:var(--home-wine);font-size:11px;font-variant-numeric:tabular-nums}
 .esc-home .he-stage.pending .he-stage-date{color:#777074}
 .esc-home .home-cover{padding-top:22px}
 .esc-home .cand-now{margin-top:44px;padding:22px 24px 20px;border:1px solid var(--home-line);border-radius:14px;background:#fffdfb}
