@@ -43,7 +43,10 @@ html{scrollbar-color:var(--line-strong) transparent}
     linear-gradient(180deg,var(--escDeep) 0%,var(--escNight) 100%);
   border-right:1px solid #2a0913;
   scrollbar-width:thin;scrollbar-color:#6f2a3f transparent;
+  overscroll-behavior-y:contain;scrollbar-gutter:stable;scroll-padding-block:16px;
 }
+/* A coluna inteira rola: marca, links e rodapé não são comprimidos pela altura. */
+.sidebar>*{flex-shrink:0}
 .sidebar:before{
   /* capilares: duas linhas finas em onda, só decoração de fundo */
   content:"";position:absolute;inset:auto 0 0 0;height:180px;pointer-events:none;opacity:.22;
@@ -56,21 +59,21 @@ html{scrollbar-color:var(--line-strong) transparent}
 .brand-title{font-size:29px;letter-spacing:-.02em;line-height:1.04}
 .brand-title i{font-weight:400;color:#f5cfd8}
 .side-count{
-  position:relative;margin-top:20px;padding:16px 16px 14px;border-radius:var(--r-md);
+  position:relative;margin-top:16px;padding:12px 14px;border-radius:var(--r-md);
   background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
   border:1px solid rgba(240,189,200,.28);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
 }
-.side-count b{display:block;font:400 40px/1 var(--serif);letter-spacing:-.03em;color:#fff;font-variant-numeric:lining-nums tabular-nums}
+.side-count b{display:block;font:400 26px/1.1 var(--serif);letter-spacing:-.03em;color:#fff;font-variant-numeric:lining-nums tabular-nums}
 .side-count span{display:block;margin-top:8px;font-size:11.5px;color:#e6b9c3;line-height:1.5}
 .side-count:after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#f0bdc8,rgba(240,189,200,0))}
-.navlabel{color:#d993a6;margin-top:34px}
+.navlabel{color:#d993a6;margin-top:22px}
 .nav{gap:2px}
-.nav a{position:relative;padding:10px 12px;border-radius:var(--r-sm);color:#f3dfe5;font-size:13.5px;transition:background .18s,color .18s}
+.nav a{position:relative;min-height:40px;padding:9px 12px;border-radius:var(--r-sm);color:#f3dfe5;font-size:13.5px;transition:background .18s,color .18s}
 .nav a:hover{background:rgba(255,255,255,.06);color:#fff}
 .nav a.active,.nav a[aria-current="page"]{background:rgba(240,189,200,.14);color:#fff}
 .nav a.active:before,.nav a[aria-current="page"]:before{content:"";position:absolute;left:-16px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#f0bdc8}
-.nav .n{font-variant-numeric:lining-nums tabular-nums;color:#e3a4b4;opacity:.85}
+.nav .n{flex:0 0 18px;font-variant-numeric:lining-nums tabular-nums;color:#e3a4b4;opacity:.85}
 .sidefoot{color:#cf9fac}
 .sidefoot a{color:#f2c4ce;text-decoration:underline}
 
@@ -192,6 +195,9 @@ input,textarea,select{font-family:inherit}
 .footer{border-top-color:var(--line);color:#8d6971}
 .footer strong{color:var(--escDeep)}
 
+/* Espaço de leitura no menu de notebooks, mantendo os 12 destinos completos. */
+@media (min-width:791px) and (max-width:1140px){.sidebar{padding-inline:16px}}
+
 /* ---------- celular ---------- */
 .mobile-head{background:rgba(248,243,241,.92);border-bottom-color:var(--line)}
 .mobile-head strong{color:var(--escNight)}
@@ -201,6 +207,8 @@ input,textarea,select{font-family:inherit}
 .mobile-nav a[aria-current="page"],.mobile-nav a[aria-current=page]{background:var(--escDeep);border-color:var(--escDeep);color:#fff}
 
 @media (max-width:790px){
+  /* Rolagem livre e espaço após a última aba: foco não fica preso no snap nem sob a máscara. */
+  .mobile-bar .mobile-nav{scroll-snap-type:none;scroll-padding-inline:18px 36px;padding-inline-end:36px}
   body{font-size:15px}
   .page-head{border-radius:var(--r-md);padding:26px 22px}
   .page-head h1{font-size:clamp(36px,10vw,48px)}
@@ -222,4 +230,4 @@ input,textarea,select{font-family:inherit}
 }
 
 /* A marca mantém apenas a centralização geométrica da correção anterior. */
-.brandmark{display:grid;place-items:center;line-height:1;padding-bottom:2px}
+.brandmark{display:grid;place-items:center;flex:0 0 42px;aspect-ratio:1;line-height:1;letter-spacing:0;padding-bottom:2px}
