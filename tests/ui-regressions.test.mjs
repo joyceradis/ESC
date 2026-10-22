@@ -34,6 +34,8 @@ test('home privilegia laboratório e projeto científico antes do arquivo de can
 
 test('marca do atlas é centralizada e mantém identidade própria', () => {
  const css=file('assets/css/refino.css');
- assert.match(css, /--esc:#AE1022/);
+ assert.match(css, /--esc:#8f2340/);
+ assert.match(css, /--escDeep:#4a1223/);
+ assert.doesNotMatch(css, /--esc:#AE1022/);
  assert.match(css, /\.brandmark\s*\{\s*display:grid;\s*place-items:center/);
 });
