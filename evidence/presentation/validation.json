@@ -1,0 +1,26 @@
+{
+  "reference": "b2b2c42d16d119a6b6435ce42067f8a923045311",
+  "environment": "Vercel ephemeral sandbox; Ubuntu 26.04.1; no personal device execution",
+  "playwright": "1.64.1",
+  "testCounts": {
+    "javascript": 84,
+    "python": 28,
+    "browserAfter": 76,
+    "browserBefore": 76
+  },
+  "browserFailedAfter": 0,
+  "paletteRegressions": [],
+  "sourceSHA256": {
+    "assets/css/home.css": "ae250a308b1e7375d19b651c34e37fae9685c854164888222d78b3bbf7a0e314",
+    "assets/css/refino.css": "0ecf6281c444701f692a38eca21bd4b75fe6371b6f2254d7c32b64d07c5da8d2",
+    "assets/js/app.js": "2579b71279dffdf8a2a9bf27b9c7730b8e83d612986be7ef36b5e708e68c5b6a",
+    "tools/check_presentation.cjs": "9ff94d84e39ee9f27de9aa5d0c3411c888124b8e91384c10fcca5cfaded21bb0"
+  },
+  "trackedChanges": [
+    "assets/css/home.css",
+    "assets/css/refino.css",
+    "assets/js/app.js"
+  ],
+  "generatedPagesUnchanged": true,
+  "scientificSourcesUnchanged": true
+}
