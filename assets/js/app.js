@@ -11,8 +11,8 @@
   function countdown() {
     if (ESC.project && ESC.project.application && ESC.project.application.status === 'submitted') {
       // A navegação e os textos vêm dos templates; não reescrever HTML via JavaScript.
-      $('[data-countdown]').forEach(e => { e.textContent = 'Enviada'; });
-      $('[data-countdown-label]').forEach(e => { e.textContent = 'Resultado previsto · dez/2026'; });
+      document.querySelectorAll('[data-countdown]').forEach(e => { e.textContent = 'Enviada'; });
+      document.querySelectorAll('[data-countdown-label]').forEach(e => { e.textContent = 'Resultado previsto · dez/2026'; });
       return;
     }
     /* Diferença em dias do calendário (fuso de Brasília), não em blocos de 24 h: ao meio-dia de 23/10 ainda é “hoje”. */
