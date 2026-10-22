@@ -6,9 +6,9 @@ const file = path => readFileSync(new URL(path, root),'utf8');
 
 test('contador submetido atualiza todos os indicadores sem erro de seletor', () => {
  const js=file('assets/js/app.js');
- assert.match(js, /\$\$\('\[data-countdown\]'\)\.forEach/);
- assert.match(js, /\$\$\('\[data-countdown-label\]'\)\.forEach/);
- assert.doesNotMatch(js, /\$\('\[data-countdown\]'\)\.forEach/);
+ assert.ok(js.includes("document.querySelectorAll('[data-countdown]').forEach"));
+ assert.ok(js.includes("document.querySelectorAll('[data-countdown-label]').forEach"));
+ assert.ok(!js.includes("querySelector('[data-countdown]').forEach"));
 });
 
 test('estado submetido preserva progresso acessível com três marcos administrativos', () => {
