@@ -40,11 +40,12 @@ test('marca do atlas é centralizada e mantém identidade própria', () => {
  assert.match(css, /\.brandmark\s*\{\s*display:grid;\s*place-items:center/);
 });
 
-test('barra lateral mantém vinho-rubi saturado, não castanho e usa cache bust no HTML', () => {
- const css=file('assets/css/refino.css');
+test('barra lateral tem sobrescrita vinho-rubi carregada por último e cache independente', () => {
+ const css=file('assets/css/sidebar-vinho-rubi.css');
  assert.match(css, /linear-gradient\(165deg,#821d40 0%,#6c1636 56%,#501026 100%\)/);
- assert.doesNotMatch(css, /linear-gradient\(180deg,var\(--escDeep\) 0%,var\(--escNight\) 100%\)/);
- for (const page of ['index.html', 'laboratorio.html', 'candidatura.html', 'src/layout.html']) {
-   assert.match(file(page), /assets\/css\/refino\.css\?v=20261022-vinho-rubi/);
+ for (const page of ['index.html','laboratorio.html','candidatura.html','src/layout.html']) {
+   const html=file(page);
+   assert.match(html, /assets\/css\/sidebar-vinho-rubi\.css/);
+   assert.ok(html.indexOf('assets/css/refino.css') < html.indexOf('assets/css/sidebar-vinho-rubi.css'));
  }
 });

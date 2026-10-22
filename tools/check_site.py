@@ -13,7 +13,6 @@ import re
 import subprocess
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -37,8 +36,7 @@ for name, html in html_by_page.items():
     for href in re.findall(r'href="([^"]+)"', html):
         if href.startswith(("http://", "https://", "mailto:", "data:")):
             continue
-        parsed = urlsplit(href)
-        target, anchor = parsed.path, parsed.fragment
+        target, _, anchor = href.partition("#")
         page = target or name
         if target and not (ROOT / target).exists():
             errors.append(f"{name}: link quebrado → {href}")
@@ -46,7 +44,7 @@ for name, html in html_by_page.items():
         if anchor and page.endswith(".html") and anchor not in ids_by_page.get(page, set()):
             errors.append(f"{name}: âncora inexistente → {href}")
     for src in re.findall(r'(?:src|href)="(assets/[^"]+)"', html):
-        if not (ROOT / urlsplit(src).path).exists():
+        if not (ROOT / src).exists():
             errors.append(f"{name}: asset ausente → {src}")
 
 # 4 — dados (avaliados com Node para ler o JS como o navegador lê)
