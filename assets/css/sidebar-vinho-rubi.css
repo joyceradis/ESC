@@ -1,0 +1,10 @@
+/* Identidade vinho-rubi da barra lateral: recuperada da referência visual original.
+ * Complementa refino.css, sem alterar os elementos científicos nem o laboratório.
+ * Novo arquivo para evitar CSS antigo armazenado no cache do navegador. */
+.sidebar {
+  background:
+    radial-gradient(135% 60% at -10% -5%, rgba(194,46,102,.24) 0, transparent 65%),
+    linear-gradient(165deg,#821d40 0%,#6c1636 56%,#501026 100%);
+  border-right-color:#58152e;
+  scrollbar-color:#a65372 transparent;
+}
